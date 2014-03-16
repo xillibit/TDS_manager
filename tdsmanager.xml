@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>com_tdsmanager</name>
+	<author>Florian DAL FITTO</author>
+	<creationDate>March 2012</creationDate>
+	<copyright>(C) 2012 - 2014 Open Source Matters. All rights reserved.
+	</copyright>
+	<license>GNU General Public License version 2 or later; see
+		LICENSE.txt</license>
+	<authorEmail>fdalfitto@pays-de-faverges.com</authorEmail>
+	<authorUrl>www.pays-de-faverges.com</authorUrl>
+	<version>1.0.0</version>
+	<description>COM_TDSMANAGER_XML_DESCRIPTION</description>
+
+	<update> <!-- Runs on update; New in 2.5 -->
+    <schemas>
+      <schemapath type="mysql">sql/updates/mysql</schemapath>
+    </schemas>
+  </update>
+
+	<files folder="site">
+		<filename>tdsmanager.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>metadata.xml</filename>
+		<filename>router.php</filename>
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>views</folder>    
+	</files>
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB.com_tdsmanager.ini</language>
+	</languages>
+
+	<administration>
+		<menu img="components/com_tdsmanager/media/icons/menu/main.png">COM_TDSMANAGER_MENU_TDSMANAGER_LABEL</menu>
+		<submenu>
+			<!--
+				Note that all & must be escaped to &amp; for the file to be valid
+				XML and be parsed by the installer
+			-->  
+      <menu link="option=com_tdsmanager"
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/main.png" alt="Contacts/Categories">COM_TDSMANAGER_MENU_CONTROLPANEL</menu>
+      <menu link="option=com_tdsmanager&amp;view=hebergeurs"
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergeurs.png" alt="Contacts/Categories">COM_TDSMANAGER_MENU_HEBERGEURS</menu>			
+			<menu link="option=com_tdsmanager&amp;view=hebergements"
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergements.png" alt="Contacts/Categories">COM_TDSMANAGER_MENU_HEBERGEMENTS</menu>        
+      <menu link="option=com_tdsmanager&amp;view=declarations"
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/declarations.png" alt="Contacts/Categories">COM_TDSMANAGER_MENU_DECLARATIONS</menu>
+		</submenu>
+		<files folder="admin">			
+			<filename>tdsmanager.php</filename>
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+			<folder>controllers</folder>			
+			<folder>helpers</folder>
+      <folder>libraries</folder>
+			<folder>models</folder>
+      <folder>media</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+      <!-- SQL files section -->
+      <folder>sql</folder>
+		</files>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB.com_tdsmanager.ini</language>
+			<language tag="en-GB">language/en-GB.com_tdsmanager.sys.ini</language>
+      <language tag="fr-FR">language/fr-FR.com_tdsmanager.ini</language>
+			<language tag="fr-FR">language/fr-FR.com_tdsmanager.sys.ini</language>
+		</languages>
+	</administration>
+</extension>
+

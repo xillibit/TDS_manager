@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="component"
+		label="COM_GESTTAXESEJOUR_FIELDSET_CONFIG_CLIENT_OPTIONS_LABEL"
+		description="COM_GESTTAXESEJOUR_FIELDSET_CONFIG_CLIENT_OPTIONS_DESC">
+					
+		<!-- Baculer ces paramétres dans la configuration du plugin
+    <field
+			name="mail_title_hosting"
+			type="text"
+			label="COM_GESTTAXESEJOUR_MAIL_TITLE_HOSTING"
+			description="COM_GESTTAXESEJOUR_MAIL_TITLE_HOSTING_DESC" />
+			
+		<field
+			name="mail_content_hosting"
+			type="textarea"
+			label="COM_GESTTAXESEJOUR_MAIL_CONTENT_HOSTING"
+			description="COM_GESTTAXESEJOUR_MAIL_CONTENT_HOSTING_DESC" /> -->
+      
+    <!-- Déterminer quels sont les autres paramétres qui peuvent être intégrés ici -->  
+      
+    <field
+			name="content_tos"
+			type="textarea"
+			label="COM_GESTTAXESEJOUR_FIELD_CONTENT_TOS"
+			description="COM_GESTTAXESEJOUR_FIELD_CONTENT_TOS_DESC" />
+
+	</fieldset>
+
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			filter="rules"
+			validate="rules"
+			component="com_banners"
+			section="component" />
+	</fieldset>
+</config>

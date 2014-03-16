@@ -1,0 +1,48 @@
+/**
+* Gesttaxesejour Component
+* @package Gesttaxesejour.Administrator
+*
+* @copyright (C) 2012 CCPF. All rights reserved.
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @link http://www.pays-de-faverges.com
+**/
+
+@CHARSET "UTF-8";
+
+#kadmin {
+  text-align: left;
+  width: 100%;
+  min-height: 200px;
+}
+
+.kadmin-container {
+width: 100%;
+}
+
+#kadmin table {
+  margin: 0;
+  padding 0;
+  width:100%;
+  border: collapse;
+}
+#kadmin table td {
+  padding 5px;
+}
+
+table.kadmin-adminform td {
+  vertical-align:top;
+}
+
+div.kadmin-functitle.no-icon { text-indent: 5px !important; }
+
+/* Large icons */
+.icon-48-tdsmanager { background: url(../icons/large/icon-48-tdsmanager.png) 5px 5px no-repeat; }
+.icon-config { background: url(../icons/large/config.png) 5px 5px no-repeat; }
+.icon-adminforum { background: url(../icons/large/categories.png) 5px 5px no-repeat; }
+.icon-profiles { background: url(../icons/large/users.png) 5px 5px no-repeat; }
+.icon-template { background: url(../icons/large/templates.png) 5px 5px no-repeat; }
+.icon-stats { background: url(../icons/large/stats.png) 5px 5px no-repeat; }
+.icon-systemreport { background: url(../icons/large/report.png) 5px 5px no-repeat; }
+.icon-support { background: url(../icons/large/support.png) 5px 5px no-repeat; }
+.icon-editcss { background: url(../icons/large/css.png) 5px 5px no-repeat; }
+.icon-purgerestatements { background: url(../icons/large/purgerestatements.png) 5px 5px no-repeat; }
