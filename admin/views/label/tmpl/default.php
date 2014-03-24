@@ -16,7 +16,7 @@ JHtml::_('behavior.multiselect');
 $listOrder =	'';//$this->state->get('list.ordering');
 $listDirn	= '';//$this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=label'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=label'); ?>" method="post" name="adminForm" id="adminForm">
 	<div class="clr"> </div>
 
 	<table class="adminlist">
@@ -26,11 +26,11 @@ $listDirn	= '';//$this->state->get('list.direction');
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th width="1%" class="nowrap">
-        #			
-				</th>        
+        #
+				</th>
 				<th width="10%">
 					<?php echo JText::_('COM_GESTTAXESEJOUR_LABEL_NOM'); ?>
-				</th>				 												
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -51,17 +51,17 @@ $listDirn	= '';//$this->state->get('list.direction');
 					<?php echo JHtml::_('grid.id', $i, intval($item->id)); ?>
 				</td>
 				<td class="center">
-            <?php echo intval($item->id); ?>									
+            <?php echo intval($item->id); ?>
 				</td>
 				<td class="center">
 					<?php echo $item->nom; ?>
-				</td>												
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 	<div>
-		<input type="hidden" name="task" value="" />    		
+		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="filter_order" value="<?php //echo intval ( $this->state->get('list.ordering') ) ?>" />
     <input type="hidden" name="filter_order_Dir" value="<?php //echo $this->escape ($this->state->get('list.direction')) ?>" />

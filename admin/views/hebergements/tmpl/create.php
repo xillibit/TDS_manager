@@ -11,11 +11,11 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.tooltip');
-JHtml::_( 'behavior.calendar' );  
+JHtml::_( 'behavior.calendar' );
 ?>
-<div id="kadmin"> 	
-	<div class="kadmin-right"> 	
-		<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements') ?>" method="post" id="adminForm" name="adminForm">
+<div id="kadmin">
+	<div class="kadmin-right">
+		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HOSTINGNAME'); ?></td>
@@ -52,7 +52,7 @@ JHtml::_( 'behavior.calendar' );
 						<td>
 							<input name="website" value="<?php if(!empty($this->hebergement->website)) echo $this->hebergement->website; ?>" />
 						</td>
-					</tr>					
+					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_POSTALCODE'); ?></td>
 						<td>
@@ -68,7 +68,7 @@ JHtml::_( 'behavior.calendar' );
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_NUMERO_CLASSEMENT'); ?></td>
 						<td>
-						  <input name="numero_classement" value="<?php if(!empty($this->hebergement->numero_classement)) echo $this->hebergement->numero_classement; ?>" />	
+						  <input name="numero_classement" value="<?php if(!empty($this->hebergement->numero_classement)) echo $this->hebergement->numero_classement; ?>" />
 						</td>
 					</tr>
           <tr>
@@ -77,40 +77,40 @@ JHtml::_( 'behavior.calendar' );
 						  <?php empty($this->hebergement->date_classement) ? $date_classement='0000-00-00 00:00:00' : $date_classement=$this->hebergement->date_classement;
                echo JHtml::calendar($date_classement, 'date_classement', 'date_classement', '%Y-%m-%d');?>
 						</td>
-					</tr>          	
+					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_LABEL'); ?></td>
 						<td>
-						  <?php echo $this->labellist; ?>	
+						  <?php echo $this->labellist; ?>
 						</td>
 					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_TYPE'); ?></td>
 						<td>
-						  <?php echo $this->hebergement_typelist; ?>	
+						  <?php echo $this->hebergement_typelist; ?>
 						</td>
 					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_OWNER_NAME'); ?></td>
 						<td>
-						  <?php echo $this->users_list; ?>	
+						  <?php echo $this->users_list; ?>
 						</td>
-					</tr>                   
+					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_CAPACITE_CHAMBRES'); ?></td>
 						<td>
-						  <input name="capacite_chambres" value="<?php if(!empty($this->hebergement->capacite_chambres)) echo $this->hebergement->capacite_chambres; ?>" />	
+						  <input name="capacite_chambres" value="<?php if(!empty($this->hebergement->capacite_chambres)) echo $this->hebergement->capacite_chambres; ?>" />
 						</td>
 					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_CAPACITE_PERSONNES'); ?></td>
 						<td>
-						  <input name="capacite_personnes" value="<?php if(!empty($this->hebergement->capacite_personnes)) echo $this->hebergement->capacite_personnes; ?>" />	
+						  <input name="capacite_personnes" value="<?php if(!empty($this->hebergement->capacite_personnes)) echo $this->hebergement->capacite_personnes; ?>" />
 						</td>
-					</tr>				
+					</tr>
 				</table>
-		<input type="hidden" name="id" value="<?php echo isset($this->hebergement->id) ? $this->hebergement->id : ''; ?>" />		
-    <input type="hidden" name="task" value="save" />		
+		<input type="hidden" name="id" value="<?php echo isset($this->hebergement->id) ? $this->hebergement->id : ''; ?>" />
+    <input type="hidden" name="task" value="save" />
 		<?php echo JHTML::_( 'form.token' ); ?>
-	</div>	
+	</div>
 </div>

@@ -32,36 +32,36 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 	public function display($tpl = null) {
 		// Initialiase variables.
 		$this->reglements		= $this->get('ListReglements');
-		
+
     $this->navigation = $this->get ( 'AdminNavigation' );
-		
+
     $this->setToolbarDefault();
 
 		parent::display($tpl);
 	}
-	
-	protected function setToolbarDefault() {		
-		// TODO: remplacer banners.png par une icône propre à l'application		
+
+	protected function setToolbarDefault() {
+		// TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::editList();
 		JToolBarHelper::divider();
-    JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE')); 
+    JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'));
     JToolBarHelper::custom('relaunch', 'refresh', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'));
-    JToolBarHelper::preferences('com_gesttaxesejour'); 
-    JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENT'), 'banners.png');    		
+    JToolBarHelper::preferences('com_gesttaxesejour');
+    JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENTS'), 'banners.png');
 	}
-  
+
   function displayEdit($tpl = null) {
 	  // Initialiase variables.
 		$this->classement		= $this->get('Classement');
-    		                    
+
 		$this->setToolBarEdit();
 		parent::display($tpl);
 	}
-	  
+
   protected function setToolbarEdit() {
-    // TODO: remplacer banners.png par une icône propre à l'application		
+    // TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_REGLEMENT'), 'banners.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel();    
-  } 
+		JToolBarHelper::cancel();
+  }
 }

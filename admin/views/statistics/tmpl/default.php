@@ -16,14 +16,14 @@ JHtml::_('behavior.multiselect');
 $listOrder =	$this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=statistics');?>" method="post" name="adminForm" id="adminForm">
-<fieldset id="filter-bar">		
-		<div class="filter-select fltrt">				
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=statistics');?>" method="post" name="adminForm" id="adminForm">
+<fieldset id="filter-bar">
+		<div class="filter-select fltrt">
 				<?php echo $this->mois_list;?>
-			
+
         <?php echo $this->trimestres_list;?>
-			
-				<?php echo $this->annees_list;?>			
+
+				<?php echo $this->annees_list;?>
 		</div>
 	</fieldset>
 	<div class="clr"> </div>
@@ -31,9 +31,9 @@ $listDirn	= $this->state->get('list.direction');
 <div id="kadmin">
   <div class="kadmin-right">
     <div style=""><h2><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_GEN_STATS');?></h2></div>
-    <div class="kadmin-statscover">     
+    <div class="kadmin-statscover">
       <!-- BEGIN: STATS -->
-      <div class="kadmin-statscover">        
+      <div class="kadmin-statscover">
         <div style="border-bottom: 1px solid #D5D5D5;">
         <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAUX_OCCUPATION_PAR_COMMUNES') ?></h4>
         <table class="kadmin-stat">
@@ -64,7 +64,7 @@ $listDirn	= $this->state->get('list.direction');
         <?php endforeach; ?>
         </tbody>
         </table>
-        </div>        
+        </div>
         <div style="border-bottom: 1px solid #D5D5D5;">
         <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAUX_OCCUPATION_PAR_TYPE_HEBERGEMENT_TYPE') ?></h4>
         <table class="kadmin-stat">
@@ -76,20 +76,20 @@ $listDirn	= $this->state->get('list.direction');
         <tr>
         <th style="color:#146295;">#</th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>        
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES') ?></th>        
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES') ?></th>        
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES') ?></th>
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES') ?></th>
         </tr>
         <?php foreach ($this->tauxoccupationstatshebertype as $id=>$item) : ?>
         <tr>
         <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
         <td style="text-align: center;">
         <?php echo $item->hosting_type_name ?>
-        </td>        
+        </td>
         <td style="text-align: center;">
         <img class="kstats-bar" src="<?php echo JURI::root().'administrator/components/com_gesttaxesejour/media/icons/bar.png' ?>" alt="" height="15" width="<?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>">
-        </td>        
+        </td>
         <td style="text-align: center;">
         <?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>
         </td>
@@ -102,7 +102,7 @@ $listDirn	= $this->state->get('list.direction');
         </tr>
         <?php endforeach; ?>
         </tbody>
-        </table> 
+        </table>
          </div>
          <div style="border-bottom: 1px solid #D5D5D5;">
          <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_PAR_COMMUNES') ?></h4>
@@ -114,9 +114,9 @@ $listDirn	= $this->state->get('list.direction');
         <tbody>
         <tr>
         <th style="color:#146295;">#</th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>        
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>        
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>        
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
+        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
         <?php foreach ($this->taxesejourstats as $id=>$item) : ?>
@@ -148,11 +148,11 @@ $listDirn	= $this->state->get('list.direction');
         <col class="col2" style="width:10%;" />
         <tbody>
         <tr>
-        <th style="color:#146295;">#</th>        
+        <th style="color:#146295;">#</th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
-        
+
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
-        
+
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
         <?php foreach ($this->taxesejourstats as $id=>$item) : ?>
@@ -170,13 +170,13 @@ $listDirn	= $this->state->get('list.direction');
         </tr>
         <?php endforeach; ?>
         </tbody>
-        </table>            
+        </table>
         </div>
         <!-- FINISH: STATS -->
-      </div>             
+      </div>
     </div>
   </div>
-</div> 
+</div>
 
 <div>
 		<input type="hidden" name="task" value="" />

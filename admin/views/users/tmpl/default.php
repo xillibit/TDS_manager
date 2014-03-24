@@ -16,7 +16,7 @@ JHtml::_('behavior.multiselect');
 $listOrder =	$this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=users'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=users'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_LABEL'); ?></label>
@@ -40,7 +40,7 @@ $listDirn	= $this->state->get('list.direction');
 			<tr>
 				<th width="1%">
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-				</th> 				
+				</th>
 				<th width="10%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_ID', 'userid', $listDirn, $listOrder); ?>
 				</th>
@@ -61,13 +61,13 @@ $listDirn	= $this->state->get('list.direction');
 				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_VILLE', 'ville', $listDirn, $listOrder); ?>
-				</th>				
+				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_TELEPHONE', 'telephone', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_PORTABLE', 'portable', $listDirn, $listOrder); ?>
-				</th>												 												
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -91,13 +91,13 @@ $listDirn	= $this->state->get('list.direction');
 				 <?php echo intval($item->userid); ?>
 				</td>
 				<td>
-            <?php echo $item->name; ?>									
+            <?php echo $item->name; ?>
 				</td>
 				<td>
-            <?php echo $item->lastname; ?>									
+            <?php echo $item->lastname; ?>
 				</td>
 				<td>
-            <?php echo $item->adress; ?>									
+            <?php echo $item->adress; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->complement_adress; ?>
@@ -106,20 +106,20 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->postalcode; ?>
 				</td>
 				<td class="order">
-					<?php echo $item->ville; ?>						
-				</td> 				
+					<?php echo $item->ville; ?>
+				</td>
 				<td class="center">
 					<?php echo $item->telephone; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->portable;?>
-				</td>																
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 	<div>
-		<input type="hidden" name="task" value="" />    		
+		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="filter_order" value="<?php echo intval ( $this->state->get('list.ordering') ) ?>" />
     <input type="hidden" name="filter_order_Dir" value="<?php echo $this->escape ($this->state->get('list.direction')) ?>" />

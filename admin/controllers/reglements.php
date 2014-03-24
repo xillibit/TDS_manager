@@ -29,69 +29,69 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
 	 */
 	public function __construct($config = array()) {
 		parent::__construct($config);
-		$this->baseurl = 'index.php?option=com_tdsmanager&view=reglements'; 		
+		$this->baseurl = 'index.php?option=com_tdsmanager&view=reglements';
 	}
-	
+
 	public function validpaiement() {
-    // Check for request forgeries.		
+    // Check for request forgeries.
     if (! JRequest::checkToken ()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
-    
+
     $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
-    if ( !empty($ids) ) {      
+    if ( !empty($ids) ) {
       $db = JFactory::getDBO();
-      $query = "UPDATE #__gesttaxesejour_reglements SET finaliser='1' WHERE id IN ($ids)";
+      $query = "UPDATE #__tdsmanager_reglements SET finaliser='1' WHERE id IN ($ids)";
       $db->setQuery((string)$query);
-      $db->Query(); 
-      
+      $db->Query();
+
       if ($db->getErrorNum()) {
   			JError::raiseWarning(500, $db->getErrorMsg());
   			return false;
   		}
-      
+
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENT_VALIDATED'), 'error' );
       $this->app->redirect($this->baseurl);
     } else {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
-    } 
+    }
   }
-  
+
   // Relancer les personnes qui n'ont pas payé, en leur envoyant un mail. Ceci est une procédure manuelle
   public function relaunch() {
-    // Check for request forgeries.		
+    // Check for request forgeries.
     if (! JRequest::checkToken ()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
-    
+
     $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
     if ( !empty($ids) ) {
-      // Vérifier avant d'envoyer le mail que le réglement n'a pas été fait 
+      // Vérifier avant d'envoyer le mail que le réglement n'a pas été fait
       $db = JFactory::getDBO();
-      $query = "SELECT * FROM #__gesttaxesejour_reglements WHERE id IN ($ids) AND finaliser='0'";
+      $query = "SELECT * FROM #__tdsmanager_reglements WHERE id IN ($ids) AND finaliser='0'";
       $db->setQuery((string)$query);
-      $items = $db->loadObjectList(); 
-      
+      $items = $db->loadObjectList();
+
       if ($db->getErrorNum()) {
   			JError::raiseWarning(500, $db->getErrorMsg());
   			return false;
-  		}  
-  		
-  		if ( !empty($items) ) {      
+  		}
+
+  		if ( !empty($items) ) {
         jimport( 'joomla.mail.mail' );
         $mailer = JFactory::getMailer();
         $config = JFactory::getConfig();
         $sender = array( $config->getValue( 'config.mailfrom' ), $config->getValue( 'config.fromname' ) );
-   
+
         $mailer->setSender($sender);
         // récupérer le message et le titre du message
         $body   = "Your body string\nin double quotes if you want to parse the \nnewlines etc";
         $mailer->setSubject('Your subject string');
         $mailer->setBody($body);
-        
+
         // envoyer le mail
         $send = $mailer->Send();
         if ( $send !== true ) {
@@ -110,19 +110,19 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
   }
-  
+
   public function add() {
     // rediriger vers la bonne vue
-    $this->setRedirect('index.php?option=com_gesttaxesejour&view=reglements&layout=create');
+    $this->setRedirect('index.php?option=com_tdsmanager&view=reglements&layout=create');
   }
-  
+
   public function savepaiement() {
-    // Check for request forgeries.		
+    // Check for request forgeries.
     if (! JRequest::checkToken ()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
-    
+
     $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENT_SAVED_SUCESSFULLY'), 'error' );
     $this->app->redirect($this->baseurl);
   }

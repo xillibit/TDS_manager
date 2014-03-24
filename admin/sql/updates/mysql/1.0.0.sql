@@ -1,8 +1,8 @@
 --
--- Structure de la table `swbkc_gesttaxesejour_alertes`
+-- Structure de la table `#__tdsmanager_alertes`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_alertes` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_alertes` (
   `date_envoi` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `declaration_id` int(11) NOT NULL,
   `reglement_id` int(11) NOT NULL,
@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_alertes` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_attachments`
+-- Structure de la table `#__gesttaxesejour_attachments`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_attachments` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_attachments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `size` int(11) NOT NULL,
@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_attachments` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_classements`
+-- Structure de la table `#__gesttaxesejour_classements`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_classements` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_classements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `state` int(7) NOT NULL DEFAULT '0',
@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_classements` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_declarations`
+-- Structure de la table `#__tdsmanager_declarations`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_declarations` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `start_date` date NOT NULL DEFAULT '0000-00-00',
   `end_date` date NOT NULL DEFAULT '0000-00-00',
@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_declarations` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_dispos`
+-- Structure de la table `#__tdsmanager_dispos`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_dispos` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_dispos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `startdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `enddate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -89,10 +89,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_dispos` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_hebergclass`
+-- Structure de la table `#__tdsmanager_hebergclass`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergclass` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergclass` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_hebergement` int(11) NOT NULL,
   `id_classement` int(11) NOT NULL,
@@ -107,10 +107,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergclass` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_hebergements`
+-- Structure de la table `#__tdsmanager_hebergements`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL DEFAULT '',
   `adress` varchar(255) NOT NULL DEFAULT '',
@@ -144,10 +144,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_hebergements_label`
+-- Structure de la table `#__tdsmanager_hebergements_label`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements_label` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -157,10 +157,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements_label` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_hebergements_type`
+-- Structure de la table `#__tdsmanager_hebergements_type`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements_type` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL,
@@ -172,10 +172,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_hebergements_type` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_methods_paiement`
+-- Structure de la table `#__tdsmanager_methods_paiement`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_methods_paiement` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_methods_paiement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `state` int(11) NOT NULL,
@@ -187,10 +187,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_methods_paiement` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_paiement_done`
+-- Structure de la table `#__tdsmanager_paiement_done`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_paiement_done` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_paiement_done` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `decl_id` int(7) NOT NULL,
   `paiement_type` int(6) NOT NULL,
@@ -201,10 +201,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_paiement_done` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_periode_ouverture`
+-- Structure de la table `#__tdsmanager_periode_ouverture`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_periode_ouverture` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_periode_ouverture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_fermeture` date NOT NULL,
   `date_ouverture` date NOT NULL,
@@ -217,10 +217,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_periode_ouverture` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_reglements`
+-- Structure de la table `#__tdsmanager_reglements`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_reglements` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_reglements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_regler` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `montant` decimal(5,2) DEFAULT NULL,
@@ -234,10 +234,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_reglements` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_tarif_nuit`
+-- Structure de la table `#__tdsmanager_tarif_nuit`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_tarif_nuit` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_tarif_nuit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tarif` float(7,2) NOT NULL,
   `id_classement` int(11) NOT NULL DEFAULT '0',
@@ -248,10 +248,10 @@ CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_tarif_nuit` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `swbkc_gesttaxesejour_users`
+-- Structure de la table `#__tdsmanager_users`
 --
 
-CREATE TABLE IF NOT EXISTS `#__gesttaxesejour_users` (
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_users` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `adress` varchar(255) NOT NULL DEFAULT '',
   `complement_adress` varchar(255) NOT NULL DEFAULT '',

@@ -16,7 +16,7 @@ JHtml::_('behavior.multiselect');
 $listOrder =	$this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements_type'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements_type'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_LABEL'); ?></label>
@@ -52,7 +52,7 @@ $listDirn	= $this->state->get('list.direction');
 				</th>
 				<th width="10%" class="nowrap">
 					<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_STATUS'); ?>
-				</th>				 												
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -73,23 +73,23 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo JHtml::_('grid.id', $i, intval($item->id)); ?>
 				</td>
 				<td class="center">
-            <?php echo intval($item->id); ?>									
+            <?php echo intval($item->id); ?>
 				</td>
 				<td>
-            <?php echo $item->name; ?>									
+            <?php echo $item->name; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->description; ?>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, '', 1, 'cb'); ?>
-				</td>								
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 	<div>
-		<input type="hidden" name="task" value="" />    		
+		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="filter_order" value="<?php echo intval ( $this->state->get('list.ordering') ) ?>" />
     <input type="hidden" name="filter_order_Dir" value="<?php echo $this->escape ($this->state->get('list.direction')) ?>" />

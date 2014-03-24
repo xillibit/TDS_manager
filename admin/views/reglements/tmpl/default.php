@@ -16,7 +16,7 @@ JHtml::_('behavior.multiselect');
 $listOrder =	$this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=reglements'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=reglements'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_LABEL'); ?></label>
@@ -64,13 +64,13 @@ $listDirn	= $this->state->get('list.direction');
 				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_VILLE', 'ville', $listDirn, $listOrder); ?>
-				</th>			
+				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_DATE_CLASSEMENT', 'date_classement', $listDirn, $listOrder); ?>					
+					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_DATE_CLASSEMENT', 'date_classement', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_NUMERO_CLASSEMENT', 'numero_classement', $listDirn, $listOrder); ?>
-				</th> 												
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -91,7 +91,7 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo JHtml::_('grid.id', $i, intval($item->id)); ?>
 				</td>
 				<td>
-            <?php echo $item->hostingname; ?>									
+            <?php echo $item->hostingname; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->description; ?>
@@ -112,20 +112,20 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->postalcode; ?>
 				</td>
 				<td class="order">
-					<?php echo $item->city; ?>						
-				</td>			
+					<?php echo $item->city; ?>
+				</td>
         <td>
 					<?php echo !empty($item->numero_agrement) ? $item->numero_agrement : JText::_('COM_GESTTAXESEJOUR_NO_CLASSEMENT_DEFINED'); ?>
-				</td>        
+				</td>
 				<td class="center">
-					<?php echo $item->date_classement; ?> 
-				</td>        						
+					<?php echo $item->date_classement; ?>
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 	<div>
-		<input type="hidden" name="task" value="" />    		
+		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="filter_order" value="<?php echo intval ( $this->state->get('list.ordering') ) ?>" />
     <input type="hidden" name="filter_order_Dir" value="<?php echo $this->escape ($this->state->get('list.direction')) ?>" />

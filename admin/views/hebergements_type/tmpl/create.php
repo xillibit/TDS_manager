@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
 ?>
-<div id="kadmin"> 	
-	<div class="kadmin-right"> 	
-		<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements_type') ?>" method="post" id="adminForm" name="adminForm">
+<div id="kadmin">
+	<div class="kadmin-right">
+		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements_type') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBRGEMENT_TYPE_NAME'); ?></td>
@@ -34,10 +34,10 @@ JHtml::_('behavior.multiselect');
 						<td>
 							<input name="state" value="<?php if(!empty($this->hebergement_type->state)) echo $this->hebergement_type->state; ?>" />
 						</td>
-					</tr>										
+					</tr>
 				</table>
-		<input type="hidden" name="id" value="<?php echo isset($this->hebergement_type->id) ? $this->hebergement_type->id : '0'; ?>" />		
-    <input type="hidden" name="task" value="save" />		
+		<input type="hidden" name="id" value="<?php echo isset($this->hebergement_type->id) ? $this->hebergement_type->id : '0'; ?>" />
+    <input type="hidden" name="task" value="save" />
 		<?php echo JHTML::_( 'form.token' ); ?>
-	</div>	
+	</div>
 </div>

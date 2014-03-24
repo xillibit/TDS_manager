@@ -13,16 +13,16 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
 ?>
-<div id="kadmin"> 	
-	<div class="kadmin-right"> 	
-		<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=declarations') ?>" method="post" id="adminForm" name="adminForm">
+<div id="kadmin">
+	<div class="kadmin-right">
+		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_MOIS_CONCERNE'); ?></td>
 						<td>
 							<?php echo $this->list_mois; ?>
 						</td>
-					</tr>          
+					</tr>
           <tr>
 						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_HEBERGEMENT_CONCERNE'); ?></td>
 						<td>
@@ -34,10 +34,10 @@ JHtml::_('behavior.multiselect');
 						<td>
               <input name="nb_personnes_plein_tarif" value="" />
 						</td>
-					</tr>                   					
-				</table>				
+					</tr>
+				</table>
     <input type="hidden" name="boxchecked" value="1" />
-    <input type="hidden" name="task" value="save_first_part" />		
+    <input type="hidden" name="task" value="save_first_part" />
 		<?php echo JHTML::_( 'form.token' ); ?>
-	</div>	
+	</div>
 </div>
