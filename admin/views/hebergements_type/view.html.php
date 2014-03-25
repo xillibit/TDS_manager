@@ -30,50 +30,53 @@ class TdsmanagerAdminViewHebergements_type extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
 		$this->list_hebergements		= $this->get('ListHebergementsType');
-		
+
     $this->navigation = $this->get ( 'AdminNavigation' );
-				
+
     $this->setToolbarDefault();
 
 		parent::display($tpl);
 	}
-	
-	protected function setToolbarDefault() {		
+
+	protected function setToolbarDefault() {
 		JToolBarHelper::addNew('create');
     JToolBarHelper::editList();
 		JToolBarHelper::divider();
-    JToolBarHelper::deleteList('delete'); 
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_TYPE'), 'banners.png');  		
+    JToolBarHelper::deleteList('delete');
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_TYPE'), 'banners.png');
 	}
-	
+
 	public function displayCreate($tpl = null) {
 	  $app = JFactory::getApplication();
     $id = $app->getUserState( "com_gesttaxesejour.hebergement_type.id" );
-    
+
     if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();
-    
+
     $this->hebergement_type = $this->get('HebergementType');
 
 		parent::display($tpl);
 	}
-	
+
 	protected function setToolbarCreate() {
-	 // TODO: remplacer banners.png par une icône propre à l'application		
+	 // TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_HERBERGEMENT_TYPE'), 'banners.png');
 		//JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel(); 
+		JToolBarHelper::cancel();
 	}
-  
+
   protected function setToolbarEdit() {
-	 // TODO: remplacer banners.png par une icône propre à l'application		
+	 // TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
 		//JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel(); 
+		JToolBarHelper::cancel();
 	}
 }

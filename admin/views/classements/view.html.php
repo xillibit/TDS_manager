@@ -19,7 +19,7 @@ require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/view.ph
  * @subpackage  com_banners
  * @since       1.6
  */
-class TdsmanagerAdminViewClassements extends TdsmanagerView {	
+class TdsmanagerAdminViewClassements extends TdsmanagerView {
 	/**
 	 * Method to display the view.
 	 *
@@ -30,11 +30,14 @@ class TdsmanagerAdminViewClassements extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
 		$this->classements		= $this->get('Classements');
-		
+
 		$this->navigation = $this->get ( 'AdminNavigation' );
-    
+
     $this->addToolbar();
 
 		parent::display($tpl);
@@ -47,34 +50,34 @@ class TdsmanagerAdminViewClassements extends TdsmanagerView {
 		JToolBarHelper::publish('publish', 'JTOOLBAR_PUBLISH', true);
 		JToolBarHelper::unpublish('unpublish', 'JTOOLBAR_UNPUBLISH', true);
 		JToolBarHelper::divider();
-		JToolBarHelper::deleteList('delete'); 				
-		// TODO: remplacer banners.png par une icône propre à l'application		
+		JToolBarHelper::deleteList('delete');
+		// TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CLASSEMENTS'), 'banners.png');
 	}
-	
+
 	function displayCreate($tpl = null) {
 	  // Initialiase variables.
 		$this->classement		= $this->get('Classement');
-		
+
     $app = JFactory::getApplication();
     $id = $app->getUserState( "com_gesttaxesejour.classement.id" );
-                        
+
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();
 		parent::display($tpl);
 	}
-	
+
 	protected function setToolbarCreate() {
-    // TODO: remplacer banners.png par une icône propre à l'application		
+    // TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_CLASSEMENT'), 'classements.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel();    
-  } 
-  
+		JToolBarHelper::cancel();
+  }
+
   protected function setToolbarEdit() {
-    // TODO: remplacer banners.png par une icône propre à l'application		
+    // TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_CLASSEMENT'), 'banners.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel();    
-  } 
+		JToolBarHelper::cancel();
+  }
 }

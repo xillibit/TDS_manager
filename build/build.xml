@@ -15,9 +15,9 @@
   any of the build files.
 
   Parameters: (with default values - adjust the directories in Eclispe to your individual setup)
-  	-Dproject_dir=..				(= workspace/mod_kunenalatest)
+  	-Dproject_dir=..				(= workspace/com_tdsmanager)
   	-Dpackage_dir=../../packages	(= workspace/packages)
-  	-Dtmp_dir=tmp					(= workspace/mod_kunenalatest/build/tmp)
+  	-Dtmp_dir=tmp					(= workspace/com_tdsmanager/build/tmp)
 -->
 <project name="TDS_manager" default="dist" basedir=".">
 	<description>Ant Build File for TDS_manager component</description>

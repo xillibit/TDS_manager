@@ -1,6 +1,6 @@
 /**
-* Gesttaxesejour Component
-* @package Gesttaxesejour.Administrator
+* TDS_manager Component
+* @package TDS_manager.Administrator
 *
 * @copyright (C) 2012 CCPF. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
@@ -37,6 +37,14 @@ div.kadmin-functitle.no-icon { text-indent: 5px !important; }
 
 /* Large icons */
 .icon-48-tdsmanager { background: url(../icons/large/icon-48-tdsmanager.png) 5px 5px no-repeat; }
+.icon-48-hebergements { background: url(../icons/large/icon-48-hebergements.png) 5px 5px no-repeat; }
+.icon-48-typehebergements { background: url(../icons/large/icon-48-typehebergements.png) 5px 5px no-repeat; }
+.icon-48-declarations { background: url(../icons/large/icon-48-declarations.png) 5px 5px no-repeat; }
+.icon-48-label { background: url(../icons/large/icon-48-label.png) 5px 5px no-repeat; }
+.icon-48-tarif_nuit { background: url(../icons/large/icon-48-tarif_nuit.png) 5px 5px no-repeat; }
+.icon-48-users { background: url(../icons/large/icon-48-users.png) 5px 5px no-repeat; }
+.icon-48-reglements { background: url(../icons/large/icon-48-reglements.png) 5px 5px no-repeat; }
+.icon-48-statitics { background: url(../icons/large/icon-48-reglements.png) 5px 5px no-repeat; }
 .icon-config { background: url(../icons/large/config.png) 5px 5px no-repeat; }
 .icon-adminforum { background: url(../icons/large/categories.png) 5px 5px no-repeat; }
 .icon-profiles { background: url(../icons/large/users.png) 5px 5px no-repeat; }

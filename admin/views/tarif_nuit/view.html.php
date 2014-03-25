@@ -30,52 +30,55 @@ class TdsmanagerAdminViewTarif_nuit extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
-		$this->tarifnuits		= $this->get('TarifNuits'); 	  
-		
+		$this->tarifnuits		= $this->get('TarifNuits');
+
     $this->navigation = $this->get ( 'AdminNavigation' );
-		
+
     $this->setToolbarDefault();
 
 		parent::display($tpl);
 	}
-	
+
 	protected function setToolbarDefault() {
     JToolBarHelper::addNew('create');
 		JToolBarHelper::divider();
     JToolBarHelper::editList();
 		JToolBarHelper::divider();
-    JToolBarHelper::deleteList('delete'); 		
-		// TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT'), 'banners.png');  		
+    JToolBarHelper::deleteList('delete');
+		// TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT'), 'tarif_nuit.png');
 	}
-	
+
 	function displayCreate($tpl = null) {
 	  // Initialiase variables.
 	  $this->tarifnuit		= $this->get('TarifNuit');
-    
+
     $this->classement_list = $this->get('ListClassement');
-	  $this->hebergement_type = $this->get('ListHebergementType');		
-		
+	  $this->hebergement_type = $this->get('ListHebergementType');
+
     $app = JFactory::getApplication();
     $id = $app->getUserState( "com_gesttaxesejour.hebergement_tarif_nuit.id" );
-                        
+
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();
 		parent::display($tpl);
 	}
-	
+
 	protected function setToolbarCreate() {
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_TARIF_NUIT'), 'banners.png');
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_TARIF_NUIT'), 'tarif_nuit.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel();    
+		JToolBarHelper::cancel();
   }
 
   protected function setToolbarEdit() {
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_TARIF_NUIT'), 'banners.png');
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_TARIF_NUIT'), 'tarif_nuit.png');
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel();    
+		JToolBarHelper::cancel();
   }
 }

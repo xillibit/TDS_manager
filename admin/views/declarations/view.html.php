@@ -30,6 +30,9 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
 		$this->declarations		= $this->get('Declarations');
     $this->mois = array(1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril', 5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Aout', 9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre');
@@ -87,7 +90,7 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 
   protected function setToolbarCreate() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_DECLARATION'), 'classements.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_DECLARATION'), 'declarations.png');
 		// Mettre un bouton suivant à la place de sauver
     JToolBarHelper::custom( 'save_first_part', 'forward', 'icon over', 'COM_GESTTAXESEJOUR_DECLARATION_TOOLBAR_NEXT' );
     JToolBarHelper::cancel();

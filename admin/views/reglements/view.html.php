@@ -30,6 +30,9 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
 		$this->reglements		= $this->get('ListReglements');
 
@@ -47,7 +50,7 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
     JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'));
     JToolBarHelper::custom('relaunch', 'refresh', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'));
     JToolBarHelper::preferences('com_gesttaxesejour');
-    JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENTS'), 'banners.png');
+    JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENTS'), 'reglements.png');
 	}
 
   function displayEdit($tpl = null) {
@@ -60,7 +63,7 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 
   protected function setToolbarEdit() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_REGLEMENT'), 'banners.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_REGLEMENT'), 'reglements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

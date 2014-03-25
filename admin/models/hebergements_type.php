@@ -28,24 +28,24 @@ class TdsmanagerAdminModelHebergements_type extends TdsmanagerModel {
 	 */
 	protected function populateState($ordering = null, $direction = null) {
   	// List state information
-    $value = $this->getUserStateFromRequest ( "com_kunena.admin.hebergements_type.list.limit", 'limit', $this->app->getCfg ( 'list_limit' ), 'int' );
+    $value = $this->getUserStateFromRequest ( "com_tdsmanager.admin.hebergements_type.list.limit", 'limit', $this->app->getCfg ( 'list_limit' ), 'int' );
     $this->setState ( 'list.limit', $value );
 
-    $value = $this->getUserStateFromRequest ( 'com_kunena.admin.hebergements_type.list.ordering', 'filter_order', 'ordering', 'cmd' );
+    $value = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.hebergements_type.list.ordering', 'filter_order', 'ordering', 'cmd' );
     $this->setState ( 'list.ordering', $value );
 
-    $value = $this->getUserStateFromRequest ( "com_kunena.admin.hebergements_type.list.start", 'limitstart', 0, 'int' );
+    $value = $this->getUserStateFromRequest ( "com_tdsmanager.admin.hebergements_type.list.start", 'limitstart', 0, 'int' );
     $this->setState ( 'list.start', $value );
 
-    $value = $this->getUserStateFromRequest ( 'com_kunena.admin.hebergements_type.list.direction', 'filter_order_Dir', 'asc', 'word' );
+    $value = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.hebergements_type.list.direction', 'filter_order_Dir', 'asc', 'word' );
     if ($value != 'asc')
     $value = 'desc';
     $this->setState ( 'list.direction', $value );
 
-    $value = $this->getUserStateFromRequest ( 'com_kunena.admin.hebergements_type.list.search', 'search', '', 'string' );
+    $value = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.hebergements_type.list.search', 'search', '', 'string' );
     $this->setState ( 'list.search', $value );
 
-    $value = $this->getUserStateFromRequest ( "com_kunena.admin.hebergements_type.list.levels", 'levellimit', 10, 'int' );
+    $value = $this->getUserStateFromRequest ( "com_tdsmanager.admin.hebergements_type.list.levels", 'levellimit', 10, 'int' );
     $this->setState ( 'list.levels', $value );
 	}
 

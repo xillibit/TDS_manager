@@ -30,47 +30,50 @@ class TdsmanagerAdminViewUsers extends TdsmanagerView {
 	 * @since   1.6
 	 */
 	public function display($tpl = null) {
+		$document = JFactory::getDocument();
+		$document->addStyleSheet ( JUri::base(true).'/components/com_tdsmanager/media/css/admin.css' );
+
 		// Initialiase variables.
 		$this->users		= $this->get('ListUsers');
-		
+
     $this->navigation = $this->get ( 'AdminNavigation' );
-		
+
     $this->setToolbarDefault();
 
 		parent::display($tpl);
 	}
-	
-	protected function setToolbarDefault() {		
+
+	protected function setToolbarDefault() {
 		JToolBarHelper::addNew('create');
 		JToolBarHelper::editList();
 		JToolBarHelper::divider();
-    JToolBarHelper::deleteList('delete'); 
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_OWNERS'), 'banners.png');  		
+    JToolBarHelper::deleteList('delete');
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_OWNERS'), 'users.png');
 	}
-	
+
 	public function displayCreate($tpl = null) {
 		// Initialiase variables.
 		$userid = $this->app->getUserState( 'com_gesttaxesejour.user.id' );
     $this->user		= $this->get('user');
-		    
+
     if($userid) $this->setToolbarEdit();
     else $this->setToolbarCreate();
 
 		parent::display($tpl);
 	}
-	
-	protected function setToolbarCreate() {		
+
+	protected function setToolbarCreate() {
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel(); 
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_OWNER'), 'users.png');  		
+		JToolBarHelper::cancel();
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_OWNER'), 'users.png');
 	}
-  
-  protected function setToolbarEdit() {		
+
+  protected function setToolbarEdit() {
 		JToolBarHelper::save('save');
-		JToolBarHelper::cancel(); 
-    // TODO: remplacer banners.png par une icône propre à l'application		
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_OWNER'), 'users.png');  		
+		JToolBarHelper::cancel();
+    // TODO: remplacer banners.png par une icône propre à l'application
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_OWNER'), 'users.png');
 	}
 }

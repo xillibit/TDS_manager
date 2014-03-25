@@ -28,27 +28,27 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
 	 */
 	protected function populateState($ordering = null, $direction = null) {
 	   // List state information
-    $value = $this->getUserStateFromRequest ( "com_kunena.admin.statistics.list.limit", 'limit', $this->app->getCfg ( 'list_limit' ), 'int' );
+    $value = $this->getUserStateFromRequest ( "com_tdsmanager.admin.statistics.list.limit", 'limit', $this->app->getCfg ( 'list_limit' ), 'int' );
     $this->setState ( 'list.limit', $value );
 
-    $value = $this->getUserStateFromRequest ( 'com_kunena.admin.statistics.list.ordering', 'filter_order', 'ordering', 'cmd' );
+    $value = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.statistics.list.ordering', 'filter_order', 'ordering', 'cmd' );
     $this->setState ( 'list.ordering', $value );
 
-    $value = $this->getUserStateFromRequest ( "com_kunena.admin.statistics.list.start", 'limitstart', 0, 'int' );
+    $value = $this->getUserStateFromRequest ( "com_tdsmanager.admin.statistics.list.start", 'limitstart', 0, 'int' );
     $this->setState ( 'list.start', $value );
 
-    $value = $this->getUserStateFromRequest ( 'com_kunena.admin.statistics.list.direction', 'filter_order_Dir', 'asc', 'word' );
+    $value = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.statistics.list.direction', 'filter_order_Dir', 'asc', 'word' );
     if ($value != 'asc')
     $value = 'desc';
     $this->setState ( 'list.direction', $value );
 
-    $mois = $this->getUserStateFromRequest ( 'com_gesttaxesejour.admin.statistics.list.mois_list', 'mois_list', '', 'int' );
+    $mois = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.statistics.list.mois_list', 'mois_list', '', 'int' );
     $this->setState ( 'list.mois', $mois );
 
-    $trimestres = $this->getUserStateFromRequest ( 'com_gesttaxesejour.admin.statistics.list.trimestres_list', 'trimestres_list', '', 'int' );
+    $trimestres = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.statistics.list.trimestres_list', 'trimestres_list', '', 'int' );
     $this->setState ( 'list.trimestres', $trimestres );
 
-    $annee = $this->getUserStateFromRequest ( 'com_gesttaxesejour.admin.statistics.list.annees_list', 'annees_list', '', 'int' );
+    $annee = $this->getUserStateFromRequest ( 'com_tdsmanager.admin.statistics.list.annees_list', 'annees_list', '', 'int' );
     $this->setState ( 'list.annee', $annee );
 	}
 
