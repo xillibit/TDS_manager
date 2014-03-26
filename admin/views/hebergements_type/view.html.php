@@ -49,7 +49,7 @@ class TdsmanagerAdminViewHebergements_type extends TdsmanagerView {
 		JToolBarHelper::divider();
     JToolBarHelper::deleteList('delete');
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_TYPE'), 'banners.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_TYPE'), 'hebergement_types.png');
 	}
 
 	public function displayCreate($tpl = null) {
@@ -66,7 +66,7 @@ class TdsmanagerAdminViewHebergements_type extends TdsmanagerView {
 
 	protected function setToolbarCreate() {
 	 // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_HERBERGEMENT_TYPE'), 'banners.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_HERBERGEMENT_TYPE'), 'hebergement_types.png');
 		//JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
@@ -74,7 +74,7 @@ class TdsmanagerAdminViewHebergements_type extends TdsmanagerView {
 
   protected function setToolbarEdit() {
 	 // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'hebergement_types.png');
 		//JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT_TYPE'), 'banners.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();

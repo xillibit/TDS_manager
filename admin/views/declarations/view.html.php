@@ -51,7 +51,7 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 		JToolBarHelper::divider();
     JToolBarHelper::deleteList('delete');
 		// TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_DECLARATIONS'), 'banners.png');
+		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_DECLARATIONS'), 'declarations.png');
 	}
 
   function displayCreate($tpl = null) {
