@@ -35,24 +35,23 @@ class TdsmanagerAdminViewStatistics extends TdsmanagerView {
 
 		// Initialiase variables.
 		$this->tauxoccupationstatscommunes		= $this->get('TauxOccupationStatsCommunes');
-    $this->tauxoccupationstatshebertype = $this->get('TauxOccupationStatsHeberTypes');
-    $this->tauxoccupationglobalstats = $this->get ( 'TauxOccupationGlobalStats' );
-    $this->taxesejourstats = $this->get ( 'TaxeSejourStats' );
-    $this->taxesejourglobalstats = $this->get ( 'TaxeSejourGlobalStats' );
+		$this->tauxoccupationstatshebertype = $this->get('TauxOccupationStatsHeberTypes');
+		$this->tauxoccupationglobalstats = $this->get ( 'TauxOccupationGlobalStats' );
+		$this->taxesejourstats = $this->get ( 'TaxeSejourStats' );
+		$this->taxesejourglobalstats = $this->get ( 'TaxeSejourGlobalStats' );
 
 		$this->mois_list = $this->get('MoisList');
 		$this->trimestres_list = $this->get('TrimestreList');
 		$this->annees_list = $this->get('AnneeList');
 
-    $this->setToolbarDefault();
+		$this->setToolbarDefault();
 
 		parent::display($tpl);
 	}
 
 	protected function setToolbarDefault() {
-		// TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_STATS_GEN_STATS'), 'statistics.png');
 
-    JToolBarHelper::custom('export', 'unblock.png', 'unblock_f2.png', 'COM_GESTTAXESEJOUR_STATISTICS_EXPORT_EXCEL', true);
+		JToolBarHelper::custom('export', 'unblock.png', 'unblock_f2.png', 'COM_GESTTAXESEJOUR_STATISTICS_EXPORT_EXCEL', true);
 	}
 }

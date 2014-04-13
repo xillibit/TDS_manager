@@ -67,6 +67,10 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
   `sous_total2` float(7,4) NOT NULL,
   `montant_total` float(7,4) NOT NULL,
   `date_declarer` date NOT NULL DEFAULT '0000-00-00',
+  nb_total_personnes int(11) NOT NULL,
+  nb_personnes_assujetties int(11) NOT NULL,
+  montant_encaisse_sejour float(7,3) NOT NULL,
+  duree_sejour int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

@@ -18,15 +18,15 @@ $listDirn	= $this->state->get('list.direction');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=statistics');?>" method="post" name="adminForm" id="adminForm">
 <fieldset id="filter-bar">
-		<div class="filter-select fltrt">
-				<?php echo $this->mois_list;?>
+	<div class="filter-select fltrt">
+		<?php echo $this->mois_list;?>
 
-        <?php echo $this->trimestres_list;?>
+		<?php echo $this->trimestres_list;?>
 
-				<?php echo $this->annees_list;?>
-		</div>
-	</fieldset>
-	<div class="clr"> </div>
+		<?php echo $this->annees_list;?>
+	</div>
+</fieldset>
+<div class="clr"> </div>
 
 <div id="kadmin">
   <div class="kadmin-right">
@@ -48,20 +48,25 @@ $listDirn	= $this->state->get('list.direction');
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
         </tr>
-        <?php foreach ($this->tauxoccupationstatscommunes as $id=>$item) : ?>
-        <tr>
-        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
-        <td style="text-align: center;">
-        <?php echo $item->city ?>
-        </td>
-        <td style="text-align: center;">
-        <img class="kstats-bar" src="<?php echo JURI::root().'administrator/components/com_gesttaxesejour/media/icons/bar.png' ?>" alt="" height="15" width="<?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>%" />
-        </td>
-        <td style="text-align: center;">
-        <?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>
-        </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php
+		if ( !empty($this->tauxoccupationstatscommunes) ) :
+	        foreach ($this->tauxoccupationstatscommunes as $id=>$item) : ?>
+	        <tr>
+	        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
+	        <td style="text-align: center;">
+	        <?php echo $item->city ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <img class="kstats-bar" src="<?php echo JURI::root().'administrator/components/com_tdsmanager/media/icons/bar.png' ?>" alt="" height="15" width="<?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>%" />
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>
+	        </td>
+	        </tr>
+	        <?php endforeach; ?>
+        <?php else :
+			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+        endif; ?>
         </tbody>
         </table>
         </div>
@@ -81,26 +86,31 @@ $listDirn	= $this->state->get('list.direction');
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES') ?></th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES') ?></th>
         </tr>
-        <?php foreach ($this->tauxoccupationstatshebertype as $id=>$item) : ?>
-        <tr>
-        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
-        <td style="text-align: center;">
-        <?php echo $item->hosting_type_name ?>
-        </td>
-        <td style="text-align: center;">
-        <img class="kstats-bar" src="<?php echo JURI::root().'administrator/components/com_gesttaxesejour/media/icons/bar.png' ?>" alt="" height="15" width="<?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>">
-        </td>
-        <td style="text-align: center;">
-        <?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->pers_occup_total ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->personnes_dispo_total ?>
-        </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php
+        if ( !empty($this->tauxoccupationstatshebertype)) :
+	        foreach ($this->tauxoccupationstatshebertype as $id=>$item) : ?>
+	        <tr>
+	        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
+	        <td style="text-align: center;">
+	        <?php echo $item->hosting_type_name ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <img class="kstats-bar" src="<?php echo JURI::root().'administrator/components/com_tdsmanager/media/icons/bar.png' ?>" alt="" height="15" width="<?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>">
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo ($item->pers_occup_total/$item->personnes_dispo_total)*100 ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->pers_occup_total ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->personnes_dispo_total ?>
+	        </td>
+	        </tr>
+	        <?php endforeach; ?>
+        <?php else :
+			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+        endif; ?>
         </tbody>
         </table>
          </div>
@@ -119,23 +129,28 @@ $listDirn	= $this->state->get('list.direction');
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
-        <?php foreach ($this->taxesejourstats as $id=>$item) : ?>
-        <tr>
-        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
-        <td style="text-align: center;">
-        <?php echo $item->city ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->duree_sejour_total ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->nb_pers_assujetties_total ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->montant_enc_sejour_total ?>
-        </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php
+        if ( !empty($this->taxesejourstats) ) :
+	        foreach ($this->taxesejourstats as $id=>$item) : ?>
+	        <tr>
+	        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
+	        <td style="text-align: center;">
+	        <?php echo $item->city ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->duree_sejour_total ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->nb_pers_assujetties_total ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->montant_enc_sejour_total ?>
+	        </td>
+	        </tr>
+	        <?php endforeach; ?>
+        <?php else :
+			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+        endif; ?>
         </tbody>
         </table>
         </div>
@@ -155,20 +170,25 @@ $listDirn	= $this->state->get('list.direction');
 
         <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
-        <?php foreach ($this->taxesejourstats as $id=>$item) : ?>
-        <tr>
-        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
-        <td style="text-align: center;">
-        <?php echo $item->duree_sejour_total ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->nb_pers_assujetties_total ?>
-        </td>
-        <td style="text-align: center;">
-        <?php echo $item->montant_enc_sejour_total ?>
-        </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php
+        if ( !empty($this->taxesejourstats) ) :
+	        foreach ($this->taxesejourstats as $id=>$item) : ?>
+	        <tr>
+	        <td><b><span style="color:#146295;"><?php echo $id+1 ?></span></b></td>
+	        <td style="text-align: center;">
+	        <?php echo $item->duree_sejour_total ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->nb_pers_assujetties_total ?>
+	        </td>
+	        <td style="text-align: center;">
+	        <?php echo $item->montant_enc_sejour_total ?>
+	        </td>
+	        </tr>
+	        <?php endforeach; ?>
+        <?php else :
+			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+        endif; ?>
         </tbody>
         </table>
         </div>
