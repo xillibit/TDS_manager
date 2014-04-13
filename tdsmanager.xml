@@ -58,6 +58,7 @@
 			<filename>tdsmanager.php</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
+			<filename>config.xml</filename>
 			<folder>controllers</folder>
 			<folder>helpers</folder>
 			<folder>libraries</folder>
