@@ -1,7 +1,7 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_gesttaxesejour
+ * @package     Tdsmanager.Site
+ * @subpackage  Tdsmanager
  *
  * @copyright   Copyright (C) 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -15,10 +15,10 @@ require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/con
 /**
  * Declarations list controller class.
  *
- * @package     Joomla.Administrator
+ * @package     Tdsmanager.Site
  * @subpackage  com_gesttaxesejour
  * @since       1.6
  */
-class GesttaxeControllerHebergement extends GesttaxeController {
+class TdsmanagerControllerHebergement extends JControllerLegacy {
 
 }

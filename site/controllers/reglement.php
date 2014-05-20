@@ -1,20 +1,18 @@
 <?php
 /**
-* Kunena Component
-* @package Kunena.Site
-* @subpackage Controllers
-*
-* @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
-* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
-* @link http://www.kunena.org
-**/
+ * @package		Tdsmanager.Site
+ * @subpackage	Tdsmanager
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 defined ( '_JEXEC' ) or die ();
 
 /**
-* Kunena Reglement Controller
+* Tdsmanager Reglement Controller
 *
 * @since 2.0
 */
-class GesttaxeControllerReglement extends GesttaxeController {
+class TdsmanagerControllerReglement extends JControllerLegacy {
 
 }

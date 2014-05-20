@@ -1,20 +1,20 @@
 <?php
 /**
-* Kunena Component
-* @package Kunena.Site
+* Tdsmanager Component
+* @package Tdsmanager.Site
 * @subpackage Controllers
 *
-* @copyright (C) 2008 - 2012 Kunena Team. All rights reserved.
+* @copyright   Copyright (C) 2012 Open Source Matters, Inc. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 * @link http://www.kunena.org
 **/
 defined ( '_JEXEC' ) or die ();
 
 /**
-* Kunena Declaration Controller
+* Tdsmanager Declaration Controller
 *
 * @since 2.0
 */
-class KunenaControllerDeclaration extends GesttaxesejourController {
+class TdsmanagerControllerDeclaration extends JControllerLegacy {
 
 }
