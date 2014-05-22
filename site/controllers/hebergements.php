@@ -15,7 +15,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
     $task = JRequest::getCmd('task');
 
-    $app->setUserState( 'com_gesttaxesejour.hebergement.editmode', '1' );
+    $app->setUserState( 'com_tdsmanager.hebergement.editmode', '1' );
 
     // redirect back if nothing is selected
     $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
@@ -23,10 +23,10 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     if ( !empty($cids) ) {
       $id = array_shift($cids);
 
-      $app->setUserState( "com_gesttaxesejour.edit.hebergement.id", $id );
+      $app->setUserState( "com_tdsmanager.edit.hebergement.id", $id );
     }
 
-    $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements&layout=edit', false));
+    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
     return false;
   }
 
@@ -34,12 +34,12 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
 
     // unset hebergement id
-    $id = $app->getUserState( 'com_gesttaxesejour.edit.hebergement.id' );
-    if ( $id ) $app->setUserState( 'com_gesttaxesejour.edit.hebergement.id', null );
+    $id = $app->getUserState( 'com_tdsmanager.edit.hebergement.id' );
+    if ( $id ) $app->setUserState( 'com_tdsmanager.edit.hebergement.id', null );
 
-    $app->setUserState( 'com_gesttaxesejour.hebergement.editmode', null );
+    $app->setUserState( 'com_tdsmanager.hebergement.editmode', null );
 
-    $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements&layout=edit', false));
+    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
     return false;
   }
 
@@ -48,21 +48,21 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $user = JFactory::getUser();
     // Check for request forgeries.
     if (! JRequest::checkToken ()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
     if ( $user->id > 0 ) {
       $post = JRequest::get('post', JREQUEST_ALLOWRAW);
-      $edit_mode = JRequest::getInt('edit_mode');
+      $edit_mode = $app->input->getInt('edit_mode');
 
       $db = JFactory::getDBO();
 
       if ( $edit_mode ) {
-        $hebergement_id = JRequest::getInt('hebergement_id',0);
+        $hebergement_id = $app->input->getInt('hebergement_id',0);
 
         // si c'est l'édition d'un hébergement existant
-        $query = "UPDATE #__gesttaxesejour_hebergements
+        $query = "UPDATE #__tdsmanager_hebergements
                   SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},postalcode={$db->quote($post['postalcode'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},id_hebergement_label={$db->quote($post['labels'])}
                   WHERE id={$hebergement_id}";
         $db->setQuery((string)$query);
@@ -74,14 +74,14 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
       	 return false;
       	}
 
-      	$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_EDITED_SUCCESSFULLY') );
+      	$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITED_SUCCESSFULLY') );
       } else {
         $date_now = JFactory::getDate('now')->toUnix();
 
         $this->_upload();
 
         // Si c'est un nouvel hébergement, on enregistre de nouvelles données
-        $query = "INSERT INTO #__gesttaxesejour_hebergements
+        $query = "INSERT INTO #__tdsmanager_hebergements
                   (hostingname,description,adress,complement_adress,city,website,postalcode,numero_classement,date_classement, date_enregistre, userid, id_hebergement_label)
                   VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($date_now)}, {$db->quote(intval($user->id))},{$db->quote($post['labels'])} )";
         $db->setQuery((string)$query);
@@ -89,7 +89,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
         $hosting_id = $db->insertid();
 
         // faire que l'hébergement appartienne à l'utilisateur courant
-        $query = "INSERT INTO #__gesttaxesejour_users_hosting_owned
+        $query = "INSERT INTO #__tdsmanager_users_hosting_owned
                   (hosting_id,user_id)
                   VALUES({$db->quote($hosting_id)},{$db->quote($user->id)})";
         $db->setQuery((string)$query);
@@ -101,11 +101,11 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
       	 return false;
       	}
 
-      	$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_SAVED') );
-        $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements', false));
+      	$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_SAVED') );
+        $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
     	}
   	} else {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
     }
   }
 
@@ -132,22 +132,22 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
      $filemimetype = mime_content_type($tmp_filename);
 
      if(!in_array($filemimetype, $mimes_allowed)) {
-        $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_MIME_REQ_NOT') );
+        $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_MIME_REQ_NOT') );
      }
 
      // on supprime tous les caractéres accentués
      $filename = preg_replace('/([^.a-z0-9]+)/i', '-', $filename);
 
      if(!in_array($extension, $extensions)) {
-        $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_EXTENSION_REQ_NOT') );
+        $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_EXTENSION_REQ_NOT') );
      }
 
-     if(move_uploaded_file($tmp_filename, JPATH_ROOT.'/media/com_gesttaxesejour/hosting/'.$filename)) {
+     if(move_uploaded_file($tmp_filename, JPATH_ROOT.'/media/com_tdsmanager/hosting/'.$filename)) {
           $upload = $this->_save_upload_db($filename, $taille);
-          if ( $upload ) $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_SAVED') );
-          else $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_DB_FAILED') );
+          if ( $upload ) $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_SAVED') );
+          else $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_DB_FAILED') );
      } else {
-          $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_UPLOAD_FAILED') );
+          $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_UPLOAD_FAILED') );
      }
     }
   }
@@ -155,7 +155,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
   protected function _save_upload_db($name, $size) {
     $db = JFactory::getDBO();
 
-    $query = "INSERT INTO #__gesttaxesejour_attachments (name,size) VALUES({$db->quote($name)},{$db->quote($size)})";
+    $query = "INSERT INTO #__tdsmanager_attachments (name,size) VALUES({$db->quote($name)},{$db->quote($size)})";
     $db->setQuery((string)$query);
     $db->Query();
 
@@ -173,7 +173,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $user = JFactory::getUser();
     // Check for request forgeries.
     if (! JRequest::checkToken ()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
@@ -181,7 +181,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 
     if ( $user->id > 0 ) {
       $db = JFactory::getDBO();
-      $query = "DELETE FROM #__gesttaxesejour_hebergements WHERE id IN ({$db->quote($id)})";
+      $query = "DELETE FROM #__tdsmanager_hebergements WHERE id IN ({$db->quote($id)})";
       $db->setQuery((string)$query);
       $db->Query();
 
@@ -191,9 +191,9 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     	 return false;
     	}
 
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_DELETED') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETED') );
     } else {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
     }
   }
 
@@ -201,7 +201,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
@@ -212,7 +212,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
@@ -224,7 +224,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $db = JFactory::getDBO();
 
     if ( $user->id > 0 ) {
-      $query = "UPDATE #__gesttaxesejour_hebergements WHERE id={$db->quote($id)}";
+      $query = "UPDATE #__tdsmanager_hebergements WHERE id={$db->quote($id)}";
       $db->setQuery((string)$query);
       $db->Query();
 
@@ -234,17 +234,17 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     	 return false;
     	}
 
-    	if ( !$state ) $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_UNPUBLISHED') );
-    	else $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_PUBLISHED') );
+    	if ( !$state ) $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_UNPUBLISHED') );
+    	else $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_PUBLISHED') );
     } else {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
     }
   }
 
   public function periode_ouverture() {
     // redirect to the view
 
-    $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=hebergements&layout=periode_ouverture', false));
+    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=periode_ouverture', false));
     return false;
   }
 
@@ -253,14 +253,14 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $db = JFactory::getDBO();
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
     if ( $user->id > 0 ) {
       $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
-      $query = "INSERT INTO #__gesttaxesejour_periode_ouverture
+      $query = "INSERT INTO #__tdsmanager_periode_ouverture
                     (date_fermeture,date_ouverture,motif,id_hebergement)
                     VALUES({$db->quote($post['fermee_depuis'])},{$db->quote($post['reouverture_le'])},{$db->quote($post['motif'])},{$db->quote($post['hebergement_list'])} )";
       $db->setQuery((string)$query);
@@ -272,9 +272,9 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
         return false;
       }
 
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_PERIOD_OUVERTURE_SAVED_SUCCESSFULLY') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_PERIOD_OUVERTURE_SAVED_SUCCESSFULLY') );
     } else {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
     }
   }
 }

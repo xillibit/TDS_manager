@@ -16,7 +16,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 1.6
  */
-class GesttaxesejourViewHebergements extends JView {
+class TdsmanagerViewHebergements extends JView {
 	protected $state = null;
 	protected $item = null;
 	protected $items = null;
@@ -29,68 +29,68 @@ class GesttaxesejourViewHebergements extends JView {
 	 */
 	function display($tpl = null) {
 		$app	= JFactory::getApplication();
-    
-    $editmode = $app->getUserState( 'com_gesttaxesejour.hebergement.editmode');
-    
+
+    $editmode = $app->getUserState( 'com_tdsmanager.hebergement.editmode');
+
     // Initialise variables
     $this->editmode = false;
     if ( $editmode ) {
       $this->editmode = $editmode;
-    } 
-		
+    }
+
 		// En mode edition
-		$layout = JRequest::getCmd('layout');		
-		if( $layout == 'edit') { 
-      $this->hebergement = $this->get('Hebergement');      
-      $this->label_list = $this->get('LabelList'); 
+		$layout = JRequest::getCmd('layout');
+		if( $layout == 'edit') {
+      $this->hebergement = $this->get('Hebergement');
+      $this->label_list = $this->get('LabelList');
     } elseif( $layout == 'periode_ouverture' ) {
       $this->myhebergementslist = $this->get('MyHebergementsList');
-    } else {      
+    } else {
       $this->hebergements = $this->get('Hebergements');
       $this->count = count($this->hebergements);
     }
 		// Implement it in model
     $this->classement_list = $this->get('ClassementList');
-    
+
     $this->identification_period = $this->get('IdentificationPeriode');
-		
+
 		if ( $layout == 'create' ) {
-		   $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_CREATE'));
+		   $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_HEBERGEMENTS_CREATE'));
 		} elseif ( $layout == 'edit' ) {
-		  $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_EDIT'));
+		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT'));
 		} elseif ( $layout == 'delete' ) {
-		  $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_DELETE'));
+		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_HEBERGEMENTS_DELETE'));
 		} else {
-      $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_GESTION_HOSTINGS'));
+      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_HEBERGEMENTS_GESTION_HOSTINGS'));
     }
-    
+
     JHtml::_('behavior.framework', true);
-    $doc = JFactory::getDocument(); 
-    $doc->addScript(JURI::root()."components/com_gesttaxesejour/js/default.js");    
-        
+    $doc = JFactory::getDocument();
+    $doc->addScript(JURI::root()."components/com_tdsmanager/js/default.js");
+
 		//$this->_prepareDocument();
 
 		parent::display($tpl);
 	}
-	
-	protected function _getViewFile($view, $tpl) {     	  
-    $tpl =  JPATH_BASE.'/components/com_gesttaxesejour/views/'.$view.'/tmpl/'.$tpl.'.php';
+
+	protected function _getViewFile($view, $tpl) {
+    $tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
     if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
-     
+
     ob_start();
 		include $tpl;
 		$output = ob_get_contents();
 		ob_end_clean();
-		
+
 		return $output;
   }
-  
-  public function getPagination($maxpages) {    
-    include_once(JPATH_ADMINISTRATOR.'/components/com_gesttaxesejour/libraries/html/pagination.php');
+
+  public function getPagination($maxpages) {
+    include_once(JPATH_ADMINISTRATOR.'/components/com_tdsmanager/libraries/html/pagination.php');
     $pagination = new GesttaxesejourHtmlPagination ( $this->count, 0, 50 );
     $pagination->setDisplay($maxpages);
-    return $pagination->getPagesLinks(); 
-  }  
+    return $pagination->getPagesLinks();
+  }
 
 	/**
 	 * Prepares the document

@@ -16,7 +16,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 1.6
  */
-class GesttaxesejourViewDispos extends JView {
+class TdsmanagerViewDispos extends JView {
   /**
 	 * Display the view
 	 *
@@ -25,37 +25,37 @@ class GesttaxesejourViewDispos extends JView {
 	function display($tpl = null) {
     $app = JFactory::getApplication();
     $layout = JRequest::getCmd('layout');
-    $this->dispo = $app->getUserState( 'com_gesttaxesejour.dispos.dispo');
-        
-    if ( !empty($this->dispo) ) {      
+    $this->dispo = $app->getUserState( 'com_tdsmanager.dispos.dispo');
+
+    if ( !empty($this->dispo) ) {
       $capacite_chambres = $this->dispo->chambres_max;
       $chambre_selected = $this->dispo->chambres_selected;
     } else {
-      $capacite_chambres = $app->getUserState( 'com_gesttaxesejour.dispos.capacite');
+      $capacite_chambres = $app->getUserState( 'com_tdsmanager.dispos.capacite');
       $chambre_selected = '';
     }
-        
-    $this->hostings_list = $this->get('hebergementslist');    
-    
-    $this->dropdown = '';    
+
+    $this->hostings_list = $this->get('hebergementslist');
+
+    $this->dropdown = '';
     if ($capacite_chambres >0) {
       $options = array();
-      for( $i=1; $i<=$capacite_chambres;$i++ ) {        
+      for( $i=1; $i<=$capacite_chambres;$i++ ) {
         $options[] = JHTML::_('select.option', $i, $i);
       }
-      $this->dropdown = JHTML::_('select.genericlist', $options, 'capacite_chambres', 'class="inputbox"', 'value', 'text', $chambre_selected);      
+      $this->dropdown = JHTML::_('select.genericlist', $options, 'capacite_chambres', 'class="inputbox"', 'value', 'text', $chambre_selected);
     }
-    
+
     if ( $layout == 'confirmdelete' ) {
-      $this->ids_delete_dispos = $this->get('detailsdispos'); 
+      $this->ids_delete_dispos = $this->get('detailsdispos');
     } elseif ( $layout == 'results_dispo' ) {
-      $this->search_query = $app->getUserState( 'com_gesttaxesejour.results.query' );
-      
-      $this->results_dispo = $app->getUserState( 'com_gesttaxesejour.dispos.results');      
+      $this->search_query = $app->getUserState( 'com_tdsmanager.results.query' );
+
+      $this->results_dispo = $app->getUserState( 'com_tdsmanager.dispos.results');
     }
-    
+
     $this->dispos = $this->get('dispos');
-        
-    parent::display($tpl);    
+
+    parent::display($tpl);
   }
 }

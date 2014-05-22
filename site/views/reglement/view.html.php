@@ -12,10 +12,10 @@ require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/vie
 /**
 * Category View
 */
-class GesttaxesejourViewReglement extends GesttaxeView {
+class TdsmanagerViewReglement extends GesttaxeView {
   function display($tpl = null) {
    // Initialise variables.
-  
+
 	 parent::display($tpl);
 	}
 }

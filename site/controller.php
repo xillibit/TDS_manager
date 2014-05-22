@@ -1,7 +1,7 @@
 <?php
 /**
- * @package		Joomla.Site
- * @subpackage	com_contact
+ * @package		Tdsmanager.Site
+ * @subpackage	Tdsmanager
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -12,10 +12,10 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controller');
 
 /**
- * Contact Component Controller
+ * Tdsmanager Component Controller
  *
- * @package		Joomla.Site
- * @subpackage	com_contact
+ * @package		Tdsmanager.Site
+ * @subpackage	Tdsmanager
  * @since 1.5
  */
 class TdsmanagerController extends JController {
@@ -29,18 +29,18 @@ class TdsmanagerController extends JController {
 	 * @since	1.5
 	 */
 	public function display($cachable = false, $urlparams = false) {
-	  
+
 		$cachable = true;
 
 		// Get the document object.
 		$document = JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getCmd('view', 'gesttaxesejour');
+		$vName		= JRequest::getCmd('view', 'main');
 		JRequest::setVar('view', $vName);
 
 		$user = JFactory::getUser();
-		
+
 
 		$safeurlparams = array('catid'=>'INT', 'id'=>'INT', 'cid'=>'ARRAY', 'year'=>'INT', 'month'=>'INT', 'limit'=>'INT', 'limitstart'=>'INT',
 			'showall'=>'INT', 'return'=>'BASE64', 'filter'=>'STRING', 'filter_order'=>'CMD', 'filter_order_Dir'=>'CMD', 'filter-search'=>'STRING', 'print'=>'BOOLEAN', 'lang'=>'CMD');

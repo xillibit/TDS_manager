@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controllerform');
 
-class TdsmanagerControllerGesttaxesejour extends JControllerLegacy {
+class TdsmanagerControllerMain extends JControllerLegacy {
 	public function submit() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {

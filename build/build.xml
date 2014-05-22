@@ -97,9 +97,9 @@
 		<condition property="version.date" value="${str.datefmt}" else="">
 			<istrue value="${cfg.adddate}" />
 		</condition>
-		<filter token="kunenaversion" value="${xml.version}" />
-		<filter token="kunenaversiondate" value="${version.date}" />
-		<filter token="kunenaversionname" value="${xml.versionname}" />
+		<filter token="tdsmanagerversion" value="${xml.version}" />
+		<filter token="tdsmanagerversiondate" value="${version.date}" />
+		<filter token="tdsmanagerversionname" value="${xml.versionname}" />
 		<copy file="${project_dir}/tdsmanager.xml" todir="${tmp_dir}" overwrite="true" filtering="true" />
 	</target>
 

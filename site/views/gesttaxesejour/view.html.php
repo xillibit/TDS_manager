@@ -28,58 +28,58 @@ class GesttaxesejourViewGesttaxesejour extends JView {
 		// Initialise variables.
 		$app		= JFactory::getApplication();
 		$user		= JFactory::getUser();
-				
+
 		if ( $user->id == 0 ) {
-      $app->enqueueMessage( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
-             
+      $app->enqueueMessage( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
+
       echo $this->_getViewFile('common', 'login');
-        
+
     return false;
-    }    
-    
+    }
+
     $this->myprofile = $this->getUserProfile();
     /*$this->reglementsNotDone = $this->get('ReglementsNotDone');
     if ( $this->reglementsNotDone ) {
       $app->enqueueMessage( JText::sprintf('COM_GESTTAXESEJOUR_REGLEMENTS_NOT_DONE', $this->reglementsNotDone->start_date, $this->reglementsNotDone->end_date) );
     }
-    $this->declarationsNotDone = $this->get('DeclarationsNotDone'); 
+    $this->declarationsNotDone = $this->get('DeclarationsNotDone');
     if ( $this->declarationsNotDone ) {
       $app->enqueueMessage( JText::sprintf('COM_GESTTAXESEJOUR_DECLARATIONS_NOT_DONE', '12/05/2012','12/06/2012') );
     } */
-    
+
     $this->lasthostings = $this->get('LastHostings');
     $this->lastdeclarations = $this->get('LastDeclarations');
     $this->lastreglements =  $this->get('LastReglements');
-				
+
 		//$this->_prepareDocument();
 
 		parent::display($tpl);
 	}
-	
+
 	protected function getUserProfile() {
     $db = JFactory::getDBO();
     $user = JFactory::getUser();
-    
-    if ( $user->id > 0 ) {                  
-      $query = "SELECT * FROM #__gesttaxesejour_users 
+
+    if ( $user->id > 0 ) {
+      $query = "SELECT * FROM #__tdsmanager_users
                 WHERE userid={$db->quote($user->id)}";
       $db->setQuery((string)$query);
       $user_profile = $db->loadObject();
-      
+
       return $user_profile;
     }
     return array(0);
   }
-	
-	protected function _getViewFile($view, $tpl) {     	  
-    $tpl =  JPATH_BASE.'/components/com_gesttaxesejour/views/'.$view.'/tmpl/'.$tpl.'.php';
+
+	protected function _getViewFile($view, $tpl) {
+    $tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
     if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
-     
+
     ob_start();
 		include $tpl;
 		$output = ob_get_contents();
 		ob_end_clean();
-		
+
 		return $output;
   }
 

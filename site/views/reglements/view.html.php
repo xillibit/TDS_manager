@@ -16,7 +16,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 1.6
  */
-class GesttaxesejourViewReglements extends JView {
+class TdsmanagerViewReglements extends JView {
   /**
 	 * Display the view
 	 *
@@ -27,15 +27,15 @@ class GesttaxesejourViewReglements extends JView {
 		/*$this->reglements = $this->get('reglements');
 		$this->own_hostings = $this->get('own_hostings');
 		$this->montantToPay = $this->get('MontantToPay');*/
-		
+
 		$layout = JRequest::getCmd('layout');
-		
+
 		if ( $layout == 'create' ) {
-		  $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_REGLEMENT_CREATE'));		
+		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_REGLEMENT_CREATE'));
 		} else {
-      $this->document->setTitle(JText::_('COM_GESTTAXESEJOUR_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_VISUALISATION_REGLEMENTS'));
+      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_VISUALISATION_REGLEMENTS'));
     }
-		
+
 		//$this->_prepareDocument();
 
 		parent::display($tpl);

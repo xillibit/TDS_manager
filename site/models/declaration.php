@@ -14,6 +14,6 @@ require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/mod
 *
 * @since 2.0
 */
-class GesttaxesejourModelDeclaration extends GesttaxeModel {
+class TdsmanagerModelDeclaration extends GesttaxeModel {
 
 }

@@ -15,11 +15,11 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 		$app	= JFactory::getApplication();
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$app->redirect($this->baseurl);
 		}
 
-		$this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=user&layout=edit', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=user&layout=edit', false));
 		return false;
 	}
 
@@ -29,7 +29,7 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$app->redirect($this->baseurl);
 		}
 
@@ -38,7 +38,7 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 			$db = JFactory::getDBO();
 
 			if ( !empty($post) ) {
-				$query = "UPDATE #__gesttaxesejour_users
+				$query = "UPDATE #__tdsmanager_users
 					SET name={$db->quote($post['name'])},lastname={$db->quote($post['lastname'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},ville={$db->quote($post['ville'])},postalcode={$db->quote($post['postalcode'])},portable={$db->quote($post['portable'])},telephone={$db->quote($post['telephone'])},mail={$db->quote($post['mail'])} WHERE userid={$db->quote($post['userid'])}";
 				$db->setQuery((string)$query);
 				$db->Query();
@@ -49,10 +49,10 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 					return false;
 				}
 
-				$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_PROFILE_EDITED_SUCCESSFULLY') );
+				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_PROFILE_EDITED_SUCCESSFULLY') );
 			}
 		} else {
-			$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOT_LOGGUED') );
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
 		}
 	}
 }

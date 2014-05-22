@@ -15,22 +15,24 @@ jimport('joomla.application.component.model');
  * @package		Joomla.Site
  * @subpackage	com_contact
  */
-class GesttaxesejourModelUser extends JModel {
+class TdsmanagerModelUser extends JModel {
   public function getUserProfile() {
     $user = JFactory::getUser();
     $db = JFactory::getDBO();
-        
-    $query = "SELECT * FROM #__gesttaxesejour_users 
-              WHERE userid={$user->id}";                   
+
+    /*$query = $db->getQuery(true);
+    $query->select('*')->from('#__tdsmanager_users')->where("userid={$user->id}"); */
+    $query = "SELECT * FROM #__tdsmanager_users
+              WHERE userid={$user->id}";
     $db->setQuery((string)$query);
-    $profile = $db->loadObject();  
-        
+    $profile = $db->loadObject();
+
     // Check for a database error.
     if ($db->getErrorNum()) {
       JError::raiseWarning(500, $db->getErrorMsg());
       return false;
-    } 
-    
+    }
+
     return $profile;
-  }  	
+  }
 }

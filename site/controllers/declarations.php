@@ -16,7 +16,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $user = JFactory::getUser();
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $app->enqueueMessage(JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error');
+      $app->enqueueMessage(JText::_('COM_TDSMANAGER_TOKEN'), 'error');
       $app->redirect($this->baseurl);
     }
 
@@ -24,14 +24,14 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 
     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
-    $exactitude = JRequest::getInt('exactitude_document', 0);
+    $exactitude = $app->input->getInt('exactitude_document', 0);
 
     if ( $exactitude ) {
       $periodeString = array(0 => 'JAN',1 => 'FEV',2 => 'MAR',3 => 'AVR',4 => 'MAI',5 => 'JUIN',6 => 'JUIL',7 => 'AOU',8 => 'SEP',9 => 'OCT',10 => 'NOV',11 => 'DEC');
       $ident_periode = strptime($post['start_date'], '%d-%m-%Y');
       $period_dec = $periodeString[$ident_periode['tm_mon']];
 
-      $hosting_id = $app->getUserState( 'com_gesttaxesejour.hosting_id' );
+      $hosting_id = $app->getUserState( 'com_tdsmanager.hosting_id' );
 
       $date_deb = new DateTime($post['start_date']);
       $start_date = $date_deb->format('Y-m-d H:i:s');
@@ -40,7 +40,11 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       $end_date = $date_fin->format('Y-m-d H:i:s');
 
       $db = JFactory::getDBO();
-      $query = "INSERT INTO #__gesttaxesejour_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
+      /*$query = $db->getQuery(true);
+      $query->insert('#__tdsmanager_declarations')
+              ->columns('start_date, end_date, nb_personnes_exonerees, nb_personnes_reduction, identification_periode, nb_personnes_assujetties, duree_sejour, nb_total_nuitee, tarif_by_night, montant_encaisse_sejour, date_declarer, declarant_userid, hebergement_id')
+              ->values(array('1,2', '3,4')); */
+      $query = "INSERT INTO #__tdsmanager_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
               VALUES ({$db->quote($start_date)}, {$db->quote($end_date)}, {$db->quote($post['nb_personnes_exonerees'])}, {$db->quote($post['nb_personnes_reduction'])}, {$db->quote($period_dec)}, {$db->quote($post['nb_personnes_assujetties'])}, {$db->quote($post['duree_sejour_nuitee'])}, {$db->quote($post['nb_total_nuitees'])}, {$db->quote($post['tarif_par_nuitees'])}, {$db->quote($post['montant_encaisse_sejour'])}, {$db->quote($date_now)}, {$db->quote($user->id)}, {$db->quote($hosting_id)})";
       $db->setQuery((string)$query);
       $db->Query();
@@ -48,21 +52,21 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       // Check for a database error.
       if ($db->getErrorNum()) {
         JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_GESTTAXESEJOUR_DECLARATION_SAVED_FAILED');
+        $message = JText::_('COM_TDSMANAGER_DECLARATION_SAVED_FAILED');
         return false;
       }
 
-      $app->enqueueMessage(JText::_('COM_GESTTAXESEJOUR_DECLARATION_SAVED_SUCCESSFULLY'));
-      $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations', false) );
+      $app->enqueueMessage(JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCCESSFULLY'));
+      $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false) );
     } else {
      // afficher un message pour dire que la case exactitude des informations n'a pas été cochée
      $app->enqueueMessage ( 'Vous n\'avez pas coché la case pour certifier l\'exactitude des informations saisies dans le document', 'error' );
-     $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&layout=editform', false));
+     $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
     }
   }
 
   public function edit() {
-    $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&layout=edit', false));
+    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=edit', false));
     return false;
   }
 
@@ -74,9 +78,9 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $document->setMimeEncoding('application/json');
 
     // caculer et retourner les données en JSON
-    $startdate = JRequest::getString('startdate', 0);
-    $enddate = JRequest::getString('enddate', 0);
-    $pers_assujetties = JRequest::getInt('nbpersonnesassujetties', 0);
+    $startdate = $app->input->getString('startdate', 0);
+    $enddate = $app->input->getString('enddate', 0);
+    $pers_assujetties = $app->input->getInt('nbpersonnesassujetties', 0);
 
     $results = array();
     $results['erreur'] = 0;
@@ -86,7 +90,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
      $results['msg_erreur'] = 'Vous ne pouvez pas choisir une date d\'arrivée égale à la date de départ !';
     }
 
-    $tarifs = $app->getUserState('com_gesttaxesejour.tarifs');
+    $tarifs = $app->getUserState('com_tdsmanager.tarifs');
     $tarif = $tarifs->tarif;
 
     $nbSecondes= 60*60*24;
@@ -111,27 +115,29 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $db = JFactory::getDBO();
     $app	= JFactory::getApplication();
     // récupérer les tarifs en fonction de l'hébergement choisi
-    $hosting_selected = JRequest::getInt('user_hebergement', 0);
+    $hosting_selected = $app->input->getInt('user_hebergement', 0);
     if ( $hosting_selected != 0 ) {
-       $app->setUserState( 'com_gesttaxesejour.hosting_id', $hosting_selected );
+       $app->setUserState( 'com_tdsmanager.hosting_id', $hosting_selected );
        // récupérer les tarifs de la taxe de séjour
-       $query = "SELECT n.* FROM #__gesttaxesejour_tarif_nuit AS n INNER JOIN #__gesttaxesejour_hebergements AS h ON h.id_hebergement_type=n.id_hebergement_type WHERE h.id={$db->quote(intval($hosting_selected))}";
+       /*$query = $db->getQuery(true);
+       $query->select('')->from('')->where(''); */
+       $query = "SELECT n.* FROM #__tdsmanager_tarif_nuit AS n INNER JOIN #__tdsmanager_hebergements AS h ON h.id_hebergement_type=n.id_hebergement_type WHERE h.id={$db->quote(intval($hosting_selected))}";
        $db->setQuery((string)$query);
        $tarifs = $db->loadObject();
 
        // Check for a database error.
        if ($db->getErrorNum()) {
         JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_GESTTAXESEJOUR_DECLARATION_SAVED_FAILED');
+        $message = JText::_('COM_TDSMANAGER_DECLARATION_SAVED_FAILED');
         return false;
       }
 
-      $app->setUserState( 'com_gesttaxesejour.tarifs', $tarifs );
+      $app->setUserState( 'com_tdsmanager.tarifs', $tarifs );
     } else {
       // erreur
     }
 
-    $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&layout=editform', false));
+    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
     return false;
   }
 
@@ -140,7 +146,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $db = JFactory::getDBO();
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }
 
@@ -150,43 +156,44 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 
     /*foreach($ids as $id) {
       // on vérifie qu'un paiement n'a pas été fait avant de supprimé la déclaration
-      $query = "SELECT * FROM #__gesttaxesejour_reglements WHERE declaration_id={$declaration_Id};";
+      $query = "SELECT * FROM #__tdsmanager_reglements WHERE declaration_id={$declaration_Id};";
       $db->setQuery((string)$query);
       $reglement = $db->loadObject();
 
       if ( $reglement->date_regler ) {
-        $query = "DELETE FROM #__gesttaxesejour_declarations WHERE id={$declaration_Id};";
+        $query = "DELETE FROM #__tdsmanager_declarations WHERE id={$declaration_Id};";
         $db->setQuery((string)$query);
         $db->Query();
 
         if ($db->getErrorNum()) {
           JError::raiseWarning(500, $db->getErrorMsg());
-          $message = JText::_('COM_GESTTAXESEJOUR_DELETE_FAILED');
+          $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
           return false;
         }
 
-        $message = JText::_('COM_GESTTAXESEJOUR_DECLARATION_DELETE_SUCCESSFULLY');
+        $message = JText::_('COM_TDSMANAGER_DECLARATION_DELETE_SUCCESSFULLY');
       } else {
-        $message = JText::_('COM_GESTTAXESEJOUR_DECLARATION_CANNOT_DELETE_REGLEMENT_EXIST');
+        $message = JText::_('COM_TDSMANAGER_DECLARATION_CANNOT_DELETE_REGLEMENT_EXIST');
       }
     }*/
   }
 
   public function detailsHebergements() {
     $db = JFactory::getDBO();
-    $hebergement_id = JRequest::getInt('idHebergement',0);
+    $app	= JFactory::getApplication();
+    $hebergement_id = $app->input->getInt('idHebergement',0);
 
     if( $hebergement_id != 0 ) {
-      $query = "SELECT h.*,type.name AS heberg_type,class.description AS class_desc FROM #__gesttaxesejour_hebergements AS h
-                LEFT JOIN #__gesttaxesejour_hebergements_type AS type ON h.id_hebergement_type=type.id
-                LEFT JOIN #__gesttaxesejour_classements AS class ON class.id=h.id_classement
+      $query = "SELECT h.*,type.name AS heberg_type,class.description AS class_desc FROM #__tdsmanager_hebergements AS h
+                LEFT JOIN #__tdsmanager_hebergements_type AS type ON h.id_hebergement_type=type.id
+                LEFT JOIN #__tdsmanager_classements AS class ON class.id=h.id_classement
                 WHERE h.id={$hebergement_id};";
       $db->setQuery((string)$query);
       $hebergement = $db->loadObject();
 
       if ($db->getErrorNum()) {
         JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_GESTTAXESEJOUR_DELETE_FAILED');
+        $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
         return false;
       }
 
@@ -198,13 +205,13 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app	= JFactory::getApplication();
 
     // on vérifie que l'utilisateur a bien accepté les conditions générales
-    $tosAccepted = JRequest::getInt('tosAccepted', 0);
+    $tosAccepted = $app->input->getInt('tosAccepted', 0);
     if ( !$tosAccepted ) {
       $app->enqueueMessage ( 'Vous n\'avez pas accepté les conditions générales avant de payer', 'error' );
-      $app->redirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&layout=recap'));
+      $app->redirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=recap'));
     } else {
-      $paiement_methods = JRequest::getString('paiement_methods');
-      $montant = JRequest::getString('montant');
+      $paiement_methods = $app->input->getString('paiement_methods');
+      $montant = $app->input->getString('montant');
 
       // on redirige l'utilisateur vers la bonne vue
       if ( $paiement_methods == 'cartebancaire' ) {
@@ -217,22 +224,22 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app	= JFactory::getApplication();
     // enregistré que le paiement n'a pas été effectué ?
     $app->enqueueMessage ( 'La procédure de paiement a été annulée', 'error' );
-    $app->redirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations'));
+    $app->redirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations'));
   }
 
   public function generatePDF() {
     $app	= JFactory::getApplication();
     $db = JFactory::getDBO();
     $user = JFactory::getUser();
-    require_once(JPATH_ADMINISTRATOR.'/components/com_gesttaxesejour/libraries/tcpdf/tcpdf.php');
+    require_once(JPATH_ADMINISTRATOR.'/components/com_tdsmanager/libraries/tcpdf/tcpdf.php');
 
-    $query = "SELECT * FROM #__gesttaxesejour_users WHERE userid={$user->id};";
+    $query = "SELECT * FROM #__tdsmanager_users WHERE userid={$user->id};";
     $db->setQuery((string)$query);
     $gest_user = $db->loadObject();
 
     if ($db->getErrorNum()) {
       JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_GESTTAXESEJOUR_DELETE_FAILED');
+      $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
       return false;
     }
 
@@ -244,11 +251,11 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $pdf->setPrintFooter(false);
     $pdf->SetFont('helvetica','',10);
     $pdf->AddPage();
-    $html = '<div><img src="'.JPATH_ROOT.'/media/com_gesttaxesejour/images/logo_odt.jpg" title="Logo ODT Faverges" alias="Logo ODT Faverges" />';
+    $html = '<div><img src="'.JPATH_ROOT.'/media/com_tdsmanager/images/logo_odt.jpg" title="Logo ODT Faverges" alias="Logo ODT Faverges" />';
     $html .= '<span><h2>Récapitulatif de paiement de la taxe de séjour</h2></span>';
     $html .= '<table style="border:1px solid black;">
    <tr>
-       <td>Référence paiement : '.$app->getUserState("com_gesttaxesejour.idtransaction").'</td>
+       <td>Référence paiement : '.$app->getUserState("com_tdsmanager.idtransaction").'</td>
        <td><ul style="list-style-type:none;"><li>'.$gest_user->name.' '.$gest_user->lastname.'</li><li>'.$gest_user->adress.'</li><li>'.$gest_user->complement_adress.'</li><li>'.$gest_user->postalcode.' '.$gest_user->ville.'</li></ul></td>
    </tr>
 </table>';
@@ -263,7 +270,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $html .= '</div>';
     $pdf->writeHTML($html, true, 0, true, 0);
     ob_end_clean();
-    $doc = $pdf->Output(JPATH_ROOT.'/media/com_gesttaxesejour/pdf/justificatif.pdf', 'F');
+    $doc = $pdf->Output(JPATH_ROOT.'/media/com_tdsmanager/pdf/justificatif.pdf', 'F');
   }
 
   public function sendmailCheckout() {
@@ -275,13 +282,13 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $sender = array( $config->getValue( 'config.mailfrom' ), $config->getValue( 'config.fromname' ) );
     $mailer->setSender($sender);
     // récupération des infos du destinataire
-    $query = "SELECT * FROM #__gesttaxesejour_users WHERE userid={$user->id};";
+    $query = "SELECT * FROM #__tdsmanager_users WHERE userid={$user->id};";
     $db->setQuery((string)$query);
     $gest_user = $db->loadObject();
 
     if ($db->getErrorNum()) {
       JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_GESTTAXESEJOUR_DELETE_FAILED');
+      $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
       return false;
     }
 
@@ -298,8 +305,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 
     $mailer->setBody($body);
 
-    $mailer->AddEmbeddedImage( JPATH_ROOT.'/media/com_gesttaxesejour/images/logo_odt.jpg', 'logo_odt', 'logo_odt.jpg', 'base64', 'image/jpeg' );
-    $mailer->addAttachment(JPATH_ROOT.'/media/com_gesttaxesejour/pdf/justificatif.pdf');
+    $mailer->AddEmbeddedImage( JPATH_ROOT.'/media/com_tdsmanager/images/logo_odt.jpg', 'logo_odt', 'logo_odt.jpg', 'base64', 'image/jpeg' );
+    $mailer->addAttachment(JPATH_ROOT.'/media/com_tdsmanager/pdf/justificatif.pdf');
 
     $send = $mailer->Send();
     if ( $send !== true ) {
@@ -315,8 +322,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app	= JFactory::getApplication();
     $payerid = urlencode($_GET['PayerID']);
     $token = urlencode($_GET['token']);
-    $amount = $app->getUserState("com_gesttaxesejour.amount");
-    $IDTransaction = $app->getUserState("com_gesttaxesejour.idtransaction");
+    $amount = $app->getUserState("com_tdsmanager.amount");
+    $IDTransaction = $app->getUserState("com_tdsmanager.idtransaction");
 
     $baseurl = 'https://api-3t.sandbox.paypal.com/nvp'; //sandbox
     //$baseurl = 'https://api-3t.paypal.com/nvp'; //live
@@ -366,7 +373,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
         //$this->saveReglement($amount, 'cartebancaire');
         $this->generatePDF();
         $this->sendmailCheckout();
-        $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations', false));
+        $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false));
     	} else {
         echo "<p>Erreur de communication avec le serveur PayPal.<br />".$liste_param_paypal['L_SHORTMESSAGE0']."<br />".$liste_param_paypal['L_LONGMESSAGE0']."</p>";
       }
@@ -375,8 +382,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 
   public function sendCheckout() {
     $app	= JFactory::getApplication();
-    $amount = $app->getUserState("com_gesttaxesejour.amount");
-    $IDTransaction = $app->getUserState("com_gesttaxesejour.idtransaction");
+    $amount = $app->getUserState("com_tdsmanager.amount");
+    $IDTransaction = $app->getUserState("com_tdsmanager.idtransaction");
 
     $username = urlencode('seller_1349792730_biz_api1.gmail.com');
     $password = urlencode('1349792759');
@@ -441,10 +448,10 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app = JFactory::getApplication();
     $db = JFactory::getDBO();
 
-    $ids = $app->getUserState( 'com_gesttaxesejour_recap_ids' );
+    $ids = $app->getUserState( 'com_tdsmanager_recap_ids' );
 
     foreach($ids as $id) {
-      $query = "INSERT INTO #__gesttaxesejour_reglements (`date_regler`, `montant`, `type_reglement`, `declaration_id`, `finaliser` ) VALUES ({$date_now}, {$amount}, {$type_reglement}, {$id}, 1)";
+      $query = "INSERT INTO #__tdsmanager_reglements (`date_regler`, `montant`, `type_reglement`, `declaration_id`, `finaliser` ) VALUES ({$date_now}, {$amount}, {$type_reglement}, {$id}, 1)";
       $db->setQuery((string)$query);
       $db->Query();
 
@@ -462,13 +469,13 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     // Get selected items
     $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
 
-    $app->setUserState( 'com_gesttaxesejour_recap_ids', $ids );
+    $app->setUserState( 'com_tdsmanager_recap_ids', $ids );
 
     if ( empty($ids) ) {
       $app->enqueueMessage ( 'Veuillez sélectionner une déclaration avant de faire un paiement', 'error' );
-      $app->redirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations'));
+      $app->redirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations'));
     } else {
-      $this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&layout=recap', false));
+      $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=recap', false));
       return false;
     }
   }

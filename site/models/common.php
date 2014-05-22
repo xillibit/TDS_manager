@@ -25,46 +25,47 @@ class GesttaxesejourModelGesttaxesejour extends JModel {
 	 * @since	1.6
 	 */
 	protected function populateState() {
-		
+
 	}
-	
-  public function getLastHostings() {
-      $db = JFactory::getDBO();
-      $user = JFactory::getUser();
-      
-      if ( $user->id > 0 ) {
-        $query = "SELECT * FROM #__gesttaxesejour_hebergements 
-                  WHERE userid={$db->quote($user->id)} LIMIT 0,3";
-        $db->setQuery((string)$query);
-        $user_last_hostings = $db->loadObjectList();
-        
-        return $user_last_hostings;
-      }
-    }
-    
-    public function getLastDeclarations() {
-      $db = JFactory::getDBO();
-      $user = JFactory::getUser();
-      
-      if ( $user->id > 0 ) {
-        $query = "SELECT * FROM #__gesttaxesejour_declarations 
-                  WHERE declarant_userid={$db->quote($user->id)} ORDER BY date_declarer LIMIT 0,3";
-        $db->setQuery((string)$query);
-        $user_last_declarations = $db->loadObjectList();
-        
-        return $user_last_declarations;
-      }
-    }
-    
-    public function getLastReglements() {
-      $db = JFactory::getDBO();
-      $user = JFactory::getUser();
-      
-      if ( $user->id > 0 ) {
-        $query = "SELECT * FROM #__gesttaxesejour_reglements";
-        $db->setQuery((string)$query);
-        $user_last_reglements = $db->loadObjectList();
-        
-        return $user_last_reglements;
-      }
+
+	public function getLastHostings() {
+		$db = JFactory::getDBO();
+		$user = JFactory::getUser();
+
+		if ( $user->id > 0 ) {
+			$query = "SELECT * FROM #__gesttaxesejour_hebergements
+				WHERE userid={$db->quote($user->id)} LIMIT 0,3";
+			$db->setQuery((string)$query);
+			$user_last_hostings = $db->loadObjectList();
+
+			return $user_last_hostings;
+		}
+	}
+
+	public function getLastDeclarations() {
+		$db = JFactory::getDBO();
+		$user = JFactory::getUser();
+
+		if ( $user->id > 0 ) {
+			$query = "SELECT * FROM #__gesttaxesejour_declarations
+				WHERE declarant_userid={$db->quote($user->id)} ORDER BY date_declarer LIMIT 0,3";
+			$db->setQuery((string)$query);
+			$user_last_declarations = $db->loadObjectList();
+
+			return $user_last_declarations;
+		}
+	}
+
+	public function getLastReglements() {
+		$db = JFactory::getDBO();
+		$user = JFactory::getUser();
+
+		if ( $user->id > 0 ) {
+			$query = "SELECT * FROM #__gesttaxesejour_reglements";
+			$db->setQuery((string)$query);
+			$user_last_reglements = $db->loadObjectList();
+
+			return $user_last_reglements;
+		}
+	}
 }

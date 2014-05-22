@@ -4,7 +4,7 @@
  */
 
 /**
- * gesttaxesejour component
+ * TDS_manager component
  * 
  * @since		1.0
  */
@@ -36,7 +36,7 @@ window.addEvent('domready', function(){
    if ( $('user_hebergement') != undefined ) {
      $('user_hebergement').addEvent('change', function(event) {
        var idHebergement = '&idHebergement='+$('user_hebergement').getSelected().get('value'); 
-       var url='index.php?option=com_gesttaxesejour&view=declarations&format=raw&task=detailsHebergements'+idHebergement;           
+       var url='index.php?option=com_tdsmanager&view=declarations&format=raw&task=detailsHebergements'+idHebergement;           
   
        var request = new Request({
         url: url,
@@ -96,7 +96,7 @@ window.addEvent('domready', function(){
      var montant_encaisse_sejour = document.id('montant_encaisse_sejour');
      
      var myRequest = new Request({
-        url: 'index.php?option=com_gesttaxesejour&view=declarations&task=calcul_declaration',
+        url: 'index.php?option=com_tdsmanager&view=declarations&task=calcul_declaration',
         method: 'get',
         onRequest: function(){
             //myElement.set('text', 'loading...');

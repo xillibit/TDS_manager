@@ -18,12 +18,10 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 		1.5
  */
-class GesttaxesejourViewCommon extends JView {
-  function display($tpl = null) {
-    
-    
-    $this->lasthostings = $this->get('LastHostings');
-    $this->lastdeclarations = $this->get('LastDeclarations');
-    $this->lastreglements =  $this->get('LastReglements'); 
-  }
+class TdsmanagerViewCommon extends JView {
+	function display($tpl = null) {
+		$this->lasthostings = $this->get('LastHostings');
+		$this->lastdeclarations = $this->get('LastDeclarations');
+		$this->lastreglements =  $this->get('LastReglements');
+	}
 }
