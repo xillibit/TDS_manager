@@ -13,12 +13,10 @@ defined('_JEXEC') or die;
 require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/controller.php';
 
 /**
- * Hebergements list controller class.
- *
- * @package     Joomla.Administrator
- * @subpackage  com_gesttaxesejour
- * @since       1.6
- */
+* TDS_Manager Hebergements Type Controller
+*
+* @since 1.0
+*/
 class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
    protected $baseurl = null;
     /**

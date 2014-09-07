@@ -4,7 +4,7 @@
 * @package TDS_Manager.Administrator
 * @subpackage Controllers
 *
-* @copyright (C) 2010 - 2014 Florian DAL FITTO. All rights reserved.
+* @copyright (C) 2012 - 2014 Florian DAL FITTO. All rights reserved.
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 **/
 
@@ -14,20 +14,12 @@ defined('_JEXEC') or die;
 require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/controller.php';
 
 /**
- * Declarations list controller class.
+ * TDS_Manager Declarations Controller
  *
- * @package     Joomla.Administrator
- * @subpackage  com_gesttaxesejour
- * @since       1.6
+ * @since 1.0
  */
 class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
-  /**
-	 * Class Constructor
-	 *
-	 * @param	array	$config		An optional associative array of configuration settings.
-	 * @return	void
-	 * @since	1.5
-	 */
+
 	function __construct($config = array()) {
 		parent::__construct($config);
 		$this->baseurl = 'administrator/index.php?option=com_tdsmanager&view=declarations';

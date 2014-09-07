@@ -14,10 +14,10 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_content
- * @since       1.6
- */
+* TDS_Manager Hebergement Controller
+*
+* @since 1.0
+*/
 class TdsmanagerControllerHebergement extends JControllerForm
 {
 	/**

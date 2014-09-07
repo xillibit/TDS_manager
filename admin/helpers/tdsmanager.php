@@ -1,26 +1,28 @@
 <?php
 /**
- * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
- */
+* TDS_Manager Component
+* @package TDS_Manager.Administrator
+* @subpackage Helpers
+*
+* @copyright (C) 2012 - 2014 Florian DAL FITTO. All rights reserved.
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+**/
 
 defined('_JEXEC') or die;
 
 /**
- * Gesttaxesejour component helper.
+ * TDS_Manager Helper
  *
- * @package		Joomla.Administrator
- * @subpackage	com_gesttaxesejour
- * @since		1.6
+ * @since 1.0
  */
 abstract  class TdsmanagerHelper {
 	/**
-	 * Configure the Linkbar.
+	 * AddSubmenu links.
 	 *
 	 * @param	string	The name of the active view.
 	 *
 	 * @return	void
-	 * @since	1.6
+	 * @since	1.0
 	 */
 	public static function addSubmenu($vName)
 	{

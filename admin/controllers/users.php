@@ -14,12 +14,10 @@ defined('_JEXEC') or die;
 require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/controller.php';
 
 /**
- * Users list controller class.
- *
- * @package     Joomla.Administrator
- * @subpackage  com_gesttaxesejour
- * @since       1.6
- */
+* TDS_Manager Users Controller
+*
+* @since 1.0
+*/
 class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   /**
 	 * Constructor.
