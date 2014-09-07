@@ -29,7 +29,7 @@ define ( 'GESTTAXESEJOUR_MEDIA', JPATH_ROOT .'/media/'. GESTTAXESEJOUR_NAME );
 define ( 'GURL_COMPONENT', 'index.php?option=' . GESTTAXESEJOUR_COMPONENT_NAME );
 define ( 'GURL_SITE', JURI::Root () . GESTTAXESEJOUR_COMPONENT_RELATIVE . '/' );
 define ( 'GURL_MEDIA', JURI::Root () . 'media/' . GESTTAXESEJOUR_NAME . '/' );
-  
+
 // Register Joomla and Kunena autoloader
 if (function_exists('__autoload')) spl_autoload_register('__autoload');
 spl_autoload_register('GesttaxeAutoload');
@@ -52,13 +52,13 @@ spl_autoload_register('GesttaxeAutoload');
 function Gimport($path) {}
 
 /**
- * Kunena auto loader
+ * TDS_Manager auto loader
  *
  * @param string $class Class to be registered (case sensitive)
  */
 function GesttaxeAutoload($class) {
 	if (substr($class, 0, 6) != 'Tdsmanager') return;
-	$file = GESTTAXESEJOUR_ADMIN . '/libraries' . strtolower(preg_replace( '/([A-Z])/', '/\\1', substr($class, 6)));	
+	$file = GESTTAXESEJOUR_ADMIN . '/libraries' . strtolower(preg_replace( '/([A-Z])/', '/\\1', substr($class, 6)));
 	if (is_dir($file)) {
 		$file .= '/'.array_pop( explode( '/', $file ) );
 	}

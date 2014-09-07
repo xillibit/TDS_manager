@@ -1,11 +1,12 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_content
- *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
+* TDS_Manager Component
+* @package TDS_Manager.Administrator
+* @subpackage Controllers
+*
+* @copyright (C) 2010 - 2014 Florian DAL FITTO. All rights reserved.
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+**/
 
 // No direct access
 defined('_JEXEC') or die;
