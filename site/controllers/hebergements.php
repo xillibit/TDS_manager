@@ -47,7 +47,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
     $user = JFactory::getUser();
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }

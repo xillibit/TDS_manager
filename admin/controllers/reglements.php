@@ -34,7 +34,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
 
 	public function validpaiement() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -62,7 +62,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
   // Relancer les personnes qui n'ont pas payé, en leur envoyant un mail. Ceci est une procédure manuelle
   public function relaunch() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -118,7 +118,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
 
   public function savepaiement() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }

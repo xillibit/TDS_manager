@@ -38,7 +38,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 */
 	public function create() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -53,7 +53,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 */
 	public function edit() {
     // Check for request forgeries.
-		if (! JRequest::checkToken ()) {
+		if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -67,7 +67,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	}
 
 	public function save() {
-	   if (! JRequest::checkToken ()) {
+	   if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
       }
@@ -141,7 +141,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 */
 	public function trash() {
 		// Check for request forgeries.
-		if (! JRequest::checkToken ()) {
+		if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -178,7 +178,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 */
 	public function unpublish() {
 		// Check for request forgeries.
-		if (! JRequest::checkToken ()) {
+		if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -204,7 +204,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 */
 	public function publish() {
 		// Check for request forgeries.
-		if (! JRequest::checkToken ()) {
+		if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }

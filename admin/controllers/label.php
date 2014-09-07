@@ -34,7 +34,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
 	public function edit() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -49,7 +49,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
   public function create() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -61,7 +61,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
   public function remove() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
@@ -87,7 +87,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
   public function save() {
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (!JSession::checkToken()) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
