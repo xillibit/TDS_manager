@@ -14,12 +14,12 @@ defined('_JEXEC') or die;
 <br />
 <!-- Lister les éléments à supprimer -->
 <ul>
-  <?php foreach($this->ids_delete_dispos as $dispo_delete) : ?> 
+  <?php foreach($this->ids_delete_dispos as $dispo_delete) : ?>
   <li><span style="font-weight:bold;">Date de début : </span><?php echo $dispo_delete->startdate ?><span style="font-weight:bold;"> Date de fin fin : </span><?php echo $dispo_delete->enddate ?><span style="font-weight:bold;"> Hébergement : </span><?php echo $dispo_delete->description ?></li>
-  <?php endforeach; ?>  
+  <?php endforeach; ?>
 </ul>
 <br />
-<form method="post" action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=dispos&task=delete'); ?>">
+<form method="post" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=dispos&task=delete'); ?>">
   <input class="button btn btn-primary" type="submit" name="valid_hosting" value="Valider">
   <input class="button btn" type="button" name="valid_hosting" value="Annuler">
 </form>

@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 	 <?php echo JText::_('COM_GESTTAXESEJOUR_DISPOS_GESTION_DISPOS') ?>
   </h1>
 
-  <form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&task=confirmdelete'); ?>" method="post" id="com_gesttaxe_dec_form">
+  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&task=confirmdelete'); ?>" method="post" id="com_gesttaxe_dec_form">
     <table class="adminlist">
   		<thead>
   			<tr>
@@ -49,15 +49,15 @@ defined('_JEXEC') or die;
     					<?php echo $dispo->enddate; ?>
     				</td>
     				<td class="center">
-    					<a href="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&&view=dispos&task=edit_dispos&id='.$dispo->id);?>"><?php echo $dispo->description; ?></a>
+    					<a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&&view=dispos&task=edit_dispos&id='.$dispo->id);?>"><?php echo $dispo->description; ?></a>
     				</td>
     			</tr>
   			<?php endforeach;
          ?>
   		</tbody>
   	</table>
-    <a href="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=dispos&task=ch_dispos'); ?>"><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_CREATE_NEW_DISPOS') ?>" /></a>
-    <a href="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=dispos&task=delete'); ?>"><input type="submit" value="<?php echo JText::_('COM_GESTTAXESEJOUR_DISPOS_DELETE') ?>" /></a>
+    <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=dispos&task=ch_dispos'); ?>"><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_CREATE_NEW_DISPOS') ?>" /></a>
+    <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=dispos&task=delete'); ?>"><input type="submit" value="<?php echo JText::_('COM_GESTTAXESEJOUR_DISPOS_DELETE') ?>" /></a>
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

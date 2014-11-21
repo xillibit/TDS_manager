@@ -702,10 +702,10 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
 
       // Enregistrement du fichier
       $writer = new PHPExcel_Writer_Excel2007($workbook);
-      $records = JPATH_ADMINISTRATOR.'/components/com_gesttaxesejour/TDS_Stats/statistiques_taxe_sejour.xlsx';
+      $records = JPATH_ADMINISTRATOR.'/components/com_tdsmanager/TDS_Stats/statistiques_taxe_sejour.xlsx';
       $writer->save($records);
 
-      $this->app->enqueueMessage ( JText::sprintf('COM_GESTTAXESEJOUR_STATS_EXPORT_DONE','<a style="color:red;" href="'.JURI::root().'/administrator/components/com_gesttaxesejour/TDS_Stats/statistiques_taxe_sejour.xlsx">téléchargez le fichier</a>') );
+      $this->app->enqueueMessage ( JText::sprintf('COM_GESTTAXESEJOUR_STATS_EXPORT_DONE','<a style="color:red;" href="'.JURI::root().'/administrator/components/com_tdsmanager/TDS_Stats/statistiques_taxe_sejour.xlsx">téléchargez le fichier</a>') );
       $this->app->redirect($this->baseurl);
     }
   }

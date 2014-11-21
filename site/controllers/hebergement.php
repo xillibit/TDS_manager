@@ -10,13 +10,13 @@
 // No direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/controller.php';
+require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/controller.php';
 
 /**
  * Declarations list controller class.
  *
  * @package     Tdsmanager.Site
- * @subpackage  com_gesttaxesejour
+ * @subpackage  com_tdsmanager
  * @since       1.6
  */
 class TdsmanagerControllerHebergement extends JControllerLegacy {

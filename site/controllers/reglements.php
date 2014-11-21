@@ -12,12 +12,12 @@ jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerReglements extends JControllerLegacy {
 	public function details() {
-		$this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=reglement&layout=details', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=reglement&layout=details', false));
 		return false;
 	}
 
 	public function create() {
-		$this->setRedirect(JRoute::_('index.php?option=com_gesttaxesejour&view=reglements&layout=create', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=reglements&layout=create', false));
 		return false;
 	}
 

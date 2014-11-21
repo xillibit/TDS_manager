@@ -13,7 +13,7 @@ jimport('joomla.application.component.controller');
  * Gesttaxesejour master display controller.
  *
  * @package		Joomla.Administrator
- * @subpackage	com_gesttaxesejour
+ * @subpackage	com_tdsmanager
  * @since		1.6
  */
 class TdsmanagerController extends JController {
@@ -26,15 +26,15 @@ class TdsmanagerController extends JController {
 	 * @return	JController		This object to support chaining.
 	 * @since	1.5
 	 */
-	public function display($cachable = false, $urlparams = false) { 
+	public function display($cachable = false, $urlparams = false) {
 		require_once JPATH_COMPONENT.'/helpers/tdsmanager.php';
-		
+
 		// Load the submenu.
 		TdsmanagerHelper::addSubmenu(JRequest::getCmd('view', 'controlpanel'));
-    
+
     // set default view if not set
 		JRequest::setVar('view', JRequest::getCmd('view', 'controlpanel'));
- 
+
 		// call parent behavior
 		parent::display($cachable);
 	}

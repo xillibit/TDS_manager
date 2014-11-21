@@ -15,7 +15,7 @@ require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/model.p
  * Methods supporting a list of banner records.
  *
  * @package		Joomla.Administrator
- * @subpackage	com_gesttaxesejour
+ * @subpackage	com_tdsmanager
  * @since		1.6
  */
 class TdsmanagerAdminModelTarif_nuit extends TdsmanagerModel {

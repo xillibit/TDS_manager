@@ -1,7 +1,7 @@
 <?php
  /**
  * @package		Joomla.Site
- * @subpackage	com_contact
+ * @subpackage	com_tdsmanager
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
   <h1>
 	 <?php echo JText::_('COM_GESTTAXESEJOUR_USER_EDITION_PROFIL') ?>
   </h1>
-  <form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=user&task=save'); ?>" method="post">
+  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=user&task=save'); ?>" method="post">
     <ul style="list-style-type:none;">
       <li><span>Votre nom</span> <input type="text" name="name" value="<?php echo $this->userProfile->name ?>" /></li>
       <li><span>Votre prénom</span> <input type="text" name="lastname" value="<?php echo $this->userProfile->lastname ?>" /></li>
@@ -24,13 +24,13 @@ defined('_JEXEC') or die;
       <li><span>Votre téléphone</span> <input type="text" name="telephone" value="<?php echo $this->userProfile->telephone ?>" /></li>
       <li><span>Votre portable</span> <input type="text" name="portable" value="<?php echo $this->userProfile->portable ?>" /></li>
       <li><span>Votre portable</span> <input type="text" name="portable" value="<?php echo $this->userProfile->portable ?>" /></li>
-      <li><span>Votre mail</span> <input type="text" name="mail" value="<?php echo $this->userProfile->mail ?>" /></li>             
-      
+      <li><span>Votre mail</span> <input type="text" name="mail" value="<?php echo $this->userProfile->mail ?>" /></li>
+
       <input type="hidden" name="userid" value="<?php echo $this->profile->userid ?>" />
-      
+
       <input type="button" onclick="javascript:history.back()" value="Annuler">
       <input type="submit" value="Enregister">
-    </ul>   
-    <?php echo JHtml::_('form.token'); ?>         
+    </ul>
+    <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

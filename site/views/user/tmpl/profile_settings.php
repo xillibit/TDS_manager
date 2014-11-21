@@ -9,7 +9,7 @@
 defined ( '_JEXEC' ) or die ();
 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=user'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=user'); ?>" method="post" name="adminForm" id="adminForm">
   <ul style="list-style-type:none;">
     <li><span>Votre nom</span> <input type="text" name="" value="user_firstname" /></li>
     <li><span>Votre prénom</span> <input type="text" name="" value="user_lastname" /></li>

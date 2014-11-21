@@ -32,7 +32,7 @@ class TdsmanagerModelMain extends JModel {
     $db = JFactory::getDBO();
     $user = JFactory::getUser();
 
-    $query = "SELECT start_date, end_date FROM #__gesttaxesejour_declarations
+    $query = "SELECT start_date, end_date FROM #__tdsmanager_declarations
               WHERE declarant_userid={$db->quote($user->id)} AND paiement_ok='0'";
     $db->setQuery((string)$query);
     $reglement_not_done = $db->loadObject();
@@ -51,8 +51,8 @@ class TdsmanagerModelMain extends JModel {
 
     // On vérifie que les déclarations ont été faites
     /*if ( $date_jour['tm_mon'] > '15' ) {
-       $query = "SELECT * FROM #__gesttaxesejour_hebergements AS herbeg
-              LEFT JOIN #__gesttaxesejour_declarations AS decl ON herbeg.id=decl.hebergement_id
+       $query = "SELECT * FROM #__tdsmanager_hebergements AS herbeg
+              LEFT JOIN #__tdsmanager_declarations AS decl ON herbeg.id=decl.hebergement_id
               WHERE herbeg.userid={$db->quote($user->id)} AND decl.end_date LIKE '%$mois_dernier%'";
       $db->setQuery((string)$query);
       $declarations_not_done = $db->loadObjectList();
@@ -70,7 +70,7 @@ class TdsmanagerModelMain extends JModel {
     $user = JFactory::getUser();
 
     if ( $user->id > 0 ) {
-      $query = "SELECT * FROM #__gesttaxesejour_hebergements
+      $query = "SELECT * FROM #__tdsmanager_hebergements
                 WHERE userid={$db->quote($user->id)} LIMIT 0,3";
       $db->setQuery((string)$query);
       $user_last_hostings = $db->loadObjectList();
@@ -84,7 +84,7 @@ class TdsmanagerModelMain extends JModel {
     $user = JFactory::getUser();
 
     /*if ( $user->id > 0 ) {
-      $query = "SELECT * FROM #__gesttaxesejour_declarations
+      $query = "SELECT * FROM #__tdsmanager_declarations
                 WHERE declarant_userid={$db->quote($user->id)} ORDER BY date_declarer LIMIT 0,3";
       $db->setQuery((string)$query);
       $user_last_declarations = $db->loadObjectList();
@@ -98,7 +98,7 @@ class TdsmanagerModelMain extends JModel {
     $user = JFactory::getUser();
 
     if ( $user->id > 0 ) {
-      $query = "SELECT * FROM #__gesttaxesejour_reglements";
+      $query = "SELECT * FROM #__tdsmanager_reglements";
       $db->setQuery((string)$query);
       $user_last_reglements = $db->loadObjectList();
 

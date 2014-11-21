@@ -12,21 +12,21 @@ defined('_JEXEC') or die;
 <div>
   <h1>
 	 <?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_GESTION_DECLARATIONS') ?>
-  </h1>  
-    
-  <form action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=declarations'); ?>" method="post" id="com_gesttaxe_dec_form">
+  </h1>
+
+  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations'); ?>" method="post" id="com_gesttaxe_dec_form">
     <table class="adminlist">
   		<thead>
   			<tr>
           <th width="5%" class="nowrap">
             <input name="checkbox_all" id="checkbox_all" type="checkbox" />
-          </th>				
+          </th>
   				<th width="10%" class="nowrap">
   					<?php echo JText::_('COM_GESTTAXESEJOUR_DATE_DEBUT'); ?>
   				</th>
           <th width="10%" class="nowrap">
   					<?php echo JText::_('COM_GESTTAXESEJOUR_DATE_FIN'); ?>
-  				</th>				
+  				</th>
   				<th width="5%">
   					<?php echo JText::_('COM_GESTTAXESEJOUR_DUREE_SEJOUR'); ?>
   				</th>
@@ -38,28 +38,28 @@ defined('_JEXEC') or die;
   				</th>
   				<th width="5%">
   					<?php echo JText::_('COM_GESTTAXESEJOUR_PAIEMENT_OK'); ?>
-  				</th>				
+  				</th>
   				<th width="10%">
   					<?php echo JText::_('COM_GESTTAXESEJOUR_NOM_HEBERGEMENT'); ?>
-  				</th>				 												
+  				</th>
   			</tr>
   		</thead>
-  		<tfoot>			
+  		<tfoot>
   		</tfoot>
   		<tbody>
-  		<?php      
-       if ( !empty($this->declarations) ) { 
+  		<?php
+       if ( !empty($this->declarations) ) {
         foreach ($this->declarations	 as $i => $item) : ?>
-    			<tr class="row<?php echo $i % 2; ?>">  				
+    			<tr class="row<?php echo $i % 2; ?>">
     				<td>
-                <input class="check-me" name="cid[]" type="checkbox" value="<?php echo $item->id; ?>" />									
+                <input class="check-me" name="cid[]" type="checkbox" value="<?php echo $item->id; ?>" />
     				</td>
             <td>
-                <?php echo $item->start_date; ?>									
+                <?php echo $item->start_date; ?>
     				</td>
     				<td class="center">
     					<?php echo $item->end_date; ?>
-    				</td>   				
+    				</td>
     				<td class="center">
     					<?php echo $item->duree_sejour; ?>
     				</td>
@@ -70,18 +70,18 @@ defined('_JEXEC') or die;
     					<?php echo $item->date_declarer; ?>
     				</td>
     				<td class="order">
-    					<?php echo $item->paiement_ok ? JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAID') : JText::_('COM_GESTTAXESEJOUR_DECLARATION_NO_PAID'); ?>						
+    					<?php echo $item->paiement_ok ? JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAID') : JText::_('COM_GESTTAXESEJOUR_DECLARATION_NO_PAID'); ?>
     				</td>
     				<td class="center">
     					<?php echo $item->hostingname;?>
-    				</td>  								
+    				</td>
     			</tr>
   			<?php endforeach;
         }
          ?>
   		</tbody>
   	</table>
-    <a href="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&task=edit'); ?>"><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_CREATE_NEW_DECLARATION') ?>" /></a>
+    <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=edit'); ?>"><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_CREATE_NEW_DECLARATION') ?>" /></a>
     <!--<input type="button" id="sup_declaration" value="<?php //echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_DELETE_DECLARATION') ?>" />  -->
     <input type="submit" value="<?php echo JText::_('COM_GESTTAXESEJOUR_CREATE_PAIEMENT_DECLARATION') ?>" />
     <input type="hidden" name="task" value="recap" />

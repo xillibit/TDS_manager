@@ -11,11 +11,11 @@ defined('_JEXEC') or die;
 <div>
 <h2>Choisissez l'hébergement concerné pour affecter les réservations :</h2>
 <br />
-<form method="post" action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=dispos&task=dispos'); ?>">
+<form method="post" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=dispos&task=dispos'); ?>">
   <?php
   echo $this->hostings_list;
   ?>
-  <br />  
+  <br />
   <input class="button btn btn-primary" type="submit" name="valid_hosting" value="Valider">
 </form>
 </div>

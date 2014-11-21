@@ -7,7 +7,7 @@
  */
 defined ( '_JEXEC' ) or die ();
 
-require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/view.php';
+require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/view.php';
 
 /**
 * Category View
@@ -15,7 +15,7 @@ require_once JPATH_ADMINISTRATOR . '/components/com_gesttaxesejour/libraries/vie
 class GesttaxesejourViewHebergement extends GesttaxeView {
   function display($tpl = null) {
    // Initialise variables.
-  
+
 	 parent::display($tpl);
 	}
 }

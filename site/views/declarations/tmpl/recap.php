@@ -8,8 +8,8 @@
 
 defined('_JEXEC') or die;
 $document = JFactory::getDocument ();
-$document->addStyleSheet(JURI::Root().'/components/com_gesttaxesejour/assets/facebox.css');
-$document->addScript(JURI::Root().'/components/com_gesttaxesejour/assets/facebox.js');
+$document->addStyleSheet(JURI::Root().'/components/com_tdsmanager/assets/facebox.css');
+$document->addScript(JURI::Root().'/components/com_tdsmanager/assets/facebox.js');
 $document->addScriptDeclaration ("
 	jQuery(document).ready(function($) {
 		$('div#full-tos').hide();
@@ -29,9 +29,9 @@ $params	= $app->getParams();
   </h1>
   <div style="border-top: 1px solid #E9E8E8;border-bottom: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
     <h4><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_INFORMATIONS_FACTURATION') ?></h4>
-    <div style="margin: 10px 0;">      
+    <div style="margin: 10px 0;">
       <ul style="list-style-type: none;">
-        <li><?php echo $this->detailsHebergeur->name.' '.$this->detailsHebergeur->lastname; ?></li>        
+        <li><?php echo $this->detailsHebergeur->name.' '.$this->detailsHebergeur->lastname; ?></li>
         <li><?php echo $this->detailsHebergeur->adress; ?></li>
         <li><?php echo $this->detailsHebergeur->complement_adress; ?></li>
         <li><?php echo $this->detailsHebergeur->postalcode.' '.$this->detailsHebergeur->ville; ?></li>
@@ -44,7 +44,7 @@ $params	= $app->getParams();
   <h4><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_DECLARATIONS_SELECTED') ?></h4>
   <br />
   <ul>
-  <?php if ( !empty($this->detailsDecSelected) ): 
+  <?php if ( !empty($this->detailsDecSelected) ):
           foreach($this->detailsDecSelected as $detail): ?>
     <li><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_DEC_FROM').' '.$detail->start_date.' '.JText::_('COM_GESTTAXESEJOUR_DECLARATION_DEC_TO').' '.$detail->end_date.' '.JText::_('COM_GESTTAXESEJOUR_DECLARATION_DEC_MONTANT').' '.$detail->montant_encaisse_sejour.' €' ?></li>
   <?php endforeach;
@@ -54,35 +54,35 @@ $params	= $app->getParams();
   </ul>
   <div style="text-align: right;">
   <?php if ( !empty($this->detailsDecSelected) ): ?>
-  <h5><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_BEFORE_COMMISION').' '.$this->totalDeclaration.' €' ?></h5> 
+  <h5><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_BEFORE_COMMISION').' '.$this->totalDeclaration.' €' ?></h5>
   <h5><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_TOTAL').' '.$this->totalDeclarationAfterCom.' €' ?></h5>
-  <?php endif; ?> 
+  <?php endif; ?>
   </div>
-  <form id="checkoutForm" name="checkoutForm" method="post" action="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&task=checkout') ?>">
+  <form id="checkoutForm" name="checkoutForm" method="post" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=checkout') ?>">
   <label for="tosAccepted" style="border-top: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
     <input id="tosAccepted" type="checkbox" style="margin-right: 10px; display: inline-block;" value="1" name="tosAccepted" />
-    <a href="<?php JRoute::_ ('index.php?option=com_gesttaxesejour&view=declarations&layout=tos') ?>" class="terms-of-service" id="terms-of-service" rel="facebox"
+    <a href="<?php JRoute::_ ('index.php?option=com_tdsmanager&view=declarations&layout=tos') ?>" class="terms-of-service" id="terms-of-service" rel="facebox"
 							   target="_blank"><?php echo JText::_ ('COM_GESTTAXESEJOUR_DECLARATIONS_READ_ACCEPT_TOS'); ?>
    </a>
-   
-    <div id="full-tos">		  
+
+    <div id="full-tos">
 			 <fieldset>
         <legend><h2><?php echo JText::_ ('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_TOS'); ?></h2></legend>
         <?php echo $params->get('content_tos', ''); ?>
-       </fieldset> 
-	  </div>              
+       </fieldset>
+	  </div>
   </label>
   <br />
   <div style="border-top: 1px solid #E9E8E8;border-bottom: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
     <h4><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_RECAP_SELECT_PAYEMENT') ?></h4>
-    <?php echo $this->payementMethods ?>    
-  </div>  
-  
+    <?php echo $this->payementMethods ?>
+  </div>
+
   <div id="cheque_text" style="display:none;">
     <fieldset>
-  <legend><h4>Instructions pour le paiement par chéque :</h4></legend>    
+  <legend><h4>Instructions pour le paiement par chéque :</h4></legend>
 
-Vous avez choisi d'effectuer votre paiement par chèque bancaire. Nous vous remercions de bien vouloir nous faire parvenir votre chèque de <b><?php echo $this->totalDeclarationAfterCom ?> €</b> par courrier en inscrivant 
+Vous avez choisi d'effectuer votre paiement par chèque bancaire. Nous vous remercions de bien vouloir nous faire parvenir votre chèque de <b><?php echo $this->totalDeclarationAfterCom ?> €</b> par courrier en inscrivant
 la référence de la déclaration (Référence transaction :<?php echo $this->app->getUserState("com_gesttaxesejour.idtransaction") ?>) de la taxe de séjour au dos du chèque (chèque à l'ordre du Trésor public).
 
 Merci d'envoyer votre courrier complet à l'adresse suivante :
@@ -95,7 +95,7 @@ Merci d'envoyer votre courrier complet à l'adresse suivante :
 Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre déclaration sera automatiquement annulée.
 </fieldset>
   </div>
-  
+
   <div id="virement_text" style="display:none;">
   <fieldset>
         <legend><h4>Instructions pour le paiement par virement :</h4></legend>
@@ -117,20 +117,20 @@ Montant à payer : <b><?php echo $this->totalDeclarationAfterCom ?> €</b>
 Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre déclaration sera automatiquement annulée.
 </fieldset>
   </div>
-  
+
   <div id="paypal_paiement_text" style="display:none;">
     <fieldset>
   <legend><h4>Paiement par Paypal :</h4></legend>
-  <a href="<?php echo JRoute::_('index.php?option=com_gesttaxesejour&view=declarations&task=sendcheckout') ?>">
-  <input id="paypal_bouton" onclick="document.paypalForm.submit();" name="submit" src="https://www.paypalobjects.com/en_US/FR/i/bnr/bnr_horizontal_solution_PP_327wx80h.gif" alt="<?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAY_WITH_PAYPAL') ?>" title="<?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAY_WITH_PAYPAL') ?>" type="image" /></a>    
-   
+  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=sendcheckout') ?>">
+  <input id="paypal_bouton" onclick="document.paypalForm.submit();" name="submit" src="https://www.paypalobjects.com/en_US/FR/i/bnr/bnr_horizontal_solution_PP_327wx80h.gif" alt="<?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAY_WITH_PAYPAL') ?>" title="<?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_PAY_WITH_PAYPAL') ?>" type="image" /></a>
+
 </fieldset>
   </div>
   <br />
-  
-  
+
+
   <a class="btn-validate-green" href="javascript:document.checkoutForm.submit();">
     <span>Terminer</span>
-  </a>   
+  </a>
   </form>
 </div>

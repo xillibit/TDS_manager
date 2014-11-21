@@ -33,7 +33,7 @@ class GesttaxesejourModelGesttaxesejour extends JModel {
 		$user = JFactory::getUser();
 
 		if ( $user->id > 0 ) {
-			$query = "SELECT * FROM #__gesttaxesejour_hebergements
+			$query = "SELECT * FROM #__tdsmanager_hebergements
 				WHERE userid={$db->quote($user->id)} LIMIT 0,3";
 			$db->setQuery((string)$query);
 			$user_last_hostings = $db->loadObjectList();
@@ -47,7 +47,7 @@ class GesttaxesejourModelGesttaxesejour extends JModel {
 		$user = JFactory::getUser();
 
 		if ( $user->id > 0 ) {
-			$query = "SELECT * FROM #__gesttaxesejour_declarations
+			$query = "SELECT * FROM #__tdsmanager_declarations
 				WHERE declarant_userid={$db->quote($user->id)} ORDER BY date_declarer LIMIT 0,3";
 			$db->setQuery((string)$query);
 			$user_last_declarations = $db->loadObjectList();
@@ -61,7 +61,7 @@ class GesttaxesejourModelGesttaxesejour extends JModel {
 		$user = JFactory::getUser();
 
 		if ( $user->id > 0 ) {
-			$query = "SELECT * FROM #__gesttaxesejour_reglements";
+			$query = "SELECT * FROM #__tdsmanager_reglements";
 			$db->setQuery((string)$query);
 			$user_last_reglements = $db->loadObjectList();
 

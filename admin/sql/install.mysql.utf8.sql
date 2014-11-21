@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_alertes` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `#__gesttaxesejour_attachments`
+-- Structure de la table `#__tdsmanager_attachments`
 --
 
 CREATE TABLE IF NOT EXISTS `#__tdsmanager_attachments` (
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_attachments` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `#__gesttaxesejour_classements`
+-- Structure de la table `#__tdsmanager_classements`
 --
 
 CREATE TABLE IF NOT EXISTS `#__tdsmanager_classements` (

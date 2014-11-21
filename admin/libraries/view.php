@@ -23,28 +23,28 @@ class TdsmanagerView extends JView {
 
 	function __construct($config = array()){
 		parent::__construct($config);
-		$this->document = JFactory::getDocument(); 		
+		$this->document = JFactory::getDocument();
 		$this->app = JFactory::getApplication ();
-			
+
 	}
 
-	function displayAll() {	 
+	function displayAll() {
    if (JFactory::getApplication()->isAdmin()) {
 			$this->displayLayout();
 		} else {
-      $view = $this->getName ();	
+      $view = $this->getName ();
       $this->displayTemplateFile($view, 'default');
-    }    	
+    }
 	}
 
-	function displayLayout($layout=null, $tpl = null) {     		
+	function displayLayout($layout=null, $tpl = null) {
     if ($layout) $this->setLayout ($layout);
 		$view = $this->getName ();
 		$layout = $this->getLayout ();
 		$viewName = ucfirst($view);
 		$layoutName = ucfirst($layout);
-		$layoutFunction = 'display'.$layoutName;  
-	             
+		$layoutFunction = 'display'.$layoutName;
+
 		if (isset($this->common)) {
 			if ($this->config->board_offline && ! $this->me->isAdmin ()) {
 				// Forum is offline
@@ -68,28 +68,28 @@ class TdsmanagerView extends JView {
 				return;
 			}
 		}
-    
+
     $state = $this->get ( 'State' );
-               
+
 		$this->assignRef ( 'state', $state );
 		if (method_exists($this, $layoutFunction)) {
 			$contents = $this->$layoutFunction ($tpl);
 		} else {
 			$contents = $this->display($tpl);
 		}
-		
+
 		return $contents;
 	}
-	
-	function getViewFile($view, $tpl) {     	  
-    $tpl =  JPATH_BASE.'/components/com_gesttaxesejour/views/'.$view.'/tmpl/'.$tpl.'.php';
+
+	function getViewFile($view, $tpl) {
+    $tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
     if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
-    
+
     ob_start();
 		include $tpl;
 		$output = ob_get_contents();
 		ob_end_clean();
-		
+
 		return $output;
   }
 
@@ -276,7 +276,7 @@ class TdsmanagerView extends JView {
 	}
 
 	public function displayTemplateFile($view, $layout, $template = null) {
-		$file = JPATH_SITE."/components/com_gesttaxesejour/views/{$view}/tmpl/{$layout}.php";		
+		$file = JPATH_SITE."/components/com_tdsmanager/views/{$view}/tmpl/{$layout}.php";
 		if (!file_exists($file)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $file));
 
 		ob_start();
