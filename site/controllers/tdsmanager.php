@@ -21,7 +21,7 @@ class TdsmanagerControllerMain extends JControllerLegacy {
 		// Initialise variables.
 		$app	= JFactory::getApplication();
 		$model	= $this->getModel('contact');
-		$params = JComponentHelper::getParams('com_contact');
+		$params = JComponentHelper::getParams('com_tdsmanager');
 		$stub	= JRequest::getString('id');
 		$id		= (int)$stub;
 
@@ -39,10 +39,10 @@ class TdsmanagerControllerMain extends JControllerLegacy {
 				JError::raiseWarning(403, JText::_('COM_CONTACT_SESSION_INVALID'));
 
 				// Save the data in the session.
-				$app->setUserState('com_contact.contact.data', $data);
+				$app->setUserState('com_tdsmanager.contact.data', $data);
 
 				// Redirect back to the contact form.
-				$this->setRedirect(JRoute::_('index.php?option=com_contact&view=contact&id='.$stub, false));
+				$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=contact&id='.$stub, false));
 				return false;
 			}
 		}

@@ -18,7 +18,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 		1.5
  */
-class GesttaxesejourViewGesttaxesejour extends JView {
+class TdsmanagerViewGesttaxesejour extends JView {
 	protected $state;
 	protected $form;
 	protected $item;

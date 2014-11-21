@@ -14,6 +14,6 @@ require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/model.p
 *
 * @since 2.0
 */
-class TdsmanagerModelHebergement extends GesttaxeModel {
+class TdsmanagerModelHebergement extends TdsmanagerModel {
 
 }
