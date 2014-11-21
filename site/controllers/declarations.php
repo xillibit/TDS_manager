@@ -298,7 +298,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $body   = '<img src="cid:logo_odt" title="Logo Office de tourisme" alt="Logo Office de tourisme" />'
     . '<h2>Reçu de paiement de la Taxe de séjour</h2>'
     . '<div>Bonjour '.$gest_user->name.' '.$gest_user->lastname.',<br /><br />'
-    . 'Par ce message, nous confirmons la bonne réception de votre paiement pour la déclaration '.$app->getUserState("com_gesttaxesejour.idtransaction").'. Si vous avez choisi de régler par chéque ou par virement le paiement sera complément validé quand il sera validé par nos services.<br /><br />'
+    . 'Par ce message, nous confirmons la bonne réception de votre paiement pour la déclaration '.$app->getUserState("com_tdsmanager.idtransaction").'. Si vous avez choisi de régler par chéque ou par virement le paiement sera complément validé quand il sera validé par nos services.<br /><br />'
     . 'Merci de votre confiance. A bientôt. </div>';
     $mailer->isHTML(true);
     $mailer->Encoding = 'base64';

@@ -67,7 +67,7 @@ class TdsmanagerAdminModelDeclarations extends TdsmanagerModel {
     $db = JFactory::getDBO();
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState('com_gesttaxesejour.declaration.id');
+    $id = $app->getUserState('com_tdsmanager.declaration.id');
 
     $query = "SELECT * FROM #__tdsmanager_declarations
               WHERE id={$id}";

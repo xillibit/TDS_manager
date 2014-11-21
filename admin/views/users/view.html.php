@@ -54,7 +54,7 @@ class TdsmanagerAdminViewUsers extends TdsmanagerView {
 
 	public function displayCreate($tpl = null) {
 		// Initialiase variables.
-		$userid = $this->app->getUserState( 'com_gesttaxesejour.user.id' );
+		$userid = $this->app->getUserState( 'com_tdsmanager.user.id' );
     $this->user		= $this->get('user');
 
     if($userid) $this->setToolbarEdit();

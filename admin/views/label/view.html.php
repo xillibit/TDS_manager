@@ -58,7 +58,7 @@ class TdsmanagerAdminViewLabel extends TdsmanagerView {
 	  $this->label		= $this->get('label');
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_label.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_label.id" );
 
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();

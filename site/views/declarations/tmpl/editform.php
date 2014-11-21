@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 jimport( 'joomla.html.html' );
 jimport( 'joomla.utilities.date' );
 $date_now = JFactory::getDate('now')->toFormat('%d-%m-%Y');
-$tarifs = $this->app->getUserState('com_gesttaxesejour.tarifs');
+$tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 ?>
 <div>
   <h1>

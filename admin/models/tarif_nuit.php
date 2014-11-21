@@ -65,7 +65,7 @@ class TdsmanagerAdminModelTarif_nuit extends TdsmanagerModel {
 
   public function getTarifNuit() {
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_tarif_nuit.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_tarif_nuit.id" );
 
     if ( $id > 0 ) {
       $db = JFactory::getDBO();
@@ -84,7 +84,7 @@ class TdsmanagerAdminModelTarif_nuit extends TdsmanagerModel {
 
   protected function _getUserState() {
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_tarif_nuit.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_tarif_nuit.id" );
 
     if ( $id ) {
       $db = JFactory::getDBO();

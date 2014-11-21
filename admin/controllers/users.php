@@ -228,9 +228,9 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     }
 
     // vider l'userstate
-    $idsInState = $this->app->getUserState( 'com_gesttaxesejour.users.mailinglist.ids' );
+    $idsInState = $this->app->getUserState( 'com_tdsmanager.users.mailinglist.ids' );
     if ( !empty($idsInState) ) {
-      $this->app->setUserState( 'com_gesttaxesejour.users.mailinglist.ids', null );
+      $this->app->setUserState( 'com_tdsmanager.users.mailinglist.ids', null );
     }
 
     $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
@@ -240,7 +240,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       // Demander d'entrer le titre du message ainsi que le contenu du message
 
       // stocker les ids dans l'user state
-      $this->app->setUserState( 'com_gesttaxesejour.users.mailinglist.ids', $ids );
+      $this->app->setUserState( 'com_tdsmanager.users.mailinglist.ids', $ids );
     } else {
       // Afficher le message vous n'avez sélectionné aucun élément
     }
@@ -257,7 +257,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     $body = JRequest::getString('body');
 
     // récupérer les données depuis l'userstate
-    $idsInState = $this->app->getUserState( 'com_gesttaxesejour.users.mailinglist.ids' );
+    $idsInState = $this->app->getUserState( 'com_tdsmanager.users.mailinglist.ids' );
 
     if ( !empty($idsInState) ) {
       // Envoyer les mails

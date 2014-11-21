@@ -61,7 +61,7 @@ class TdsmanagerAdminViewTarif_nuit extends TdsmanagerView {
 	  $this->hebergement_type = $this->get('ListHebergementType');
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_tarif_nuit.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_tarif_nuit.id" );
 
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();

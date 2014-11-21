@@ -63,7 +63,7 @@ class TdsmanagerAdminModelClassements extends TdsmanagerModel {
     $db = JFactory::getDBO();
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState('com_gesttaxesejour.classement.id');
+    $id = $app->getUserState('com_tdsmanager.classement.id');
 
     if ( $id > 0 ) {
       $query = "SELECT * FROM #__tdsmanager_classements WHERE id={$db->quote($id)}";

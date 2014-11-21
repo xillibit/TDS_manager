@@ -60,7 +60,7 @@ class TdsmanagerAdminViewClassements extends TdsmanagerView {
 		$this->classement		= $this->get('Classement');
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.classement.id" );
+    $id = $app->getUserState( "com_tdsmanager.classement.id" );
 
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();

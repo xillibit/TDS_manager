@@ -77,7 +77,7 @@ class TdsmanagerAdminModelHebergements extends TdsmanagerModel {
 
   public function getHebergement() {
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement.id" );
 
     $hebergement= new stdClass();
 

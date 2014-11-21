@@ -87,8 +87,8 @@
     settings: {
       opacity      : 0.2,
       overlay      : true,
-      loadingImage : 'http://floriandalfitto.fr/odt_faverges/components/com_gesttaxesejour/assets/images/facebox/loading.gif',
-      closeImage   : 'http://floriandalfitto.fr/odt_faverges/components/com_gesttaxesejour/assets/images/facebox/closelabel.png',
+      loadingImage : 'http://floriandalfitto.fr/odt_faverges/components/com_tdsmanager/assets/images/facebox/loading.gif',
+      closeImage   : 'http://floriandalfitto.fr/odt_faverges/components/com_tdsmanager/assets/images/facebox/closelabel.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \

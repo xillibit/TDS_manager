@@ -53,7 +53,7 @@ class TdsmanagerAdminViewHebergements extends TdsmanagerView {
 		$this->hebergement_typelist = $this->get('ListTypesHebergement');
     $this->users_list = $this->get('ListUsers');
 
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement.id" );
 
 		if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();

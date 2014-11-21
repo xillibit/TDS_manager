@@ -72,7 +72,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 		if ( !empty($ids) ) {
 			$id = array_shift($ids);
 
-			$this->app->setUserState( 'com_gesttaxesejour.classement.id', $id );
+			$this->app->setUserState( 'com_tdsmanager.classement.id', $id );
 
 			$this->setRedirect('index.php?option=com_tdsmanager&view=classements&layout=create');
 		} else {
@@ -88,7 +88,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$this->app->setUserState( 'com_gesttaxesejour.classement.id', '0' );
+		$this->app->setUserState( 'com_tdsmanager.classement.id', '0' );
 
 		$this->setRedirect('index.php?option=com_tdsmanager&view=classements&layout=create');
 	}

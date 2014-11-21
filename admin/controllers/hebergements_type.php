@@ -64,7 +64,7 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $this->app->setUserState( "com_gesttaxesejour.hebergement_type.id", 0 );
+    $this->app->setUserState( "com_tdsmanager.hebergement_type.id", 0 );
 
     $this->setRedirect('index.php?option=com_tdsmanager&view=hebergements_type&layout=create');
   }
@@ -79,7 +79,7 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
     $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
     $id = array_shift($cids);
 
-    $this->app->setUserState( "com_gesttaxesejour.hebergement_type.id", $id );
+    $this->app->setUserState( "com_tdsmanager.hebergement_type.id", $id );
 
 		$this->setRedirect('index.php?option=com_tdsmanager&view=hebergements_type&layout=create');
   }

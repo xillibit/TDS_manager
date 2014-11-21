@@ -36,7 +36,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
     if ( !empty($ids) ) {
       $id = array_shift($ids);
 
-      $this->app->setUserState( 'com_gesttaxesejour.declaration.id', $id );
+      $this->app->setUserState( 'com_tdsmanager.declaration.id', $id );
 
       $this->setRedirect('index.php?option=com_tdsmanager&view=declarations&layout=edit');
     } else {
@@ -57,7 +57,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $ids = implode(',',$ids);
 
       /*$db = JFactory::getDBO();
-      $query = "DELETE FROM #__gesttaxesejour_declarations WHERE id IN ($ids)";
+      $query = "DELETE FROM #__tdsmanager_declarations WHERE id IN ($ids)";
       $db->setQuery((string)$query);
       $db->Query();    */
 
@@ -93,7 +93,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
      $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
      /*$db = JFactory::getDBO();
-     $query = "INSERT INTO #__gesttaxesejour_declarations
+     $query = "INSERT INTO #__tdsmanager_declarations
               (mois,hebergement_id,nb_personnes_plein_tarif,tarif_nuit_par_personne,nb_nuitees_duree_sejour,sous_total,nb_personnes_reduction_30,nb_personnes_reduction_40,nb_personnes_reduction_50,nb_personnes_reduction_75,
               nb_nuitees_30, nb_nuitees_40, nb_nuitees_50, nb_nuitees_75, nb_personnes_exonerees, sous_total2, montant_total, date_declarer)
               VALUES({$db->quote($post['mois'])},{$db->quote($post['hebergement_id'])},{$db->quote($post['nb_personnes_plein_tarif'])},
@@ -133,17 +133,17 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
 
     /*if (  $post['hebergement']==0 ) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_HOSTING_SELECTED'), 'error' );
-      $this->app->redirect('index.php?option=com_gesttaxesejour&view=declarations&layout=create');
+      $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }
 
     if ( $post['mois']==0 ) {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_MONTH_SELECTED'), 'error' );
-      $this->app->redirect('index.php?option=com_gesttaxesejour&view=declarations&layout=create');
+      $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }
 
     // A revoir avec la nouvelle structure de la base de donnée
     $db = JFactory::getDBO();
-    $query = "SELECT tarif FROM #__gesttaxesejour_hebergclass
+    $query = "SELECT tarif FROM #__tdsmanager_hebergclass
               WHERE id_hebergement='{$post['hebergement']}'";
     $db->setQuery((string)$query);
     $tarif_hebergement = $db->loadResult();
@@ -161,12 +161,12 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $object->nb_personnes_plein_tarif = $post['nb_personnes_plein_tarif'];
       $object->tarif_hebergement = $tarif_hebergement;
 
-      $this->app->setUserState( 'com_gesttaxesejour.declaration.decl_first_part', $object );
+      $this->app->setUserState( 'com_tdsmanager.declaration.decl_first_part', $object );
 
       $this->setRedirect('index.php?option=com_tdsmanager&view=declarations&layout=detail');
     /*} else {
       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_TARIF_SAVED_FOR_THIS_HOSTING'), 'error' );
-      $this->app->redirect('index.php?option=com_gesttaxesejour&view=declarations&layout=create');
+      $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }*/
   }
 }

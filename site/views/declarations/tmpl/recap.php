@@ -83,7 +83,7 @@ $params	= $app->getParams();
   <legend><h4>Instructions pour le paiement par chéque :</h4></legend>
 
 Vous avez choisi d'effectuer votre paiement par chèque bancaire. Nous vous remercions de bien vouloir nous faire parvenir votre chèque de <b><?php echo $this->totalDeclarationAfterCom ?> €</b> par courrier en inscrivant
-la référence de la déclaration (Référence transaction :<?php echo $this->app->getUserState("com_gesttaxesejour.idtransaction") ?>) de la taxe de séjour au dos du chèque (chèque à l'ordre du Trésor public).
+la référence de la déclaration (Référence transaction :<?php echo $this->app->getUserState("com_tdsmanager.idtransaction") ?>) de la taxe de séjour au dos du chèque (chèque à l'ordre du Trésor public).
 
 Merci d'envoyer votre courrier complet à l'adresse suivante :
 <br /><br />
@@ -103,7 +103,7 @@ Vous avez choisi d'effectuer votre paiement par virement bancaire. Nous vous inv
 
 Ces informations vous seront récapitulées dans le mail de confirmation.
 
-Merci de préciser dans l'objet de votre virement, la référence de la déclaration de la taxe de séjour (Référence transaction :<?php echo $this->app->getUserState("com_gesttaxesejour.idtransaction") ?>).
+Merci de préciser dans l'objet de votre virement, la référence de la déclaration de la taxe de séjour (Référence transaction :<?php echo $this->app->getUserState("com_tdsmanager.idtransaction") ?>).
 <br /><br />
 Montant à payer : <b><?php echo $this->totalDeclarationAfterCom ?> €</b>
 <br /><br />

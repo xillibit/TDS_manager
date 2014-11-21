@@ -63,7 +63,7 @@ class TdsmanagerAdminModelLabel extends TdsmanagerModel {
 
   public function getLabel() {
     $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_label.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_label.id" );
 
     if ( $id > 0 ) {
       $db = JFactory::getDBO();

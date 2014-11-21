@@ -49,7 +49,7 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 		JToolBarHelper::divider();
     JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'));
     JToolBarHelper::custom('relaunch', 'refresh', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'));
-    JToolBarHelper::preferences('com_gesttaxesejour');
+    JToolBarHelper::preferences('com_tdsmanager');
     JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENTS'), 'reglements.png');
 	}
 

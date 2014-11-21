@@ -69,7 +69,7 @@ class TdsmanagerAdminModelHebergements_type extends TdsmanagerModel {
     $db = JFactory::getDBO();
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState('com_gesttaxesejour.hebergement_type.id');
+    $id = $app->getUserState('com_tdsmanager.hebergement_type.id');
 
     $query = "SELECT * FROM #__tdsmanager_hebergements_type WHERE id={$db->quote($id)}";
     $db->setQuery((string)$query);

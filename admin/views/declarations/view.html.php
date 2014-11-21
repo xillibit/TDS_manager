@@ -74,7 +74,7 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 	}
 
   function displayDetail($tpl = null) {
-		$values_first_step = $this->app->getUserState( 'com_gesttaxesejour.declaration.decl_first_part' );
+		$values_first_step = $this->app->getUserState( 'com_tdsmanager.declaration.decl_first_part' );
     $this->values_entered = $values_first_step->tarif_hebergement;
 
     $this->setToolBarDetail();

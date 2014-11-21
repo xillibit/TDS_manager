@@ -66,7 +66,7 @@ class TdsmanagerAdminModelUsers extends TdsmanagerModel {
     $db = JFactory::getDBO();
 
     $app = JFactory::getApplication();
-    $id = $app->getUserState('com_gesttaxesejour.user.id');
+    $id = $app->getUserState('com_tdsmanager.user.id');
 
     $query = "SELECT * FROM #__tdsmanager_users WHERE userid={$db->quote($id)}";
     $db->setQuery((string)$query);

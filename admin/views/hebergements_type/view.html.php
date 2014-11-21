@@ -54,7 +54,7 @@ class TdsmanagerAdminViewHebergements_type extends TdsmanagerView {
 
 	public function displayCreate($tpl = null) {
 	  $app = JFactory::getApplication();
-    $id = $app->getUserState( "com_gesttaxesejour.hebergement_type.id" );
+    $id = $app->getUserState( "com_tdsmanager.hebergement_type.id" );
 
     if ($id) $this->setToolBarEdit();
     else $this->setToolBarCreate();
