@@ -38,7 +38,8 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
+
     if ( !empty($ids) ) {
       $db = JFactory::getDBO();
       $query = "UPDATE #__tdsmanager_reglements SET finaliser='1' WHERE id IN ($ids)";
@@ -66,7 +67,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       // Vérifier avant d'envoyer le mail que le réglement n'a pas été fait
       $db = JFactory::getDBO();

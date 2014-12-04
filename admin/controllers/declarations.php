@@ -32,7 +32,8 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
+
     if ( !empty($ids) ) {
       $id = array_shift($ids);
 
@@ -52,7 +53,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       $ids = implode(',',$ids);
 
@@ -82,7 +83,8 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $id = JRequest::getInt ( 'id', 0 );
+    $id = $this->app->input->getInt('id', 0);
+
     //if ( !empty($id) ) {
       $userTz = JFactory::getUser()->getParam('timezone');
       $timeZone = JFactory::getConfig()->getValue('offset');

@@ -51,7 +51,8 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
+
     if ( !empty($ids) ) {
       $id = array_shift($ids);
 
@@ -71,7 +72,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       jimport( 'joomla.access.access' );
       $user = JFactory::getUser();
@@ -114,7 +115,8 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $userid = JRequest::getInt ( 'id', 0 );
+    $userid = $this->app->getInt('id', 0);
+
     if ( !empty($userid) ) {
      $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
@@ -144,7 +146,8 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
+
     if ( !empty($ids) ) {
        $this->setBlockStatus('1', $ids);
 
@@ -162,7 +165,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       $this->setBlockStatus('0', $ids);
 
@@ -191,7 +194,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       $this->setActivate('0', $ids);
 
@@ -209,7 +212,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       $this->setActivate('1', $ids);
 
@@ -233,7 +236,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->setUserState( 'com_tdsmanager.users.mailinglist.ids', null );
     }
 
-    $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $this->app->getArray('cid', array ());
     if ( !empty($ids) ) {
       // Afficher une fenêtre de confirmation
 
@@ -253,8 +256,8 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     }
 
     // récupérer le titre du message ainsi que son contenu
-    $title = JRequest::getString('title');
-    $body = JRequest::getString('body');
+    $title = $this->app->input->getString('title');
+    $body = $this->app->input->getString('body');
 
     // récupérer les données depuis l'userstate
     $idsInState = $this->app->getUserState( 'com_tdsmanager.users.mailinglist.ids' );

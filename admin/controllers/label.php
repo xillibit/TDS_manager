@@ -38,7 +38,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $this->app->getArray('cid', array ());
     $id = array_shift($cids);
 
     $this->app->setUserState( "com_tdsmanager.hebergement_label.id", $id );
@@ -67,7 +67,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
     $db = JFactory::getDBO();
 
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $this->app->getArray('cid', array ());
     $id = array_shift($cids);
 
     $query = "DELETE FROM #__tdsmanager_hebergements_label WHERE id={$db->quote($id)}";
@@ -91,7 +91,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $id = JRequest::getInt('id', 0);
+    $id = $this->app->getInt('id', 0);
     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
     $db = JFactory::getDBO();

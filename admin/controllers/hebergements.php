@@ -57,7 +57,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $this->app->input->getArray('cid', array ());
     $cid = array_shift($cids);
 
     $this->app->setUserState( "com_tdsmanager.hebergement.id", $cid );
@@ -71,7 +71,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
       }
 
-     $id = JRequest::getInt('id', 0);
+     $id = $this->app->getInt('id', 0);
      $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
      $db = JFactory::getDBO();
@@ -145,7 +145,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $this->app->input->getArray('cid', array ());
     $id = array_shift($cids);
 
     if ( $id > 0 ) {

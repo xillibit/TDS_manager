@@ -38,7 +38,8 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+		$ids =  $this->app->input->getArray('cid', array ());
+
 		if ( !empty($ids) ) {
 			$ids = implode(',',$ids);
 
@@ -68,7 +69,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+		$ids = $this->app->input->getArray('cid', array ());
 		if ( !empty($ids) ) {
 			$id = array_shift($ids);
 
@@ -100,7 +101,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+		$ids = $this->app->input->getArray('cid', array ());
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 0);
 			if ( $state ) {
@@ -122,7 +123,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+		$ids = $this->app->input->getArray('cid', array ());
 
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 1);
@@ -145,7 +146,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$id = JRequest::getInt ( 'id', 0 );
+		$id = $this->app->input->getInt('id', 0);
 		$post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
 		if ( !$id ) {

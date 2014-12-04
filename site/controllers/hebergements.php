@@ -18,7 +18,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app->setUserState( 'com_tdsmanager.hebergement.editmode', '1' );
 
     // redirect back if nothing is selected
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $app->input->getArray('cid', array ());
 
     if ( !empty($cids) ) {
       $id = array_shift($cids);
@@ -177,7 +177,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
       $app->redirect($this->baseurl);
     }
 
-    $cids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $cids = $app->input->getArray('cid', array ());
 
     if ( $user->id > 0 ) {
       $db = JFactory::getDBO();
