@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 ?>
 <div>
   <h1>
-	 <?php echo JText::_('COM_GESTTAXESEJOUR_USER_EDITION_PROFIL') ?>
+	 <?php echo JText::_('COM_TDSMANAGER_USER_EDITION_PROFIL') ?>
   </h1>
   <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=user&task=save'); ?>" method="post">
     <ul style="list-style-type:none;">

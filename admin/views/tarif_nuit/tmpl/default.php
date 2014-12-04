@@ -23,19 +23,19 @@ $listDirn	= '';//$this->state->get('list.direction');
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th width="1%" class="nowrap">
         #
 				</th>
 				<th width="10%">
-					<?php echo JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT'); ?>
+					<?php echo JText::_('COM_TDSMANAGER_TARIF_NUIT'); ?>
 				</th>
         <th width="10%">
-					<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_TYPE'); ?>
+					<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_TYPE'); ?>
 				</th>
         <th width="10%">
-					<?php echo JText::_('COM_GESTTAXESEJOUR_CLASSEMENT'); ?>
+					<?php echo JText::_('COM_TDSMANAGER_CLASSEMENT'); ?>
 				</th>
 			</tr>
 		</thead>
@@ -43,7 +43,7 @@ $listDirn	= '';//$this->state->get('list.direction');
 			<tr>
         <td colspan="14">
           <div class="pagination">
-          <div class="limit"><?php echo JText::_('COM_GESTTAXESEJOUR_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
+          <div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
           <?php echo $this->navigation->getPagesLinks (); ?>
           <div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
           </div>
@@ -51,7 +51,8 @@ $listDirn	= '';//$this->state->get('list.direction');
       </tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->tarifnuits	 as $i => $item) : ?>
+		<?php if ( !empty($this->tarifnuits) ):
+		foreach ($this->tarifnuits	 as $i => $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, intval($item->id)); ?>
@@ -69,7 +70,8 @@ $listDirn	= '';//$this->state->get('list.direction');
 					<?php echo $item->classement_name==0 ? 'Aucun': $item->classement_name; ?>
 				</td>
 			</tr>
-			<?php endforeach; ?>
+			<?php endforeach;
+			endif; ?>
 		</tbody>
 	</table>
 	<div>

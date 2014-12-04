@@ -16,7 +16,7 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
 ?>
 <div>
   <h1>
-	 <?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_GESTION_HOSTINGS'); ?>
+	 <?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_GESTION_HOSTINGS'); ?>
   </h1>
   <?php if ( empty($this->hebergements) ) { ?>
       <span><?php echo 'Aucun Hébergement enregistré'; ?></span>
@@ -30,34 +30,34 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="" />
+					<input type="checkbox" name="checkall-toggle" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="" />
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_NAME_HOSTING', 'name_hosting'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NAME_HOSTING', 'name_hosting'); ?>
 				</th>
         <th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_DESCRIPTION', 'description'); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DESCRIPTION', 'description'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_ADDRESS', 'adress'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_ADDRESS', 'adress'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_COMPLEMENT_ADDRESS', 'complement_adress'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_COMPLEMENT_ADDRESS', 'complement_adress'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_POSTALCODE', 'postalcode'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_POSTALCODE', 'postalcode'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_VILLE', 'ville'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_VILLE', 'ville'); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_CLASSEMENT', 'classement'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_CLASSEMENT', 'classement'); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_DATE_CLASSEMENT', 'date_classement'); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DATE_CLASSEMENT', 'date_classement'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_NUMERO_CLASSEMENT', 'numero_classement'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NUMERO_CLASSEMENT', 'numero_classement'); ?>
 				</th>
 			</tr>
 		</thead>
@@ -68,7 +68,7 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
       foreach ($this->hebergements	 as $i => $item) : ?>
   			<tr class="row<?php echo $i % 2; ?>">
   				<td class="center">
-  					<input id="cb<?php echo intval($i) ?>" type="checkbox" title="<?php echo JText::_('COM_GESTTAXESEJOUR_SELECT') ?>" onclick="" value="<?php echo intval($item->id) ?>" name="cid[]" />
+  					<input id="cb<?php echo intval($i) ?>" type="checkbox" title="<?php echo JText::_('COM_TDSMANAGER_SELECT') ?>" onclick="" value="<?php echo intval($item->id) ?>" name="cid[]" />
   				</td>
   				<td>
               <?php echo $item->hostingname; ?>
@@ -89,7 +89,7 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
   					<?php echo $item->city; ?>
   				</td>
   				<td class="center">
-  					<?php echo $item->classement_name==0 ? JText::_('COM_GESTTAXESEJOUR_NO_CLASSEMENT_DEFINED') : 'classed';?>
+  					<?php echo $item->classement_name==0 ? JText::_('COM_TDSMANAGER_NO_CLASSEMENT_DEFINED') : 'classed';?>
   				</td>
   				<td class="center">
   					<?php echo $item->date_classement; ?>
@@ -102,10 +102,10 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
        ?>
 		</tbody>
 	</table>
-  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_NEW') ?>"" /></a>
-  <input type="button" id="taxehebergementedit" name="soumis" value="<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_EDIT') ?>" />
-  <input type="button" id="taxehebergementdelete" name="soumis" value="<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_DELETE') ?>" />
-  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENTS_PERIODE_OUVERTURE') ?>" /></a>
+  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NEW') ?>"" /></a>
+  <input type="button" id="taxehebergementedit" name="soumis" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_EDIT') ?>" />
+  <input type="button" id="taxehebergementdelete" name="soumis" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETE') ?>" />
+  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_PERIODE_OUVERTURE') ?>" /></a>
   <?php echo JHtml::_('form.token'); ?>
   <div>
     <?php //echo $this->getPagination(7) ?>

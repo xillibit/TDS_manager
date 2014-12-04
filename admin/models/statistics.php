@@ -327,7 +327,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
     $list_mois = $this->getState ( 'list.mois' );
 
     $mois_list = array();
-    $mois_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_GESTTAXESEJOUR_SELECT_MOIS'));
+    $mois_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_TDSMANAGER_SELECT_MOIS'));
     $mois_list[] = JHTML::_ ( 'select.option', 1, 'Janvier' );
     $mois_list[] = JHTML::_ ( 'select.option', 2, 'Février' );
     $mois_list[] = JHTML::_ ( 'select.option', 3, 'Mars' );
@@ -350,7 +350,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
     $list_trimestres = $this->getState ( 'list.trimestres' );
 
     $trimestres_list = array();
-    $trimestres_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_GESTTAXESEJOUR_SELECT_TRIMESTRE') );
+    $trimestres_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_TDSMANAGER_SELECT_TRIMESTRE') );
     $trimestres_list[] = JHTML::_ ( 'select.option', 1, 'Trimestre 1' );
     $trimestres_list[] = JHTML::_ ( 'select.option', 2, 'Trimestre 2' );
     $trimestres_list[] = JHTML::_ ( 'select.option', 3, 'Trimestre 3' );
@@ -365,7 +365,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
     $list_annee = $this->getState ( 'list.annee' );
 
     $annees_list = array();
-    $annees_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_GESTTAXESEJOUR_SELECT_ANNEE'));
+    $annees_list[] = JHTML::_ ( 'select.option', 0, JText::_('COM_TDSMANAGER_SELECT_ANNEE'));
     $annees_list[] = JHTML::_ ( 'select.option', 2012, 2012 );
     $annees_list[] = JHTML::_ ( 'select.option', 2013, 2013 );
     $annees_list[] = JHTML::_ ( 'select.option', 2014, 2014 );

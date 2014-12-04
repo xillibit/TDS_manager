@@ -34,7 +34,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
 	public function validpaiement() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -51,10 +51,10 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
   			return false;
   		}
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENT_VALIDATED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENT_VALIDATED'), 'error' );
       $this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -63,7 +63,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
   public function relaunch() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -95,18 +95,18 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
         // envoyer le mail
         $send = $mailer->Send();
         if ( $send !== true ) {
-          $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUNCH_ERROR'), 'error' );
+          $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENTS_RELAUNCH_ERROR'), 'error' );
           $this->app->redirect($this->baseurl);
         } else {
-          $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUNCH_MAIL_SENT') );
+          $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENTS_RELAUNCH_MAIL_SENT') );
           $this->app->redirect($this->baseurl);
         }
       } else {
-        $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_SELECTED_ALREADY_FINALISER'), 'error' );
+        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENTS_SELECTED_ALREADY_FINALISER'), 'error' );
         $this->app->redirect($this->baseurl);
       }
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -119,11 +119,11 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
   public function savepaiement() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
-    $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_REGLEMENT_SAVED_SUCESSFULLY'), 'error' );
+    $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENT_SAVED_SUCESSFULLY'), 'error' );
     $this->app->redirect($this->baseurl);
   }
 }

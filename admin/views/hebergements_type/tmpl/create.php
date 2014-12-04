@@ -18,19 +18,19 @@ JHtml::_('behavior.multiselect');
 		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements_type') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBRGEMENT_TYPE_NAME'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_HEBRGEMENT_TYPE_NAME'); ?></td>
 						<td>
 							<textarea name="name" cols="50" rows="6" style="width: 500px"><?php if(!empty($this->hebergement_type->name)) echo $this->hebergement_type->name; ?></textarea>
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBRGEMENT_TYPE_DESCRIPTION'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_HEBRGEMENT_TYPE_DESCRIPTION'); ?></td>
 						<td>
 							<textarea name="description" cols="50" rows="6" style="width: 500px"><?php if(!empty($this->hebergement_type->description)) echo $this->hebergement_type->description; ?></textarea>
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_STATUS'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_STATUS'); ?></td>
 						<td>
 							<input name="state" value="<?php if(!empty($this->hebergement_type->state)) echo $this->hebergement_type->state; ?>" />
 						</td>

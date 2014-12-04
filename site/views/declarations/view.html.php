@@ -78,7 +78,7 @@ class GesttaxesejourViewDeclarations extends JView {
         $this->app->setUserState( "com_tdsmanager.idtransaction", $this->IDTransaction );
       }
     } else {
-      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_GESTTAXESEJOUR_DECLARATIONS_GESTION_DECLARATIONS'));
+      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_DECLARATIONS_GESTION_DECLARATIONS'));
     }
     JHtml::_('behavior.framework', true);
     $doc = JFactory::getDocument();

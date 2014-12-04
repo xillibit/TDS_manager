@@ -11,23 +11,23 @@ defined('_JEXEC') or die;
 ?>
 <div>
   <h1>
-	 <?php echo JText::_('COM_GESTTAXESEJOUR_VISUALISATION_REGLEMENTS') ?>
+	 <?php echo JText::_('COM_TDSMANAGER_VISUALISATION_REGLEMENTS') ?>
   </h1>
   
   <table class="adminlist">
 		<thead>
 			<tr>				
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_REGLEMENT_DATE_REGLER', 'name_hosting'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_DATE_REGLER', 'name_hosting'); ?>
 				</th>
         <th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_REGLEMENT_MONTANT', 'description'); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_REGLEMENT_MONTANT', 'description'); ?>
 				</th>				
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_REGLEMENT_TYPE_REGLEMENT', 'adress'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_TYPE_REGLEMENT', 'adress'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_REGLEMENT_FINALISER', 'complement_adress'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_FINALISER', 'complement_adress'); ?>
 				</th>																
 			</tr>
 		</thead>
@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
   					<?php echo $item->type_reglement; ?>
   				</td>
   				<td class="center">
-  					<?php echo isset($item->finaliser) ? JText::_('COM_GESTTAXESEJOUR_REGLEMENT_NOT_FINALISED'): JText::_('COM_GESTTAXESEJOUR_REGLEMENT_FINALISED');?>
+  					<?php echo isset($item->finaliser) ? JText::_('COM_TDSMANAGER_REGLEMENT_NOT_FINALISED'): JText::_('COM_TDSMANAGER_REGLEMENT_FINALISED');?>
   				</td>  								
   			</tr>
 			<?php endforeach;

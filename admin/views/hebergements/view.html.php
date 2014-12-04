@@ -68,17 +68,17 @@ class TdsmanagerAdminViewHebergements extends TdsmanagerView {
 		JToolBarHelper::trash('trash');
 		JToolBarHelper::divider();
 
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_HERBERGEMENTS'), 'hebergements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_HERBERGEMENTS'), 'hebergements.png');
 	}
 
 	protected function setToolbarCreate() {
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_HERBERGEMENT'), 'hebergements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CREATE_HERBERGEMENT'), 'hebergements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }
 
 	protected function setToolbarEdit() {
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_HERBERGEMENT'), 'hebergements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_HERBERGEMENT'), 'hebergements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

@@ -47,10 +47,10 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 		// TODO: remplacer banners.png par une icône propre à l'application
 		JToolBarHelper::editList();
 		JToolBarHelper::divider();
-    JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_VALIDATE'));
-    JToolBarHelper::custom('relaunch', 'refresh', JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'), JText::_('COM_GESTTAXESEJOUR_REGLEMENTS_RELAUCNH'));
+    JToolBarHelper::custom('validpaiement', 'checkin', JText::_('COM_TDSMANAGER_REGLEMENTS_VALIDATE'), JText::_('COM_TDSMANAGER_REGLEMENTS_VALIDATE'));
+    JToolBarHelper::custom('relaunch', 'refresh', JText::_('COM_TDSMANAGER_REGLEMENTS_RELAUCNH'), JText::_('COM_TDSMANAGER_REGLEMENTS_RELAUCNH'));
     JToolBarHelper::preferences('com_tdsmanager');
-    JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_MANAGE_REGLEMENTS'), 'reglements.png');
+    JToolBarHelper::title(JText::_('COM_TDSMANAGER_MANAGE_REGLEMENTS'), 'reglements.png');
 	}
 
   function displayEdit($tpl = null) {
@@ -63,7 +63,7 @@ class TdsmanagerAdminViewReglements extends TdsmanagerView {
 
   protected function setToolbarEdit() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_REGLEMENT'), 'reglements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_REGLEMENT'), 'reglements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

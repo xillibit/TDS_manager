@@ -38,7 +38,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	public function create() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -53,7 +53,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	public function edit() {
     // Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -67,7 +67,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 
 	public function save() {
 	   if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
       }
 
@@ -104,7 +104,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
     			return false;
     		}*/
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
        $this->app->redirect($this->baseurl);
      } else {
        $query = "UPDATE #__tdsmanager_hebergements
@@ -130,7 +130,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
     			return false;
     		} */
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_EDITION_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);
      }
 	}
@@ -141,7 +141,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	public function trash() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -164,10 +164,10 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
        *  $state = 2 unpublished
        *  $state = 3 trashed
        */
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_TRASHED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED') );
        $this->app->redirect($this->baseurl);
      } else {
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_TRASHED_FAILED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED_FAILED') );
        $this->app->redirect($this->baseurl);
      }
 	}
@@ -178,20 +178,20 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	public function unpublish() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
     //$cids =
     if ( !empty($cids) ) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NO_HEBERGEMENT_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NO_HEBERGEMENT_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     } else {
       $state = $this->_setState($id,0);
       if ( $state ) {
-        $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_UNPUSBLISHED'), 'error' );
+        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_UNPUSBLISHED'), 'error' );
       } else {
-        $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
+        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
       }
       $this->app->redirect($this->baseurl);
     }
@@ -204,14 +204,14 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	public function publish() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
     $state = $this->_setState($id,1);
     if ( $state ) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_PUSBLISHED') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_PUSBLISHED') );
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
     }
     $this->app->redirect($this->baseurl);
 	}

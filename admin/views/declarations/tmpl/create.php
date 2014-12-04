@@ -18,19 +18,19 @@ JHtml::_('behavior.multiselect');
 		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_MOIS_CONCERNE'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_DECLARATION_MOIS_CONCERNE'); ?></td>
 						<td>
 							<?php echo $this->list_mois; ?>
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_HEBERGEMENT_CONCERNE'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_DECLARATION_HEBERGEMENT_CONCERNE'); ?></td>
 						<td>
 							<?php echo $this->list_hebergements; ?>
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_DECLARATION_PERSONNES_PLEIN_TARIF'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_DECLARATION_PERSONNES_PLEIN_TARIF'); ?></td>
 						<td>
               <input name="nb_personnes_plein_tarif" value="" />
 						</td>

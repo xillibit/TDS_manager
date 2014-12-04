@@ -23,13 +23,13 @@ $listDirn	= '';//$this->state->get('list.direction');
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th width="1%" class="nowrap">
         #
 				</th>
 				<th width="10%">
-					<?php echo JText::_('COM_GESTTAXESEJOUR_LABEL_NOM'); ?>
+					<?php echo JText::_('COM_TDSMANAGER_LABEL_NOM'); ?>
 				</th>
 			</tr>
 		</thead>
@@ -37,7 +37,7 @@ $listDirn	= '';//$this->state->get('list.direction');
 			<tr>
         <td colspan="14">
           <div class="pagination">
-          <div class="limit"><?php echo JText::_('COM_GESTTAXESEJOUR_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
+          <div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
           <?php echo $this->navigation->getPagesLinks (); ?>
           <div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
           </div>
@@ -45,7 +45,8 @@ $listDirn	= '';//$this->state->get('list.direction');
       </tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->labels	 as $i => $item) : ?>
+		<?php if ( !empty($this->labels) ):
+		foreach ($this->labels	 as $i => $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, intval($item->id)); ?>
@@ -57,7 +58,8 @@ $listDirn	= '';//$this->state->get('list.direction');
 					<?php echo $item->nom; ?>
 				</td>
 			</tr>
-			<?php endforeach; ?>
+			<?php endforeach;
+			endif; ?>
 		</tbody>
 	</table>
 	<div>

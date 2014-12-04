@@ -30,12 +30,12 @@ $listDirn	= $this->state->get('list.direction');
 
 <div id="kadmin">
   <div class="kadmin-right">
-    <div style=""><h2><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_GEN_STATS');?></h2></div>
+    <div style=""><h2><?php echo JText::_('COM_TDSMANAGER_STATS_GEN_STATS');?></h2></div>
     <div class="kadmin-statscover">
       <!-- BEGIN: STATS -->
       <div class="kadmin-statscover">
         <div style="border-bottom: 1px solid #D5D5D5;">
-        <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAUX_OCCUPATION_PAR_COMMUNES') ?></h4>
+        <h4><?php echo JText::_('COM_TDSMANAGER_STATS_TAUX_OCCUPATION_PAR_COMMUNES') ?></h4>
         <table class="kadmin-stat">
         <col class="col1" style="width:1%;" />
         <col class="col2" />
@@ -44,9 +44,9 @@ $listDirn	= $this->state->get('list.direction');
         <tbody>
         <tr>
         <th style="color:#146295;">#</th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
         </tr>
         <?php
 		if ( !empty($this->tauxoccupationstatscommunes) ) :
@@ -65,13 +65,13 @@ $listDirn	= $this->state->get('list.direction');
 	        </tr>
 	        <?php endforeach; ?>
         <?php else :
-			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+			echo JText::_('COM_TDSMANAGER_STATS_NO_RESULTS');
         endif; ?>
         </tbody>
         </table>
         </div>
         <div style="border-bottom: 1px solid #D5D5D5;">
-        <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAUX_OCCUPATION_PAR_TYPE_HEBERGEMENT_TYPE') ?></h4>
+        <h4><?php echo JText::_('COM_TDSMANAGER_STATS_TAUX_OCCUPATION_PAR_TYPE_HEBERGEMENT_TYPE') ?></h4>
         <table class="kadmin-stat">
         <col class="col1" style="width:1%;" />
         <col class="col2" />
@@ -80,11 +80,11 @@ $listDirn	= $this->state->get('list.direction');
         <tbody>
         <tr>
         <th style="color:#146295;">#</th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION_POURCENTAGE') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES') ?></th>
         </tr>
         <?php
         if ( !empty($this->tauxoccupationstatshebertype)) :
@@ -109,13 +109,13 @@ $listDirn	= $this->state->get('list.direction');
 	        </tr>
 	        <?php endforeach; ?>
         <?php else :
-			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+			echo JText::_('COM_TDSMANAGER_STATS_NO_RESULTS');
         endif; ?>
         </tbody>
         </table>
          </div>
          <div style="border-bottom: 1px solid #D5D5D5;">
-         <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_PAR_COMMUNES') ?></h4>
+         <h4><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_PAR_COMMUNES') ?></h4>
         <table class="kadmin-stat">
         <col class="col1" style="width:1%;" />
         <col class="col2" />
@@ -124,10 +124,10 @@ $listDirn	= $this->state->get('list.direction');
         <tbody>
         <tr>
         <th style="color:#146295;">#</th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NOM_COMMUNE') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
         <?php
         if ( !empty($this->taxesejourstats) ) :
@@ -149,13 +149,13 @@ $listDirn	= $this->state->get('list.direction');
 	        </tr>
 	        <?php endforeach; ?>
         <?php else :
-			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+			echo JText::_('COM_TDSMANAGER_STATS_NO_RESULTS');
         endif; ?>
         </tbody>
         </table>
         </div>
         <div>
-         <h4><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_GLOBAL') ?></h4>
+         <h4><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_GLOBAL') ?></h4>
         <table class="kadmin-stat">
         <col class="col1" style="width:1%;" />
         <col class="col2" />
@@ -164,11 +164,11 @@ $listDirn	= $this->state->get('list.direction');
         <tbody>
         <tr>
         <th style="color:#146295;">#</th>
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_DUREE_SEJOUR') ?></th>
 
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES') ?></th>
 
-        <th><?php echo JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
+        <th><?php echo JText::_('COM_TDSMANAGER_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR') ?></th>
         </tr>
         <?php
         if ( !empty($this->taxesejourstats) ) :
@@ -187,7 +187,7 @@ $listDirn	= $this->state->get('list.direction');
 	        </tr>
 	        <?php endforeach; ?>
         <?php else :
-			echo JText::_('COM_GESTTAXESEJOUR_STATS_NO_RESULTS');
+			echo JText::_('COM_TDSMANAGER_STATS_NO_RESULTS');
         endif; ?>
         </tbody>
         </table>

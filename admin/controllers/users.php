@@ -35,7 +35,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 	public function create() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -47,7 +47,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   public function edit() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -60,7 +60,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 
       $this->setRedirect('index.php?option=com_tdsmanager&view=users&layout=create');
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -68,7 +68,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   public function remove() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -100,10 +100,10 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
         }
       }
 
-  		$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_DELETED') );
+  		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_DELETED') );
   		$this->app->redirect($this->baseurl);
 		} else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -111,7 +111,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   public function save() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -132,17 +132,17 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   			return false;
   		}
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_SAVED_SUCESSFULLY') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVED_SUCESSFULLY') );
   		$this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_SAVE_FAILED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVE_FAILED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
 
   public function block() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -151,17 +151,17 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     if ( !empty($ids) ) {
        $this->setBlockStatus('1', $ids);
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_BLOCKED_SUCCESSFULLY') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_BLOCKED_SUCCESSFULLY') );
       $this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
 
   public function unblock() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -169,10 +169,10 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     if ( !empty($ids) ) {
       $this->setBlockStatus('0', $ids);
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_UNBLOCKED_SUCCESSFULLY') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_UNBLOCKED_SUCCESSFULLY') );
       $this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -190,7 +190,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 
   public function activate() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -198,17 +198,17 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     if ( !empty($ids) ) {
       $this->setActivate('0', $ids);
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_ACTIVATED_SUCCESSFULLY') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_ACTIVATED_SUCCESSFULLY') );
       $this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
 
   public function unactivate() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -216,17 +216,17 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     if ( !empty($ids) ) {
       $this->setActivate('1', $ids);
 
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_UNACTIVATED_SUCCESSFULLY') );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_UNACTIVATED_SUCCESSFULLY') );
       $this->app->redirect($this->baseurl);
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USER_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
 
   public function mailinglist() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -251,7 +251,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 
   public function mailinglistsend() {
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -278,10 +278,10 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       // envoyer le mail
       $send = $mailer->Send();
       if ( $send !== true ) {
-        $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USERS_MAILING_LIST_ERROR'), 'error' );
+        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USERS_MAILING_LIST_ERROR'), 'error' );
         $this->app->redirect($this->baseurl);
       } else {
-        $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_USERS_MAILING_LIST_MAILS_SENT') );
+        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USERS_MAILING_LIST_MAILS_SENT') );
         $this->app->redirect($this->baseurl);
       }
     } else {

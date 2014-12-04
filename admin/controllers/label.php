@@ -34,7 +34,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 	public function edit() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -49,7 +49,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
   public function create() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -61,7 +61,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
   public function remove() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -80,14 +80,14 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
     	return false;
     }
 
-    $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_LABEL_DELETED_SUCCESSFULLY') );
+    $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_DELETED_SUCCESSFULLY') );
     $this->app->redirect($this->baseurl);
   }
 
   public function save() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -109,7 +109,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
     			return false;
     		}
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_LABEL_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_SAVED') );
        $this->app->redirect($this->baseurl);
     } else {
         $query = "UPDATE #__tdsmanager_hebergements_label
@@ -123,7 +123,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
     			return false;
     		}
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_LABEL_EDITION_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);
     }
   }

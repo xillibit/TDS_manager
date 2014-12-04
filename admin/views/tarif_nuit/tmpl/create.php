@@ -18,19 +18,19 @@ JHtml::_('behavior.multiselect');
 		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=tarif_nuit') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT_TARIF'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_TARIF_NUIT_TARIF'); ?></td>
 						<td>
 							<input name="tarif" value="<?php if(!empty($this->tarifnuit->tarif)) echo $this->tarifnuit->tarif; ?>" />
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT_CLASSEMENT'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_TARIF_NUIT_CLASSEMENT'); ?></td>
 						<td>
 						  <?php echo $this->classement_list; ?>
 						</td>
 					</tr>
           <tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT_HEBERGEMENT_TYPE'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_TARIF_NUIT_HEBERGEMENT_TYPE'); ?></td>
 						<td>
 						  <?php echo $this->hebergement_type; ?>
 						</td>

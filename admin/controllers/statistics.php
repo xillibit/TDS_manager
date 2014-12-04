@@ -51,12 +51,12 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
 
       $sheet = $workbook->getActiveSheet();
       //nom de la feuille
-      //$sheet->setTitle(JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_PAR_COMMUNES'));
+      //$sheet->setTitle(JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_PAR_COMMUNES'));
       $sheet->setTitle('Stats par communes');
 
       // Titre des colonnes
-      $sheet->setCellValue('A1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE'));
-      $sheet->setCellValue('B1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
+      $sheet->setCellValue('A1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NOM_COMMUNE'));
+      $sheet->setCellValue('B1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
 
       // Appliquer un style aux titres des deux colonnes
       $style = $this->setStyle($sheet, 'A1');
@@ -619,13 +619,13 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
       }
 
       $sheet2 = $workbook->createSheet();
-      //JText::_('COM_GESTTAXESEJOUR_STATS_TAUX_OCCUPATION_PAR_TYPE_HEBERGEMENT_TYPE')
+      //JText::_('COM_TDSMANAGER_STATS_TAUX_OCCUPATION_PAR_TYPE_HEBERGEMENT_TYPE')
       $sheet2->setTitle('Stats par type d\'hébergement');
 
-      $sheet2->setCellValue('A1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE'));
-      $sheet2->setCellValue('B1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
-      $sheet2->setCellValue('C1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES'));
-      $sheet2->setCellValue('D1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES'));
+      $sheet2->setCellValue('A1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE'));
+      $sheet2->setCellValue('B1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
+      $sheet2->setCellValue('C1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES'));
+      $sheet2->setCellValue('D1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES'));
 
       // Appliquer un style aux titres des deux colonnes
       $style = $this->setStyle($sheet2, 'A1');
@@ -650,13 +650,13 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
       $taxesejourstats = $model->getTaxeSejourStats();
 
       $sheet3 = $workbook->createSheet();
-      //JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_PAR_COMMUNES')
+      //JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_PAR_COMMUNES')
       $sheet3->setTitle('Stats par globales par commune');
 
-      $sheet3->setCellValue('A1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NOM_COMMUNE'));
-      $sheet3->setCellValue('B1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR'));
-      $sheet3->setCellValue('C1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES'));
-      $sheet3->setCellValue('D1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR'));
+      $sheet3->setCellValue('A1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NOM_COMMUNE'));
+      $sheet3->setCellValue('B1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_DUREE_SEJOUR'));
+      $sheet3->setCellValue('C1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES'));
+      $sheet3->setCellValue('D1',JText::_('COM_TDSMANAGER_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR'));
 
       // Appliquer un style aux titres des deux colonnes
       $style = $this->setStyle($sheet3, 'A1');
@@ -678,12 +678,12 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
       $taxesejourstatsglobal = $model->getTaxeSejourGlobalStats();
 
       $sheet4 = $workbook->createSheet();
-      //JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_GLOBAL')
+      //JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_GLOBAL')
       $sheet4->setTitle('Stats par globales');
 
-      $sheet4->setCellValue('A1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_DUREE_SEJOUR'));
-      $sheet4->setCellValue('B1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES'));
-      $sheet4->setCellValue('C1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR'));
+      $sheet4->setCellValue('A1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_DUREE_SEJOUR'));
+      $sheet4->setCellValue('B1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NB_PERSONNES_ASSUJETTIES'));
+      $sheet4->setCellValue('C1',JText::_('COM_TDSMANAGER_STATS_TAXE_MONTANT_ENCAISSE_PAR_SEJOUR'));
 
       // Appliquer un style aux titres des deux colonnes
       $style = $this->setStyle($sheet4, 'A1');
@@ -705,31 +705,31 @@ class TdsmanagerAdminControllerStatistics extends TdsmanagerController {
       $records = JPATH_ADMINISTRATOR.'/components/com_tdsmanager/TDS_Stats/statistiques_taxe_sejour.xlsx';
       $writer->save($records);
 
-      $this->app->enqueueMessage ( JText::sprintf('COM_GESTTAXESEJOUR_STATS_EXPORT_DONE','<a style="color:red;" href="'.JURI::root().'/administrator/components/com_tdsmanager/TDS_Stats/statistiques_taxe_sejour.xlsx">téléchargez le fichier</a>') );
+      $this->app->enqueueMessage ( JText::sprintf('COM_TDSMANAGER_STATS_EXPORT_DONE','<a style="color:red;" href="'.JURI::root().'/administrator/components/com_tdsmanager/TDS_Stats/statistiques_taxe_sejour.xlsx">téléchargez le fichier</a>') );
       $this->app->redirect($this->baseurl);
     }
   }
 
   protected function _setCommunesEntetes($sheet) {
-    $sheet->setCellValue('A1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE'));
-    $sheet->setCellValue('B1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_OWNER_NAME'));
-    $sheet->setCellValue('C1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_ETABLISSEMENT_NAME'));
-    $sheet->setCellValue('D1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_ADRESS_OWNER'));
-    $sheet->setCellValue('E1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_CP_OWNER'));
-    $sheet->setCellValue('F1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_VILLE_OWNER'));
-    $sheet->setCellValue('G1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_ADRESS_ETABLISSEMENT'));
-    $sheet->setCellValue('H1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TEL_ETABLISSEMENT'));
-    $sheet->setCellValue('I1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_MAIL_ETABLISSEMENT'));
-    $sheet->setCellValue('J1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_CLASSEMENT'));
-    $sheet->setCellValue('K1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_LABEL'));
-    $sheet->setCellValue('L1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_NUMERO_CLASSEMENT'));
-    $sheet->setCellValue('M1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_NUITEE'));
-    $sheet->setCellValue('N1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_MONTANT_TOTAL_ENCAISSE'));
-    $sheet->setCellValue('O1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
-    $sheet->setCellValue('P1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES'));
-    $sheet->setCellValue('Q1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES'));
-    $sheet->setCellValue('R1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_NUITEE'));
-    $sheet->setCellValue('S1',JText::_('COM_GESTTAXESEJOUR_STATS_TAXE_SEJOUR_TOTAL_TAUX_OCCUPATION'));
+    $sheet->setCellValue('A1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_HEBERGEMENT_TYPE'));
+    $sheet->setCellValue('B1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_OWNER_NAME'));
+    $sheet->setCellValue('C1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_ETABLISSEMENT_NAME'));
+    $sheet->setCellValue('D1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_ADRESS_OWNER'));
+    $sheet->setCellValue('E1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_CP_OWNER'));
+    $sheet->setCellValue('F1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_VILLE_OWNER'));
+    $sheet->setCellValue('G1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_ADRESS_ETABLISSEMENT'));
+    $sheet->setCellValue('H1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TEL_ETABLISSEMENT'));
+    $sheet->setCellValue('I1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_MAIL_ETABLISSEMENT'));
+    $sheet->setCellValue('J1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_CLASSEMENT'));
+    $sheet->setCellValue('K1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_LABEL'));
+    $sheet->setCellValue('L1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_NUMERO_CLASSEMENT'));
+    $sheet->setCellValue('M1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_NUITEE'));
+    $sheet->setCellValue('N1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_MONTANT_TOTAL_ENCAISSE'));
+    $sheet->setCellValue('O1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TAUX_OCCUPATION'));
+    $sheet->setCellValue('P1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_CHAMBRES'));
+    $sheet->setCellValue('Q1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_CAPACITE_PERSONNES'));
+    $sheet->setCellValue('R1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_NUITEE'));
+    $sheet->setCellValue('S1',JText::_('COM_TDSMANAGER_STATS_TAXE_SEJOUR_TOTAL_TAUX_OCCUPATION'));
   }
 
   protected function setColumnWidth($sheet,$dimensions) {

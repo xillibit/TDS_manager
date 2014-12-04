@@ -34,7 +34,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function remove() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -54,10 +54,10 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 				return false;
 			}
 
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_ITEMS_DELETED') );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_ITEMS_DELETED') );
 			$this->app->redirect($this->baseurl);
 		} else {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_NO_SELECTED'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_NO_SELECTED'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 	}
@@ -65,7 +65,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function edit() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -77,7 +77,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 
 			$this->setRedirect('index.php?option=com_tdsmanager&view=classements&layout=create');
 		} else {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_NO_SELECTED'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_NO_SELECTED'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 	}
@@ -85,7 +85,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function create() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -97,7 +97,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function unpublish() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -105,13 +105,13 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 0);
 			if ( $state ) {
-				$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_UNPUSBLISHED') );
+				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_UNPUSBLISHED') );
 			} else {
-				$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_CHANGE_STATE_FAILED'), 'error' );
+				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_CHANGE_STATE_FAILED'), 'error' );
 			}
 			$this->app->redirect($this->baseurl);
 		} else {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_NO_SELECTED'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_NO_SELECTED'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 	}
@@ -119,7 +119,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function publish() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -128,13 +128,13 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 1);
 			if ( $state ) {
-				$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_PUSBLISHED') );
+				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_PUSBLISHED') );
 			} else {
-				$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_CHANGE_STATE_FAILED'), 'error' );
+				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_CHANGE_STATE_FAILED'), 'error' );
 			}
 			$this->app->redirect($this->baseurl);
 		} else {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_NO_SELECTED'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_NO_SELECTED'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 	}
@@ -142,7 +142,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 	public function save() {
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$this->app->redirect($this->baseurl);
 		}
 
@@ -163,7 +163,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 				return false;
 			}
 
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_SAVED_SUCESSFULLY') );
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_SAVED_SUCESSFULLY') );
 			$this->app->redirect($this->baseurl);
 		} else {
 			$db = JFactory::getDBO();
@@ -178,7 +178,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 				return false;
 			}
 
-			$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_EDITED_SUCESSFULLY'));
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_EDITED_SUCESSFULLY'));
 			$this->app->redirect($this->baseurl);
 		}
 	}

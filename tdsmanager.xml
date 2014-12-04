@@ -12,6 +12,9 @@
 	<version>1.0.0</version>
 	<description>COM_TDSMANAGER_XML_DESCRIPTION</description>
 	
+	<!-- Runs on install/uninstall/update; New in 2.5 -->
+	<scriptfile>script.php</scriptfile>
+	
 	<install> <!-- Runs on install -->
 		<sql>
 			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
@@ -31,7 +34,7 @@
 		<filename>router.php</filename>
 		<folder>helpers</folder>
 		<folder>models</folder>
-		<folder>views</folder>    
+		<folder>views</folder>
 	</files>
 	<languages folder="site">
 		<language tag="en-GB">language/en-GB.com_tdsmanager.ini</language>
@@ -47,10 +50,10 @@
 			-->  
 			<menu link="option=com_tdsmanager"
 				view="hebergements" img="components/com_tdsmanager/media/icons/menu/main.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_CONTROLPANEL</menu>
-			<menu link="option=com_tdsmanager&amp;view=hebergeurs"
-				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergeurs.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_HEBERGEURS</menu>			
+			<menu link="option=com_tdsmanager&amp;view=users"
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergeurs.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_HEBERGEURS</menu>
 			<menu link="option=com_tdsmanager&amp;view=hebergements"
-				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergements.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_HEBERGEMENTS</menu>        
+				view="hebergements" img="components/com_tdsmanager/media/icons/menu/hebergements.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_HEBERGEMENTS</menu>
 			<menu link="option=com_tdsmanager&amp;view=declarations"
 				view="hebergements" img="components/com_tdsmanager/media/icons/menu/declarations.png" alt="TDS_Manager/Categories">COM_TDSMANAGER_MENU_DECLARATIONS</menu>
 		</submenu>

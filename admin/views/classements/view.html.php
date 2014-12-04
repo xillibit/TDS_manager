@@ -52,7 +52,7 @@ class TdsmanagerAdminViewClassements extends TdsmanagerView {
 		JToolBarHelper::divider();
 		JToolBarHelper::deleteList('delete');
 		// TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CLASSEMENTS'), 'classements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CLASSEMENTS'), 'classements.png');
 	}
 
 	function displayCreate($tpl = null) {
@@ -69,14 +69,14 @@ class TdsmanagerAdminViewClassements extends TdsmanagerView {
 
 	protected function setToolbarCreate() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_CLASSEMENT'), 'classements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CREATE_CLASSEMENT'), 'classements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }
 
   protected function setToolbarEdit() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_CLASSEMENT'), 'classements.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_CLASSEMENT'), 'classements.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 ?>
 <div>
   <h1>
-	 <?php echo JText::_('COM_GESTTAXESEJOUR_REGLEMENT_CREATE') ?>
+	 <?php echo JText::_('COM_TDSMANAGER_REGLEMENT_CREATE') ?>
   </h1>
   <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=reglements&task=save'); ?>" method="post">
     Choissisez la ou les déclarations pour lesquelles vous voulez effectuer un réglement : <?php echo $this->own_hostings ?>

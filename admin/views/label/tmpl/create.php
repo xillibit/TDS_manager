@@ -18,7 +18,7 @@ JHtml::_('behavior.multiselect');
 		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=label') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_LABEL_TYPE_NAME'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_LABEL_TYPE_NAME'); ?></td>
 						<td>
 							<textarea name="nom" cols="50" rows="6" style="width: 500px"><?php if(!empty($this->label->nom)) echo $this->label->nom; ?></textarea>
 						</td>

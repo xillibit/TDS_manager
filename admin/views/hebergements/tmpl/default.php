@@ -19,10 +19,10 @@ $listDirn	= $this->state->get('list.direction');
 <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
-			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_GESTTAXESEJOUR_SEARCH_IN_TITLE'); ?>" />
-			<button type="submit"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_SUBMIT'); ?></button>
-			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_CLEAR'); ?></button>
+			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_TDSMANAGER_FILTER_LABEL'); ?></label>
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_TDSMANAGER_SEARCH_IN_TITLE'); ?>" />
+			<button type="submit"><?php echo JText::_('COM_TDSMANAGER_FILTER_SUBMIT'); ?></button>
+			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('COM_TDSMANAGER_FILTER_CLEAR'); ?></button>
 		</div>
 
 	</fieldset>
@@ -32,43 +32,43 @@ $listDirn	= $this->state->get('list.direction');
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="taxe-checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" />
+					<input type="checkbox" name="taxe-checkall-toggle" value="" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" />
 				</th>
 				<th width="1%">
 				#
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_NAME_HOSTING', 'name_hosting', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NAME_HOSTING', 'name_hosting', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_ADDRESS', 'adress', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_ADDRESS', 'adress', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_COMPLEMENT_ADDRESS', 'complement_adress', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_COMPLEMENT_ADDRESS', 'complement_adress', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_POSTALCODE', 'postalcode', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_POSTALCODE', 'postalcode', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_VILLE', 'ville', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_VILLE', 'ville', $listDirn, $listOrder); ?>
 				</th>
         <th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_CAPACITE_PERSONNES_HEBERGEMENT', 'capacite_personnes', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_CAPACITE_PERSONNES_HEBERGEMENT', 'capacite_personnes', $listDirn, $listOrder); ?>
 				</th>
         <th width="10%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_CLASSEMENT', 'classement', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_CLASSEMENT', 'classement', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_HEBERGEMENT_TYPE', 'classement', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_HEBERGEMENT_TYPE', 'classement', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_HEBERGEMENT_LABEL', 'label', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_HEBERGEMENT_LABEL', 'label', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_DATE_CLASSEMENT', 'date_classement', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DATE_CLASSEMENT', 'date_classement', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_NUMERO_CLASSEMENT', 'numero_classement', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NUMERO_CLASSEMENT', 'numero_classement', $listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
@@ -76,7 +76,7 @@ $listDirn	= $this->state->get('list.direction');
 			<tr>
         <td colspan="14">
           <div class="pagination">
-          <div class="limit"><?php echo JText::_('COM_GESTTAXESEJOUR_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
+          <div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
           <?php echo $this->navigation->getPagesLinks (); ?>
           <div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
           </div>
@@ -85,6 +85,7 @@ $listDirn	= $this->state->get('list.direction');
 		</tfoot>
 		<tbody>
 		<?php $i = 0;
+		if ( !empty($this->hebergements) ):
      foreach ($this->hebergements	 as $i => $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
@@ -112,13 +113,13 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->capacite_personnes; ?>
 				</td>
 				<td class="center">
-					<?php echo empty($item->class_desc) ? JText::_('COM_GESTTAXESEJOUR_NO_CLASSEMENT_DEFINED') : $item->class_desc;?>
+					<?php echo empty($item->class_desc) ? JText::_('COM_TDSMANAGER_NO_CLASSEMENT_DEFINED') : $item->class_desc;?>
 				</td>
 				<td class="center">
 					<?php echo $item->hosting_type_name; ?>
 				</td>
 				<td class="center">
-					<?php echo $item->id_hebergement_label==0 ? JText::_('COM_GESTTAXESEJOUR_NO_LABEL_DEFINED') : $item->label_nom; ?>
+					<?php echo $item->id_hebergement_label==0 ? JText::_('COM_TDSMANAGER_NO_LABEL_DEFINED') : $item->label_nom; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->date_classement; ?>
@@ -127,7 +128,8 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->numero_agrement; ?>
 				</td>
 			</tr>
-			<?php $i++; endforeach; ?>
+			<?php $i++; endforeach;
+			endif; ?>
 		</tbody>
 	</table>
 	<div>

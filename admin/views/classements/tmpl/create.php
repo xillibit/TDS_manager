@@ -18,13 +18,13 @@ JHtml::_('behavior.multiselect');
 		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=classements') ?>" method="post" id="adminForm" name="adminForm">
 				<table class="kadmin-adminform">
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_DESCRIPTION'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_CLASSEMENT_DESCRIPTION'); ?></td>
 						<td>
 							<input name="description" value="<?php if(!empty($this->classement->description)) echo $this->classement->description; ?>" />
 						</td>
 					</tr>
 					<tr>
-						<td valign="top"><?php echo JText::_('COM_GESTTAXESEJOUR_CLASSEMENT_STATE'); ?></td>
+						<td valign="top"><?php echo JText::_('COM_TDSMANAGER_CLASSEMENT_STATE'); ?></td>
             <td>
 							<input name="state" value="<?php if(!empty($this->classement->state)) echo $this->classement->state; ?>" />
 						</td>

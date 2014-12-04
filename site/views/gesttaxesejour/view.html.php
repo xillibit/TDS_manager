@@ -40,11 +40,11 @@ class TdsmanagerViewGesttaxesejour extends JView {
     $this->myprofile = $this->getUserProfile();
     /*$this->reglementsNotDone = $this->get('ReglementsNotDone');
     if ( $this->reglementsNotDone ) {
-      $app->enqueueMessage( JText::sprintf('COM_GESTTAXESEJOUR_REGLEMENTS_NOT_DONE', $this->reglementsNotDone->start_date, $this->reglementsNotDone->end_date) );
+      $app->enqueueMessage( JText::sprintf('COM_TDSMANAGER_REGLEMENTS_NOT_DONE', $this->reglementsNotDone->start_date, $this->reglementsNotDone->end_date) );
     }
     $this->declarationsNotDone = $this->get('DeclarationsNotDone');
     if ( $this->declarationsNotDone ) {
-      $app->enqueueMessage( JText::sprintf('COM_GESTTAXESEJOUR_DECLARATIONS_NOT_DONE', '12/05/2012','12/06/2012') );
+      $app->enqueueMessage( JText::sprintf('COM_TDSMANAGER_DECLARATIONS_NOT_DONE', '12/05/2012','12/06/2012') );
     } */
 
     $this->lasthostings = $this->get('LastHostings');

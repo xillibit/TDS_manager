@@ -19,15 +19,15 @@ $listDirn	= $this->state->get('list.direction');
 <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=users'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
-			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_GESTTAXESEJOUR_SEARCH_IN_TITLE'); ?>" />
-			<button type="submit"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_SUBMIT'); ?></button>
-			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('COM_GESTTAXESEJOUR_FILTER_CLEAR'); ?></button>
+			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('COM_TDSMANAGER_FILTER_LABEL'); ?></label>
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_TDSMANAGER_SEARCH_IN_TITLE'); ?>" />
+			<button type="submit"><?php echo JText::_('COM_TDSMANAGER_FILTER_SUBMIT'); ?></button>
+			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('COM_TDSMANAGER_FILTER_CLEAR'); ?></button>
 		</div>
 		<div class="filter-select fltrt">
 
 			<select name="filter_state" class="inputbox" onchange="this.form.submit()">
-				<option value=""><?php echo JText::_('COM_GESTTAXESEJOUR_SELECT_STATUS');?></option>
+				<option value=""><?php echo JText::_('COM_TDSMANAGER_SELECT_STATUS');?></option>
 				<?php //echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
 			</select>
 
@@ -39,34 +39,34 @@ $listDirn	= $this->state->get('list.direction');
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_GESTTAXESEJOUR_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_ID', 'userid', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_ID', 'userid', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_NAME', 'name', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_NAME', 'name', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_LASTNAME', 'lastname', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_LASTNAME', 'lastname', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_ADRESS', 'adress', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_ADRESS', 'adress', $listDirn, $listOrder); ?>
 				</th>
         <th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort',  'COM_GESTTAXESEJOUR_USER_COMPLEMENT_ADRESS', 'complement_adress', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_USER_COMPLEMENT_ADRESS', 'complement_adress', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_POSTALCODE', 'postalcode', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_POSTALCODE', 'postalcode', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_VILLE', 'ville', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_VILLE', 'ville', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_TELEPHONE', 'telephone', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_TELEPHONE', 'telephone', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_GESTTAXESEJOUR_USER_PORTABLE', 'portable', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_USER_PORTABLE', 'portable', $listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
@@ -74,7 +74,7 @@ $listDirn	= $this->state->get('list.direction');
 			<tr>
         <td colspan="14">
           <div class="pagination">
-          <div class="limit"><?php echo JText::_('COM_GESTTAXESEJOUR_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
+          <div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
           <?php echo $this->navigation->getPagesLinks (); ?>
           <div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
           </div>
@@ -82,7 +82,8 @@ $listDirn	= $this->state->get('list.direction');
       </tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->users	 as $i => $item) : ?>
+		<?php if ( !empty($this->users) ):
+		foreach ($this->users	 as $i => $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, intval($item->userid)); ?>
@@ -115,7 +116,8 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->portable;?>
 				</td>
 			</tr>
-			<?php endforeach; ?>
+			<?php endforeach;
+			endif; ?>
 		</tbody>
 	</table>
 	<div>

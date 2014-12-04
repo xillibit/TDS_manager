@@ -28,7 +28,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
 	public function edit() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -41,7 +41,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
 
       $this->setRedirect('index.php?option=com_tdsmanager&view=declarations&layout=edit');
     } else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_DECLARATION_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -49,7 +49,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
   public function remove() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -68,10 +68,10 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
   			return false;
   		}
 
-  		$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_DECLARATION_ITEMS_DELETED') );
+  		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_ITEMS_DELETED') );
   		$this->app->redirect($this->baseurl);
 		} else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_DECLARATION_NOTHING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -79,7 +79,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
   public function save() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -112,10 +112,10 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
     	return false;
      }
 
-     $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_DECLARATION_SAVED_SUCESSFULLY') );
+     $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCESSFULLY') );
   	 $this->app->redirect($this->baseurl);*/
     /*} else {
-     $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_DECLARATION_SAVE_ISSUE'), 'error' );
+     $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_SAVE_ISSUE'), 'error' );
      $this->app->redirect($this->baseurl);
     } */
   }
@@ -127,19 +127,19 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
   public function save_first_part() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
     /*if (  $post['hebergement']==0 ) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_HOSTING_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NONE_HOSTING_SELECTED'), 'error' );
       $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }
 
     if ( $post['mois']==0 ) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_MONTH_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NONE_MONTH_SELECTED'), 'error' );
       $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }
 
@@ -167,7 +167,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
 
       $this->setRedirect('index.php?option=com_tdsmanager&view=declarations&layout=detail');
     /*} else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_NONE_TARIF_SAVED_FOR_THIS_HOSTING'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NONE_TARIF_SAVED_FOR_THIS_HOSTING'), 'error' );
       $this->app->redirect('index.php?option=com_tdsmanager&view=declarations&layout=create');
     }*/
   }

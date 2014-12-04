@@ -50,8 +50,8 @@ class TdsmanagerAdminViewStatistics extends TdsmanagerView {
 	}
 
 	protected function setToolbarDefault() {
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_STATS_GEN_STATS'), 'statistics.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_STATS_GEN_STATS'), 'statistics.png');
 
-		JToolBarHelper::custom('export', 'unblock.png', 'unblock_f2.png', 'COM_GESTTAXESEJOUR_STATISTICS_EXPORT_EXCEL', true);
+		JToolBarHelper::custom('export', 'unblock.png', 'unblock_f2.png', 'COM_TDSMANAGER_STATISTICS_EXPORT_EXCEL', true);
 	}
 }

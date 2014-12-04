@@ -125,7 +125,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 
      $taille = filesize($tmp_filename);
      /*if ( $taille>$taille_allowed ) {
-      $app->enqueueMessage ( JText::sprintf('COM_GESTTAXESEJOUR_NEW_HEBERGEMENT_IMAGE_SIZE_NOT_ALLOWED', $taille_allowed) );
+      $app->enqueueMessage ( JText::sprintf('COM_TDSMANAGER_NEW_HEBERGEMENT_IMAGE_SIZE_NOT_ALLOWED', $taille_allowed) );
      }  */
 
      // Detect MIME type

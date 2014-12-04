@@ -49,7 +49,7 @@ class TdsmanagerAdminViewUsers extends TdsmanagerView {
 		JToolBarHelper::divider();
     JToolBarHelper::deleteList('delete');
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_OWNERS'), 'users.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_OWNERS'), 'users.png');
 	}
 
 	public function displayCreate($tpl = null) {
@@ -67,13 +67,13 @@ class TdsmanagerAdminViewUsers extends TdsmanagerView {
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_OWNER'), 'users.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CREATE_OWNER'), 'users.png');
 	}
 
   protected function setToolbarEdit() {
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_OWNER'), 'users.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_OWNER'), 'users.png');
 	}
 }

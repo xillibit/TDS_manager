@@ -25,7 +25,7 @@ class TdsmanagerControllerReglements extends JControllerLegacy {
 		$app	= JFactory::getApplication();
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-			$app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
 			$app->redirect($this->baseurl);
 		}
 	}

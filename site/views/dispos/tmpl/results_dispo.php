@@ -25,7 +25,13 @@ defined('_JEXEC') or die;
 <table cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td><!-- Image hébergement --></td>
-    <td style="padding: 5px;border-right: 1px solid #0088CC; border-right-width: medium;"><ul style="list-style-type: none;"><li style="font-size: 14px;font-weight: bold;"><?php echo $dispo->hosting_type_name; ?></li><li><?php echo $dispo->adress; ?></li><li><?php echo $dispo->complement_adress; ?></li><li><?php echo $dispo->postalcode.' '.$dispo->city; ?></li></ul</td>
+    <td style="padding: 5px;border-right: 1px solid #0088CC; border-right-width: medium;">
+    	<ul style="list-style-type: none;">
+    		<li style="font-size: 14px;font-weight: bold;"><?php echo $dispo->hosting_type_name; ?></li>
+    		<li><?php echo $dispo->adress; ?></li>
+    		<li><?php echo $dispo->complement_adress; ?></li><li><?php echo $dispo->postalcode.' '.$dispo->city; ?></li>
+    	</ul>
+    </td>
     <td style="padding: 5px;border-right: 1px solid #0088CC; border-right-width: medium;"><span><?php echo $dispo->description ?></span></td>
     <td style="padding: 5px;"><!-- Prix, localisation --><a href="#">Localiser</a></td>
   </tr>

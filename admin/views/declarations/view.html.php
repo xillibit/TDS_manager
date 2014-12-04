@@ -51,7 +51,7 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 		JToolBarHelper::divider();
     JToolBarHelper::deleteList('delete');
 		// TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_DECLARATIONS'), 'declarations.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_DECLARATIONS'), 'declarations.png');
 	}
 
   function displayCreate($tpl = null) {
@@ -83,22 +83,22 @@ class TdsmanagerAdminViewDeclarations extends TdsmanagerView {
 
   protected function setToolbarDetail() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_DECLARATION'), 'declarations.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_DECLARATION'), 'declarations.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }
 
   protected function setToolbarCreate() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_CREATE_DECLARATION'), 'declarations.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CREATE_DECLARATION'), 'declarations.png');
 		// Mettre un bouton suivant à la place de sauver
-    JToolBarHelper::custom( 'save_first_part', 'forward', 'icon over', 'COM_GESTTAXESEJOUR_DECLARATION_TOOLBAR_NEXT' );
+    JToolBarHelper::custom( 'save_first_part', 'forward', 'icon over', 'COM_TDSMANAGER_DECLARATION_TOOLBAR_NEXT' );
     JToolBarHelper::cancel();
   }
 
 	protected function setToolbarEdit() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_GESTTAXESEJOUR_EDIT_DECLARATION'), 'declarations.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDIT_DECLARATION'), 'declarations.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

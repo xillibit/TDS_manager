@@ -33,7 +33,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
 	public function edit() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -48,7 +48,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
   public function create() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -60,7 +60,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
   public function remove() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -79,10 +79,10 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
   			return false;
   		}
 
-  		$this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT_ITEMS_DELETED') );
+  		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TARIF_NUIT_ITEMS_DELETED') );
   		$this->app->redirect($this->baseurl);
 		} else {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_SELECTED'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
@@ -90,7 +90,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
   public function save() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TOKEN'), 'error' );
+      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $this->app->redirect($this->baseurl);
     }
 
@@ -112,7 +112,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
     			return false;
     		}
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_TARIF_NUIT_NEW_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TARIF_NUIT_NEW_SAVED') );
        $this->app->redirect($this->baseurl);
     } else {
         $query = "UPDATE #__tdsmanager_tarif_nuit
@@ -127,7 +127,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
     			return false;
     		}
 
-       $this->app->enqueueMessage ( JText::_('COM_GESTTAXESEJOUR_HEBERGEMENT_TARIF_NUIT_EDITION_SAVED') );
+       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TARIF_NUIT_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);
     }
   }
