@@ -13,7 +13,7 @@ jimport('joomla.application.component.controller');
 class TdsmanagerControllerHebergements extends JControllerLegacy {
   public function edit() {
     $app	= JFactory::getApplication();
-    $task = JRequest::getCmd('task');
+    $task = $app->input->getCmd('task');
 
     $app->setUserState( 'com_tdsmanager.hebergement.editmode', '1' );
 
@@ -172,7 +172,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     $app	= JFactory::getApplication();
     $user = JFactory::getUser();
     // Check for request forgeries.
-    if (! JRequest::checkToken ()) {
+    if (! JSession::getFormToken()) {
       $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
       $app->redirect($this->baseurl);
     }

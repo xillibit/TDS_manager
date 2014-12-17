@@ -23,9 +23,11 @@ class TdsmanagerViewUser extends JView {
 	 * @return	mixed	False on error, null otherwise.
 	 */
 	function display($tpl = null) {
+		$app = JFactory::getApplication();
+
 		// Vérifier que l'utilisateur est bien connecté avant de passer à la suite
 		$user = JFactory::getUser();
-		$layout = JRequest::getCmd('layout');
+		$layout = $app->input->getCmd('layout');
 
     if ( $user->id < 0 ) {
       $app->enqueueMessage( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );

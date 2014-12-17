@@ -27,15 +27,16 @@ class TdsmnanagerModelHebergements extends JModel {
 	protected function populateState() {
 		$app = JFactory::getApplication();
 
-    // Get the parent id if defined.
-		$Hosting_Id = JRequest::getInt('id');
+		// Get the parent id if defined.
+		$Hosting_Id = $app->input->getInt('id', 0);
 		$this->setState('com_tdsmanager.hosting.Id', $Hosting_Id);
 
-    // List state information
-		$value = JRequest::getUInt('limit', $app->getCfg('list_limit', 0));
+		// List state information
+
+		$value = $app->input->getInt('limit', $app->getCfg('list_limit', 0));
 		$this->setState('list.limit', $value);
 
-		$value = JRequest::getUInt('limitstart', 0);
+		$value = $app->input->getInt('limitstart', 0);
 		$this->setState('list.start', $value);
 	}
 

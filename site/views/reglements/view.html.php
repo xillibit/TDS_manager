@@ -28,7 +28,9 @@ class TdsmanagerViewReglements extends JView {
 		$this->own_hostings = $this->get('own_hostings');
 		$this->montantToPay = $this->get('MontantToPay');*/
 
-		$layout = JRequest::getCmd('layout');
+		$app = JFactory::getApplication();
+
+		$layout = $app->input->getCmd('layout');
 
 		if ( $layout == 'create' ) {
 		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_REGLEMENT_CREATE'));

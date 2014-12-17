@@ -16,9 +16,11 @@ jimport('joomla.application.component.model');
  * @subpackage	com_contact
  */
 class TdsmanagerModelDeclarations extends JModel {
-  protected function populateState() {
+	protected function populateState() {
+		$app = JFactory::getApplication();
+
 		// Get the parent id if defined.
-		$declaration_Id = JRequest::getInt('id');
+		$declaration_Id = $app->input->getInt('id', 0);
 		$this->setState('com_tdsmanager.declaration.Id', $declaration_Id);
 	}
 

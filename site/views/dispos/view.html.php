@@ -24,7 +24,7 @@ class TdsmanagerViewDispos extends JView {
 	 */
 	function display($tpl = null) {
     $app = JFactory::getApplication();
-    $layout = JRequest::getCmd('layout');
+    $layout = $app->input->getCmd('layout');
     $this->dispo = $app->getUserState( 'com_tdsmanager.dispos.dispo');
 
     if ( !empty($this->dispo) ) {

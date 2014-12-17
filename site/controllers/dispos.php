@@ -13,7 +13,7 @@ jimport('joomla.application.component.controllerform');
 class TdsmanagerControllerDispos extends JControllerLegacy {
   public function confirmdelete() {
     $app = JFactory::getApplication();
-    $ids = $app->input->get('cid', array(), 'array'); // $ids = JRequest::getVar ( 'cid', array (), 'post', 'array' );
+    $ids = $app->input->get('cid', array(), 'array');
 
     if( !empty($ids) ) {
        $app->setUserState('com_tdsmanager.dispos.ids.delete',$ids);

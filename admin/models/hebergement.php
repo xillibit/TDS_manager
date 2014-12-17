@@ -356,33 +356,33 @@ class TdsmanagerModelHebergement extends JModelAdmin
 
 		return $form;
 	}
-	
+
 	public function getUsersHistory() {
     $db = $this->getDbo();
     $app = JFactory::getApplication();
-    
+
     // récupérer l'ID de l'article actuel en passant l'user state
     $article_id = $this->getState('article.id');
-       
+
     // structure table #__content_edit_history : userid(int), article_id(int), edittime(date)
-        
-    if ( !empty($article_id)) { 
-         
+
+    if ( !empty($article_id)) {
+
       $db->setQuery(
-  						'SELECT edit.edittime, u.name, u.username FROM #__content_edit_history AS edit 
-              LEFT JOIN #__users AS u ON edit.userid=u.id 
+  						'SELECT edit.edittime, u.name, u.username FROM #__content_edit_history AS edit
+              LEFT JOIN #__users AS u ON edit.userid=u.id
               WHERE article_id='.$db->quote($article_id).' ORDER BY edit.edittime ASC LIMIT 5' );
-  		
+
   		if (!is_array($history = $db->loadObjectlist())) {
 					throw new Exception($db->getErrorMsg());
 			}
-			
+
 			return $history;
 		} else {
       return;
-    }				
-		
-		
+    }
+
+
   }
 
 	/**
@@ -402,7 +402,7 @@ class TdsmanagerModelHebergement extends JModelAdmin
 			// Prime some default values.
 			if ($this->getState('article.id') == 0) {
 				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_content.articles.filter.category_id')));
+				$data->set('catid', $app->getInt('catid', $app->getUserState('com_content.articles.filter.category_id')));
 			}
 		}
 
@@ -417,11 +417,11 @@ class TdsmanagerModelHebergement extends JModelAdmin
     $date = JFactory::getDate('now');
     $tz = new DateTimeZone(JFactory::getApplication()->getCfg('offset'));
     $date->setTimezone($tz);
-    
-    $db = $this->getDbo();    
-    $query = "INSERT INTO #__content_edit_history (article_id, userid, edittime) VALUES({$db->quote($article_id)}, {$db->quote($user->id)},{$db->quote($date->toMySQL())})";		
-    $db->setQuery($query);		
-		$db->query();			
+
+    $db = $this->getDbo();
+    $query = "INSERT INTO #__content_edit_history (article_id, userid, edittime) VALUES({$db->quote($article_id)}, {$db->quote($user->id)},{$db->quote($date->toMySQL())})";
+    $db->setQuery($query);
+		$db->query();
   }
 
 	/**
@@ -434,7 +434,9 @@ class TdsmanagerModelHebergement extends JModelAdmin
 	 */
 	public function save($data)
 	{
-			if (isset($data['images']) && is_array($data['images'])) {
+		$app = JFactory::getApplication();
+
+		if (isset($data['images']) && is_array($data['images'])) {
 				$registry = new JRegistry;
 				$registry->loadArray($data['images']);
 				$data['images'] = (string)$registry;
@@ -448,17 +450,18 @@ class TdsmanagerModelHebergement extends JModelAdmin
 
 			}
 		// Alter the title for save as copy
-		if (JRequest::getVar('task') == 'save2copy') {
+
+		if ($app->input->getString('task') == 'save2copy') {
 			list($title, $alias) = $this->generateNewTitle($data['catid'], $data['alias'], $data['title']);
 			$data['title']	= $title;
 			$data['alias']	= $alias;
 		}
 
 		if (parent::save($data)) {
-      
+
       // Save the user edit
       $this->saveUserEdit($data);
-      
+
 			if (isset($data['featured'])) {
 				$this->featured($this->getState($this->getName().'.id'), $data['featured']);
 			}

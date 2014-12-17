@@ -22,7 +22,7 @@ class TdsmanagerControllerMain extends JControllerLegacy {
 		$app	= JFactory::getApplication();
 		$model	= $this->getModel('contact');
 		$params = JComponentHelper::getParams('com_tdsmanager');
-		$stub	= JRequest::getString('id');
+		$stub	= $app->input->getInt('id', 0);
 		$id		= (int)$stub;
 
 		// Get the data from POST

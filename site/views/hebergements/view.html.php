@@ -39,7 +39,7 @@ class TdsmanagerViewHebergements extends JView {
     }
 
 		// En mode edition
-		$layout = JRequest::getCmd('layout');
+		$layout = $app->input->getCmd('layout');
 		if( $layout == 'edit') {
       $this->hebergement = $this->get('Hebergement');
       $this->label_list = $this->get('LabelList');

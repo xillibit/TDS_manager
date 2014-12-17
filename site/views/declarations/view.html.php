@@ -30,7 +30,7 @@ class GesttaxesejourViewDeclarations extends JView {
 
     $this->app	= JFactory::getApplication();
 
-		$layout = JRequest::getCmd('layout');
+		$layout = $this->app->input->getCmd('layout');
 
 		if ( $layout == 'edit' ) {
 		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_DECLARATIONS_EDIT_DECLARATION'));
