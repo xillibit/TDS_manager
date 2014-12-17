@@ -34,15 +34,16 @@ JHTML::_('behavior.calendar');
       <li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_TYPE_CLASSEMENT') ?></span> <?php echo isset($this->classement_list) ? $this->classement_list : ''; ?></li>
       <li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL') ?></span> <?php echo isset($this->label_list) ? $this->label_list : ''; ?></li>
       <?php if (!$this->editmode): ?><li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_IMAGE_UPLOAD') ?></span> <input type="file" name="hostingimage" /> </li><?php endif; ?>
-      <input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>">
-      <input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>">
-      <?php if ($this->editmode): ?>
-        <input type="hidden" name="edit_mode" value="1" />
-      <?php else: ?>
-        <input type="hidden" name="edit_mode" value="0" />
-      <?php endif; ?>
+
     </ul>
-    <input type="hidden" name="hebergement_id" value="<?php echo $this->hebergement->id ?>" />
-    <?php echo JHtml::_('form.token'); ?>
+	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>">
+	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>">
+	<?php if ($this->editmode): ?>
+		<input type="hidden" name="edit_mode" value="1" />
+	<?php else: ?>
+		<input type="hidden" name="edit_mode" value="0" />
+	<?php endif; ?>
+		<input type="hidden" name="hebergement_id" value="<?php echo $this->hebergement->id ?>" />
+	<?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

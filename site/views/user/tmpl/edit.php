@@ -26,11 +26,12 @@ defined('_JEXEC') or die;
       <li><span>Votre portable</span> <input type="text" name="portable" value="<?php echo $this->userProfile->portable ?>" /></li>
       <li><span>Votre mail</span> <input type="text" name="mail" value="<?php echo $this->userProfile->mail ?>" /></li>
 
-      <input type="hidden" name="userid" value="<?php echo $this->profile->userid ?>" />
-
-      <input type="button" onclick="javascript:history.back()" value="Annuler">
-      <input type="submit" value="Enregister">
     </ul>
-    <?php echo JHtml::_('form.token'); ?>
+
+	<input type="hidden" name="userid" value="<?php echo $this->profile->userid ?>" />
+
+	<input type="button" onclick="javascript:history.back()" value="Annuler">
+	<input type="submit" value="Enregister">
+	<?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

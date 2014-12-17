@@ -24,9 +24,10 @@ JHTML::_('behavior.calendar');
       <li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_REOUVERTURE_LE') ?></span> <?php echo JHTML::_( 'calendar','','reouverture_le','reouverture_le', '%Y-%m-%d') ?></li>
       <li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_MOTIF') ?></span> <input type="text" name="motif" value="<?php ?>" /></li>
 
-      <input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>">
-      <input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>">
     </ul>
+	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>" />
+	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>" />
+
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

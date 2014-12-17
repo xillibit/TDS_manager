@@ -20,7 +20,7 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
   <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
     <ul style="list-style-type:none;">
       <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_DECLARATION_PEDIOD') ?><br /></span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DATE_DEBUT') ?> : <?php echo JHTML::calendar($date_now,'start_date', 'start_date', '%d-%m-%Y') ?> <?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DATE_FIN') ?> : <?php echo JHTML::calendar($date_now,'end_date', 'end_date', '%d-%m-%Y') ?> </li>
-      <br />
+
       <!-- Afficher par défaut une ligne pour entrer un nouveau séjour, afficher un bouton pour entrer ou supprimer un séjour -->
 
       <li>
@@ -52,9 +52,9 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 
       <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_OK') ?></span>: <input type="checkbox" name="exactitude_document" value="1" /> </li>
 
-      <input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?>">
-      <input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?>">
     </ul>
+	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?>" />
+	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?>" />
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

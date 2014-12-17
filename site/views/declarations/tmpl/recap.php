@@ -59,19 +59,20 @@ $params	= $app->getParams();
   <?php endif; ?>
   </div>
   <form id="checkoutForm" name="checkoutForm" method="post" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=checkout') ?>">
-  <label for="tosAccepted" style="border-top: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
-    <input id="tosAccepted" type="checkbox" style="margin-right: 10px; display: inline-block;" value="1" name="tosAccepted" />
-    <a href="<?php JRoute::_ ('index.php?option=com_tdsmanager&view=declarations&layout=tos') ?>" class="terms-of-service" id="terms-of-service" rel="facebox"
-							   target="_blank"><?php echo JText::_ ('COM_TDSMANAGER_DECLARATIONS_READ_ACCEPT_TOS'); ?>
-   </a>
+	<label for="tosAccepted" style="border-top: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
+	<input id="tosAccepted" type="checkbox" style="margin-right: 10px; display: inline-block;" value="1" name="tosAccepted" />
+	<a href="<?php JRoute::_ ('index.php?option=com_tdsmanager&view=declarations&layout=tos') ?>" class="terms-of-service" id="terms-of-service" rel="facebox" target="_blank">
+		<?php echo JText::_ ('COM_TDSMANAGER_DECLARATIONS_READ_ACCEPT_TOS'); ?>
+	</a>
+	</label>
 
-    <div id="full-tos">
-			 <fieldset>
-        <legend><h2><?php echo JText::_ ('COM_TDSMANAGER_DECLARATIONS_RECAP_TOS'); ?></h2></legend>
-        <?php echo $params->get('content_tos', ''); ?>
-       </fieldset>
-	  </div>
-  </label>
+	<div id="full-tos">
+		<fieldset>
+			<legend><?php echo JText::_ ('COM_TDSMANAGER_DECLARATIONS_RECAP_TOS'); ?></legend>
+			<?php echo $params->get('content_tos', ''); ?>
+		</fieldset>
+	</div>
+
   <br />
   <div style="border-top: 1px solid #E9E8E8;border-bottom: 1px solid #E9E8E8;margin: 10px 0 0;padding: 10px 0 25px;">
     <h4><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_RECAP_SELECT_PAYEMENT') ?></h4>
@@ -80,7 +81,7 @@ $params	= $app->getParams();
 
   <div id="cheque_text" style="display:none;">
     <fieldset>
-  <legend><h4>Instructions pour le paiement par chéque :</h4></legend>
+  <legend>Instructions pour le paiement par chéque :</legend>
 
 Vous avez choisi d'effectuer votre paiement par chèque bancaire. Nous vous remercions de bien vouloir nous faire parvenir votre chèque de <b><?php echo $this->totalDeclarationAfterCom ?> €</b> par courrier en inscrivant
 la référence de la déclaration (Référence transaction :<?php echo $this->app->getUserState("com_tdsmanager.idtransaction") ?>) de la taxe de séjour au dos du chèque (chèque à l'ordre du Trésor public).
@@ -88,9 +89,9 @@ la référence de la déclaration (Référence transaction :<?php echo $this->ap
 Merci d'envoyer votre courrier complet à l'adresse suivante :
 <br /><br />
 <ul>
-<li>Office de Tourisme des Sources du Lac d'Annecy - Pays de Faverges</li>
-<li>Place Marcel Piquand</li>
-<li>74210 Faverges</li>
+<li>Office de Tourisme</li>
+<li>Place</li>
+<li>00000 Ville</li>
 </ul>
 Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre déclaration sera automatiquement annulée.
 </fieldset>
@@ -98,7 +99,7 @@ Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre 
 
   <div id="virement_text" style="display:none;">
   <fieldset>
-        <legend><h4>Instructions pour le paiement par virement :</h4></legend>
+        <legend>Instructions pour le paiement par virement :</legend>
 Vous avez choisi d'effectuer votre paiement par virement bancaire. Nous vous invitons à utiliser les coordonnées bancaires ci-dessous.
 
 Ces informations vous seront récapitulées dans le mail de confirmation.
@@ -108,11 +109,11 @@ Merci de préciser dans l'objet de votre virement, la référence de la déclara
 Montant à payer : <b><?php echo $this->totalDeclarationAfterCom ?> €</b>
 <br /><br />
 <ul>
-<li>Code banque : 30047</li>
-<li>Code guichet : 14144</li>
-<li>Numéro de compte : 00037236001</li>
-<li>Clé : 96</li>
-<li>Domiciliation : CIC Grandes et moyennes entreprises Pays de Loire</li>
+	<li>Code banque : 30047</li>
+	<li>Code guichet : 14144</li>
+	<li>Numéro de compte : 00037236001</li>
+	<li>Clé : 96</li>
+	<li>Domiciliation : CIC Grandes et moyennes entreprises Pays de Loire</li>
 </ul>
 Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre déclaration sera automatiquement annulée.
 </fieldset>
@@ -120,11 +121,12 @@ Si votre règlement ne nous est pas parvenu sous 10 jours, le paiement de votre 
 
   <div id="paypal_paiement_text" style="display:none;">
     <fieldset>
-  <legend><h4>Paiement par Paypal :</h4></legend>
-  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=sendcheckout') ?>">
-  <input id="paypal_bouton" onclick="document.paypalForm.submit();" name="submit" src="https://www.paypalobjects.com/en_US/FR/i/bnr/bnr_horizontal_solution_PP_327wx80h.gif" alt="<?php echo JText::_('COM_TDSMANAGER_DECLARATION_PAY_WITH_PAYPAL') ?>" title="<?php echo JText::_('COM_TDSMANAGER_DECLARATION_PAY_WITH_PAYPAL') ?>" type="image" /></a>
+		<legend>Paiement par Paypal :</legend>
+		<a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=sendcheckout') ?>">
+			<input id="paypal_bouton" onclick="document.paypalForm.submit();" name="submit" src="https://www.paypalobjects.com/en_US/FR/i/bnr/bnr_horizontal_solution_PP_327wx80h.gif" alt="<?php echo JText::_('COM_TDSMANAGER_DECLARATION_PAY_WITH_PAYPAL') ?>" title="<?php echo JText::_('COM_TDSMANAGER_DECLARATION_PAY_WITH_PAYPAL') ?>" type="image" />
+		</a>
 
-</fieldset>
+	</fieldset>
   </div>
   <br />
 

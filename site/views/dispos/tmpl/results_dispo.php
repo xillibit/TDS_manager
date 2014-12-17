@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 <div style="text-align: right;font-weight: bold;color:#0088CC;font-size: 18px;padding-bottom: 10px;">Résultat de votre recherche</div>
 <span><?php echo $this->search_query; ?></span>
 <?php foreach($this->results_dispo as $dispo): ?>
-<table style="border-bottom: 1px solid #0088CC;width: 770px;border-bottom-width: medium;" cellspacing="0" cellpadding="0" border="0">
+<table style="border-bottom: 1px solid #0088CC;width: 770px;border-bottom-width: medium;">
   <tbody>
     <tr>
       <td style="background-color: #006DCC;width: <?php echo strlen($dispo->hostingname)*9 ?>px;padding: 4px 30px 4px 15px;color: #FFFFFF;font-size: 14px;
@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
     </tr>
   </tbody>
 </table>
-<table cellspacing="0" cellpadding="0" border="0">
+<table>
   <tr>
     <td><!-- Image hébergement --></td>
     <td style="padding: 5px;border-right: 1px solid #0088CC; border-right-width: medium;">
