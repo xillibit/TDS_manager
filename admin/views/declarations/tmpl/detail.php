@@ -104,5 +104,6 @@ JHTML::_('behavior.tooltip');
 				</table>
 		<input type="hidden" name="task" value="save" />
 		<?php echo JHTML::_( 'form.token' ); ?>
+		</form>
 	</div>
 </div>

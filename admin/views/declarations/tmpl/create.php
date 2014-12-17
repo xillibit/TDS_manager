@@ -39,5 +39,6 @@ JHtml::_('behavior.multiselect');
     <input type="hidden" name="boxchecked" value="1" />
     <input type="hidden" name="task" value="save_first_part" />
 		<?php echo JHTML::_( 'form.token' ); ?>
+		</form>
 	</div>
 </div>

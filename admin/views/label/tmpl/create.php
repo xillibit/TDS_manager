@@ -27,5 +27,6 @@ JHtml::_('behavior.multiselect');
 		<input type="hidden" name="id" value="<?php echo isset($this->label->id) ? $this->label->id : '0'; ?>" />
     <input type="hidden" name="task" value="save" />
 		<?php echo JHTML::_( 'form.token' ); ?>
+		</form>
 	</div>
 </div>

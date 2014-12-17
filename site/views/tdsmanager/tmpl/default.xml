@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_CONTACT_CONTACT_VIEW_DEFAULT_TITLE" option="COM_CONTACT_CONTACT_VIEW_DEFAULT_OPTION">
+	<layout title="COM_TDSMANAGER_MANAGER_VIEW_DEFAULT_TITLE" option="COM_TDSMANAGER_MANAGER_VIEW_DEFAULT_OPTION">
 		<help
-			key = "JHELP_MENUS_MENU_ITEM_CONTACT_SINGLE_CONTACT"
+			key = "JHELP_MENUS_MENU_ITEM_TDSMANAGER_SINGLE_CONTACT"
 		/>
 		<message>
-			<![CDATA[COM_CONTACT_CONTACT_VIEW_DEFAULT_DESC]]>
+			<![CDATA[COM_TDSMANAGER_MANAGER_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
-
-	<!-- Add fields to the request variables for the layout. -->
-	<fields name="request">
-		<fieldset name="request"
-			addfieldpath="/administrator/components/com_contact/models/fields"
-		>
-			<field name="id"
-				type="modal_contacts"
-				description="COM_CONTACT_SELECT_CONTACT_DESC"
-				label="COM_CONTACT_SELECT_CONTACT_LABEL"
-				required="true"
-			/>
-		</fieldset>
-	</fields>
 
 	<!-- Add fields to the parameters object for the layout. -->
 	<fields name="params">
@@ -49,26 +35,6 @@
 				<option value="hide">JHIDE</option>
 				<option value="show_no_link">COM_CONTACT_FIELD_VALUE_NO_LINK</option>
 				<option value="show_with_link">COM_CONTACT_FIELD_VALUE_WITH_LINK</option>
-			</field>
-
-			<field name="show_contact_list"
-				type="list"
-				description="COM_CONTACT_FIELD_CONTACT_SHOW_LIST_DESC"
-				label="COM_CONTACT_FIELD_CONTACT_SHOW_LIST_LABEL"
-			>
-				<option value="">JGLOBAL_USE_GLOBAL</option>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field name="show_name"
-				type="list"
-				description="COM_CONTACT_FIELD_PARAMS_NAME_DESC"
-				label="COM_CONTACT_FIELD_PARAMS_NAME_LABEL"
-			>
-				<option value="">JGLOBAL_USE_GLOBAL</option>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
 			</field>
 
 			<field name="show_position"

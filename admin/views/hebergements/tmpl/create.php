@@ -112,5 +112,6 @@ JHtml::_( 'behavior.calendar' );
 		<input type="hidden" name="id" value="<?php echo isset($this->hebergement->id) ? $this->hebergement->id : ''; ?>" />
     <input type="hidden" name="task" value="save" />
 		<?php echo JHTML::_( 'form.token' ); ?>
+		</form>
 	</div>
 </div>
