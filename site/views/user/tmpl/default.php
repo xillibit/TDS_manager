@@ -28,7 +28,7 @@ defined('_JEXEC') or die;
     </dl>
   </fieldset>
 
-    <input type="submit" value="Modifier votre profil" />
+	<button class="btn btn-primary" type="button">Modifier votre profil</button>
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

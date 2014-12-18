@@ -81,9 +81,9 @@ defined('_JEXEC') or die;
          ?>
   		</tbody>
   	</table>
-    <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=edit'); ?>"><input type="button" value="<?php echo JText::_('COM_TDSMANAGER_CREATE_NEW_DECLARATION') ?>" /></a>
+    <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=edit'); ?>" class="btn btn-primary"><?php echo JText::_('COM_TDSMANAGER_CREATE_NEW_DECLARATION') ?></a>
     <!--<input type="button" id="sup_declaration" value="<?php //echo JText::_('COM_TDSMANAGER_DECLARATION_DELETE_DECLARATION') ?>" />  -->
-    <input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_CREATE_PAIEMENT_DECLARATION') ?>" />
+    <button class="btn btn-primary" type="button"><?php echo JText::_('COM_TDSMANAGER_CREATE_PAIEMENT_DECLARATION') ?></button>
     <input type="hidden" name="task" value="recap" />
     <?php echo JHtml::_('form.token'); ?>
   </form>

@@ -36,8 +36,9 @@ JHTML::_('behavior.calendar');
       <?php if (!$this->editmode): ?><li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_IMAGE_UPLOAD') ?></span> <input type="file" name="hostingimage" /> </li><?php endif; ?>
 
     </ul>
-	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>">
-	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>">
+    <button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?></button>
+	<button class="btn btn-primary" onclick="javascript:history.back()" type="button"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?></button>
+
 	<?php if ($this->editmode): ?>
 		<input type="hidden" name="edit_mode" value="1" />
 	<?php else: ?>

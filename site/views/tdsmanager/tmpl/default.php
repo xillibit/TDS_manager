@@ -34,7 +34,62 @@ echo $this->_getViewFile('common', 'menu');
 		<span>Votre profil n'éxiste pas</span>
 		<?php } ?>
 	</div>
+
 	<!-- Afficher des onglets avec les dernières déclarations, derniers réglements -->
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#sectionA"><?php echo JText::_('COM_TDSMANAGER_LAST_HOSTINGS_PANEL') ?></a></li>
+		<li><a data-toggle="tab" href="#sectionB"><?php echo JText::_('COM_TDSMANAGER_LAST_DECLARATIONS_PANEL') ?></a></li>
+		<li><a data-toggle="tab" href="#sectionC"><?php echo JText::_('COM_TDSMANAGER_LAST_REGLEMENTS_PANEL') ?></a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="sectionA" class="tab-pane fade in active">
+			<?php if ( $this->lasthostings ) {
+				foreach($this->lasthostings as $hosting) { ?>
+					<ul style="border-bottom: 2px solid #555555;">
+						<li style="border-bottom: 1px solid #DDDDDD;"><?php echo $hosting->hostingname ?></li>
+						<li style="border-bottom: 1px solid #DDDDDD;"><?php echo $hosting->adress ?></li>
+						<li style="border-bottom: 1px solid #DDDDDD;"><?php echo $hosting->city ?></li>
+					</ul>
+			<?php }
+			} else {
+				echo 'Vous n\'avez pas d\'hébergements';
+			} ?>
+			<!--<p>Section A content…</p>-->
+		</div>
+
+		<div id="sectionB" class="tab-pane fade">
+			<?php if ( $this->lastdeclarations ) {
+			foreach($this->lastdeclarations as $dec) { ?>
+				<ul style="border-bottom: 2px solid #555555;">
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_MONTANT_ENCAISSE_SEJOUR') ?></span> <?php echo $dec->montant_encaisse_sejour ?> €</li>
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_DATE_DECLARER') ?></span> <?php echo $dec->date_declarer ?></li>
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_NB_PERSONNES_ASSUJETTIES') ?> </span><?php echo $dec->nb_personnes_assujetties ?></li>
+				</ul>
+			<?php }
+			} else {
+			echo 'Vous n\'avez pas de déclarations';
+			} ?>
+			<!--<p>Section B content…</p>-->
+		</div>
+
+		<div id="sectionC" class="tab-pane fade">
+			<?php if ( $this->lastreglements ) {
+			foreach($this->lastreglements as $regl) { ?>
+				<ul style="border-bottom: 2px solid #555555;">
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_DATE_REGLER') ?></span> <?php echo $regl->date_regler ?></li>
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_MONTANT') ?></span> <?php echo $regl->montant ?> €</li>
+					<li style="border-bottom: 1px solid #DDDDDD;"><span style="font-weight:bold;"><?php echo JText::_('COM_TDSMANAGER_RESUME_TYPE_REGLEMENT') ?></span> <?php echo $regl->type_reglement ?></li>
+				</ul>
+			<?php }
+			} else {
+				echo 'Vous n\'avez pas de réglements';
+			} ?>
+
+			<!--<p>Section C content…</p>-->
+		</div>
+	</div>
+
 	<?php
 	echo JHtml::_('tabs.start', 'tab_group_id', $options);
 

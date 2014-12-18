@@ -25,8 +25,9 @@ JHTML::_('behavior.calendar');
       <li><span><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_MOTIF') ?></span> <input type="text" name="motif" value="<?php ?>" /></li>
 
     </ul>
-	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?>" />
-	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?>" />
+
+	<button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?></button>
+	<button class="btn btn-primary" type="button" onclick="javascript:history.back()"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?></button>
 
     <?php echo JHtml::_('form.token'); ?>
   </form>
