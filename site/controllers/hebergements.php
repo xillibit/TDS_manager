@@ -112,8 +112,9 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
   protected function _upload() {
     jimport( 'joomla.filesystem.file' );
     $app	= JFactory::getApplication();
+    $files = $app->input->files->get('hostingimage');
 
-    if(isset($_FILES['hostingimage'])) {
+    if(!empty($files['tmp_name'])) {
      $dossier = 'upload/';
      $extensions = array('png', 'gif', 'jpg', 'jpeg');
      $mimes_allowed = array('image/gif', 'image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png');

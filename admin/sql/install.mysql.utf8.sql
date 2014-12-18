@@ -268,3 +268,13 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_users` (
   `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=220 ;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `#__tdsmanager_users_hosting_owned`
+--
+
+CREATE TABLE IF NOT EXISTS `#__tdsmanager_users_hosting_owned` (
+	`hosting_id` int(11),
+	`user_id` int(11)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

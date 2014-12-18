@@ -87,7 +87,7 @@ class TdsmanagerViewHebergements extends JView {
 
   public function getPagination($maxpages) {
     include_once(JPATH_ADMINISTRATOR.'/components/com_tdsmanager/libraries/html/pagination.php');
-    $pagination = new GesttaxesejourHtmlPagination ( $this->count, 0, 50 );
+    $pagination = new TdsmanagerHtmlPagination ( $this->count, 0, 50 );
     $pagination->setDisplay($maxpages);
     return $pagination->getPagesLinks();
   }

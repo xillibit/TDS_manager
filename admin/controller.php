@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controller');
 
 /**
- * Gesttaxesejour master display controller.
+ * TDSmanager master display controller.
  *
  * @package		Joomla.Administrator
  * @subpackage	com_tdsmanager
