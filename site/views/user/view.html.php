@@ -17,7 +17,7 @@ jimport('joomla.application.component.view');
  * @since 1.6
  */
 class TdsmanagerViewUser extends JView {
-  /**
+	/**
 	 * Display the view
 	 *
 	 * @return	mixed	False on error, null otherwise.
@@ -29,43 +29,51 @@ class TdsmanagerViewUser extends JView {
 		$user = JFactory::getUser();
 		$layout = $app->input->getCmd('layout');
 
-    if ( $user->id < 0 ) {
-      $app->enqueueMessage( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
+		if ( $user->id < 0 ) {
+			$app->enqueueMessage( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
 
-      echo $this->_getViewFile('common', 'login');
+			echo $this->_getViewFile('common', 'login');
 
-      return false;
-    }
+			return false;
+		}
 
-    // Initialise variables
+		// Initialise variables
 		$this->profile = $this->get('UserProfile');
 
-    $this->userProfile = new stdClass();
+		$this->userProfile = new stdClass();
 
 		if ( empty($this->profile->adress) ) $this->userProfile->adress = '';
-    else $this->userProfile->adress = $this->profile->adress;
+		else $this->userProfile->adress = $this->profile->adress;
+
 		if ( empty($this->profile->complement_adress) ) $this->userProfile->complement_adress = '';
-    else $this->userProfile->complement_adress = $this->profile->complement_adress;
+		else $this->userProfile->complement_adress = $this->profile->complement_adress;
+
 		if ( empty($this->profile->postalcode) ) $this->userProfile->postalcode = '';
-    else $this->userProfile->postalcode = $this->profile->postalcode;
+		else $this->userProfile->postalcode = $this->profile->postalcode;
+
 		if ( empty($this->profile->ville) ) $this->userProfile->ville = '';
-    else $this->userProfile->ville = $this->profile->ville;
+		else $this->userProfile->ville = $this->profile->ville;
+
 		if ( empty($this->profile->telephone) ) $this->userProfile->telephone = '';
-    else $this->userProfile->telephone = $this->profile->telephone;
+		else $this->userProfile->telephone = $this->profile->telephone;
+
 		if ( empty($this->profile->portable) ) $this->userProfile->portable = '';
-    else $this->userProfile->portable = $this->profile->portable;
+		else $this->userProfile->portable = $this->profile->portable;
+
 		if ( empty($this->profile->name) ) $this->userProfile->name = '';
-    else $this->userProfile->name = $this->profile->name;
+		else $this->userProfile->name = $this->profile->name;
+
 		if ( empty($this->profile->lastname) ) $this->userProfile->lastname = '';
-    else $this->userProfile->lastname = $this->profile->lastname;
+		else $this->userProfile->lastname = $this->profile->lastname;
+
 		if ( empty($this->profile->mail) ) $this->userProfile->mail = '';
-    else $this->userProfile->mail = $this->profile->mail;
+		else $this->userProfile->mail = $this->profile->mail;
 
 		if ( $layout == 'edit' ) {
-      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_USER_EDITION_PROFIL'));
-    } else {
-      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_USER_GESTION_PROFIL'));
-    }
+			$this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_USER_EDITION_PROFIL'));
+		} else {
+			$this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_USER_GESTION_PROFIL'));
+		}
 
 		//$this->_prepareDocument();
 
@@ -73,14 +81,14 @@ class TdsmanagerViewUser extends JView {
 	}
 
 	protected function _getViewFile($view, $tpl) {
-    $tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
-    if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
+		$tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
+		if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
 
-    ob_start();
+		ob_start();
 		include $tpl;
 		$output = ob_get_contents();
 		ob_end_clean();
 
 		return $output;
-  }
+	}
 }

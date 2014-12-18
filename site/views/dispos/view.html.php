@@ -17,7 +17,7 @@ jimport('joomla.application.component.view');
  * @since 1.6
  */
 class TdsmanagerViewDispos extends JView {
-  /**
+	/**
 	 * Display the view
 	 *
 	 * @return	mixed	False on error, null otherwise.
