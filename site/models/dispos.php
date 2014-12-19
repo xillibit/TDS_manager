@@ -25,13 +25,16 @@ class TdsmanagerModelDispos extends JModel {
     $query = "SELECT hosting.* FROM #__tdsmanager_hebergements AS hosting
               WHERE hosting.userid={$db->quote($user->id)}";
     $db->setQuery((string)$query);
-    $users_hosting = $db->loadObjectList();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    try
+	{
+		$users_hosting = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $hebergements_user = array();
     foreach($users_hosting as $hosting) {

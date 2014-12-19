@@ -23,13 +23,16 @@ class TdsmanagerModelReglements extends JModel {
     $query->select('*')->from('#__tdsmanager_reglements'); */
     $query = "SELECT * FROM #__tdsmanager_reglements";
     $db->setQuery((string)$query);
-    $reglements = $db->loadObjectList();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+  	try
+	{
+		$reglements = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $reglements;
   }
@@ -43,13 +46,16 @@ class TdsmanagerModelReglements extends JModel {
     $query = "SELECT * FROM #__tdsmanager_reglements
               WHERE id='{$db->quote($id_reglement)}'";
     $db->setQuery((string)$query);
-    $reglement = $db->loadObject();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+	try
+	{
+		$reglement = $db->loadObject();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $reglement;
   }
@@ -64,13 +70,16 @@ class TdsmanagerModelReglements extends JModel {
               INNER JOIN #__tdsmanager_hebergements AS hostings ON decl.hebergement_id=hostings.id
               WHERE decl.declarant_userid={$db->quote($user->id)}";
     $db->setQuery((string)$query);
-    $user_declarations = $db->loadObjectList();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+	try
+	{
+		$user_declarations = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $declarations_user = array();
     foreach($user_declarations as $id=>$decla) {
@@ -86,15 +95,19 @@ class TdsmanagerModelReglements extends JModel {
     $db = JFactory::getDBO();
     /*$query = "SELECT * FROM #__tdsmanager_declarations WHERE declarant_userid={db->quote($user->id)}";
     $db->setQuery((string)$query);
-    $montantToPay = $db->loadResult();*/
+    */
 
     $montantToPay = '';
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+	try
+	{
+		$montantToPay = $db->loadResult();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $montantToPay;
   }

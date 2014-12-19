@@ -72,13 +72,16 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
 
     $query = "DELETE FROM #__tdsmanager_hebergements_label WHERE id={$db->quote($id)}";
     $db->setQuery((string)$query);
-    $db->Query();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-    	return false;
-    }
+	try
+	{
+		$db->Query();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_DELETED_SUCCESSFULLY') );
     $this->app->redirect($this->baseurl);
@@ -101,13 +104,16 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
                 (nom)
                 VALUES({$db->quote($post['nom'])})";
        $db->setQuery((string)$query);
-       $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_SAVED') );
        $this->app->redirect($this->baseurl);
@@ -115,13 +121,16 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
         $query = "UPDATE #__tdsmanager_hebergements_label
                   SET nom={$db->quote($post['nom'])} WHERE id={$db->quote($id)}";
         $db->setQuery((string)$query);
-        $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_LABEL_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);

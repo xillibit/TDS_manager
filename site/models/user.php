@@ -16,7 +16,7 @@ jimport('joomla.application.component.model');
  * @subpackage	com_contact
  */
 class TdsmanagerModelUser extends JModel {
-  public function getUserProfile() {
+	public function getUserProfile() {
     $user = JFactory::getUser();
     $db = JFactory::getDBO();
 
@@ -27,11 +27,15 @@ class TdsmanagerModelUser extends JModel {
     $db->setQuery((string)$query);
     $profile = $db->loadObject();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+	try
+	{
+		$profile = $db->loadObject();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $profile;
   }

@@ -41,11 +41,14 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 				$query = "UPDATE #__tdsmanager_users
 					SET name={$db->quote($post['name'])},lastname={$db->quote($post['lastname'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},ville={$db->quote($post['ville'])},postalcode={$db->quote($post['postalcode'])},portable={$db->quote($post['portable'])},telephone={$db->quote($post['telephone'])},mail={$db->quote($post['mail'])} WHERE userid={$db->quote($post['userid'])}";
 				$db->setQuery((string)$query);
-				$db->Query();
 
-				// Check for a database error.
-				if ($db->getErrorNum()) {
-					JError::raiseWarning(500, $db->getErrorMsg());
+				try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
 					return false;
 				}
 

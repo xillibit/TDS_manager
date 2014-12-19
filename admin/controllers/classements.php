@@ -46,11 +46,14 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$db = JFactory::getDBO();
 			$query = "DELETE FROM #__tdsmanager_classements WHERE id IN ($ids)";
 			$db->setQuery((string)$query);
-			$db->Query();
 
-			// Check for a database error.
-			if ($db->getErrorNum()) {
-				JError::raiseWarning(500, $db->getErrorMsg());
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
 				return false;
 			}
 
@@ -155,11 +158,14 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 				(description,state)
 				VALUES({$db->quote($post['description'])},'1')";
 			$db->setQuery((string)$query);
-			$db->Query();
 
-			// Check for a database error.
-			if ($db->getErrorNum()) {
-				JError::raiseWarning(500, $db->getErrorMsg());
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
 				return false;
 			}
 
@@ -170,11 +176,14 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$query = "UPDATE #__tdsmanager_classements
 				SET description={$db->quote($post['description'])},state={$db->quote($post['state'])} WHERE id={$db->quote($id)}";
 			$db->setQuery((string)$query);
-			$db->Query();
 
-			// Check for a database error.
-			if ($db->getErrorNum()) {
-				JError::raiseWarning(500, $db->getErrorMsg());
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
 				return false;
 			}
 
@@ -189,11 +198,14 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 		$db = JFactory::getDBO();
 		$query = "UPDATE #__tdsmanager_classements SET state={$db->Quote($state)} WHERE id IN ($ids)";
 		$db->setQuery((string)$query);
-		$db->Query();
 
-		// Check for a database error.
-		if ($db->getErrorNum()) {
-			JError::raiseWarning(500, $db->getErrorMsg());
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
 			return false;
 		}
 

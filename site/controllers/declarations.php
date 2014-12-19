@@ -47,14 +47,16 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       $query = "INSERT INTO #__tdsmanager_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
               VALUES ({$db->quote($start_date)}, {$db->quote($end_date)}, {$db->quote($post['nb_personnes_exonerees'])}, {$db->quote($post['nb_personnes_reduction'])}, {$db->quote($period_dec)}, {$db->quote($post['nb_personnes_assujetties'])}, {$db->quote($post['duree_sejour_nuitee'])}, {$db->quote($post['nb_total_nuitees'])}, {$db->quote($post['tarif_par_nuitees'])}, {$db->quote($post['montant_encaisse_sejour'])}, {$db->quote($date_now)}, {$db->quote($user->id)}, {$db->quote($hosting_id)})";
       $db->setQuery((string)$query);
-      $db->Query();
-
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_TDSMANAGER_DECLARATION_SAVED_FAILED');
-        return false;
-      }
+      
+      try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       $app->enqueueMessage(JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCCESSFULLY'));
       $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false) );
@@ -123,14 +125,16 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
        $query->select('')->from('')->where(''); */
        $query = "SELECT n.* FROM #__tdsmanager_tarif_nuit AS n INNER JOIN #__tdsmanager_hebergements AS h ON h.id_hebergement_type=n.id_hebergement_type WHERE h.id={$db->quote(intval($hosting_selected))}";
        $db->setQuery((string)$query);
-       $tarifs = $db->loadObject();
 
-       // Check for a database error.
-       if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_TDSMANAGER_DECLARATION_SAVED_FAILED');
-        return false;
-      }
+       try
+		{
+			$tarifs = $db->loadObject();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       $app->setUserState( 'com_tdsmanager.tarifs', $tarifs );
     } else {
@@ -163,13 +167,16 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       if ( $reglement->date_regler ) {
         $query = "DELETE FROM #__tdsmanager_declarations WHERE id={$declaration_Id};";
         $db->setQuery((string)$query);
-        $db->Query();
-
-        if ($db->getErrorNum()) {
-          JError::raiseWarning(500, $db->getErrorMsg());
-          $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
-          return false;
-        }
+        
+        try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
         $message = JText::_('COM_TDSMANAGER_DECLARATION_DELETE_SUCCESSFULLY');
       } else {
@@ -189,13 +196,16 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
                 LEFT JOIN #__tdsmanager_classements AS class ON class.id=h.id_classement
                 WHERE h.id={$hebergement_id};";
       $db->setQuery((string)$query);
-      $hebergement = $db->loadObject();
-
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
-        return false;
-      }
+      
+      try
+		{
+			$hebergement = $db->loadObject();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       echo json_encode($hebergement);
     }
@@ -237,11 +247,15 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $db->setQuery((string)$query);
     $gest_user = $db->loadObject();
 
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
-      return false;
-    }
+    try
+		{
+			$gest_user = $db->loadObject();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
     $model = $this->getModel();
     $decl_details = $model->getMontantByDeclaration();
@@ -284,13 +298,15 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     // récupération des infos du destinataire
     $query = "SELECT * FROM #__tdsmanager_users WHERE userid={$user->id};";
     $db->setQuery((string)$query);
-    $gest_user = $db->loadObject();
-
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_TDSMANAGER_DELETE_FAILED');
-      return false;
-    }
+    try
+		{
+			$gest_user = $db->loadObject();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
     $mailer->addRecipient($gest_user->mail);
     $mailer->setSubject('Reçu de paiement de la Taxe de séjour');
@@ -453,13 +469,16 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     foreach($ids as $id) {
       $query = "INSERT INTO #__tdsmanager_reglements (`date_regler`, `montant`, `type_reglement`, `declaration_id`, `finaliser` ) VALUES ({$date_now}, {$amount}, {$type_reglement}, {$id}, 1)";
       $db->setQuery((string)$query);
-      $db->Query();
-
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        return false;
-      }
+      
+      try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
     }
   }
 

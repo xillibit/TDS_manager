@@ -35,14 +35,16 @@ class TdsmanagerControllerDispos extends JControllerLegacy {
 
     $query = "DELETE FROM #__tdsmanager_dispos WHERE id IN ({$ids})";
     $db->setQuery((string)$query);
-    $db->query();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_TDSMANAGER_DISPOS_DELETED_FAILED');
-      return false;
-    }
+	try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
   }
 
   public function savedispos() {
@@ -63,28 +65,31 @@ class TdsmanagerControllerDispos extends JControllerLegacy {
 
       $query = "UPDATE #__tdsmanager_dispos SET startdate={$db->quote($startDate)},enddate={$db->quote($endDate)} WHERE id={$db->quote($id_dispos)}";
       $db->setQuery((string)$query);
-      $db->query();
 
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_TDSMANAGER_DISPOS_EDIT_FAILED');
-        return false;
-      }
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       $app->enqueueMessage ( 'Votre disponiblité a bien été enregistrée');
       $app->redirect(JRoute::_('index.php?option=com_tdsmanager&view=dispos'));
     } else {
       $query = "INSERT INTO #__tdsmanager_dispos (startdate,enddate,id_hebergement) VALUES({$db->quote($startDate)},{$db->quote($endDate)},{$db->quote($hosting_id)})";
       $db->setQuery((string)$query);
-      $db->query();
-
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        $message = JText::_('COM_TDSMANAGER_DISPOS_SAVED_FAILED');
-        return false;
-      }
+    try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       $app->enqueueMessage ( 'Votre nouvelle disponiblité a bien été enregistrée');
       $app->redirect(JRoute::_('index.php?option=com_tdsmanager&view=dispos'));
@@ -166,14 +171,16 @@ class TdsmanagerControllerDispos extends JControllerLegacy {
               INNER JOIN #__tdsmanager_hebergements_type AS type ON type.id=hosts.id_hebergement_type
               ".$where;
     $db->setQuery((string)$query);
-    $dispos = $db->loadObjectList();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      $message = JText::_('COM_TDSMANAGER_SEARCH_DISPOS_FAILED');
-      return false;
-    }
+  try
+		{
+			$dispos = $db->loadObjectList();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
     // Remise en forme pour la query
     $query_user = '';

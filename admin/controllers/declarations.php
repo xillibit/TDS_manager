@@ -60,13 +60,15 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       /*$db = JFactory::getDBO();
       $query = "DELETE FROM #__tdsmanager_declarations WHERE id IN ($ids)";
       $db->setQuery((string)$query);
-      $db->Query();    */
-
-      // Check for a database error.
-  		if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
+      try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}*/
 
   		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_ITEMS_DELETED') );
   		$this->app->redirect($this->baseurl);
@@ -104,13 +106,15 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
               ,{$db->quote($post['nb_personnes_reduction_75'])},{$db->quote($post['nb_nuitees_30'])},{$db->quote($post['nb_nuitees_40'])},{$db->quote($post['nb_nuitees_50'])},{$db->quote($post['nb_nuitees_75'])},
               {$db->quote($post['nb_personnes_exonerees'])},{$db->quote($post['sous_total2'])},{$db->quote($post['montant_total'])},{$db->quote($post['montant_total'])},{$date})";
      $db->setQuery((string)$query);
-     $db->Query();
-
-     // Check for a database error.
-     if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-    	return false;
-     }
+     try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCESSFULLY') );
   	 $this->app->redirect($this->baseurl);*/
@@ -148,13 +152,17 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
     $query = "SELECT tarif FROM #__tdsmanager_hebergclass
               WHERE id_hebergement='{$post['hebergement']}'";
     $db->setQuery((string)$query);
-    $tarif_hebergement = $db->loadResult();
 
     // Check for a database error.
-  	if ($db->getErrorNum()) {
-  	 JError::raiseWarning(500, $db->getErrorMsg());
-  	 return false;
-  	}
+  	try
+		{
+			$tarif_hebergement = $db->loadResult();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
     if ( $tarif_hebergement != '0.00' ) {*/
       $object = new StdClass;

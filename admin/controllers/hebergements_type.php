@@ -45,13 +45,16 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
 
     $query = "DELETE FROM #__tdsmanager_hebergements_type WHERE id={$db->quote($id)}";
     $db->setQuery((string)$query);
-    $db->Query();
 
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-    	return false;
-    }
+	try
+	{
+		$db->Query();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TYPE_DELETED_SUCCESSFULLY') );
     $this->app->redirect($this->baseurl);
@@ -103,13 +106,16 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
                 (name,description,state)
                 VALUES({$db->quote($post['name'])},{$db->quote($post['description'])},'1')";
        $db->setQuery((string)$query);
-       $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TYPE_SAVED') );
        $this->app->redirect($this->baseurl);
@@ -117,13 +123,16 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
         $query = "UPDATE #__tdsmanager_hebergements_type
                   SET name={$db->quote($post['name'])},description={$db->quote($post['description'])},state={$db->quote($post['state'])} WHERE id={$db->quote($id)}";
         $db->setQuery((string)$query);
-        $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TYPE_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);

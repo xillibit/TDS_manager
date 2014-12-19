@@ -80,13 +80,16 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 					SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},postalcode={$db->quote($post['postalcode'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},id_hebergement_label={$db->quote($post['labels'])}
 					WHERE id={$hebergement_id}";
 				$db->setQuery((string)$query);
-				$db->Query();
 
-				// Check for a database error.
-				if ($db->getErrorNum()) {
-				JError::raiseWarning(500, $db->getErrorMsg());
-				return false;
-			}
+				try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
 
 			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITED_SUCCESSFULLY') );
 		} else {
@@ -107,13 +110,15 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 				(hosting_id,user_id)
 				VALUES({$db->quote($hosting_id)},{$db->quote($user->id)})";
 			$db->setQuery((string)$query);
-			$db->Query();
-
-			// Check for a database error.
-			if ($db->getErrorNum()) {
-				JError::raiseWarning(500, $db->getErrorMsg());
-				return false;
-			}
+			try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
 
 			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_SAVED') );
 			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
@@ -172,14 +177,15 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 
     $query = "INSERT INTO #__tdsmanager_attachments (name,size) VALUES({$db->quote($name)},{$db->quote($size)})";
     $db->setQuery((string)$query);
-    $db->Query();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-    	return false;
-    }
-
+  try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
     return true;
   }
 
@@ -198,13 +204,15 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
       $db = JFactory::getDBO();
       $query = "DELETE FROM #__tdsmanager_hebergements WHERE id IN ({$db->quote($id)})";
       $db->setQuery((string)$query);
-      $db->Query();
-
-      // Check for a database error.
-    	if ($db->getErrorNum()) {
-    	 JError::raiseWarning(500, $db->getErrorMsg());
-    	 return false;
-    	}
+    try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
 
       $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETED') );
     } else {
@@ -241,13 +249,15 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     if ( $user->id > 0 ) {
       $query = "UPDATE #__tdsmanager_hebergements WHERE id={$db->quote($id)}";
       $db->setQuery((string)$query);
-      $db->Query();
-
-      // Check for a database error.
-    	if ($db->getErrorNum()) {
-    	 JError::raiseWarning(500, $db->getErrorMsg());
-    	 return false;
-    	}
+    try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
 
     	if ( !$state ) $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_UNPUBLISHED') );
     	else $app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_PUBLISHED') );
@@ -279,13 +289,15 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
                     (date_fermeture,date_ouverture,motif,id_hebergement)
                     VALUES({$db->quote($post['fermee_depuis'])},{$db->quote($post['reouverture_le'])},{$db->quote($post['motif'])},{$db->quote($post['hebergement_list'])} )";
       $db->setQuery((string)$query);
-      $db->Query();
-
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        return false;
-      }
+    try
+				{
+					$db->Query();
+				}
+				catch (Exception $e)
+				{
+					$this->app->enqueueMessage ($e->getMessage());
+					return false;
+				}
 
       $app->enqueueMessage ( JText::_('COM_TDSMANAGER_PERIOD_OUVERTURE_SAVED_SUCCESSFULLY') );
     } else {

@@ -44,12 +44,16 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $db = JFactory::getDBO();
       $query = "UPDATE #__tdsmanager_reglements SET finaliser='1' WHERE id IN ($ids)";
       $db->setQuery((string)$query);
-      $db->Query();
 
-      if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
+	try
+	{
+		$db->Query();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_REGLEMENT_VALIDATED'), 'error' );
       $this->app->redirect($this->baseurl);
@@ -73,12 +77,16 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $db = JFactory::getDBO();
       $query = "SELECT * FROM #__tdsmanager_reglements WHERE id IN ($ids) AND finaliser='0'";
       $db->setQuery((string)$query);
-      $items = $db->loadObjectList();
 
-      if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
+		try
+		{
+			$items = $db->loadObjectList();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
   		if ( !empty($items) ) {
         jimport( 'joomla.mail.mail' );

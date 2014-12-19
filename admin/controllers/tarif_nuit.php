@@ -71,13 +71,16 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
       $db = JFactory::getDBO();
       $query = "DELETE FROM #__tdsmanager_tarif_nuit WHERE id IN ($ids)";
       $db->setQuery((string)$query);
-      $db->Query();
 
-      // Check for a database error.
-  		if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
   		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TARIF_NUIT_ITEMS_DELETED') );
   		$this->app->redirect($this->baseurl);
@@ -104,13 +107,16 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
                 (tarif, id_classement, id_hebergement_type)
                 VALUES({$db->quote($post['tarif'])}, {$db->quote($post['classement'])}, {$db->quote($post['hebergement_type'])})";
        $db->setQuery((string)$query);
-       $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TARIF_NUIT_NEW_SAVED') );
        $this->app->redirect($this->baseurl);
@@ -119,13 +125,16 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
                   SET tarif={$db->quote($post['tarif'])},id_classement={$db->quote($post['classement'])}, id_hebergement_type={$db->quote($post['hebergement_type'])}
                   WHERE id={$db->quote($post['id'])}";
         $db->setQuery((string)$query);
-        $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TARIF_NUIT_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);

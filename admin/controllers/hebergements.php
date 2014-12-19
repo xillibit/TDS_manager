@@ -81,13 +81,16 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
                 (hostingname,description,adress,complement_adress,city,website,email,postalcode,numero_classement,date_classement,id_classement,id_hebergement_type,id_hebergement_label,capacite_personnes,capacite_chambres,userid)
                 VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['email'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($post['classement'])},{$db->quote($post['hebergement_type'])},{$db->quote($post['label'])},{$db->quote($post['capacite_personnes'])},{$db->quote($post['capacite_chambres'])},{$db->quote($post['user_id'])})";
        $db->setQuery((string)$query);
-       $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        /* Récupérer le tarif de la taxe de séjour correspondant à l'hébergement
        $heberg_id = $db->insertid();
@@ -98,11 +101,15 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
        $db->setQuery((string)$query);
        $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}*/
+       try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
        $this->app->redirect($this->baseurl);
@@ -111,24 +118,30 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
                 SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},email={$db->quote($post['email'])},postalcode={$db->quote($post['postalcode'])},id_classement={$db->quote($post['classement'])},id_hebergement_type={$db->quote($post['hebergement_type'])},id_hebergement_label={$db->quote($post['label'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},capacite_personnes={$db->quote($post['capacite_personnes'])},capacite_chambres={$db->quote($post['capacite_chambres'])}
                 WHERE id={$db->quote($id)}";
        $db->setQuery((string)$query);
-       $db->Query();
 
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
         // mettre à jour les données dans hebergclass
        /*$query = "UPDATE #__tdsmanager_hebergclass SET id_classement=,tarif=,userid=,id_hebergement_type=,id_hebergement_label= WHERE id_hebergement={$db->quote($id)}";
        $db->setQuery((string)$query);
-       $db->Query();
-
-        // Check for a database error.
-    		if ($db->getErrorNum()) {
-    			JError::raiseWarning(500, $db->getErrorMsg());
-    			return false;
-    		} */
+       
+       try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}*/
 
        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
        $this->app->redirect($this->baseurl);
@@ -152,13 +165,16 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $db = JFactory::getDBO();
       $query = "DELETE FROM #__tdsmanager_hebergements WHERE id={$db->Quote($id)}";
       $db->setQuery((string)$query);
-      $db->Query();
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
-      // Check for a database error.
-  		if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
       /**
        *  $state = 1 published
        *  $state = 2 unpublished
@@ -223,13 +239,16 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
     $db = JFactory::getDBO();
     $query = "UPDATE #__tdsmanager_hebergements SET state={$db->Quote($state)} WHERE id={$db->Quote($id)}";
     $db->setQuery((string)$query);
-    $db->Query();
 
-    // Check for a database error.
-		if ($db->getErrorNum()) {
-			JError::raiseWarning(500, $db->getErrorMsg());
-			return false;
-		}
+	try
+	{
+		$db->Query();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
 		return true;
   }

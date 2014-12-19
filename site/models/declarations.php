@@ -33,13 +33,16 @@ class TdsmanagerModelDeclarations extends JModel {
     $query = "SELECT hosting.* FROM #__tdsmanager_hebergements AS hosting
               WHERE hosting.userid={$db->quote($user->id)}";
     $db->setQuery((string)$query);
-    $users_hosting = $db->loadObjectList();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$users_hosting = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $hebergements_user = array();
     foreach($users_hosting as $hosting) {
@@ -57,13 +60,16 @@ class TdsmanagerModelDeclarations extends JModel {
     $query->select('*')->from('#__tdsmanager_hebergements_type')->where('state=1'); */
     $query = "SELECT * FROM #__tdsmanager_hebergements_type WHERE state=1";
     $db->setQuery((string)$query);
-    $hosting_type = $db->loadObjectList();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$hosting_type = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     $hebergement_type = array();
     foreach($hosting_type as $id=>$hosting) {
@@ -86,13 +92,16 @@ class TdsmanagerModelDeclarations extends JModel {
               LEFT JOIN #__tdsmanager_paiement_done AS paiedone ON decl.id=paiedone.decl_id
               WHERE decl.declarant_userid={$db->quote($user->id)}";
     $db->setQuery((string)$query);
-    $declarations_user = $db->loadObjectList();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$declarations_user = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $declarations_user;
   }
@@ -111,13 +120,16 @@ class TdsmanagerModelDeclarations extends JModel {
     $query = "SELECT SUM(montant_encaisse_sejour) FROM #__tdsmanager_declarations
               WHERE declarant_userid={$db->quote($user->id)} AND id IN (".$idsSelected.")";
     $db->setQuery((string)$query);
-    $totalDeclaration = $db->loadResult();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$totalDeclaration = $db->loadResult();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $totalDeclaration;
   }
@@ -137,13 +149,17 @@ class TdsmanagerModelDeclarations extends JModel {
       $query = "SELECT * FROM #__tdsmanager_declarations AS decl
                 WHERE id IN (".$idsSelected.")";
       $db->setQuery((string)$query);
-      $declarations_sel = $db->loadObjectList();
+      
 
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        return false;
-      }
+      try
+	{
+		$declarations_sel = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
       return $declarations_sel;
     }
@@ -163,13 +179,16 @@ class TdsmanagerModelDeclarations extends JModel {
               LEFT JOIN #__tdsmanager_reglements AS reg ON decl.id=reg.declaration_id
              WHERE decl.id IN (".$idsSelected.")";
     $db->setQuery((string)$query);
-    $declarations_sel = $db->loadObjectList();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$declarations_sel = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $declarations_sel;
   }
@@ -184,13 +203,16 @@ class TdsmanagerModelDeclarations extends JModel {
       $query = "SELECT * FROM #__tdsmanager_users
                   WHERE userid={$db->quote($user->id)}";
       $db->setQuery((string)$query);
-      $detailsHebergeur = $db->loadObject();
-
-      // Check for a database error.
-      if ($db->getErrorNum()) {
-        JError::raiseWarning(500, $db->getErrorMsg());
-        return false;
-      }
+      
+      try
+	{
+		$detailsHebergeur = $db->loadObject();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
       return $detailsHebergeur;
     } else {
@@ -206,13 +228,16 @@ class TdsmanagerModelDeclarations extends JModel {
     $query = "SELECT * FROM #__tdsmanager_methods_paiement
                   WHERE state=1";
     $db->setQuery((string)$query);
-    $paiementMethods = $db->loadObjectList();
-
-    // Check for a database error.
-    if ($db->getErrorNum()) {
-      JError::raiseWarning(500, $db->getErrorMsg());
-      return false;
-    }
+    
+    try
+	{
+		$paiementMethods = $db->loadObjectList();
+	}
+	catch (Exception $e)
+	{
+		$this->app->enqueueMessage ($e->getMessage());
+		return false;
+	}
 
     return $paiementMethods;
   }

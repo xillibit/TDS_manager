@@ -85,18 +85,22 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
           $ids = implode(',',$ids);
           $query = "DELETE FROM #__tdsmanager_user WHERE userid IN ($ids)";
           $db->setQuery((string)$query);
-          $db->Query();
+
+          try
+          {
+          	$db->Query();
+          }
+          catch (Exception $e)
+          {
+          	$this->app->enqueueMessage ($e->getMessage());
+          	return false;
+          }
 
           // TODO: utiliser une fonction de Joomla! pour supprimer l'utilisateur
           /*$query = "DELETE FROM #__users WHERE id IN ($ids)";
           $db->setQuery((string)$query);
           $db->Query();   */
 
-          // Check for a database error.
-      		if ($db->getErrorNum()) {
-      			JError::raiseWarning(500, $db->getErrorMsg());
-      			return false;
-      		}
         }
       }
 
@@ -124,13 +128,16 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
      $query = "UPDATE #__tdsmanager_users
               SET name={$db->quote($post['name'])},lastname={$db->quote($post['lastname'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},postalcode={$db->quote($post['postalcode'])},ville={$db->quote($post['ville'])},telephone={$db->quote($post['telephone'])},portable={$db->quote($post['portable'])} WHERE userid={$db->quote($userid)}";
      $db->setQuery((string)$query);
-     $db->Query();
 
-     // Check for a database error.
-  		if ($db->getErrorNum()) {
-  			JError::raiseWarning(500, $db->getErrorMsg());
-  			return false;
-  		}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVED_SUCESSFULLY') );
   		$this->app->redirect($this->baseurl);
@@ -183,7 +190,16 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     $db = JFactory::getDBO();
     $query = "UPDATE #__users SET block={$db->quote($state)} WHERE id IN ('$ids')";
     $db->setQuery((string)$query);
-    $db->Query();
+
+    try
+    {
+    	$db->Query();
+    }
+    catch (Exception $e)
+    {
+    	$this->app->enqueueMessage ($e->getMessage());
+    	return false;
+    }
 
     return true;
   }
@@ -295,7 +311,15 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     $db = JFactory::getDBO();
     $query = "UPDATE #__users SET activation={$db->quote($state)} WHERE id IN ('$ids')";
     $db->setQuery((string)$query);
-    $db->Query();
+	try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
     return true;
   }
