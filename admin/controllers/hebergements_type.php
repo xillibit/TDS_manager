@@ -40,7 +40,7 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
 
     $db = JFactory::getDBO();
 
-    $cids = $this->app->input->getArray('cid', array ());
+    $cids = $this->app->input->get('cid',array(),'ARRAY');
     $id = array_shift($cids);
 
     $query = "DELETE FROM #__tdsmanager_hebergements_type WHERE id={$db->quote($id)}";
@@ -76,7 +76,7 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = $this->app->input->getArray('cid', array ());
+    $cids = $this->app->input->get('cid',array(),'ARRAY');
     $id = array_shift($cids);
 
     $this->app->setUserState( "com_tdsmanager.hebergement_type.id", $id );

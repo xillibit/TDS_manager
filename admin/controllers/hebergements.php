@@ -57,7 +57,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = $this->app->input->getArray('cid', array ());
+    $cids = $this->app->input->get('cid',array(),'ARRAY');
     $cid = array_shift($cids);
 
     $this->app->setUserState( "com_tdsmanager.hebergement.id", $cid );
@@ -145,7 +145,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = $this->app->input->getArray('cid', array ());
+    $cids = $this->app->input->get('cid',array(),'ARRAY');
     $id = array_shift($cids);
 
     if ( $id > 0 ) {

@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements` (
   `owner_lastname` char(255) NOT NULL,
   `id_classement` tinyint(7) unsigned NOT NULL DEFAULT '0',
   `date_classement` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `numero_agrement` varchar(28) NOT NULL DEFAULT '0',
+  `numero_classement` varchar(28) NOT NULL DEFAULT '0',
   `city` varchar(255) NOT NULL,
   `website` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,

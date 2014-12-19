@@ -102,10 +102,10 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
        ?>
 		</tbody>
 	</table>
-  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NEW') ?>" /></a>
-  <input type="button" id="taxehebergementedit" name="soumis" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_EDIT') ?>" />
-  <input type="button" id="taxehebergementdelete" name="soumis" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETE') ?>" />
-  <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><input type="button" value="<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_PERIODE_OUVERTURE') ?>" /></a>
+  <a class="btn btn-primary" href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" ><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NEW') ?></a>
+    <button class="btn btn-primary" id="taxehebergementedit" type="button"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_EDIT') ?></button>
+   <button class="btn btn-danger" id="taxehebergementdelete" type="button"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETE') ?></button>
+  <a class="btn btn-primary" href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_PERIODE_OUVERTURE') ?></a>
   <?php echo JHtml::_('form.token'); ?>
   <div>
     <?php //echo $this->getPagination(7) ?>

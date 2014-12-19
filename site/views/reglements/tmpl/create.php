@@ -21,7 +21,8 @@ defined('_JEXEC') or die;
     A régler : <?php echo $this->montantToPay ?>
     <br />
     <?php echo JHTML::_( 'form.token' ); ?>
-    <input type="button" onclick="javascript:history.back()" value="Annuler">
-    <input type="submit" value="Valider">
+
+	<button class="btn btn-primary" type="submit">Valider</button>
+	<button class="btn btn-danger" onclick="javascript:history.back()" type="button">Annuler</button>
   </form>
 </div>

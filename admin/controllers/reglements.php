@@ -38,7 +38,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
 
     if ( !empty($ids) ) {
       $db = JFactory::getDBO();
@@ -67,7 +67,7 @@ class TdsmanagerAdminControllerReglements extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       // Vérifier avant d'envoyer le mail que le réglement n'a pas été fait
       $db = JFactory::getDBO();

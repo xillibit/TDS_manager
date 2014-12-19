@@ -51,7 +51,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
 
     if ( !empty($ids) ) {
       $id = array_shift($ids);
@@ -72,7 +72,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       jimport( 'joomla.access.access' );
       $user = JFactory::getUser();
@@ -146,7 +146,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
 
     if ( !empty($ids) ) {
        $this->setBlockStatus('1', $ids);
@@ -165,7 +165,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       $this->setBlockStatus('0', $ids);
 
@@ -194,7 +194,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       $this->setActivate('0', $ids);
 
@@ -212,7 +212,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       $this->setActivate('1', $ids);
 
@@ -236,7 +236,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->setUserState( 'com_tdsmanager.users.mailinglist.ids', null );
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       // Afficher une fenêtre de confirmation
 

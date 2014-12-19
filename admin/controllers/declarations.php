@@ -32,7 +32,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
 
     if ( !empty($ids) ) {
       $id = array_shift($ids);
@@ -53,7 +53,7 @@ class TdsmanagerAdminControllerDeclarations extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       $ids = implode(',',$ids);
 

@@ -37,7 +37,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $cids = $this->app->getArray('cid', array ());
+    $cids = $this->app->input->get('cid',array(),'ARRAY');
     $id = array_shift($cids);
 
     $this->app->setUserState( "com_tdsmanager.hebergement_tarif_nuit.id", $id );
@@ -64,7 +64,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $ids = $this->app->getArray('cid', array ());
+    $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
       $ids = implode(',',$ids);
 

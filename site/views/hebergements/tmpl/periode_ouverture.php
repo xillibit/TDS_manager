@@ -27,7 +27,7 @@ JHTML::_('behavior.calendar');
     </ul>
 
 	<button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ENREGISTRER') ?></button>
-	<button class="btn btn-primary" type="button" onclick="javascript:history.back()"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?></button>
+	<button class="btn btn-danger" type="button" onclick="javascript:history.back()"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_EDIT_ANNULER') ?></button>
 
     <?php echo JHtml::_('form.token'); ?>
   </form>

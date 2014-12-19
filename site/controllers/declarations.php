@@ -150,7 +150,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       $app->redirect($this->baseurl);
     }
 
-    $ids = $app->input->getArray('cid', array ());
+    $ids = $app->input->get('cid',array(),'ARRAY');
 
     var_dump($ids);
 
@@ -467,7 +467,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app = JFactory::getApplication();
 
     // Get selected items
-    $ids = $app->input->getArray('cid', array ());
+    $ids = $app->input->get('cid',array(),'ARRAY');
 
     $app->setUserState( 'com_tdsmanager_recap_ids', $ids );
 

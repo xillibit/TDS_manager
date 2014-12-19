@@ -53,8 +53,9 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
       <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_OK') ?></span>: <input type="checkbox" name="exactitude_document" value="1" /> </li>
 
     </ul>
-	<input type="button" onclick="javascript:history.back()" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?>" />
-	<input type="submit" value="<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?>" />
+    <button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?></button>
+	<button class="btn btn-danger" onclick="javascript:history.back()" type="button"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?></button>
+
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>

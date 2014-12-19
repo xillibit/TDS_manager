@@ -38,7 +38,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids =  $this->app->input->getArray('cid', array ());
+		$ids = $this->app->input->get('cid',array(),'ARRAY');
 
 		if ( !empty($ids) ) {
 			$ids = implode(',',$ids);
@@ -69,7 +69,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = $this->app->input->getArray('cid', array ());
+		$ids = $this->app->input->get('cid',array(),'ARRAY');
 		if ( !empty($ids) ) {
 			$id = array_shift($ids);
 
@@ -101,7 +101,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = $this->app->input->getArray('cid', array ());
+		$ids = $this->app->input->get('cid',array(),'ARRAY');
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 0);
 			if ( $state ) {
@@ -123,7 +123,7 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
-		$ids = $this->app->input->getArray('cid', array ());
+		$ids = $this->app->input->get('cid',array(),'ARRAY');
 
 		if ( !empty($ids) ) {
 			$state = $this->_setState($ids, 1);

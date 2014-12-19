@@ -16,7 +16,7 @@ jimport('joomla.application.component.controller');
  * @subpackage	com_tdsmanager
  * @since		1.6
  */
-class TdsmanagerController extends JController {
+class TdsmanagerController extends JControllerLegacy {
 	/**
 	 * Method to display a view.
 	 *

@@ -11,103 +11,117 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controller');
 
 class TdsmanagerControllerHebergements extends JControllerLegacy {
-  public function edit() {
-    $app	= JFactory::getApplication();
-    $task = $app->input->getCmd('task');
+	public function edit() {
+		$app	= JFactory::getApplication();
+		$task = $app->input->getCmd('task');
 
-    $app->setUserState( 'com_tdsmanager.hebergement.editmode', '1' );
+		$app->setUserState( 'com_tdsmanager.hebergement.editmode', '1' );
 
-    // redirect back if nothing is selected
-    $cids = $app->input->getArray('cid', array ());
+		// redirect back if nothing is selected
+		$cids = $app->input->get('cid',array(),'ARRAY');
 
-    if ( !empty($cids) ) {
-      $id = array_shift($cids);
+		if ( !empty($cids) ) {
+			$id = array_shift($cids);
 
-      $app->setUserState( "com_tdsmanager.edit.hebergement.id", $id );
-    }
+			$app->setUserState( "com_tdsmanager.edit.hebergement.id", $id );
+		}
 
-    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
-    return false;
-  }
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
+		return false;
+	}
 
-  public function create() {
-    $app	= JFactory::getApplication();
+	public function create() {
+		$app	= JFactory::getApplication();
 
-    // unset hebergement id
-    $id = $app->getUserState( 'com_tdsmanager.edit.hebergement.id' );
-    if ( $id ) $app->setUserState( 'com_tdsmanager.edit.hebergement.id', null );
+		// unset hebergement id
+		$id = $app->getUserState( 'com_tdsmanager.edit.hebergement.id' );
+		if ( $id ) $app->setUserState( 'com_tdsmanager.edit.hebergement.id', null );
 
-    $app->setUserState( 'com_tdsmanager.hebergement.editmode', null );
+		$app->setUserState( 'com_tdsmanager.hebergement.editmode', null );
 
-    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
-    return false;
-  }
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements&layout=edit', false));
+		return false;
+	}
 
-  public function save() {
-    $app	= JFactory::getApplication();
-    $user = JFactory::getUser();
-    // Check for request forgeries.
-    if (!JSession::checkToken()) {
-      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $app->redirect($this->baseurl);
-    }
+	public function save() {
+		$app	= JFactory::getApplication();
+		$user = JFactory::getUser();
 
-    if ( $user->id > 0 ) {
-      $post = JRequest::get('post', JREQUEST_ALLOWRAW);
-      $edit_mode = $app->input->getInt('edit_mode');
+		// Check for request forgeries.
+		if (!JSession::checkToken()) {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
+		}
 
-      $db = JFactory::getDBO();
+		if ( $user->id > 0 ) {
+			$post = JRequest::get('post', JREQUEST_ALLOWRAW);
+			$edit_mode = $app->input->getInt('edit_mode');
 
-      if ( $edit_mode ) {
-        $hebergement_id = $app->input->getInt('hebergement_id',0);
+			$db = JFactory::getDBO();
 
-        // si c'est l'édition d'un hébergement existant
-        $query = "UPDATE #__tdsmanager_hebergements
-                  SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},postalcode={$db->quote($post['postalcode'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},id_hebergement_label={$db->quote($post['labels'])}
-                  WHERE id={$hebergement_id}";
-        $db->setQuery((string)$query);
-        $db->Query();
+			if ( empty($post['hostingname']) )
+			{
+				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_HOSTINGNAME_MISSING'), 'error');
+				$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
+				return false;
+			}
+			else if ( empty($post['adress']) )
+			{
+				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_ADRESS_MISSING'), 'error' );
+				$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
+				return false;
+			}
 
-        // Check for a database error.
-      	if ($db->getErrorNum()) {
-      	 JError::raiseWarning(500, $db->getErrorMsg());
-      	 return false;
-      	}
+			if ( $edit_mode ) {
+				$hebergement_id = $app->input->getInt('hebergement_id',0);
 
-      	$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITED_SUCCESSFULLY') );
-      } else {
-        $date_now = JFactory::getDate('now')->toUnix();
+				// si c'est l'édition d'un hébergement existant
+				$query = "UPDATE #__tdsmanager_hebergements
+					SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},postalcode={$db->quote($post['postalcode'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},id_hebergement_label={$db->quote($post['labels'])}
+					WHERE id={$hebergement_id}";
+				$db->setQuery((string)$query);
+				$db->Query();
 
-        $this->_upload();
+				// Check for a database error.
+				if ($db->getErrorNum()) {
+				JError::raiseWarning(500, $db->getErrorMsg());
+				return false;
+			}
 
-        // Si c'est un nouvel hébergement, on enregistre de nouvelles données
-        $query = "INSERT INTO #__tdsmanager_hebergements
-                  (hostingname,description,adress,complement_adress,city,website,postalcode,numero_classement,date_classement, date_enregistre, userid, id_hebergement_label)
-                  VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($date_now)}, {$db->quote(intval($user->id))},{$db->quote($post['labels'])} )";
-        $db->setQuery((string)$query);
-        $db->Query();
-        $hosting_id = $db->insertid();
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITED_SUCCESSFULLY') );
+		} else {
+			$date_now = JFactory::getDate('now')->toUnix();
 
-        // faire que l'hébergement appartienne à l'utilisateur courant
-        $query = "INSERT INTO #__tdsmanager_users_hosting_owned
-                  (hosting_id,user_id)
-                  VALUES({$db->quote($hosting_id)},{$db->quote($user->id)})";
-        $db->setQuery((string)$query);
-        $db->Query();
+			$this->_upload();
 
-        // Check for a database error.
-      	if ($db->getErrorNum()) {
-      	 JError::raiseWarning(500, $db->getErrorMsg());
-      	 return false;
-      	}
+			// Si c'est un nouvel hébergement, on enregistre de nouvelles données
+			$query = "INSERT INTO #__tdsmanager_hebergements
+				(hostingname,description,adress,complement_adress,city,website,postalcode,numero_classement,date_classement, date_enregistre, userid, id_hebergement_label)
+				VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($date_now)}, {$db->quote(intval($user->id))},{$db->quote($post['labels'])} )";
+			$db->setQuery((string)$query);
+			$db->Query();
+			$hosting_id = $db->insertid();
 
-      	$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_SAVED') );
-        $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
-    	}
-  	} else {
-      $app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
-    }
-  }
+			// faire que l'hébergement appartienne à l'utilisateur courant
+			$query = "INSERT INTO #__tdsmanager_users_hosting_owned
+				(hosting_id,user_id)
+				VALUES({$db->quote($hosting_id)},{$db->quote($user->id)})";
+			$db->setQuery((string)$query);
+			$db->Query();
+
+			// Check for a database error.
+			if ($db->getErrorNum()) {
+				JError::raiseWarning(500, $db->getErrorMsg());
+				return false;
+			}
+
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NEW_HEBERGEMENT_SAVED') );
+			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
+		}
+	} else {
+		$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NOT_LOGGUED') );
+	}
+}
 
   protected function _upload() {
     jimport( 'joomla.filesystem.file' );
@@ -178,7 +192,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
       $app->redirect($this->baseurl);
     }
 
-    $cids = $app->input->getArray('cid', array ());
+    $cids = $app->input->get('cid',array(),'ARRAY');
 
     if ( $user->id > 0 ) {
       $db = JFactory::getDBO();

@@ -26,7 +26,7 @@ class TdsmanagerControllerTdsmanager extends JControllerLegacy {
 		$id		= (int)$stub;
 
 		// Get the data from POST
-		$data = $app->input->getArray('jform', array());
+		$data = $app->input->get('jform',array(),'ARRAY');
 
 		$contact = $model->getItem($id);
 
