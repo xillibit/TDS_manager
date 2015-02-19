@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_alertes` (
   `reglement_id` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_attachments` (
   `name` varchar(255) NOT NULL,
   `size` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_classements` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
   montant_encaisse_sejour float(7,3) NOT NULL,
   duree_sejour int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_dispos` (
   `chambres_selected` int(11) NOT NULL,
   `chambres_max` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergclass` (
   `id_hebergement_type` int(11) NOT NULL,
   `id_hebergement_label` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=222 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements` (
   `date_visite` int(5) NOT NULL,
   `date_expiration` int(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=220 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_hebergements_type` (
   `description` varchar(255) NOT NULL,
   `state` int(7) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_methods_paiement` (
   `state` int(11) NOT NULL,
   `alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_paiement_done` (
   `paiement_type` int(6) NOT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_periode_ouverture` (
   `motif` varchar(255) NOT NULL,
   `id_hebergement` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_reglements` (
   `declaration_id` int(11) NOT NULL,
   `finaliser` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- --------------------------------------------------------
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_tarif_nuit` (
   `id_classement` int(11) NOT NULL DEFAULT '0',
   `id_hebergement_type` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_users` (
   `lastname` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=220 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
 
 --
