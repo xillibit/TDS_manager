@@ -84,22 +84,22 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 		<div class="control-group">
 			<label class="control-label" for="inputMois">Choisissez le mois :</label>
 			<div class="controls">
-				<select id="premier_trim" style="display: none;">
+				<select name="premier_trim" id="premier_trim" style="display: none;">
 					<option value="janvier">Janvier</option>
 					<option value="fevrier">Février</option>
 					<option value="mars">Mars</option>
 				</select>
-				<select id="second_trim" style="display: none;">
+				<select name="second_trim" id="second_trim" style="display: none;">
 					<option value="avril">Avril</option>
 					<option value="mai">Mai</option>
 					<option value="juin">Juin</option>
 				</select>
-				<select id="troisieme_trim" style="display: none;">
+				<select name="troisieme_trim" id="troisieme_trim" style="display: none;">
 					<option value="juillet">Juillet</option>
 					<option value="aout">Aout</option>
 					<option value="septembre">Septembre</option>
 				</select>
-				<select id="quatrieme_trim" style="display: none;">
+				<select name="quatrieme_trim" id="quatrieme_trim" style="display: none;">
 					<option value="octobre">Octobre</option>
 					<option value="novembre">Novembre</option>
 					<option value="decembre">Décembre</option>

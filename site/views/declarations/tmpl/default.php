@@ -10,22 +10,19 @@ defined('_JEXEC') or die;
 
 ?>
 <div>
-  <h1>
-	 <?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_GESTION_DECLARATIONS') ?>
-  </h1>
+	<h1>
+		<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_GESTION_DECLARATIONS') ?>
+	</h1>
 
-  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations'); ?>" method="post" id="com_gesttaxe_dec_form">
-    <table class="table table-bordered">
-  		<thead>
-  			<tr>
-          <th class="nowrap">
-            <input name="checkbox_all" id="checkbox_all" type="checkbox" />
-          </th>
+	<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations'); ?>" method="post" id="com_gesttaxe_dec_form">
+		<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th class="nowrap">
+					<input name="checkbox_all" id="checkbox_all" type="checkbox" />
+				</th>
   				<th class="nowrap">
-  					<?php echo JText::_('COM_TDSMANAGER_DATE_DEBUT'); ?>
-  				</th>
-          <th class="nowrap">
-  					<?php echo JText::_('COM_TDSMANAGER_DATE_FIN'); ?>
+  					<?php echo JText::_('COM_TDSMANAGER_PERIODE_DECLARATION'); ?>
   				</th>
   				<th>
   					<?php echo JText::_('COM_TDSMANAGER_DUREE_SEJOUR'); ?>
@@ -36,9 +33,9 @@ defined('_JEXEC') or die;
   				<th>
   					<?php echo JText::_('COM_TDSMANAGER_DATE_DECLARATION'); ?>
   				</th>
-  				<th>
-  					<?php echo JText::_('COM_TDSMANAGER_PAIEMENT_OK'); ?>
-  				</th>
+  				<!-- <th>
+  					<?php //echo JText::_('COM_TDSMANAGER_PAIEMENT_OK'); ?>
+  				</th>-->
   				<th>
   					<?php echo JText::_('COM_TDSMANAGER_NOM_HEBERGEMENT'); ?>
   				</th>
@@ -61,17 +58,14 @@ defined('_JEXEC') or die;
     					<?php echo $item->end_date; ?>
     				</td>
     				<td class="center">
-    					<?php echo $item->duree_sejour; ?>
-    				</td>
-    				<td class="center">
     					<?php echo $item->montant_encaisse_sejour;?>
     				</td>
     				<td class="center">
     					<?php echo $item->date_declarer; ?>
     				</td>
-    				<td class="order">
-    					<?php echo $item->paiement_ok ? JText::_('COM_TDSMANAGER_DECLARATION_PAID') : JText::_('COM_TDSMANAGER_DECLARATION_NO_PAID'); ?>
-    				</td>
+    				<!-- <td class="order">
+    					<?php //echo $item->paiement_ok ? JText::_('COM_TDSMANAGER_DECLARATION_PAID') : JText::_('COM_TDSMANAGER_DECLARATION_NO_PAID'); ?>
+    				</td>-->
     				<td class="center">
     					<?php echo $item->hostingname;?>
     				</td>

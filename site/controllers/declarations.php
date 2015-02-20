@@ -11,61 +11,70 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerDeclarations extends JControllerLegacy {
-  public function save() {
-    $app	= JFactory::getApplication();
-    $user = JFactory::getUser();
-    // Check for request forgeries.
-    if (!JSession::checkToken()) {
-      $app->enqueueMessage(JText::_('COM_TDSMANAGER_TOKEN'), 'error');
-      $app->redirect($this->baseurl);
-    }
+	public function save() {
+		$app	= JFactory::getApplication();
+		$user = JFactory::getUser();
 
-    $date_now = JFactory::getDate('now')->toSql();
-
-    $post = JRequest::get('post', JREQUEST_ALLOWRAW);
-
-    $exactitude = $app->input->getInt('exactitude_document', 0);
-
-    if ( $exactitude ) {
-      $periodeString = array(0 => 'JAN',1 => 'FEV',2 => 'MAR',3 => 'AVR',4 => 'MAI',5 => 'JUIN',6 => 'JUIL',7 => 'AOU',8 => 'SEP',9 => 'OCT',10 => 'NOV',11 => 'DEC');
-      $ident_periode = strptime($post['start_date'], '%d-%m-%Y');
-      $period_dec = $periodeString[$ident_periode['tm_mon']];
-
-      $hosting_id = $app->getUserState( 'com_tdsmanager.hosting_id' );
-
-      $date_deb = new DateTime($post['start_date']);
-      $start_date = $date_deb->format('Y-m-d H:i:s');
-
-      $date_fin = new DateTime($post['end_date']);
-      $end_date = $date_fin->format('Y-m-d H:i:s');
-
-      $db = JFactory::getDBO();
-      /*$query = $db->getQuery(true);
-      $query->insert('#__tdsmanager_declarations')
-              ->columns('start_date, end_date, nb_personnes_exonerees, nb_personnes_reduction, identification_periode, nb_personnes_assujetties, duree_sejour, nb_total_nuitee, tarif_by_night, montant_encaisse_sejour, date_declarer, declarant_userid, hebergement_id')
-              ->values(array('1,2', '3,4')); */
-      $query = "INSERT INTO #__tdsmanager_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
-              VALUES ({$db->quote($start_date)}, {$db->quote($end_date)}, {$db->quote($post['nb_personnes_exonerees'])}, {$db->quote($post['nb_personnes_reduction'])}, {$db->quote($period_dec)}, {$db->quote($post['nb_personnes_assujetties'])}, {$db->quote($post['duree_sejour_nuitee'])}, {$db->quote($post['nb_total_nuitees'])}, {$db->quote($post['tarif_par_nuitees'])}, {$db->quote($post['montant_encaisse_sejour'])}, {$db->quote($date_now)}, {$db->quote($user->id)}, {$db->quote($hosting_id)})";
-      $db->setQuery((string)$query);
-      
-      try
-		{
-			$db->Query();
-		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
+		// Check for request forgeries.
+		if (!JSession::checkToken()) {
+			$app->enqueueMessage(JText::_('COM_TDSMANAGER_TOKEN'), 'error');
+			$app->redirect($this->baseurl);
 		}
 
-      $app->enqueueMessage(JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCCESSFULLY'));
-      $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false) );
-    } else {
-     // afficher un message pour dire que la case exactitude des informations n'a pas été cochée
-     $app->enqueueMessage ( 'Vous n\'avez pas coché la case pour certifier l\'exactitude des informations saisies dans le document', 'error' );
-     $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
-    }
-  }
+		// TODO: vérifier que le bon fuseau horaire est appliqué
+		$date_now = JFactory::getDate('now')->toSql();
+
+		$trimestre = $app->input->getString('choix_trimestre', null);
+		$mois_t1 = $app->input->getString('premier_trim', null);
+		$mois_t2 = $app->input->getString('second_trim', null);
+		$mois_t3 = $app->input->getString('troisieme_trim', null);
+		$mois_t4 = $app->input->getString('quatrieme_trim', null);
+		/*$tarif_par_nuites = tarif_par_nuitees
+		$nb_personnes_assujetties = nb_personnes_assujetties
+		$nb_personnes_exonerees = nb_personnes_exonerees*/
+		$exactitude = $app->input->getInt('exactitude_document', 0);
+
+		$exactitude = $app->input->getInt('exactitude_document', 0);
+
+		if ( $exactitude ) {
+			$db = JFactory::getDBO();
+			/*$query = $db->getQuery(true);
+			$query->insert('#__tdsmanager_declarations')
+				->columns('start_date, end_date, nb_personnes_exonerees, nb_personnes_reduction, identification_periode, nb_personnes_assujetties, duree_sejour, nb_total_nuitee, tarif_by_night, montant_encaisse_sejour, date_declarer, declarant_userid, hebergement_id')
+				->values(array('1,2', '3,4')); */
+			$query = "INSERT INTO #__tdsmanager_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
+			VALUES ({$db->quote($start_date)},
+                       {$db->quote($end_date)},
+                       {$db->quote($post['nb_personnes_exonerees'])},
+                       {$db->quote($post['nb_personnes_reduction'])},
+                       {$db->quote($period_dec)},
+                       {$db->quote($post['nb_personnes_assujetties'])},
+                       {$db->quote($post['duree_sejour_nuitee'])},
+                       {$db->quote($post['nb_total_nuitees'])},
+                       {$db->quote($post['tarif_par_nuitees'])},
+                       {$db->quote($post['montant_encaisse_sejour'])},
+                       {$db->quote($date_now)},
+                       {$user->id},
+                       {$hosting_id})";
+			$db->setQuery((string)$query);
+
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
+				return false;
+			}
+
+			$app->enqueueMessage(JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCCESSFULLY'));
+			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false) );
+		} else {
+			$app->enqueueMessage ( 'Vous n\'avez pas coché la case pour certifier l\'exactitude des informations saisies dans le document', 'error' );
+			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
+		}
+	}
 
   public function edit() {
     $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=edit', false));
@@ -167,7 +176,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
       if ( $reglement->date_regler ) {
         $query = "DELETE FROM #__tdsmanager_declarations WHERE id={$declaration_Id};";
         $db->setQuery((string)$query);
-        
+
         try
 		{
 			$db->Query();
@@ -196,7 +205,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
                 LEFT JOIN #__tdsmanager_classements AS class ON class.id=h.id_classement
                 WHERE h.id={$hebergement_id};";
       $db->setQuery((string)$query);
-      
+
       try
 		{
 			$hebergement = $db->loadObject();
@@ -469,7 +478,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     foreach($ids as $id) {
       $query = "INSERT INTO #__tdsmanager_reglements (`date_regler`, `montant`, `type_reglement`, `declaration_id`, `finaliser` ) VALUES ({$date_now}, {$amount}, {$type_reglement}, {$id}, 1)";
       $db->setQuery((string)$query);
-      
+
       try
 		{
 			$db->Query();
