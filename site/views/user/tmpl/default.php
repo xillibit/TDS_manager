@@ -9,26 +9,34 @@
 defined('_JEXEC') or die;
 ?>
 <div>
-  <h1>
-	 <?php echo JText::_('COM_TDSMANAGER_USER_GESTION_PROFIL') ?>
-  </h1>
-  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=user&task=edit'); ?>" method="post">
-  <fieldset style="border: 1px solid #CCCCCC;margin: 10px 0 15px;padding: 15px;">
-    <legend> Profil </legend>
-    <dl>
-      <dt><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_NAME') ?>: </span> <?php echo $this->userProfile->name ?></dt>
-      <dd><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_LASTNAME') ?>: </span><?php echo $this->userProfile->lastname ?></dd>
-      <dt><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_ADRESS') ?>: </span><?php echo $this->userProfile->adress ?></dt>
-      <dd><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_COMPLEMENT_ADRESS') ?>: </span><?php echo $this->userProfile->complement_adress ?></dd>
-      <dt><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_POSTALCODE') ?>: </span><?php echo $this->userProfile->postalcode ?></dt>
-      <dd><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_VILLE') ?>: </span><?php echo $this->userProfile->ville ?></dd>
-      <dt><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_TELEPHONE') ?>: </span><?php echo $this->userProfile->telephone ?></dt>
-      <dd><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_PORTABLE') ?>: </span><?php echo $this->userProfile->portable ?></dd>
-      <dd><span style="font-weight: bold;"><?php echo JText::_('COM_TDSMANAGER_USER_MAIL') ?>: </span><?php echo $this->userProfile->mail ?></dd>
-    </dl>
-  </fieldset>
+	<h1>
+		<?php echo JText::_('COM_TDSMANAGER_USER_GESTION_PROFIL') ?>
+	</h1>
+	<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=user&task=edit'); ?>" method="post">
+		<fieldset>
+			<legend>Profil</legend>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_NAME') ?> :</label>
+			<b><?php echo !empty($this->userProfile->name) ? $this->userProfile->name : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_LASTNAME') ?> :</label>
+			<b><?php echo !empty($this->userProfile->lastname) ? $this->userProfile->lastname : 'Non renseigné' ?></b>
+			<label><?php echo  JText::_('COM_TDSMANAGER_USER_ADRESS') ?> :</label>
+			<b><?php echo !empty($this->userProfile->adress) ? $this->userProfile->adress : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_COMPLEMENT_ADRESS') ?> :</label>
+			<b><?php echo !empty($this->userProfile->complement_adress) ? $this->userProfile->complement_adress : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_POSTALCODE') ?> :</label>
+			<b><?php echo !empty($this->userProfile->postalcode) ? $this->userProfile->postalcode : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_VILLE') ?> :</label>
+			<b><?php echo !empty($this->userProfile->ville) ? $this->userProfile->ville  : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_TELEPHONE') ?> :</label>
+			<b><?php echo !empty($this->userProfile->telephone) ? $this->userProfile->telephone  : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_PORTABLE') ?> :</label>
+			<b><?php echo !empty($this->userProfile->portable) ? $this->userProfile->portable  : 'Non renseigné' ?></b>
+			<label><?php echo JText::_('COM_TDSMANAGER_USER_MAIL') ?> :</label>
+			<b><?php echo !empty($this->userProfile->mail) ? $this->userProfile->mail  : 'Non renseigné' ?></b>
+			<br />
+			<button class="btn btn-primary" type="button">Modifier votre profil</button>
+		</fieldset>
 
-	<button class="btn btn-primary" type="button">Modifier votre profil</button>
-    <?php echo JHtml::_('form.token'); ?>
-  </form>
+	<?php echo JHtml::_('form.token'); ?>
+	</form>
 </div>

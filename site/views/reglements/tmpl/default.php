@@ -13,47 +13,47 @@ defined('_JEXEC') or die;
   <h1>
 	 <?php echo JText::_('COM_TDSMANAGER_VISUALISATION_REGLEMENTS') ?>
   </h1>
-  
-  <table class="adminlist">
+
+  <table class="table table-bordered">
 		<thead>
-			<tr>				
-				<th width="10%" class="nowrap">
+			<tr>
+				<th class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_DATE_REGLER', 'name_hosting'); ?>
 				</th>
-        <th width="10%" class="nowrap">
+				<th class="nowrap">
 					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_REGLEMENT_MONTANT', 'description'); ?>
-				</th>				
-				<th width="5%">
+				</th>
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_TYPE_REGLEMENT', 'adress'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_REGLEMENT_FINALISER', 'complement_adress'); ?>
-				</th>																
+				</th>
 			</tr>
 		</thead>
-		<tfoot>			
+		<tfoot>
 		</tfoot>
 		<tbody>
-		<?php      
-     if ( !empty($this->reglements) ) { 
+		<?php
+     if ( !empty($this->reglements) ) {
       foreach ($this->reglements	 as $i => $item) : ?>
-  			<tr class="row<?php echo $i % 2; ?>">  				
+  			<tr class="row<?php echo $i % 2; ?>">
   				<td>
-              <?php echo $item->date_regler; ?>									
+              <?php echo $item->date_regler; ?>
   				</td>
   				<td class="center">
   					<?php echo $item->montant; ?>
-  				</td>   				
+  				</td>
   				<td class="center">
   					<?php echo $item->type_reglement; ?>
   				</td>
   				<td class="center">
   					<?php echo isset($item->finaliser) ? JText::_('COM_TDSMANAGER_REGLEMENT_NOT_FINALISED'): JText::_('COM_TDSMANAGER_REGLEMENT_FINALISED');?>
-  				</td>  								
+  				</td>
   			</tr>
 			<?php endforeach;
       }
        ?>
 		</tbody>
-	</table>  
+	</table>
 </div>

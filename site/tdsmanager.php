@@ -17,8 +17,8 @@ $controller = 'TdsmanagerController' . ucfirst ( $view );
 
 $path = JPATH_COMPONENT . "/controllers/{$view}.php";
 if (file_exists ( $path )) {
-  require_once $path;
-} else { 		
+	require_once $path;
+} else {
 	JError::raiseError ( 500, JText::sprintf ( 'COM_TDSMANAGER_INVALID_CONTROLLER', ucfirst ( $view ) ) );
 }
 

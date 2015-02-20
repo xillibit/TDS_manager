@@ -9,17 +9,16 @@
 defined('_JEXEC') or die;
 
 ?>
-<div>
-	<h1>
-		<?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION_CHOOSE_HOSTING'); ?>
-	</h1>
-	<br />
-	<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=createdec'); ?>" method="post">
-		<ul style="list-style-type:none;">
-			<!-- Utiliser choosen pour choisir l'hébergement -->
-			<li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_OUR_HEBERGEMENT') ?></span></li>
-			<li><?php echo $this->userhostings ?></li>
-			<li><button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?></button></li>
-		</ul>
-	</form>
-</div>
+<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=createdec'); ?>" method="post">
+	<fieldset>
+	<legend><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION_CHOOSE_HOSTING'); ?></legend>
+	<div class="control-group">
+		<label class="control-label" for="inputHebergement"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_OUR_HEBERGEMENT') ?> :</label>
+		<div class="controls">
+			<?php echo $this->userhostings ?>
+		</div>
+	</div>
+	</fieldset>
+	<button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?></button>
+	<button class="btn btn-danger" onclick="javascript:history.back()" type="button"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?></button>
+</form>

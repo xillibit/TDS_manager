@@ -15,31 +15,31 @@ defined('_JEXEC') or die;
   </h1>
 
   <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations'); ?>" method="post" id="com_gesttaxe_dec_form">
-    <table class="adminlist">
+    <table class="table table-bordered">
   		<thead>
   			<tr>
-          <th width="5%" class="nowrap">
+          <th class="nowrap">
             <input name="checkbox_all" id="checkbox_all" type="checkbox" />
           </th>
-  				<th width="10%" class="nowrap">
+  				<th class="nowrap">
   					<?php echo JText::_('COM_TDSMANAGER_DATE_DEBUT'); ?>
   				</th>
-          <th width="10%" class="nowrap">
+          <th class="nowrap">
   					<?php echo JText::_('COM_TDSMANAGER_DATE_FIN'); ?>
   				</th>
-  				<th width="5%">
+  				<th>
   					<?php echo JText::_('COM_TDSMANAGER_DUREE_SEJOUR'); ?>
   				</th>
-  				<th width="5%">
+  				<th>
   					<?php echo JText::_('COM_TDSMANAGER_MONTANT_ENCAISSE_SEJOUR'); ?>
   				</th>
-  				<th width="5%">
+  				<th>
   					<?php echo JText::_('COM_TDSMANAGER_DATE_DECLARATION'); ?>
   				</th>
-  				<th width="5%">
+  				<th>
   					<?php echo JText::_('COM_TDSMANAGER_PAIEMENT_OK'); ?>
   				</th>
-  				<th width="10%">
+  				<th>
   					<?php echo JText::_('COM_TDSMANAGER_NOM_HEBERGEMENT'); ?>
   				</th>
   			</tr>

@@ -15,6 +15,28 @@ window.addEvent('domready', function(){
         //newitem.set('id', 'com_gesttaxesejour-sejour');                 
      });
    }
+   
+	if ( $('choix_trimestre') != undefined ) {
+		$('choix_trimestre').addEvent('change', function(event) { 
+			var selected = $('choix_trimestre').getSelected().get('value');
+
+			$('premier_trim').setStyle('display', 'none');
+			$('second_trim').setStyle('display', 'none');
+			$('troisieme_trim').setStyle('display', 'none');
+			$('quatrieme_trim').setStyle('display', 'none');
+
+			if (selected=='premier_trim') {
+				$('premier_trim').setStyle('display');
+			} else if (selected=='second_trim') {
+				$('second_trim').setStyle('display');
+			} else if (selected=='troisieme_trim') {
+				$('troisieme_trim').setStyle('display');
+			} else if (selected=='quatrieme_trim') {
+				$('quatrieme_trim').setStyle('display');
+			}
+		});
+	}
+   
    if ( $('decl_remove_item') != undefined ) {
      $('decl_remove_item').addEvent('click', function(event) { 
             

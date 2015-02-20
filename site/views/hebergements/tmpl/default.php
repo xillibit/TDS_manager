@@ -26,37 +26,37 @@ $document->addScript( JURI::root().'components/com_tdsmanager/js/default.js' ); 
 		</form>
 	<?php } else {    ?>
 		<form id="taxe-hebergements" name="taxehebergements" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements'); ?>" method="post">
-			<table class="adminlist">
+			<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th width="1%">
+				<th>
 					<input type="checkbox" name="checkall-toggle" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="" />
 				</th>
-				<th width="10%" class="nowrap">
+				<th class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NAME_HOSTING', 'name_hosting'); ?>
 				</th>
-        <th width="10%" class="nowrap">
+        <th class="nowrap">
 					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DESCRIPTION', 'description'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_ADDRESS', 'adress'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_COMPLEMENT_ADDRESS', 'complement_adress'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_POSTALCODE', 'postalcode'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_VILLE', 'ville'); ?>
 				</th>
-				<th width="10%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_CLASSEMENT', 'classement'); ?>
 				</th>
-				<th width="10%">
+				<th>
 					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DATE_CLASSEMENT', 'date_classement'); ?>
 				</th>
-				<th width="5%">
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NUMERO_CLASSEMENT', 'numero_classement'); ?>
 				</th>
 			</tr>

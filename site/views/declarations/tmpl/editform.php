@@ -1,7 +1,7 @@
 <?php
  /**
  * @package		Joomla.Site
- * @subpackage	com_contact
+ * @subpackage	com_tdsmanager
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -9,53 +9,143 @@
 defined('_JEXEC') or die;
 
 jimport( 'joomla.html.html' );
-jimport( 'joomla.utilities.date' );
-$date_now = JFactory::getDate('now')->toFormat('%d-%m-%Y');
+
 $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 ?>
-<div>
-  <h1>
-	 <?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION'); ?>
-  </h1>
-  <form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
-    <ul style="list-style-type:none;">
-      <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_DECLARATION_PEDIOD') ?><br /></span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DATE_DEBUT') ?> : <?php echo JHTML::calendar($date_now,'start_date', 'start_date', '%d-%m-%Y') ?> <?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DATE_FIN') ?> : <?php echo JHTML::calendar($date_now,'end_date', 'end_date', '%d-%m-%Y') ?> </li>
+<form class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
+	<fieldset>
+		<legend><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION'); ?></legend>
+		<!-- Button to trigger modal -->
+		<a href="#modal_obligations" role="button" class="btn btn-primary" data-toggle="modal">Voir les obligations du logeur</a>
 
-      <!-- Afficher par défaut une ligne pour entrer un nouveau séjour, afficher un bouton pour entrer ou supprimer un séjour -->
+		<!-- Modal -->
+		<div id="modal_obligations" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Obligations du logeur</h3>
+			</div>
+			<div class="modal-body">
+				<b>Comment et quand reverser la taxe de séjour ?</b>
+				<p>
+					Vous devez transmettre  à la Communauté de Communes, <b>chaque trimestre</b>:
+					<ul>
+						<li>1er trimestre <?php echo date('Y') ?> - entre le 01/04 et le 10/04</li>
+						<li>2éme trimestre entre le 01/07 et le 10/07</li>
+						<li>3éme trimestre entre le 01/10 et le 10/10</li>
+						<li>4éme trimestre entre le 01/01 et le 10/01/<?php echo date('Y')+1 ?></li>
+					</ul>
+					<u>uniquement la déclaration trimestrielle de taxe de séjour.</u>
+					<u>Vous serez sollicité par la Trésorerie de Faverges pour le réglement de la taxe</u>
+				</p>
+				<b>Quelles sanctions pour retard ou absence de reversement ?</b>
+				<p>
+					Conformément aux articles R.2333-56 et R.2333-69 du CGCT, tout retard dans le versement du produit de la taxe donne lieu à l'application d'un intérêt de retard égal à 0.75% par mois de retard.<br />
+					En cas de non paiement les poursuites sont effectuées selon les modalités prévues en matiére de contributions directes.
+				</p>
+				<b>Quelles sont les obligations de l'hébergeur ?</b>
+				<p>
+					Vous avez l'obligation d'afficher les tarifs de la taxe de séjour et de la faire figurer sur la facture émise au client, distinctement de vos propres prestations. La taxe de séjour au réel n'est pas assujettie
+					à la TVA.<br /><br />
+					Conformément à l'article L.2333-37 du CGCT, vous avez l'obligation de percevoir la taxe de séjour et la verser aux dates prévues par délibération  <br />
+					Conformément à l'article R.2333-50 du CGCT, vous devez tenir un état, désigné par le terme "registre du logeur" précisant obligatoirement:
+					<ul>
+						<li>le nombre de personnes assujetties</li>
+						<li>la durée du séjour,</li>
+						<li>le cas échéant le nombre de personnes exonérées et les motifs d'éxonération</li>
+						<li>la somme de taxe de séjour récoltée</li>
+					</ul>
+					<br />
+					Le registre du logeur ne doit contenir aucune information relative à l'état civil des personnes assujetties à la taxe de séjour.  <br />
+					Les logeurs professionnels ou occasionnels sont tenus de faire une déclaration à la mairie faisant état de la location dans les 15 jours qui suivent le début de celle-ci (article R.2333-51 du CGCT)<br /><br />
+					</p>
+					<b>VOIES DE RECOURS</b>
+					<p>
+						En application des articles R.2333-57 et R.2333-67 du CGCT le client redevable de la taxe de séjour, qui conteste le montant de la taxe, doit l'acquitter. Il peut au préalable saisir d'un réclamation le Président de la CCPF
+						afin qu'il statue sur sa demande de remboursement, soit saisir directement d'un réclamation le Tribunal d'instance compétent.
+					</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+			</div>
+		</div>
+		<br /><br />
+		<div class="control-group">
+			<label class="control-label" for="inputTrimestre">Choisissez un trimestre :</label>
+			<div class="controls">
+				<select name="choix_trimestre" id="choix_trimestre">
+					<option value="choix">Veuillez choissir un trimestre</option>
+					<option value="premier_trim">Premier trimestre</option>
+					<option value="second_trim">Second trimestre</option>
+					<option value="troisieme_trim">Troisiéme trimestre</option>
+					<option value="quatrieme_trim">Quatriéme trimestre</option>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputMois">Choisissez le mois :</label>
+			<div class="controls">
+				<select id="premier_trim" style="display: none;">
+					<option value="janvier">Janvier</option>
+					<option value="fevrier">Février</option>
+					<option value="mars">Mars</option>
+				</select>
+				<select id="second_trim" style="display: none;">
+					<option value="avril">Avril</option>
+					<option value="mai">Mai</option>
+					<option value="juin">Juin</option>
+				</select>
+				<select id="troisieme_trim" style="display: none;">
+					<option value="juillet">Juillet</option>
+					<option value="aout">Aout</option>
+					<option value="septembre">Septembre</option>
+				</select>
+				<select id="quatrieme_trim" style="display: none;">
+					<option value="octobre">Octobre</option>
+					<option value="novembre">Novembre</option>
+					<option value="decembre">Décembre</option>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TARIF_PAR_NUITEES') ?> :</label>
+			<div class="controls">
+				<input type="text" readonly="readonly" name="tarif_par_nuitees" value="<?php echo $tarifs->tarif ?>" /> €
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_ASSUJETTIES') ?> :</label>
+			<div class="controls">
+				<input type="text" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_EXONEREES') ?> :</label>
+			<div class="controls">
+				<input type="text" name="nb_personnes_exonerees" value="" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_DUREE_SEJOUR_NUITEE') ?> :</label>
+			<div class="controls">
+				<input type="text" id="duree_sejour_nuitee" readonly="readonly" name="duree_sejour_nuitee" value="" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_NB_TOTAL_NUITEES') ?> :</label>
+				<div class="controls">
+					<input type="text" id="nuitees" readonly="readonly" name="nb_total_nuitees" value="" />
+				</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_EXACTITUDE_DOCUMENT') ?> :</label>
+			<div class="controls">
+				<input type="checkbox" name="exactitude_document" value="1" />
+			</div>
+		</div>
+	</fieldset>
 
-      <li>
-        <div id="com_gesttaxesejour-sejour1">
-          <span>
-            <b><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_SEJOUR') ?></b>
-          </span>
-          <br />
-          <ul>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_EXONEREES') ?></span>
-            <input type="text" name="nb_personnes_exonerees" value="" /></li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_REDUCTION') ?></span>
-            <input type="text" name="nb_personnes_reduction" value="" /></li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_ASSUJETTIES') ?></span>
-            <input type="text" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" /></li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_DUREE_SEJOUR_NUITEE') ?></span>
-            <input type="text" id="duree_sejour_nuitee" readonly="readonly" name="duree_sejour_nuitee" value="" /></li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_NB_TOTAL_NUITEES') ?></span>
-            <input type="text" id="nuitees" readonly="readonly" name="nb_total_nuitees" value="" /></li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TARIF_PAR_NUITEES') ?></span>
-            <input type="text" readonly="readonly" name="tarif_par_nuitees" value="<?php echo $tarifs->tarif ?>" />€ </li>
-            <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTANT_ENCAISSE_SEJOUR') ?></span>
-            <input id="montant_encaisse_sejour" type="text" name="montant_encaisse_sejour" readonly="readonly" value="" />€</li>
-          </ul>
-          </div>
-      </li>
-      <!--<li> Afficher deux boutons pour avoir deux calendriers pour entrer le début et la fin de la période <img src="<?php //echo JURI::root()."administrator/templates/bluestork/images/menu/icon-16-cpanel.png" ?>" id="decl_add_item" alt="Ajouter une ligne" title="Ajouter une ligne" /><img src="<?php //echo JURI::root()."administrator/templates/bluestork/images/menu/icon-16-delete.png" ?>" id="decl_remove_item" alt="Supprimer une ligne" title="Supprimer une ligne" /></li>-->
-      <li><input id="declaration_calcul" type="button" value="Calculer"> </li>
-
-      <li><span><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_OK') ?></span>: <input type="checkbox" name="exactitude_document" value="1" /> </li>
-
-    </ul>
-    <button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?></button>
+	<button class="btn btn-primary" type="submit"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_VALIDER') ?></button>
 	<button class="btn btn-danger" onclick="javascript:history.back()" type="button"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_ANNULER') ?></button>
 
-    <?php echo JHtml::_('form.token'); ?>
-  </form>
-</div>
+	<?php echo JHtml::_('form.token'); ?>
+</form>
