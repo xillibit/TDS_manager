@@ -32,25 +32,42 @@ jQuery( document ).ready(function() {
 		}
 	});
 	
+	// Récupération des informations de l'hébergement dans la liste déroulante la déclaration
 	jQuery('#user_hebergement').change(function() {
 		var idHebergement = jQuery('#user_hebergement option:selected').val();
 		var url = 'index.php?option=com_tdsmanager&view=declarations&format=raw&task=detailsHebergements&idHebergement='+idHebergement;
 		
-		jQuery.getJSON(url, {
-			format: 'json'
-		})
-		.done(function( data ) {
-			jQuery('#alert_dec_div').show();
-			jQuery('#alert_dec_div').addClass('alert-success');
-			jQuery('#alert_dec_title').text('Succés');
-			jQuery('#alert_dec_content').text('Les données de l\'hébergement ont été récupérées avec succés');  	
-		})
-		.fail(function() {
-			jQuery('#alert_dec_div').show();
-			jQuery('#alert_dec_div').addClass('alert-error'); 
-			jQuery('#alert_dec_title').text('Erreur');
-			jQuery('#alert_dec_content').text('Impossible de récupérer les données de l\'hébergement, veuillez réessayer plus tard.');  	
-		});
+		if (idHebergement!='-1')
+		{
+			jQuery.getJSON(url, {
+				format: 'json'
+			})
+			.done(function( data ) {
+				jQuery('#alert_dec_div').show();
+				jQuery('#alert_dec_div').addClass('alert-success');
+				jQuery('#alert_dec_title').text('Succés');
+				jQuery('#alert_dec_content').text('Les données de l\'hébergement ont été récupérées avec succés');
+				
+				jQuery('#tarif_par_nuitees').val(data.tarif_nuite);
+			})
+			.fail(function() {
+				jQuery('#alert_dec_div').show();
+				jQuery('#alert_dec_div').addClass('alert-error'); 
+				jQuery('#alert_dec_title').text('Erreur');
+				jQuery('#alert_dec_content').text('Impossible de récupérer les données de l\'hébergement, veuillez réessayer plus tard.');  	
+			});
+		}
+	});
+	
+	// Permet de calculer tarfis en appuyant sur valider dans le formulaire de déclaration 
+	jQuery('#form_declaration').on('submit', function(e){
+		e.preventDefault();  
+	
+		var tarif = jQuery('#tarif_par_nuitees').val();
+		var personnes_assujetties = jQuery('#nb_personnes_assujetties').val(); 
+		var total = tarif*personnes_assujetties;
+		
+		jQuery('#total_dec').val();
 	});
 });
 

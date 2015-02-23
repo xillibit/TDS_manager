@@ -11,6 +11,11 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerDeclarations extends JControllerLegacy {
+	/**
+	 * On enregistre la déclaration avec les données fournies par l'hébergeur
+	 *
+	 * @return boolean
+	 */
 	public function save() {
 		$app	= JFactory::getApplication();
 		$user = JFactory::getUser();
@@ -29,11 +34,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 		$mois_t2 = $app->input->getString('second_trim', null);
 		$mois_t3 = $app->input->getString('troisieme_trim', null);
 		$mois_t4 = $app->input->getString('quatrieme_trim', null);
-		/*$tarif_par_nuites = tarif_par_nuitees
-		$nb_personnes_assujetties = nb_personnes_assujetties
-		$nb_personnes_exonerees = nb_personnes_exonerees*/
-		$exactitude = $app->input->getInt('exactitude_document', 0);
-
+		$nb_personnes_assujetties = $app->input->getInt('nb_personnes_assujetties', 0);
+		$nb_personnes_exonerees = $app->input->getInt('nb_personnes_exonerees', 0);
 		$exactitude = $app->input->getInt('exactitude_document', 0);
 
 		if ( $exactitude ) {
@@ -200,9 +202,10 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $hebergement_id = $app->input->getInt('idHebergement',0);
 
     if( $hebergement_id != 0 ) {
-      $query = "SELECT h.*,type.name AS heberg_type,class.description AS class_desc FROM #__tdsmanager_hebergements AS h
+      $query = "SELECT h.*,type.name AS heberg_type,class.description AS class_desc, tarif.tarif AS tarif_nuite FROM #__tdsmanager_hebergements AS h
                 LEFT JOIN #__tdsmanager_hebergements_type AS type ON h.id_hebergement_type=type.id
                 LEFT JOIN #__tdsmanager_classements AS class ON class.id=h.id_classement
+                LEFT JOIN #__tdsmanager_tarif_nuit AS tarif ON tarif.id_hebergement_type=h.id_hebergement_type
                 WHERE h.id={$hebergement_id};";
       $db->setQuery((string)$query);
 

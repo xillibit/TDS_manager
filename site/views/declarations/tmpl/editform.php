@@ -9,8 +9,6 @@
 defined('_JEXEC') or die;
 
 jimport( 'joomla.html.html' );
-
-$tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 ?>
 <form class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
 	<fieldset>
@@ -120,7 +118,7 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TARIF_PAR_NUITEES') ?> :</label>
 			<div class="controls">
-				<input type="text" readonly="readonly" name="tarif_par_nuitees" value="<?php echo $tarifs->tarif ?>" /> €
+				<input type="text" readonly="readonly" name="tarif_par_nuitees" value="" /> €
 			</div>
 		</div>
 		<div class="control-group">
@@ -136,16 +134,10 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_DUREE_SEJOUR_NUITEE') ?> :</label>
+			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TOTAL_DECLARE') ?> :</label>
 			<div class="controls">
-				<input type="text" id="duree_sejour_nuitee" readonly="readonly" name="duree_sejour_nuitee" value="" />
+				<input type="text" id="total_dec" readonly="readonly" name="total_dec" value="" />
 			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_NB_TOTAL_NUITEES') ?> :</label>
-				<div class="controls">
-					<input type="text" id="nuitees" readonly="readonly" name="nb_total_nuitees" value="" />
-				</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_EXACTITUDE_DOCUMENT') ?> :</label>
