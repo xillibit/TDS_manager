@@ -24,34 +24,35 @@ class TdsmanagerModelDeclarations extends JModel {
 		$this->setState('com_tdsmanager.declaration.Id', $declaration_Id);
 	}
 
-  public function getUserHostings() {
-    $db = JFactory::getDBO();
-    $user = JFactory::getUser();
+	public function getUserHostings() {
+		$db = JFactory::getDBO();
+		$user = JFactory::getUser();
 
-    /*$query = $db->getQuery(true);
-    $query->select('hosting.*')->from('#__tdsmanager_hebergements AS hosting')->where("hosting.userid={$db->quote($user->id)}");*/
-    $query = "SELECT hosting.* FROM #__tdsmanager_hebergements AS hosting
-              WHERE hosting.userid={$db->quote($user->id)}";
-    $db->setQuery((string)$query);
-    
-    try
-	{
-		$users_hosting = $db->loadObjectList();
+		/*$query = $db->getQuery(true);
+		$query->select('hosting.*')->from('#__tdsmanager_hebergements AS hosting')->where("hosting.userid={$db->quote($user->id)}");*/
+		$query = "SELECT hosting.* FROM #__tdsmanager_hebergements AS hosting
+			WHERE hosting.userid={$db->quote($user->id)}";
+		$db->setQuery((string)$query);
+
+		try
+		{
+			$users_hosting = $db->loadObjectList();
+		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
+
+		$hebergements_user = array();
+		$hebergements_user[] = JHTML::_ ( 'select.option', '-1', 'Choisissez un hébergement');
+		foreach($users_hosting as $hosting) {
+			$hebergements_user[] = JHTML::_ ( 'select.option', $hosting->id, $hosting->hostingname );
+		}
+		$list = JHTML::_ ( 'select.genericlist', $hebergements_user, 'user_hebergement', 'class="inputbox" size="1"', 'value', 'text' );
+
+		return $list;
 	}
-	catch (Exception $e)
-	{
-		$this->app->enqueueMessage ($e->getMessage());
-		return false;
-	}
-
-    $hebergements_user = array();
-    foreach($users_hosting as $hosting) {
-      $hebergements_user[] = JHTML::_ ( 'select.option', $hosting->id, $hosting->hostingname );
-    }
-    $list = JHTML::_ ( 'select.genericlist', $hebergements_user, 'user_hebergement', 'class="inputbox" size="1"', 'value', 'text' );
-
-    return $list;
-  }
 
   public function getHostingTypes() {
     $db = JFactory::getDBO();
@@ -60,7 +61,7 @@ class TdsmanagerModelDeclarations extends JModel {
     $query->select('*')->from('#__tdsmanager_hebergements_type')->where('state=1'); */
     $query = "SELECT * FROM #__tdsmanager_hebergements_type WHERE state=1";
     $db->setQuery((string)$query);
-    
+
     try
 	{
 		$hosting_type = $db->loadObjectList();
@@ -92,7 +93,7 @@ class TdsmanagerModelDeclarations extends JModel {
               LEFT JOIN #__tdsmanager_paiement_done AS paiedone ON decl.id=paiedone.decl_id
               WHERE decl.declarant_userid={$db->quote($user->id)}";
     $db->setQuery((string)$query);
-    
+
     try
 	{
 		$declarations_user = $db->loadObjectList();
@@ -120,7 +121,7 @@ class TdsmanagerModelDeclarations extends JModel {
     $query = "SELECT SUM(montant_encaisse_sejour) FROM #__tdsmanager_declarations
               WHERE declarant_userid={$db->quote($user->id)} AND id IN (".$idsSelected.")";
     $db->setQuery((string)$query);
-    
+
     try
 	{
 		$totalDeclaration = $db->loadResult();
@@ -149,7 +150,7 @@ class TdsmanagerModelDeclarations extends JModel {
       $query = "SELECT * FROM #__tdsmanager_declarations AS decl
                 WHERE id IN (".$idsSelected.")";
       $db->setQuery((string)$query);
-      
+
 
       try
 	{
@@ -179,7 +180,7 @@ class TdsmanagerModelDeclarations extends JModel {
               LEFT JOIN #__tdsmanager_reglements AS reg ON decl.id=reg.declaration_id
              WHERE decl.id IN (".$idsSelected.")";
     $db->setQuery((string)$query);
-    
+
     try
 	{
 		$declarations_sel = $db->loadObjectList();
@@ -203,7 +204,7 @@ class TdsmanagerModelDeclarations extends JModel {
       $query = "SELECT * FROM #__tdsmanager_users
                   WHERE userid={$db->quote($user->id)}";
       $db->setQuery((string)$query);
-      
+
       try
 	{
 		$detailsHebergeur = $db->loadObject();
@@ -228,7 +229,7 @@ class TdsmanagerModelDeclarations extends JModel {
     $query = "SELECT * FROM #__tdsmanager_methods_paiement
                   WHERE state=1";
     $db->setQuery((string)$query);
-    
+
     try
 	{
 		$paiementMethods = $db->loadObjectList();

@@ -69,11 +69,22 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 			</div>
 		</div>
 		<br /><br />
+		<div id="alert_dec_div" class="alert" style="display:none;">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<span id="alert_dec_title" style="font-weight: bold;"></span>
+			<div id="alert_dec_content"></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputHebergement"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_OUR_HEBERGEMENT') ?> :</label>
+			<div class="controls">
+				<?php echo $this->userhostings ?>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputTrimestre">Choisissez un trimestre :</label>
 			<div class="controls">
 				<select name="choix_trimestre" id="choix_trimestre">
-					<option value="choix">Veuillez choissir un trimestre</option>
+					<option value="choix">Veuillez choisir un trimestre</option>
 					<option value="premier_trim">Premier trimestre</option>
 					<option value="second_trim">Second trimestre</option>
 					<option value="troisieme_trim">Troisiéme trimestre</option>
@@ -115,13 +126,13 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_ASSUJETTIES') ?> :</label>
 			<div class="controls">
-				<input type="text" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" />
+				<input type="text" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" required="required" placeholder="Entrer le nombre de personnes assuejeties" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_EXONEREES') ?> :</label>
 			<div class="controls">
-				<input type="text" name="nb_personnes_exonerees" value="" />
+				<input type="text" name="nb_personnes_exonerees" required="required" placeholder="Entrer le nombre de personnes éxonérées" value="" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -139,7 +150,7 @@ $tarifs = $this->app->getUserState('com_tdsmanager.tarifs');
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_EXACTITUDE_DOCUMENT') ?> :</label>
 			<div class="controls">
-				<input type="checkbox" name="exactitude_document" value="1" />
+				<input type="checkbox" name="exactitude_document" required="required" value="1" />
 			</div>
 		</div>
 	</fieldset>

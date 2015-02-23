@@ -76,10 +76,10 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 		}
 	}
 
-  public function edit() {
-    $this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=edit', false));
-    return false;
-  }
+	public function edit() {
+		$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
+		return false;
+	}
 
   public function calcul_declaration() {
     $app	= JFactory::getApplication();

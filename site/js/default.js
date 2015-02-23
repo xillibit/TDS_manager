@@ -8,6 +8,52 @@
  * 
  * @since		1.0
  */
+jQuery( document ).ready(function() {
+	jQuery('#decl_add_item').click(function() {
+		//var newitem = $('com_gesttaxesejour-sejour1').clone().inject('com_gesttaxesejour-sejour1','after');
+	});
+	
+	jQuery('#choix_trimestre').change(function() {
+		var selected = jQuery('#choix_trimestre option:selected').val();
+		
+		jQuery('#premier_trim').hide();
+		jQuery('#second_trim').hide();
+		jQuery('#troisieme_trim').hide();
+		jQuery('#quatrieme_trim').hide();
+		
+		if (selected=='premier_trim') {
+			jQuery('#premier_trim').show();
+		} else if (selected=='second_trim') {
+			jQuery('#second_trim').show();
+		} else if (selected=='troisieme_trim') {
+			jQuery('#troisieme_trim').show();
+		} else if (selected=='quatrieme_trim') {
+			jQuery('#quatrieme_trim').show();
+		}
+	});
+	
+	jQuery('#user_hebergement').change(function() {
+		var idHebergement = jQuery('#user_hebergement option:selected').val();
+		var url = 'index.php?option=com_tdsmanager&view=declarations&format=raw&task=detailsHebergements&idHebergement='+idHebergement;
+		
+		jQuery.getJSON(url, {
+			format: 'json'
+		})
+		.done(function( data ) {
+			jQuery('#alert_dec_div').show();
+			jQuery('#alert_dec_div').addClass('alert-success');
+			jQuery('#alert_dec_title').text('Succés');
+			jQuery('#alert_dec_content').text('Les données de l\'hébergement ont été récupérées avec succés');  	
+		})
+		.fail(function() {
+			jQuery('#alert_dec_div').show();
+			jQuery('#alert_dec_div').addClass('alert-error'); 
+			jQuery('#alert_dec_title').text('Erreur');
+			jQuery('#alert_dec_content').text('Impossible de récupérer les données de l\'hébergement, veuillez réessayer plus tard.');  	
+		});
+	});
+});
+
 window.addEvent('domready', function(){
    if ( $('decl_add_item') != undefined ) {
      $('decl_add_item').addEvent('click', function(event) {            
