@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 
 jimport( 'joomla.html.html' );
 ?>
-<form class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
+<form id="form_declaration" class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=save'); ?>" method="post">
 	<fieldset>
 		<legend><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION'); ?></legend>
 		<!-- Button to trigger modal -->
@@ -118,25 +118,25 @@ jimport( 'joomla.html.html' );
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TARIF_PAR_NUITEES') ?> :</label>
 			<div class="controls">
-				<input type="text" readonly="readonly" name="tarif_par_nuitees" value="" /> €
+				<input type="text" class="input-xlarge" readonly="readonly" name="tarif_par_nuitees" placeholder="Choisir l'hébergement concerné" value="" /> €
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_ASSUJETTIES') ?> :</label>
 			<div class="controls">
-				<input type="text" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" required="required" placeholder="Entrer le nombre de personnes assuejeties" />
+				<input type="text" class="input-xlarge" id="nb_personnes_assujetties" name="nb_personnes_assujetties" value="" required="required" placeholder="Entrer le nombre de personnes assuejeties" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NB_PERSONNES_EXONEREES') ?> :</label>
 			<div class="controls">
-				<input type="text" name="nb_personnes_exonerees" required="required" placeholder="Entrer le nombre de personnes éxonérées" value="" />
+				<input type="text" class="input-xlarge" name="nb_personnes_exonerees" required="required" placeholder="Entrer le nombre de personnes éxonérées" value="" />
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TOTAL_DECLARE') ?> :</label>
 			<div class="controls">
-				<input type="text" id="total_dec" readonly="readonly" name="total_dec" value="" />
+				<input type="text" class="input-xlarge" id="total_dec" readonly="readonly" name="total_dec" value="" /> €
 			</div>
 		</div>
 		<div class="control-group">

@@ -27,37 +27,62 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 		}
 
 		// TODO: vérifier que le bon fuseau horaire est appliqué
-		$date_now = JFactory::getDate('now')->toSql();
+		$userTz = JFactory::getUser()->getParam('timezone');
+		$timeZone = JFactory::getConfig()->getValue('offset');
+		if($userTz) {
+			$timeZone = $userTz;
+		}
+		$myTimezone = new DateTimeZone($timeZone);
+
+		$date = new JDate('now');
+		$date->setTimezone($myTimezone);
 
 		$trimestre = $app->input->getString('choix_trimestre', null);
+		$hebergement_id = $app->input->getInt('user_hebergement', 0);
 		$mois_t1 = $app->input->getString('premier_trim', null);
 		$mois_t2 = $app->input->getString('second_trim', null);
 		$mois_t3 = $app->input->getString('troisieme_trim', null);
 		$mois_t4 = $app->input->getString('quatrieme_trim', null);
-		$nb_personnes_assujetties = $app->input->getInt('nb_personnes_assujetties', 0);
+		$tarif_par_nuite_par_personne = $app->input->getFloat('tarif_par_nuitees', 0);
+		$nb_personnes_par_nuite = $app->input->getInt('nb_personnes_assujetties', 0);
 		$nb_personnes_exonerees = $app->input->getInt('nb_personnes_exonerees', 0);
+		$total_declare = $app->input->getFloat('total_dec', 0);
 		$exactitude = $app->input->getInt('exactitude_document', 0);
+
+		$mois = '';
+		if (!empty($mois_t1))
+		{
+			$mois = $mois_t1;
+		}
+		elseif (!empty($mois_t2))
+		{
+			$mois = $mois_t2;
+		}
+		elseif (!empty($mois_t3))
+		{
+			$mois = $mois_t3;
+		}
+		elseif (!empty($mois_t4))
+		{
+			$mois = $mois_t4;
+		}
 
 		if ( $exactitude ) {
 			$db = JFactory::getDBO();
-			/*$query = $db->getQuery(true);
+			$query = $db->getQuery(true);
 			$query->insert('#__tdsmanager_declarations')
-				->columns('start_date, end_date, nb_personnes_exonerees, nb_personnes_reduction, identification_periode, nb_personnes_assujetties, duree_sejour, nb_total_nuitee, tarif_by_night, montant_encaisse_sejour, date_declarer, declarant_userid, hebergement_id')
-				->values(array('1,2', '3,4')); */
-			$query = "INSERT INTO #__tdsmanager_declarations (`start_date`, `end_date`, `nb_personnes_exonerees`, `nb_personnes_reduction`, `identification_periode`, `nb_personnes_assujetties`, `duree_sejour`, `nb_total_nuitee`, `tarif_by_night`, `montant_encaisse_sejour`, `date_declarer`, `declarant_userid`, `hebergement_id`)
-			VALUES ({$db->quote($start_date)},
-                       {$db->quote($end_date)},
-                       {$db->quote($post['nb_personnes_exonerees'])},
-                       {$db->quote($post['nb_personnes_reduction'])},
-                       {$db->quote($period_dec)},
-                       {$db->quote($post['nb_personnes_assujetties'])},
-                       {$db->quote($post['duree_sejour_nuitee'])},
-                       {$db->quote($post['nb_total_nuitees'])},
-                       {$db->quote($post['tarif_par_nuitees'])},
-                       {$db->quote($post['montant_encaisse_sejour'])},
-                       {$db->quote($date_now)},
-                       {$user->id},
-                       {$hosting_id})";
+				->columns('trimestre, mois, hebergement_id, tarif_par_nuite_par_personne, nb_personnes_par_nuite, nb_personnes_exonerees, total_declare, date_declaration, exactitude, user_id')
+				->values(array($db->quote($trimestre),
+								$db->quote($mois),
+								$hebergement_id,
+								$db->quote($tarif_par_nuite_par_personne),
+								$nb_personnes_par_nuite,
+								$nb_personnes_exonerees,
+								$db->quote($total_declare),
+								$db->quote($date->toSql()),
+								$exactitude,
+								$user->id));
+
 			$db->setQuery((string)$query);
 
 			try

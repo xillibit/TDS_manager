@@ -65,9 +65,13 @@ jQuery( document ).ready(function() {
 	
 		var tarif = jQuery('#tarif_par_nuitees').val();
 		var personnes_assujetties = jQuery('#nb_personnes_assujetties').val(); 
-		var total = tarif*personnes_assujetties;
 		
-		jQuery('#total_dec').val();
+		if(jQuery.isNumeric(personnes_assujetties) && jQuery.isNumeric(tarif))
+		{
+			var total = tarif*personnes_assujetties;
+			
+			jQuery('#total_dec').val(total);
+		}
 	});
 });
 

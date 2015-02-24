@@ -46,32 +46,17 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_classements` (
 --
 
 CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start_date` date NOT NULL DEFAULT '0000-00-00',
-  `end_date` date NOT NULL DEFAULT '0000-00-00',
-  `mois` tinyint(4) NOT NULL,
-  `hebergement_id` int(11) NOT NULL,
-  `nb_personnes_plein_tarif` int(11) NOT NULL,
-  `tarif_nuit_par_personne` float(7,2) NOT NULL,
-  `nb_nuitees_duree_sejour` int(11) NOT NULL,
-  `sous_total` float(7,3) NOT NULL,
-  `nb_personnes_reduction_30` int(11) NOT NULL,
-  `nb_personnes_reduction_40` int(11) NOT NULL,
-  `nb_personnes_reduction_50` int(11) NOT NULL,
-  `nb_personnes_reduction_75` int(11) NOT NULL,
-  `nb_nuitees_30` int(11) NOT NULL,
-  `nb_nuitees_40` int(11) NOT NULL,
-  `nb_nuitees_50` int(11) NOT NULL,
-  `nb_nuitees_75` int(11) NOT NULL,
-  `nb_personnes_exonerees` int(11) NOT NULL,
-  `sous_total2` float(7,4) NOT NULL,
-  `montant_total` float(7,4) NOT NULL,
-  `date_declarer` date NOT NULL DEFAULT '0000-00-00',
-  nb_total_personnes int(11) NOT NULL,
-  nb_personnes_assujetties int(11) NOT NULL,
-  montant_encaisse_sejour float(7,3) NOT NULL,
-  duree_sejour int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`trimestre` char(15) NOT NULL,
+	`mois` char(10) NOT NULL,
+	`hebergement_id` int(11) NOT NULL,
+	`nb_personnes_par_nuite` int(11) NOT NULL,
+	`nb_personnes_exonerees` int(11) NOT NULL,
+	`total_declare` float(7,4) NOT NULL,
+	`date_declaration` date NOT NULL DEFAULT '0000-00-00',
+	`exactitude` int(4),
+	`user_id` int(11), 
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
