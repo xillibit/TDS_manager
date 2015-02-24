@@ -42,4 +42,16 @@ class TdsmanagerViewReglements extends JView {
 
 		parent::display($tpl);
 	}
+
+	protected function _getViewFile($view, $tpl) {
+		$tpl =  JPATH_BASE.'/components/com_tdsmanager/views/'.$view.'/tmpl/'.$tpl.'.php';
+		if (!file_exists($tpl)) JError::raiseError(500, JText::sprintf('JLIB_APPLICATION_ERROR_LAYOUTFILE_NOT_FOUND', $tpl));
+
+		ob_start();
+		include $tpl;
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		return $output;
+	}s
 }

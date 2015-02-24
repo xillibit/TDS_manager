@@ -8,6 +8,7 @@
 
 defined('_JEXEC') or die;
 
+echo $this->_getViewFile('common', 'menu');
 ?>
 <div>
 	<h1>

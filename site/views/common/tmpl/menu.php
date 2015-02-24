@@ -8,16 +8,47 @@
 
 defined('_JEXEC') or die;
 
+$view = JFactory::getApplication()->input->getCmd('view');
 ?>
 <div class="navbar">
 	<div class="navbar-inner">
 		<a class="brand" href="#">TDSManager</a>
 			<ul class="nav">
-				<li class="active"><a href="<?php echo JRoute::_ ('index.php?com_tdsmanager') ?>">Gestion</a></li>
-				<li><a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=hebergements') ?>">Hébergements</a></li>
-				<li><a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=declarations') ?>">Déclarations</a></li>
-				<li><a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=reglements') ?>">Réglements</a></li>
-				<li><a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=user') ?>">Profil</a></li>
+				<?php if ($view == 'tdsmanager'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+						<a href="<?php echo JRoute::_ ('index.php?com_tdsmanager') ?>">Gestion</a>
+					</li>
+				<?php if ($view == 'hebergements'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+						<a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=hebergements') ?>">Hébergements</a>
+					</li>
+				<?php if ($view == 'declarations'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+						<a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=declarations') ?>">Déclarations</a>
+					</li>
+				<?php if ($view == 'reglements'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+						<a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=reglements') ?>">Réglements</a>
+					</li>
+				<?php if ($view == 'user'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+						<a href="<?php echo JRoute::_ ('index.php?com_tdsmanager&view=user') ?>">Profil</a>
+					</li>
 			</ul>
 		</div>
 </div>
