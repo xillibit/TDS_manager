@@ -65,32 +65,54 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 		$this->setRedirect('index.php?option=com_tdsmanager&view=hebergements&layout=create');
 	}
 
+	/**
+	 * Save or update declaration data
+	 *
+	 * @return boolean
+	 */
 	public function save() {
-	   if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-      }
-
-     $id = $this->app->getInt('id', 0);
-     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
-
-     $db = JFactory::getDBO();
-
-     if ( !$id ) {
-       $query = "INSERT INTO #__tdsmanager_hebergements
-                (hostingname,description,adress,complement_adress,city,website,email,postalcode,numero_classement,date_classement,id_classement,id_hebergement_type,id_hebergement_label,capacite_personnes,capacite_chambres,userid)
-                VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['email'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($post['classement'])},{$db->quote($post['hebergement_type'])},{$db->quote($post['label'])},{$db->quote($post['capacite_personnes'])},{$db->quote($post['capacite_chambres'])},{$db->quote($post['user_id'])})";
-       $db->setQuery((string)$query);
-
-		try
-		{
-			$db->Query();
+		if (!JSession::checkToken()) {
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$this->app->redirect($this->baseurl);
 		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
-		}
+
+		$db = JFactory::getDBO();
+
+		$id = $this->app->getInt('id', 0);
+		$hostingname = $this->app->input->getString('hostingname', null);
+		$description  = $this->app->input->getString('description', null);
+		$adress = $this->app->input->getString('adress', null);
+		$complement_adress = $this->app->input->getString('complement_adress', null);
+		$city = $this->app->input->getString('city', null);
+		$website = $this->app->input->getString('website', null);
+		$email = $this->app->input->getString('email', null);
+		$postalcode = $this->app->input->getInt('postalcode', 0);
+		$numero_classement = $this->app->input->getInt('numero_classement', 0);
+		$date_classement = $this->app->input->getString('date_classement', null);
+		$classement = $this->app->input->getInt('classement', 0);
+		$hebergement_type  = $this->app->input->getInt('hebergement_type', 0);
+		$label  = $this->app->input->getInt('label', 0);
+		$capacite_personnes = $this->app->input->getInt('capacite_personnes', 0);
+		$capacite_chambres = $this->app->input->getInt('capacite_chambres', 0);
+
+		if ( !$id ) {
+			$query = "INSERT INTO #__tdsmanager_hebergements
+				(hostingname,description,adress,complement_adress,city,website,email,postalcode,numero_classement,date_classement,id_classement,id_hebergement_type,id_hebergement_label,capacite_personnes,capacite_chambres,userid)
+				VALUES({$db->quote($hostingname)},{$db->quote($description)},{$db->quote($adress)},{$db->quote($complement_adress)},{$db->quote($city)}, {$db->quote($website)},{$db->quote($email)},{$db->quote($postalcode)},{$db->quote($numero_classement)},{$db->quote($date_classement)},{$db->quote($classement)},{$db->quote($hebergement_type)},{$db->quote($label)},{$db->quote($capacite_personnes)},{$db->quote($capacite_chambres)},{$db->quote($user_id)})";
+			$db->setQuery((string)$query);
+
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
+				return false;
+			}
+
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
+			$this->app->redirect($this->baseurl);
 
        /* Récupérer le tarif de la taxe de séjour correspondant à l'hébergement
        $heberg_id = $db->insertid();
@@ -109,43 +131,41 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 		{
 			$this->app->enqueueMessage ($e->getMessage());
 			return false;
-		}
-
-       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
-       $this->app->redirect($this->baseurl);
-     } else {
-       $query = "UPDATE #__tdsmanager_hebergements
-                SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},email={$db->quote($post['email'])},postalcode={$db->quote($post['postalcode'])},id_classement={$db->quote($post['classement'])},id_hebergement_type={$db->quote($post['hebergement_type'])},id_hebergement_label={$db->quote($post['label'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},capacite_personnes={$db->quote($post['capacite_personnes'])},capacite_chambres={$db->quote($post['capacite_chambres'])}
-                WHERE id={$db->quote($id)}";
-       $db->setQuery((string)$query);
-
-		try
-		{
-			$db->Query();
-		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
-		}
-
-        // mettre à jour les données dans hebergclass
-       /*$query = "UPDATE #__tdsmanager_hebergclass SET id_classement=,tarif=,userid=,id_hebergement_type=,id_hebergement_label= WHERE id_hebergement={$db->quote($id)}";
-       $db->setQuery((string)$query);
-       
-       try
-		{
-			$db->Query();
-		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
 		}*/
 
-       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
-       $this->app->redirect($this->baseurl);
-     }
+		} else {
+			$query = "UPDATE #__tdsmanager_hebergements
+				SET hostingname={$db->quote($hostingname)},description={$db->quote($description)},adress={$db->quote($adress)},complement_adress={$db->quote($complement_adress)},city={$db->quote($city)},website={$db->quote($website)},email={$db->quote($email)},postalcode={$db->quote($postalcode)},id_classement={$db->quote($classement)},id_hebergement_type={$db->quote($hebergement_type)},id_hebergement_label={$db->quote($label)},numero_classement={$db->quote($numero_classement)},date_classement={$db->quote($date_classement)},capacite_personnes={$db->quote($capacite_personnes)},capacite_chambres={$db->quote($capacite_chambres)}
+				WHERE id={$db->quote($id)}";
+			$db->setQuery((string)$query);
+
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
+				return false;
+			}
+
+	        // mettre à jour les données dans hebergclass
+	       /*$query = "UPDATE #__tdsmanager_hebergclass SET id_classement=,tarif=,userid=,id_hebergement_type=,id_hebergement_label= WHERE id_hebergement={$db->quote($id)}";
+	       $db->setQuery((string)$query);
+
+	       try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
+				return false;
+			}*/
+
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
+			$this->app->redirect($this->baseurl);
+		}
 	}
 
 	/**

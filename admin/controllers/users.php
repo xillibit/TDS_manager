@@ -119,7 +119,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $userid = $this->app->getInt('id', 0);
+    $userid = $this->app->input->getInt('id', 0);
 
     if ( !empty($userid) ) {
      $post = JRequest::get('post', JREQUEST_ALLOWRAW);

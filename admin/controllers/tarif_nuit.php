@@ -97,7 +97,7 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
 
-    $id = $this->app->getInt('id', 0);
+    $id = $this->app->input->getInt('id', 0);
     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
 
     $db = JFactory::getDBO();
