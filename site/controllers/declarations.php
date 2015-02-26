@@ -70,9 +70,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 		if ( $exactitude ) {
 			$db = JFactory::getDBO();
 			$query = $db->getQuery(true);
-			$query->insert('#__tdsmanager_declarations')
-				->columns('trimestre, mois, hebergement_id, tarif_par_nuite_par_personne, nb_personnes_par_nuite, nb_personnes_exonerees, total_declare, date_declaration, exactitude, user_id')
-				->values(array($db->quote($trimestre),
+			$values = array($db->quote($trimestre),
 								$db->quote($mois),
 								$hebergement_id,
 								$db->quote($tarif_par_nuite_par_personne),
@@ -81,7 +79,11 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 								$db->quote($total_declare),
 								$db->quote($date->toSql()),
 								$exactitude,
-								$user->id));
+								$user->id);
+
+			$query->insert('#__tdsmanager_declarations')
+				->columns('trimestre, mois, hebergement_id, tarif_par_nuite_par_personne, nb_personnes_par_nuite, nb_personnes_exonerees, total_declare, date_declaration, exactitude, user_id')
+				->values(implode(',', $values));
 
 			$db->setQuery((string)$query);
 

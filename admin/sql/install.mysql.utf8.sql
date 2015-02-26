@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
 	`trimestre` char(15) NOT NULL,
 	`mois` char(10) NOT NULL,
 	`hebergement_id` int(11) NOT NULL,
+	`tarif_par_nuite_par_personne` float(7,4) NOT NULL,
 	`nb_personnes_par_nuite` int(11) NOT NULL,
 	`nb_personnes_exonerees` int(11) NOT NULL,
 	`total_declare` float(7,4) NOT NULL,

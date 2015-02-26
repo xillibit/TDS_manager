@@ -60,17 +60,39 @@ jQuery( document ).ready(function() {
 	});
 	
 	// Permet de calculer tarfis en appuyant sur valider dans le formulaire de déclaration 
-	jQuery('#form_declaration').on('submit', function(e){
-		e.preventDefault();  
-	
+	jQuery('#calc_total_dec').click(function(){	
 		var tarif = jQuery('#tarif_par_nuitees').val();
 		var personnes_assujetties = jQuery('#nb_personnes_assujetties').val(); 
+		
+		if ( tarif.legnth == undefined )
+		{
+			jQuery('#alert_dec_div').show();
+			jQuery('#alert_dec_div').addClass('alert-error'); 
+			jQuery('#alert_dec_title').text('Erreur');
+			jQuery('#alert_dec_content').text('Vous devez sélectionner un hébergement dans la liste pour calculer le montant total.');
+	
+			return false;
+		}
 		
 		if(jQuery.isNumeric(personnes_assujetties) && jQuery.isNumeric(tarif))
 		{
 			var total = tarif*personnes_assujetties;
 			
 			jQuery('#total_dec').val(total);
+		}
+	});
+	
+	jQuery('#form_declaration').on('submit', function(e){
+		var total_val = jQuery('#total_dec').val();
+		
+		if (total_val.length <= 0)
+		{
+			e.preventDefault();
+	
+			jQuery('#alert_dec_div').show();
+			jQuery('#alert_dec_div').addClass('alert-error'); 
+			jQuery('#alert_dec_title').text('Erreur');
+			jQuery('#alert_dec_content').text('Le montant total n\'a pas été calculé, vous devez cliquer sur le bouton calculer avant de pouvoir valider votre déclaration.');
 		}
 	});
 });

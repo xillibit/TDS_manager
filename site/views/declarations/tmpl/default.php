@@ -22,24 +22,24 @@ echo $this->_getViewFile('common', 'menu');
 				<th class="nowrap">
 					<input name="checkbox_all" id="checkbox_all" type="checkbox" />
 				</th>
-  				<th class="nowrap">
-  					<?php echo JText::_('COM_TDSMANAGER_PERIODE_DECLARATION'); ?>
-  				</th>
-  				<th>
-  					<?php echo JText::_('COM_TDSMANAGER_DUREE_SEJOUR'); ?>
-  				</th>
-  				<th>
-  					<?php echo JText::_('COM_TDSMANAGER_MONTANT_ENCAISSE_SEJOUR'); ?>
-  				</th>
-  				<th>
-  					<?php echo JText::_('COM_TDSMANAGER_DATE_DECLARATION'); ?>
-  				</th>
-  				<!-- <th>
-  					<?php //echo JText::_('COM_TDSMANAGER_PAIEMENT_OK'); ?>
-  				</th>-->
-  				<th>
-  					<?php echo JText::_('COM_TDSMANAGER_NOM_HEBERGEMENT'); ?>
-  				</th>
+				<th class="nowrap">
+					<?php echo JText::_('COM_TDSMANAGER_PERIODE_DECLARATION'); ?>
+				</th>
+				<th>
+					<?php echo JText::_('COM_TDSMANAGER_NOM_HEBERGEMENT'); ?>
+				</th>
+				<th>
+					<?php echo JText::_('COM_TDSMANAGER_NB_PERSONNES_PAR_NUITE'); ?>
+				</th>
+				<th>
+					<?php echo JText::_('COM_TDSMANAGER_TOTAL_TAXE_PERCUE'); ?>
+				</th>
+				<th>
+					<?php echo JText::_('COM_TDSMANAGER_DATE_DECLARATION'); ?>
+				</th>
+				<!-- <th>
+					<?php //echo JText::_('COM_TDSMANAGER_PAIEMENT_OK'); ?>
+				</th>-->
   			</tr>
   		</thead>
   		<tfoot>
@@ -53,23 +53,31 @@ echo $this->_getViewFile('common', 'menu');
                 <input class="check-me" name="cid[]" type="checkbox" value="<?php echo $item->id; ?>" />
     				</td>
             <td>
-                <?php echo $item->start_date; ?>
+                <?php if ($item->trimestre=='premier_trim') {
+                   echo 'Premier trimestre ('.ucfirst($item->mois).')';
+                } else if ($item->trimestre=='second_trim') {
+                   echo 'Deuxiéme trimestre ('.ucfirst($item->mois).')';
+                } else if ($item->trimestre=='troisieme_trim') {
+                   echo 'Troisiéme trimestre ('.ucfirst($item->mois).')';
+                } else if ($item->trimestre=='quatrieme_trim') {
+                   echo 'Quatriéme trimestre ('.ucfirst($item->mois).')';
+                } ?>
+    				</td>
+            <td class="center">
+    					<?php echo $item->hostingname;?>
     				</td>
     				<td class="center">
-    					<?php echo $item->end_date; ?>
+    					<?php echo $item->nb_personnes_par_nuite; ?>
     				</td>
     				<td class="center">
-    					<?php echo $item->montant_encaisse_sejour;?>
+    					<?php echo $item->total_declare;?> €
     				</td>
     				<td class="center">
-    					<?php echo $item->date_declarer; ?>
+    					<?php echo $item->date_declaration; ?>
     				</td>
     				<!-- <td class="order">
     					<?php //echo $item->paiement_ok ? JText::_('COM_TDSMANAGER_DECLARATION_PAID') : JText::_('COM_TDSMANAGER_DECLARATION_NO_PAID'); ?>
     				</td>-->
-    				<td class="center">
-    					<?php echo $item->hostingname;?>
-    				</td>
     			</tr>
   			<?php endforeach;
         }

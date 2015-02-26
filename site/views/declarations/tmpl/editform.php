@@ -118,7 +118,7 @@ jimport( 'joomla.html.html' );
 		<div class="control-group">
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TARIF_PAR_NUITEES') ?> :</label>
 			<div class="controls">
-				<input type="text" class="input-xlarge" readonly="readonly" name="tarif_par_nuitees" placeholder="Choisir l'hébergement concerné" value="" /> €
+				<input type="text" class="input-xlarge" id="tarif_par_nuitees" readonly="readonly" name="tarif_par_nuitees" placeholder="Choisir l'hébergement concerné" value="" /> €
 			</div>
 		</div>
 		<div class="control-group">
@@ -137,6 +137,12 @@ jimport( 'joomla.html.html' );
 			<label class="control-label" for="inputEmail"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_TOTAL_DECLARE') ?> :</label>
 			<div class="controls">
 				<input type="text" class="input-xlarge" id="total_dec" readonly="readonly" name="total_dec" value="" /> €
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Calculer le montant total :</label>
+			<div class="controls">
+				<button id="calc_total_dec" class="btn btn-primary" type="button">Calculer</button>
 			</div>
 		</div>
 		<div class="control-group">
