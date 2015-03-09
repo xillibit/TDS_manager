@@ -35,6 +35,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			$data = json_decode($data);
 
 			$values = new stdClass();
+			$values->id = '';
 			$values->classement = '';
 			$values->label = '';
 			$values->adress = '';
@@ -63,6 +64,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 			if ($type=='hebergeur')
 			{
+				if ( !empty($data[0]->id) ) $values->id = $data[0]->id;
 				if ( !empty($data[0]->rue) ) $values->adress = $data[0]->rue;
 				if ( !empty($data[0]->lieudit) ) $values->complement_adress  = $data[0]->lieudit;
 				if ( !empty($data[0]->code_postal) )  $values->postalcode = $data[0]->code_postal;
@@ -83,10 +85,11 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			}
 			else if ($type=='hebergement')
 			{
+				if ( !empty($data[0]->id) ) $values->id = $data[0]->id;
 				if ( !empty($data[0]->nom) ) $values->name = $data[0]->nom;
 				if ( !empty($data[0]->libelle_activite) ) $values->libelle_activite = $data[0]->libelle_activite;
 				if ( !empty($data[0]->classement) ) $values->classement = $data[0]->classement;
-				if ( !empty($data[0]->nom_rue) ) $values->adress = $data[0]->rue;
+				if ( !empty($data[0]->nom_rue) ) $values->adress = $data[0]->nom_rue;
 				if ( !empty($data[0]->complement) ) $values->complement_adress = $data[0]->complement;
 				if ( !empty($data[0]->code_postal) ) $values->postalcode = $data[0]->code_postal;
 				if ( !empty($data[0]->ville) ) $values->ville = $data[0]->ville;
@@ -106,6 +109,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			}
 			else if ($type=='classement')
 			{
+				if ( !empty($data[0]->id) ) $values->id = $data[0]->id;
 				if ( !empty($data[0]->nom) ) $values->nom = $data[0]->nom;
 
 				if ($mise_a_jour)
@@ -119,6 +123,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			}
 			else if ($type=='type_hebergement')
 			{
+				if ( !empty($data[0]->id) ) $values->id = $data[0]->id;
 				if ( !empty($data[0]->libelle_activite) ) $values->libelle_activite = $data[0]->libelle_activite;
 				if ( !empty($data[0]->non_classe) ) $values->non_classe = $data[0]->non_classe;
 				if ( !empty($data[0]->categorie_1) ) $values->categorie_1 = $data[0]->categorie_1;
@@ -129,7 +134,15 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 				if ($mise_a_jour)
 				{
-					$this->updateTypehebergement($values);
+					$tarifs = new stdClass();
+					$tarifs->non_classe = $values->non_classe;
+					$tarifs->categorie_1 = $values->categorie_1;
+					$tarifs->categorie_2 = $values->categorie_2;
+					$tarifs->categorie_3 = $values->categorie_3;
+					$tarifs->categorie_4 = $values->categorie_4;
+					$tarifs->categorie_5 = $values->categorie_5;
+
+					$this->updateTypehebergement($values, $tarifs);
 				}
 				else
 				{
@@ -201,12 +214,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	{
 		$db = JFactory::getDbo();
 
-		$query = "SELECT id FROM #__tdsmanager_classements WHERE description=".$db->quote($nom_classement);
+		$query = "SELECT id FROM #__tdsmanager_classements WHERE description=" . $db->quote($nom_classement);
 		$db->setQuery($query);
 
 		try
 		{
-			$id_classement = $db->loadObject();
+			$id_classement = $db->loadResult();
 		}
 		catch (Exception $e)
 		{
@@ -227,7 +240,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		$id_classement = $this->getHebergementClassement($values->classement);
 
 		$query = "INSERT INTO #__tdsmanager_hebergements (description,adress,complement_adress,postalcode,id_classement,city,date_visite,date_expiration)
-					VALUES({$db->quote($values->nom)},{$db->quote($values->nom_rue)},{$db->quote($values->complement)},{$db->quote($values->code_postal)},$id_classement,{$db->quote($values->ville)},{$db->quote($values->date_visite)},{$db->quote($values->date_expiration)})";
+					VALUES({$db->quote($values->name)},{$db->quote($values->adress)},{$db->quote($values->complement_adress)},{$db->quote($values->postalcode)},$id_classement,{$db->quote($values->ville)},{$db->quote($values->date_visite)},{$db->quote($values->date_expiration)})";
 		$db->setQuery($query);
 
 		try
@@ -241,7 +254,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le nouvel hébergement ".$values->nom." a bien été enregistré", JLog::INFO, 'com_tdsmanager'
+			"Le nouvel hébergement " . $values->name . " a bien été enregistré", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -256,7 +269,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		$id_classement = $this->getHebergementClassement($values->classement);
 
-		$query = "UPDATE #__tdsmanager_hebergements SET description={$db->quote($values->nom)},adress={$db->quote($values->nom_rue)},complement_adress={$db->quote($values->complement)},postalcode={$db->quote($values->code_postal)},id_classement=$id_classement,city={$db->quote($values->ville)},date_visite={$db->quote($values->date_visite)},date_expiration={$db->quote($values->date_expiration)} WHERE id=".$values->id;
+		$query = "UPDATE #__tdsmanager_hebergements SET description={$db->quote($values->name)},adress={$db->quote($values->nom_rue)},complement_adress={$db->quote($values->complement)},postalcode={$db->quote($values->code_postal)},id_classement=$id_classement,city={$db->quote($values->ville)},date_visite={$db->quote($values->date_visite)},date_expiration={$db->quote($values->date_expiration)} WHERE id=".$values->id;
 		$db->setQuery($query);
 
 		try
@@ -270,7 +283,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"La mise à jour de l'hébergement avec l'id ".$values->id." a bien été effectué", JLog::INFO, 'com_tdsmanager'
+			"La mise à jour de l'hébergement avec l'id " . $values->id . " a bien été effectué", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -297,7 +310,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le nouvel classement nommé ".$values->nom." a bien été enregistré", JLog::INFO, 'com_tdsmanager'
+			"Le nouvel classement nommé " . $values->nom . " a bien été enregistré", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -324,7 +337,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le classement avec l'id ".$values->id." a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
+			"Le classement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -362,7 +375,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Les détials du type d'hébergement nommé ".$values->libelle_activite." ont bien été enregistrés", JLog::INFO, 'com_tdsmanager'
+			"Les détials du type d'hébergement nommé " . $values->libelle_activite . " ont bien été enregistrés", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -371,25 +384,28 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	/**
 	 * Mise à jour d'un type d'hébergement existant
 	*/
-	protected function updateTypehebergement($values)
+	protected function updateTypehebergement($values, $tarifs)
 	{
 		$db = JFactory::getDbo();
 
-		$query = "UPDATE #__tdsmanager_tarif_nuit SET tarif,id_classement,id_hebergement_type WHERE id=".$values->id;
-		$db->setQuery($query);
+		foreach($tarifs as $tarif)
+		{
+			$query = "UPDATE #__tdsmanager_tarif_nuit SET tarif={$db->quote($tarif)} WHERE id=".$values->id;
+			$db->setQuery($query);
 
-		try
-		{
-			//$db->query();
-		}
-		catch (Exception $e)
-		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
-			return false;
+			try
+			{
+				//$db->query();
+			}
+			catch (Exception $e)
+			{
+				JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
+				return false;
+			}
 		}
 
 		JLog::add(
-			"Le type d'hébergement avec l'id a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
+			"Le type d'hébergement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
