@@ -36,8 +36,8 @@ class TdsmanagerController extends JController {
 		$document = JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getCmd('view', 'main');
-		JRequest::setVar('view', $vName);
+		$vName		= JFactory::getApplication()->input->getCmd('view', 'main');
+		JFactory::getApplication()->input->set('view', $vName);
 
 		$user = JFactory::getUser();
 

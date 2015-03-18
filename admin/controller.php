@@ -35,7 +35,7 @@ class TdsmanagerController extends JControllerLegacy {
 		TdsmanagerHelper::addSubmenu($view);
 
 		// set default view if not set
-		JRequest::setVar('view', $view);
+		JFactory::getApplication()->input->set('view', $view);
 
 		// call parent behavior
 		parent::display($cachable);

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_contact
+ * @subpackage	com_tdsmanager
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -12,7 +12,10 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controller');
 require_once JPATH_COMPONENT.'/helpers/route.php';
 
-$view = strtolower ( JRequest::getWord ( 'view' ) );
+$view = JFactory::getApplication()->input->getWord('view');
+$task = JFactory::getApplication()->input->getCmd('task');
+
+$view = strtolower($view);
 $controller = 'TdsmanagerController' . ucfirst ( $view );
 
 $path = JPATH_COMPONENT . "/controllers/{$view}.php";
@@ -23,5 +26,5 @@ if (file_exists ( $path )) {
 }
 
 $instance = new $controller ();
-$instance->execute(JRequest::getCmd('task'));
+$instance->execute($task);
 $instance->redirect();

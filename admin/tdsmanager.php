@@ -16,7 +16,7 @@ require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/control
 
 $view = JFactory::getApplication()->input->getCmd('view', 'controlpanel');
 $task = JFactory::getApplication()->input->getCmd('task');
-JRequest::setVar( 'view', $view );
+JFactory::getApplication()->input->set( 'view', $view );
 
 require_once JPATH_COMPONENT.'/helpers/tdsmanager.php';
 
