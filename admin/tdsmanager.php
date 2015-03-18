@@ -14,14 +14,14 @@ defined('_JEXEC') or die('Restricted access');
 // Initialize component
 require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/controller.php';
 
-$view = JRequest::getCmd ( 'view', 'controlpanel' );
-$task = JRequest::getCmd('task');
+$view = JFactory::getApplication()->input->getCmd('view', 'controlpanel');
+$task = JFactory::getApplication()->input->getCmd('task');
 JRequest::setVar( 'view', $view );
 
 require_once JPATH_COMPONENT.'/helpers/tdsmanager.php';
 
 // Load the submenu.
-TdsmanagerHelper::addSubmenu(JRequest::getCmd('view', 'controlpanel'));
+TdsmanagerHelper::addSubmenu($view);
 
 $controller = TdsmanagerController::getInstance('Tdsmanager');
 

@@ -54,18 +54,28 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 		}
 
 		if ( $user->id > 0 ) {
-			$post = JRequest::get('post', JREQUEST_ALLOWRAW);
-			$edit_mode = $app->input->getInt('edit_mode');
-
 			$db = JFactory::getDBO();
 
-			if ( empty($post['hostingname']) )
+			$edit_mode = $app->input->getInt('edit_mode');
+
+			$hostingname = $app->input->getString('hostingname', null);
+			$description = $app->input->getString('description', null);
+			$adress = $app->input->getString('adress', null);
+			$complement_adress = $app->input->getString('complement_adress', null);
+			$city = $app->input->getString('city', null);
+			$website = $app->input->getString('website', null);
+			$postalcode = $app->input->getInt('postalcode', 0);
+			$numero_classement = $app->input->getString('numero_classement', null);
+			$date_classement = $app->input->getString('date_classement', null);
+			$labels = $app->input->getInt('labels', 0);
+
+			if ( empty($hostingname) )
 			{
 				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_HOSTINGNAME_MISSING'), 'error');
 				$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
 				return false;
 			}
-			else if ( empty($post['adress']) )
+			else if ( empty($adress) )
 			{
 				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_ADRESS_MISSING'), 'error' );
 				$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=hebergements', false));
@@ -77,7 +87,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 
 				// si c'est l'édition d'un hébergement existant
 				$query = "UPDATE #__tdsmanager_hebergements
-					SET hostingname={$db->quote($post['hostingname'])},description={$db->quote($post['description'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},city={$db->quote($post['city'])},website={$db->quote($post['website'])},postalcode={$db->quote($post['postalcode'])},numero_classement={$db->quote($post['numero_classement'])},date_classement={$db->quote($post['date_classement'])},id_hebergement_label={$db->quote($post['labels'])}
+					SET hostingname={$db->quote($hostingname)},description={$db->quote($description)},adress={$db->quote($adress)},complement_adress={$db->quote($complement_adress)},city={$db->quote($city)},website={$db->quote($website)},postalcode={$db->quote($postalcode)},numero_classement={$db->quote($numero_classement)},date_classement={$db->quote($date_classement)},id_hebergement_label={$db->quote($labels)}
 					WHERE id={$hebergement_id}";
 				$db->setQuery((string)$query);
 
@@ -100,7 +110,7 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
 			// Si c'est un nouvel hébergement, on enregistre de nouvelles données
 			$query = "INSERT INTO #__tdsmanager_hebergements
 				(hostingname,description,adress,complement_adress,city,website,postalcode,numero_classement,date_classement, date_enregistre, userid, id_hebergement_label)
-				VALUES({$db->quote($post['hostingname'])},{$db->quote($post['description'])},{$db->quote($post['adress'])},{$db->quote($post['complement_adress'])},{$db->quote($post['city'])}, {$db->quote($post['website'])},{$db->quote($post['postalcode'])},{$db->quote($post['numero_classement'])},{$db->quote($post['date_classement'])},{$db->quote($date_now)}, {$db->quote(intval($user->id))},{$db->quote($post['labels'])} )";
+				VALUES({$db->quote($hostingname)},{$db->quote($description)},{$db->quote($adress)},{$db->quote($complement_adress)},{$db->quote($city)}, {$db->quote($website)},{$db->quote($postalcode)},{$db->quote($numero_classement)},{$db->quote($date_classement)},{$db->quote($date_now)}, {$db->quote(intval($user->id))},{$db->quote($labels)} )";
 			$db->setQuery((string)$query);
 			$db->Query();
 			$hosting_id = $db->insertid();
@@ -283,11 +293,14 @@ class TdsmanagerControllerHebergements extends JControllerLegacy {
     }
 
     if ( $user->id > 0 ) {
-      $post = JRequest::get('post', JREQUEST_ALLOWRAW);
+      $fermee_depuis = $app->input->getString('fermee_depuis', null);
+      $reouverture_le  = $app->input->getString('reouverture_le', null);
+      $motif = $app->input->getString('motif', null);
+      $hebergement_list = $app->input->getInt('hebergement_list', null);
 
       $query = "INSERT INTO #__tdsmanager_periode_ouverture
                     (date_fermeture,date_ouverture,motif,id_hebergement)
-                    VALUES({$db->quote($post['fermee_depuis'])},{$db->quote($post['reouverture_le'])},{$db->quote($post['motif'])},{$db->quote($post['hebergement_list'])} )";
+                    VALUES({$db->quote($fermee_depuis)},{$db->quote($reouverture_le)},{$db->quote($motif)},{$db->quote($hebergement_list)} )";
       $db->setQuery((string)$query);
     try
 				{

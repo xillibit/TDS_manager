@@ -34,8 +34,18 @@ class TdsmanagerControllerUser extends JControllerLegacy {
 		}
 
 		if ( $user->id > 0 ) {
-			$post = JRequest::get('post', JREQUEST_ALLOWRAW);
 			$db = JFactory::getDBO();
+
+			$name = $app->input->getString('name', null);
+			$lastname = $app->input->getString('lastname', null);
+			$adress = $app->input->getString('adress', null);
+			$complement_adress = $app->input->getString('complement_adress', null);
+			$ville = $app->input->getString('ville', null);
+			$postalcode = $app->input->getInt('postalcode', 0);
+			$portable = $app->input->getString('portable', null);
+			$telephone = $app->input->getString('telephone', null);
+			$mail = $app->input->getString('mail', null);
+			$userid = $app->input->getInt('userid', 0);
 
 			if ( !empty($post) ) {
 				$query = "UPDATE #__tdsmanager_users
