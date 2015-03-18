@@ -29,11 +29,13 @@ class TdsmanagerController extends JControllerLegacy {
 	public function display($cachable = false, $urlparams = false) {
 		require_once JPATH_COMPONENT.'/helpers/tdsmanager.php';
 
-		// Load the submenu.
-		TdsmanagerHelper::addSubmenu(JRequest::getCmd('view', 'controlpanel'));
+		$view = JFactory::getApplication()->input->getCmd('view', 'controlpanel');
 
-    // set default view if not set
-		JRequest::setVar('view', JRequest::getCmd('view', 'controlpanel'));
+		// Load the submenu.
+		TdsmanagerHelper::addSubmenu($view);
+
+		// set default view if not set
+		JRequest::setVar('view', $view);
 
 		// call parent behavior
 		parent::display($cachable);

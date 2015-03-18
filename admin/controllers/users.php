@@ -122,11 +122,18 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     $userid = $this->app->input->getInt('id', 0);
 
     if ( !empty($userid) ) {
-     $post = JRequest::get('post', JREQUEST_ALLOWRAW);
+     $name = $this->app->input->getString('name', null);
+     $lastname = $this->app->input->getString('lastname', null);
+     $adress = $this->app->input->getString('adress', null);
+     $complement_adress = $this->app->input->getString('complement_adress', null);
+     $postalcode = $this->app->input->getInt('postalcode', 0);
+     $ville = $this->app->input->getString('ville', null);
+     $telephone = $this->app->input->getString('telephone', null);
+     $portable = $this->app->input->getString('portable ', null);
 
      $db = JFactory::getDBO();
      $query = "UPDATE #__tdsmanager_users
-              SET name={$db->quote($post['name'])},lastname={$db->quote($post['lastname'])},adress={$db->quote($post['adress'])},complement_adress={$db->quote($post['complement_adress'])},postalcode={$db->quote($post['postalcode'])},ville={$db->quote($post['ville'])},telephone={$db->quote($post['telephone'])},portable={$db->quote($post['portable'])} WHERE userid={$db->quote($userid)}";
+              SET name={$db->quote($name)},lastname={$db->quote($lastname)},adress={$db->quote($adress)},complement_adress={$db->quote($complement_adress)},postalcode={$db->quote($postalcode)},ville={$db->quote($ville)},telephone={$db->quote($telephone)},portable={$db->quote($portable)} WHERE userid={$db->quote($userid)}";
      $db->setQuery((string)$query);
 
 		try

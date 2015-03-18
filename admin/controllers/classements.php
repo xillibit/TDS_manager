@@ -149,14 +149,17 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->redirect($this->baseurl);
 		}
 
+		$db = JFactory::getDBO();
+
 		$id = $this->app->input->getInt('id', 0);
-		$post = JRequest::get('post', JREQUEST_ALLOWRAW);
+
+		$description = $this->app->input->getString('description', null);
+		$state = $this->app->input->getInt('state', 0);
 
 		if ( !$id ) {
-			$db = JFactory::getDBO();
 			$query = "INSERT INTO #__tdsmanager_classements
 				(description,state)
-				VALUES({$db->quote($post['description'])},'1')";
+				VALUES({$db->quote($description)},'1')";
 			$db->setQuery((string)$query);
 
 			try
@@ -172,9 +175,8 @@ class TdsmanagerAdminControllerClassements extends TdsmanagerController {
 			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_CLASSEMENT_SAVED_SUCESSFULLY') );
 			$this->app->redirect($this->baseurl);
 		} else {
-			$db = JFactory::getDBO();
 			$query = "UPDATE #__tdsmanager_classements
-				SET description={$db->quote($post['description'])},state={$db->quote($post['state'])} WHERE id={$db->quote($id)}";
+				SET description={$db->quote($description)},state={$db->quote($state)} WHERE id={$db->quote($id)}";
 			$db->setQuery((string)$query);
 
 			try

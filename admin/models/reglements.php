@@ -57,7 +57,7 @@ class TdsmanagerAdminModelReglements extends TdsmanagerModel {
 
     $this->setState ( 'list.total', $total );
 
-    $query = "SELECT reg.*,heb.*,decl.date_declarer FROM #__tdsmanager_reglements AS reg
+    $query = "SELECT reg.*,heb.*,decl.date_declaration FROM #__tdsmanager_reglements AS reg
               LEFT JOIN #__tdsmanager_declarations AS decl ON decl.hebergement_id=reg.declaration_id
               LEFT JOIN #__tdsmanager_hebergements AS heb ON heb.id=decl.hebergement_id";
     $db->setQuery((string)$query, $this->getState ( 'list.start' ),$this->getState ( 'list.limit' ));

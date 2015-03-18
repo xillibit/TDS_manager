@@ -67,7 +67,7 @@ class TdsmanagerAdminViewLabel extends TdsmanagerView {
 
 	protected function setToolbarCreate() {
     // TODO: remplacer banners.png par une icône propre à l'application
-		JToolBarHelper::title(JText::_('COM_TDSMANAGER_EDITION_LABEL'), 'label.png');
+		JToolBarHelper::title(JText::_('COM_TDSMANAGER_CREATE_LABEL'), 'label.png');
 		JToolBarHelper::save('save');
 		JToolBarHelper::cancel();
   }

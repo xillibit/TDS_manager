@@ -95,14 +95,14 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
     }
 
     $id = $this->app->input->getInt('id', 0);
-    $post = JRequest::get('post', JREQUEST_ALLOWRAW);
+    $nom = $this->app->input->getString('nom', null);
 
     $db = JFactory::getDBO();
 
     if ( !$id ) {
       $query = "INSERT INTO #__tdsmanager_hebergements_label
                 (nom)
-                VALUES({$db->quote($post['nom'])})";
+                VALUES({$db->quote($nom)})";
        $db->setQuery((string)$query);
 
 		try
@@ -119,7 +119,7 @@ class TdsmanagerAdminControllerLabel extends TdsmanagerController {
        $this->app->redirect($this->baseurl);
     } else {
         $query = "UPDATE #__tdsmanager_hebergements_label
-                  SET nom={$db->quote($post['nom'])} WHERE id={$db->quote($id)}";
+                  SET nom={$db->quote($nom)} WHERE id={$db->quote($id)}";
         $db->setQuery((string)$query);
 
 		try

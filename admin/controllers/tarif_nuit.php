@@ -98,14 +98,16 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
     }
 
     $id = $this->app->input->getInt('id', 0);
-    $post = JRequest::get('post', JREQUEST_ALLOWRAW);
+    $tarif = $this->app->input->getFloat('tarif', 0);
+    $classement = $this->app->input->getInt('classement', 0);
+    $hebergement_type = $this->app->input->getInt('hebergement_type', 0);
 
     $db = JFactory::getDBO();
 
     if ( !$id ) {
       $query = "INSERT INTO #__tdsmanager_tarif_nuit
                 (tarif, id_classement, id_hebergement_type)
-                VALUES({$db->quote($post['tarif'])}, {$db->quote($post['classement'])}, {$db->quote($post['hebergement_type'])})";
+                VALUES({$db->quote($tarif)}, {$db->quote($classement)}, {$db->quote($hebergement_type)})";
        $db->setQuery((string)$query);
 
 		try
@@ -122,8 +124,8 @@ class TdsmanagerAdminControllerTarif_nuit extends TdsmanagerController {
        $this->app->redirect($this->baseurl);
     } else {
         $query = "UPDATE #__tdsmanager_tarif_nuit
-                  SET tarif={$db->quote($post['tarif'])},id_classement={$db->quote($post['classement'])}, id_hebergement_type={$db->quote($post['hebergement_type'])}
-                  WHERE id={$db->quote($post['id'])}";
+                  SET tarif={$db->quote($tarif)},id_classement={$db->quote($classement)}, id_hebergement_type={$db->quote($hebergement_type)}
+                  WHERE id={$db->quote($id)}";
         $db->setQuery((string)$query);
 
 		try

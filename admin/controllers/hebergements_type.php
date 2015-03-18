@@ -96,7 +96,8 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
 
     $id = $this->app->input->getInt('id', 0);
 
-    $post = JRequest::get('post', JREQUEST_ALLOWRAW);
+    $name = $this->app->input->getString('name', nul);
+    $description = $this->app->input->getString('description', nul);
 
     $db = JFactory::getDBO();
 
@@ -104,7 +105,7 @@ class TdsmanagerAdminControllerHebergements_type extends TdsmanagerController {
     if ( !$id ) {
       $query = "INSERT INTO #__tdsmanager_hebergements_type
                 (name,description,state)
-                VALUES({$db->quote($post['name'])},{$db->quote($post['description'])},'1')";
+                VALUES({$db->quote($name)},{$db->quote($description)},'1')";
        $db->setQuery((string)$query);
 
 		try

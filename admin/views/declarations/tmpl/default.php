@@ -42,41 +42,38 @@ $listDirn	= $this->state->get('list.direction');
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('COM_TDSMANAGER_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_DATE_DECLARATION', 'start_date', $listDirn, $listOrder); ?>
-				</th>
-        <th width="10%" class="nowrap">
-					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DATE_DECLARATION_FIN', 'end_date', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_PERIODE_DECLARATION', 'start_date', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%" class="nowrap">
-					<?php echo JText::_('COM_TDSMANAGER_DECLARATION_PAIEMENT'); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_TDSMANAGER_DATE_DECLARATION', 'end_date', $listDirn, $listOrder); ?>
+				</th>
+				<th width="10%" class="nowrap">
+					<?php echo JText::_('COM_TDSMANAGER_DECLARATION_TARIFICATION'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_PERIOD', 'identification_period', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NB_PERSONNES_PAR_NUITEES', 'nb_personnes_assujetties', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_NB_PERSONNES_ASSUJETTIES', 'nb_personnes_assujetties', $listDirn, $listOrder); ?>
-				</th>
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_MONTANT_ENCAISSE_SEJOUR', 'motant_encaisse_sejour', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_TDSMANAGER_TOTAL_PERCU_TAXE_DE_SEJOUR', 'motant_encaisse_sejour', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
 					<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_USER_OWNER'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_CONCERN'); ?>
+					<?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NAME'); ?>
 				</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
-        <td colspan="14">
-          <div class="pagination">
-          <div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
-          <?php echo $this->navigation->getPagesLinks (); ?>
-          <div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
-          </div>
-        </td>
-      </tr>
+				<td colspan="14">
+					<div class="pagination">
+						<div class="limit"><?php echo JText::_('COM_TDSMANAGER_A_DISPLAY'); ?> <?php echo $this->navigation->getLimitBox (); ?></div>
+						<?php echo $this->navigation->getPagesLinks (); ?>
+						<div class="limit"><?php echo $this->navigation->getResultsCounter (); ?></div>
+					</div>
+				</td>
+			</tr>
 		</tfoot>
 		<tbody>
 		<?php if ( !empty($this->declarations) ):
@@ -86,22 +83,29 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo JHtml::_('grid.id', $i, intval($item->decl_id)); ?>
 				</td>
 				<td>
-            <?php echo $item->start_date; ?>
+				<?php if ($item->trimestre=='premier_trim') {
+						echo 'Premier trimestre ('.ucfirst($item->mois).')';
+					} else if ($item->trimestre=='second_trim') {
+						echo 'Deuxiéme trimestre ('.ucfirst($item->mois).')';
+					} else if ($item->trimestre=='troisieme_trim') {
+						echo 'Troisiéme trimestre ('.ucfirst($item->mois).')';
+					} else if ($item->trimestre=='quatrieme_trim') {
+						echo 'Quatriéme trimestre ('.ucfirst($item->mois).')';
+					} else {
+						echo 'Période inconnue';
+					} ?>
 				</td>
 				<td class="center">
-					<?php echo $item->end_date; ?>
+					<?php echo $item->date_declaration; ?>
 				</td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->paiement_ok, $i, '', 1, 'cb'); ?>
+					<?php echo number_format((float)$item->tarif_par_nuite_par_personne, 2, '.', ''); ?> €
 				</td>
 				<td class="center">
-				  <?php echo $item->identification_periode ? $this->mois[$item->identification_periode] : JText::_('COM_DECLARATION_IDENTIFICATION_PERIOD_UNKNOWN'); ?>
-        </td>
-				<td class="center">
-					<?php echo $item->nb_personnes_assujetties; ?>
+					<?php echo $item->nb_personnes_par_nuite; ?>
 				</td>
 				<td class="center">
-					<?php echo $item->montant_encaisse_sejour;?>
+					<?php echo number_format((float)$item->total_declare, 2, '.', '') ?> €
 				</td>
 				<td class="center">
 					<?php echo $item->owner_lastname.' '.$item->owner_name ?>
@@ -118,8 +122,8 @@ $listDirn	= $this->state->get('list.direction');
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="filter_order" value="<?php echo intval ( $this->state->get('list.ordering') ) ?>" />
-    <input type="hidden" name="filter_order_Dir" value="<?php echo $this->escape ($this->state->get('list.direction')) ?>" />
-    <input type="hidden" name="limitstart" value="<?php echo intval ( $this->navigation->limitstart ) ?>" />
+		<input type="hidden" name="filter_order_Dir" value="<?php echo $this->escape ($this->state->get('list.direction')) ?>" />
+		<input type="hidden" name="limitstart" value="<?php echo intval ( $this->navigation->limitstart ) ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
 </form>

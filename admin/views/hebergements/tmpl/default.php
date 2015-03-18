@@ -92,10 +92,10 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo JHtml::_('grid.id', $i, intval($item->hosting_id)); ?>
 				</td>
 				<td class="center">
-            <?php echo intval($item->hosting_id); ?>
+					<?php echo intval($item->hosting_id); ?>
 				</td>
 				<td>
-            <?php echo $item->hostingname; ?>
+					<?php echo $item->hostingname; ?>
 				</td>
 				<td class="center">
 					<?php echo $item->adress; ?>
@@ -125,7 +125,7 @@ $listDirn	= $this->state->get('list.direction');
 					<?php echo $item->date_classement; ?>
 				</td>
 				<td>
-					<?php echo $item->numero_agrement; ?>
+					<?php echo $item->numero_classement==0 ? JText::_('COM_TDSMANAGER_HEBERGEMENT_NUMERO_CLASSEMENT_NOT_PRESENT') : $item->numero_classement; ?>
 				</td>
 			</tr>
 			<?php $i++; endforeach;
