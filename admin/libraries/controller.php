@@ -31,7 +31,6 @@ class TdsmanagerController extends JController {
 		parent::__construct ();
 
 		$this->app = JFactory::getApplication();
-
 	}
 
 	/**
@@ -47,13 +46,11 @@ class TdsmanagerController extends JController {
 			return $instance;
 		}
 
-		$app = JFactory::getApplication();
-
-		$view = strtolower ( $app->input->getWord('view', 'none') );
+		$view = strtolower ( $this->app->input->getWord('view', 'none') );
 
 		if (!$app->isAdmin()) {
 			$home = $app->getMenu ()->getActive ();
-			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !$app->input->getWord('task')) {
+			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !$this->app->input->getWord('task')) {
 				$view = 'home';
 			}
 		}
@@ -68,7 +65,7 @@ class TdsmanagerController extends JController {
 		}
 
 		// Set the name for the controller and instantiate it.
-		if ($app->isAdmin()) {
+		if ($this->app->isAdmin()) {
 			$class = 'TdsmanagerAdminController' . ucfirst ( $view );
 		} else {
 			$class = 'TdsmanagerController' . ucfirst ( $view );
@@ -92,11 +89,10 @@ class TdsmanagerController extends JController {
 	public function display($cachable=false, $urlparams=false) {
 		// Get the document object.
 		$document = JFactory::getDocument ();
-		$app = JFactory::getApplication();
 
 		// Set the default view name and format from the Request.
-		$vName = $app->input->getWord('view', 'none');
-		$lName = $app->input->getWord('layout', 'default');
+		$vName = $this->app->input->getWord('view', 'none');
+		$lName = $this->app->input->getWord('layout', 'default');
 		$vFormat = $document->getType ();
 
 		$view = $this->getView ( ucfirst($vName), $vFormat );
@@ -163,9 +159,7 @@ class TdsmanagerController extends JController {
 	}
 
 	protected function redirectBack($fragment = '') {
-		$app = JFactory::getApplication();
-
-		$httpReferer = $app->input->get('HTTP_REFERER', JURI::base ( true ), 'server');
+		$httpReferer = $this->app->input->get('HTTP_REFERER', JURI::base ( true ), 'server');
 		JFactory::getApplication ()->redirect ( $httpReferer.($fragment ? '#'.$fragment : '') );
 	}
 

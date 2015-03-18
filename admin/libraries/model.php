@@ -18,7 +18,8 @@ jimport ( 'joomla.application.component.model' );
  */
 class TdsmanagerModel extends JModel {
 	public $app = null;
-	public $me = null;  	
+	public $me = null;
+	protected $input = null;
 
 	protected $__state_set = null;
 	protected $state = null;
@@ -30,7 +31,7 @@ class TdsmanagerModel extends JModel {
 			$this->state = $this->_state;
 		}
 		$this->app = JFactory::getApplication();
-				
+		$this->input = $input ? $input : $this->app->input;
 	}
 
 	/**
@@ -144,7 +145,14 @@ class TdsmanagerModel extends JModel {
 	protected function getVar($name, $default = null, $hash = 'default', $type = 'none', $mask = 0) {
 		// If we are not in embedded mode, get variable from request
 		if (!$this->embedded) {
-			return JRequest::getVar($name, $default, $hash, $type, $mask);
+			if ($hash == 'request')
+			{
+				return $this->input->get($name, $default, $type);
+			}
+			else
+			{
+				return $this->input->{$hash}->get($name, $default, $type);
+			}
 		}
 
 		return self::_cleanVar($this->params->get($name, $default), $mask, strtoupper($type));
