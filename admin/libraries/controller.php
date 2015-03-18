@@ -29,9 +29,9 @@ class TdsmanagerController extends JController {
 
 	function __construct() {
 		parent::__construct ();
-		
+
 		$this->app = JFactory::getApplication();
-		
+
 	}
 
 	/**
@@ -47,22 +47,23 @@ class TdsmanagerController extends JController {
 			return $instance;
 		}
 
-		$view = strtolower ( JRequest::getWord ( 'view', 'none' ) );
-
 		$app = JFactory::getApplication();
+
+		$view = strtolower ( $app->input->getWord('view', 'none') );
+
 		if (!$app->isAdmin()) {
 			$home = $app->getMenu ()->getActive ();
-			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !JRequest::getWord ( 'task' )) {
+			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !$app->input->getWord('task')) {
 				$view = 'home';
 			}
 		}
-		
-		$path = JPATH_COMPONENT . "/controllers/{$view}.php";		
-              
+
+		$path = JPATH_COMPONENT . "/controllers/{$view}.php";
+
 		// If the controller file path exists, include it ... else die with a 500 error.
 		if (file_exists ( $path )) {
 			require_once $path;
-		} else {     		
+		} else {
 			JError::raiseError ( 500, JText::sprintf ( 'COM_TDSMANAGER_INVALID_CONTROLLER', ucfirst ( $view ) ) );
 		}
 
@@ -72,13 +73,13 @@ class TdsmanagerController extends JController {
 		} else {
 			$class = 'TdsmanagerController' . ucfirst ( $view );
 		}
-		  
+
 		if (class_exists ( $class )) {
 			$instance = new $class ();
 		} else {
 			JError::raiseError ( 500, JText::sprintf ( 'COM_TDSMANAGER_INVALID_CONTROLLER_CLASS', $class ) );
 		}
-     
+
 		return $instance;
 	}
 
@@ -88,17 +89,18 @@ class TdsmanagerController extends JController {
 	 * @return	void
 	 * @since	1.6
 	 */
-	public function display($cachable=false, $urlparams=false) {		
+	public function display($cachable=false, $urlparams=false) {
 		// Get the document object.
 		$document = JFactory::getDocument ();
-    
+		$app = JFactory::getApplication();
+
 		// Set the default view name and format from the Request.
-		$vName = JRequest::getWord ( 'view', 'none' );
-		$lName = JRequest::getWord ( 'layout', 'default' );
-		$vFormat = $document->getType (); 
-      
+		$vName = $app->input->getWord('view', 'none');
+		$lName = $app->input->getWord('layout', 'default');
+		$vFormat = $document->getType ();
+
 		$view = $this->getView ( ucfirst($vName), $vFormat );
-				  
+
 			// Do any specific processing for the view.
 			switch ($vName) {
 				default :
@@ -106,18 +108,18 @@ class TdsmanagerController extends JController {
 					$model = $this->getModel ( $vName );
 					break;
 			}
-      
+
       if ( empty($model) ) JError::raiseError ( 500, JText::_( 'COM_TDSMANAGER_MODEL_NOT_FOUND' ) );
-       
+
 			// Push the model into the view (as default).
 			$view->setModel ( $model, true );
-             
+
 			// Set the view layout.
 			$view->setLayout ( $lName );
 
 			// Push document object into the view.
 			$view->assignRef ( 'document', $document );
-       
+
 			// Render the view.
 			if ($vFormat=='html') {
 				$view->displayAll ();
@@ -161,7 +163,9 @@ class TdsmanagerController extends JController {
 	}
 
 	protected function redirectBack($fragment = '') {
-		$httpReferer = JRequest::getVar ( 'HTTP_REFERER', JURI::base ( true ), 'server' );
+		$app = JFactory::getApplication();
+
+		$httpReferer = $app->input->get('HTTP_REFERER', JURI::base ( true ), 'server');
 		JFactory::getApplication ()->redirect ( $httpReferer.($fragment ? '#'.$fragment : '') );
 	}
 
