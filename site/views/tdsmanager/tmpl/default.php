@@ -23,7 +23,7 @@ echo $this->_getViewFile('common', 'menu');
 	</div>
 
 	<!-- Afficher des onglets avec les dernières déclarations, derniers réglements -->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" style="list-style: none;">
 		<li class="active"><a data-toggle="tab" href="#sectionA"><?php echo JText::_('COM_TDSMANAGER_LAST_HOSTINGS_PANEL') ?></a></li>
 		<li><a data-toggle="tab" href="#sectionB"><?php echo JText::_('COM_TDSMANAGER_LAST_DECLARATIONS_PANEL') ?></a></li>
 		<li><a data-toggle="tab" href="#sectionC"><?php echo JText::_('COM_TDSMANAGER_LAST_REGLEMENTS_PANEL') ?></a></li>

@@ -12,6 +12,24 @@ jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerWebservice extends JControllerLegacy {
 	/**
+	 * M�thode pour v�rifier si la date est valide
+	 *
+	 * @return boolean
+	 */
+	public function verifyDate($date, $strict = true)
+	{
+		$dateTime = DateTime::createFromFormat('d/m/Y', $date);
+		if ($strict) {
+			$errors = DateTime::getLastErrors();
+			if (!empty($errors['warning_count'])) {
+				return false;
+			}
+		}
+	
+		return $dateTime !== false;
+	}
+	
+	/**
 	 * Méthode appelé par le logiciel en cas de mise à jour ou d'ajout d'éléments
 	 */
 	public function update() {
@@ -95,8 +113,8 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 				if ( !empty($data[0]->ville) ) $values->ville = $data[0]->ville;
 				if ( !empty($data[0]->label) ) $values->label = $data[0]->label;
 				if ( !empty($data[0]->agrement) ) $values->agrement = $data[0]->agrement;
-				if ( !empty($data[0]->date_visite) ) $values->date_visite = $data[0]->date_visite;
-				if ( !empty($data[0]->date_expiration) ) $values->date_expiration = $data[0]->date_expiration;
+				if ( !empty($data[0]->date_visite) && $this->verifyDate($data[0]->date_visite)) $values->date_visite = $data[0]->date_visite;
+				if ( !empty($data[0]->date_expiration) && $this->verifyDate($data[0]->date_expiration) ) $values->date_expiration = $data[0]->date_expiration;
 
 				if ($mise_a_jour)
 				{
@@ -269,7 +287,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		$id_classement = $this->getHebergementClassement($values->classement);
 
-		$query = "UPDATE #__tdsmanager_hebergements SET description={$db->quote($values->name)},adress={$db->quote($values->nom_rue)},complement_adress={$db->quote($values->complement)},postalcode={$db->quote($values->code_postal)},id_classement=$id_classement,city={$db->quote($values->ville)},date_visite={$db->quote($values->date_visite)},date_expiration={$db->quote($values->date_expiration)} WHERE id=".$values->id;
+		$query = "UPDATE #__tdsmanager_hebergements SET description={$db->quote($values->name)},adress={$db->quote($values->adress)},complement_adress={$db->quote($values->complement_adress)},postalcode={$db->quote($values->postalcode)},id_classement=$id_classement,city={$db->quote($values->ville)},date_visite={$db->quote($values->date_visite)},date_expiration={$db->quote($values->date_expiration)} WHERE id=".$values->id;
 		$db->setQuery($query);
 
 		try

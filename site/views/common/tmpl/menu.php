@@ -13,7 +13,7 @@ $view = JFactory::getApplication()->input->getCmd('view');
 <div class="navbar">
 	<div class="navbar-inner">
 		<a class="brand" href="#">TDSManager</a>
-			<ul class="nav">
+			<ul class="nav" style="list-style: none;">
 				<?php if ($view == 'tdsmanager'): ?>
 					<li class="active">
 				<?php else: ?>
