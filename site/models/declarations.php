@@ -15,7 +15,7 @@ jimport('joomla.application.component.model');
  * @package		Joomla.Site
  * @subpackage	com_contact
  */
-class TdsmanagerModelDeclarations extends JModel {
+class TdsmanagerModelDeclarations extends JModelLegacy {
 	protected function populateState() {
 		$app = JFactory::getApplication();
 

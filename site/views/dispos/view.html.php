@@ -16,7 +16,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 1.6
  */
-class TdsmanagerViewDispos extends JView {
+class TdsmanagerViewDispos extends JViewLegacy {
 	/**
 	 * Display the view
 	 *

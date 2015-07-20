@@ -16,7 +16,7 @@ jimport('joomla.application.component.model');
  * @subpackage	com_contact
  * @since		1.6
  */
-class TdsmanagerModelHebergements extends JModel {
+class TdsmanagerModelHebergements extends JModelLegacy {
 	/**
 	 * Method to auto-populate the model state.
 	 *

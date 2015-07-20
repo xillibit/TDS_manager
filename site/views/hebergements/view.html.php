@@ -16,7 +16,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 1.6
  */
-class TdsmanagerViewHebergements extends JView {
+class TdsmanagerViewHebergements extends JViewLegacy {
 	protected $state = null;
 	protected $item = null;
 	protected $items = null;

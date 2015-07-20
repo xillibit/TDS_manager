@@ -15,7 +15,7 @@ jimport('joomla.application.component.model');
  * @package		Joomla.Site
  * @subpackage	com_contact
  */
-class TdsmanagerModelUser extends JModel {
+class TdsmanagerModelUser extends JModelLegacy {
 	public function getUserProfile() {
     $user = JFactory::getUser();
     $db = JFactory::getDBO();

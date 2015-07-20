@@ -12,7 +12,7 @@ require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/libraries/view.ph
 /**
 * Category View
 */
-class TdsmanagerViewReglement extends TdsmanagerView {
+class TdsmanagerViewReglement extends TdsmanagerViewLegacy {
   function display($tpl = null) {
    // Initialise variables.
 

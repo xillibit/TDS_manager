@@ -15,7 +15,7 @@ jimport('joomla.application.component.model');
  * @package		Joomla.Site
  * @subpackage	com_contact
  */
-class TdsmanagerModelReglements extends JModel {
+class TdsmanagerModelReglements extends JModelLegacy {
   public function getReglements() {
     $db = JFactory::getDBO();
 

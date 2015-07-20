@@ -18,7 +18,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 		1.5
  */
-class TdsmanagerViewTdsmanager extends JView {
+class TdsmanagerViewTdsmanager extends JViewLegacy {
 	protected $state;
 	protected $form;
 	protected $item;

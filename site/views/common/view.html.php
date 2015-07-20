@@ -18,7 +18,7 @@ jimport('joomla.application.component.view');
  * @subpackage	com_contact
  * @since 		1.5
  */
-class TdsmanagerViewCommon extends JView {
+class TdsmanagerViewCommon extends JViewLegacy {
 	function display($tpl = null) {
 		$this->lasthostings = $this->get('LastHostings');
 		$this->lastdeclarations = $this->get('LastDeclarations');

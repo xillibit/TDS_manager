@@ -15,7 +15,7 @@ jimport('joomla.application.component.model');
  * @package		Joomla.Site
  * @subpackage	com_contact
  */
-class TdsmanagerModelDispos extends JModel {
+class TdsmanagerModelDispos extends JModelLegacy {
   public function getHebergementsList() {
     $db = JFactory::getDBO();
     $user = JFactory::getUser();
