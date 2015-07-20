@@ -17,7 +17,7 @@ jimport ( 'joomla.application.component.helper' );
  *
  * @since		2.0
  */
-class TdsmanagerController extends JController {
+class TdsmanagerController extends JControllerLegacy {
 	public $app = null;
 	public $me = null;
 	public $config = null;
