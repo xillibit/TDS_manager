@@ -91,6 +91,9 @@ jimport( 'joomla.html.html' );
 			</div>
 		</div>
 		<div class="control-group">
+			<input type="hidden" value="<?php echo date('Y') ?>" />
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="inputMois">Choisissez le mois :</label>
 			<div class="controls">
 				<select name="premier_trim" id="premier_trim" style="display: none;">
