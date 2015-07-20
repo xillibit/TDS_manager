@@ -33,10 +33,10 @@ class TdsmanagerViewReglements extends JViewLegacy {
 		$layout = $app->input->getCmd('layout');
 
 		if ( $layout == 'create' ) {
-		  $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_REGLEMENT_CREATE'));
+			$this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_REGLEMENT_CREATE'));
 		} else {
-      $this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_VISUALISATION_REGLEMENTS'));
-    }
+			$this->document->setTitle(JText::_('COM_TDSMANAGER_GESTION_TAXE_SEJOUR').' - '.JText::_('COM_TDSMANAGER_VISUALISATION_REGLEMENTS'));
+	}
 
 		//$this->_prepareDocument();
 
@@ -53,5 +53,5 @@ class TdsmanagerViewReglements extends JViewLegacy {
 		ob_end_clean();
 
 		return $output;
-	}s
+	}
 }
