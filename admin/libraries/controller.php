@@ -40,13 +40,13 @@ class TdsmanagerController extends JControllerLegacy {
 	 * @since	1.6
 	 */
 	public static function getInstance($prefix = 'Tdsmanager', $config = array()) {
-		static $instance = null;
-		
-		$app = JApplication::getInstance();
+		static $instance = null;		
 		
 		if (! empty ( $instance ) && !isset($instance->home)) {
 			return $instance;
 		}
+		
+		$app = JFactory::getApplication();
 		
 		$view = $app->input->getWord('view', 'none');
 		

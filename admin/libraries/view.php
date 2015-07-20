@@ -14,7 +14,7 @@ jimport ( 'joomla.application.component.view' );
 /**
  * Gesttaxe View Class
  */
-class TdsmanagerView extends JView {
+class TdsmanagerView extends JViewLegacy {
 	public $document = null;
 	public $app = null;
 	public $embedded = false;

@@ -16,7 +16,7 @@ jimport ( 'joomla.application.component.model' );
  *
  * @since		2.0
  */
-class TdsmanagerModel extends JModel {
+class TdsmanagerModel extends JModelLegacy {
 	public $app = null;
 	public $me = null;
 	protected $input = null;
@@ -31,7 +31,7 @@ class TdsmanagerModel extends JModel {
 			$this->state = $this->_state;
 		}
 		$this->app = JFactory::getApplication();
-		$this->input = $input ? $input : $this->app->input;
+		$this->input = $this->app->input;
 	}
 
 	/**
