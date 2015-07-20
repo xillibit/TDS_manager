@@ -41,18 +41,20 @@ class TdsmanagerController extends JControllerLegacy {
 	 */
 	public static function getInstance($prefix = 'Tdsmanager', $config = array()) {
 		static $instance = null;
-
+		
+		$app = JApplication::getInstance();
+		
 		if (! empty ( $instance ) && !isset($instance->home)) {
 			return $instance;
 		}
 		
-		$view = $this->app->input->getWord('view', 'none');
+		$view = $app->input->getWord('view', 'none');
 		
 		$view = strtolower ($view);
 
 		if (!$app->isAdmin()) {
 			$home = $app->getMenu ()->getActive ();
-			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !$this->app->input->getWord('task')) {
+			if (!$reload && !empty ( $home->query ['view'] ) && $home->query ['view'] == 'home' && !$app->input->getWord('task')) {
 				$view = 'home';
 			}
 		}
@@ -67,7 +69,7 @@ class TdsmanagerController extends JControllerLegacy {
 		}
 
 		// Set the name for the controller and instantiate it.
-		if ($this->app->isAdmin()) {
+		if ($app->isAdmin()) {
 			$class = 'TdsmanagerAdminController' . ucfirst ( $view );
 		} else {
 			$class = 'TdsmanagerController' . ucfirst ( $view );
