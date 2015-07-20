@@ -93,7 +93,7 @@ jimport( 'joomla.html.html' );
 		<div class="control-group">
 			<label class="control-label" for="inputTrimestre">Année concernée par la déclaration :</label>
 			<div class="controls">
-				<input type="hidden" value="<?php echo date('Y') ?>" />
+				<input type="text" readonly="readonly" class="input-xlarge" value="<?php echo date('Y') ?>" />
 			</div>
 		</div>
 		<div class="control-group">
