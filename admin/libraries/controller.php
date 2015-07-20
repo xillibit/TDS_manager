@@ -45,8 +45,10 @@ class TdsmanagerController extends JControllerLegacy {
 		if (! empty ( $instance ) && !isset($instance->home)) {
 			return $instance;
 		}
-
-		$view = strtolower ( $this->app->input->getWord('view', 'none') );
+		
+		$view = $this->app->input->getWord('view', 'none');
+		
+		$view = strtolower ($view);
 
 		if (!$app->isAdmin()) {
 			$home = $app->getMenu ()->getActive ();
