@@ -79,7 +79,7 @@ jimport( 'joomla.html.html' );
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputTrimestre">Choisissez un trimestre :</label>
+			<label class="control-label" for="inputTrimestre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_QUARTER') ?> :</label>
 			<div class="controls">
 				<select name="choix_trimestre" id="choix_trimestre">
 					<option value="choix">Veuillez choisir un trimestre</option>
@@ -91,13 +91,13 @@ jimport( 'joomla.html.html' );
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputTrimestre">Année concernée par la déclaration :</label>
+			<label class="control-label" for="inputTrimestre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_YEAR_CONCERNED') ?> :</label>
 			<div class="controls">
 				<input type="text" readonly="readonly" class="input-xlarge" value="<?php echo date('Y') ?>" />
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputMois">Choisissez le mois :</label>
+			<label class="control-label" for="inputMois"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_MONTH') ?> :</label>
 			<div class="controls">
 				<select name="premier_trim" id="premier_trim" style="display: none;">
 					<option value="janvier">Janvier</option>
