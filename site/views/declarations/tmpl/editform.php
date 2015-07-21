@@ -14,13 +14,13 @@ jimport( 'joomla.html.html' );
 	<fieldset>
 		<legend><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_NEW_DECLARATION'); ?></legend>
 		<!-- Button to trigger modal -->
-		<a href="#modal_obligations" role="button" class="btn btn-primary" data-toggle="modal">Voir les obligations du logeur</a>
+		<a href="#modal_obligations" role="button" class="btn btn-primary" data-toggle="modal"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DECLARATION_HOSTER') ?></a>
 
 		<!-- Modal -->
 		<div id="modal_obligations" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">Obligations du logeur</h3>
+				<h3 id="myModalLabel"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_DECLARATION_OBLIGATION_HOSTER') ?></h3>
 			</div>
 			<div class="modal-body">
 				<b>Comment et quand reverser la taxe de séjour ?</b>
@@ -83,10 +83,35 @@ jimport( 'joomla.html.html' );
 			<div class="controls">
 				<select name="choix_trimestre" id="choix_trimestre">
 					<option value="choix">Veuillez choisir un trimestre</option>
-					<option value="premier_trim">Premier trimestre</option>
-					<option value="second_trim">Second trimestre</option>
-					<option value="troisieme_trim">Troisiéme trimestre</option>
-					<option value="quatrieme_trim">Quatriéme trimestre</option>
+					<option value="premier_trim"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_FIRST_QUARTER') ?></option>
+					<option value="second_trim"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_SECOND_QUARTER') ?></option>
+					<option value="troisieme_trim"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_THIRD_QUARTER') ?></option>
+					<option value="quatrieme_trim"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_FOURTH_QUARTER') ?></option>
+				</select>
+			</div>
+		</div>		
+		<div class="control-group">
+			<label class="control-label" for="inputMois"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_MONTH') ?> :</label>
+			<div class="controls">
+				<select name="premier_trim" id="premier_trim" style="display: none;">
+					<option value="janvier"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_JANUARY') ?></option>
+					<option value="fevrier"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_FEBRUARY') ?></option>
+					<option value="mars"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_MARCH') ?></option>
+				</select>
+				<select name="second_trim" id="second_trim" style="display: none;">
+					<option value="avril"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_APRIL') ?></option>
+					<option value="mai"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_MAY') ?></option>
+					<option value="juin"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_JUNE') ?></option>
+				</select>
+				<select name="troisieme_trim" id="troisieme_trim" style="display: none;">
+					<option value="juillet"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_JULY') ?></option>
+					<option value="aout"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_AUGUST') ?></option>
+					<option value="septembre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_SEPTEMBER') ?></option>
+				</select>
+				<select name="quatrieme_trim" id="quatrieme_trim" style="display: none;">
+					<option value="octobre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_OCTOBER') ?></option>
+					<option value="novembre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_NOVEMBER') ?></option>
+					<option value="decembre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_MONTH_DECEMBER') ?></option>
 				</select>
 			</div>
 		</div>
@@ -94,31 +119,6 @@ jimport( 'joomla.html.html' );
 			<label class="control-label" for="inputTrimestre"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_YEAR_CONCERNED') ?> :</label>
 			<div class="controls">
 				<input type="text" readonly="readonly" class="input-xlarge" value="<?php echo date('Y') ?>" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputMois"><?php echo JText::_('COM_TDSMANAGER_DECLARATIONS_CHOOSE_MONTH') ?> :</label>
-			<div class="controls">
-				<select name="premier_trim" id="premier_trim" style="display: none;">
-					<option value="janvier">Janvier</option>
-					<option value="fevrier">Février</option>
-					<option value="mars">Mars</option>
-				</select>
-				<select name="second_trim" id="second_trim" style="display: none;">
-					<option value="avril">Avril</option>
-					<option value="mai">Mai</option>
-					<option value="juin">Juin</option>
-				</select>
-				<select name="troisieme_trim" id="troisieme_trim" style="display: none;">
-					<option value="juillet">Juillet</option>
-					<option value="aout">Aout</option>
-					<option value="septembre">Septembre</option>
-				</select>
-				<select name="quatrieme_trim" id="quatrieme_trim" style="display: none;">
-					<option value="octobre">Octobre</option>
-					<option value="novembre">Novembre</option>
-					<option value="decembre">Décembre</option>
-				</select>
 			</div>
 		</div>
 		<div class="control-group">
