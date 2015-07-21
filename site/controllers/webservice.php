@@ -12,7 +12,7 @@ jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerWebservice extends JControllerLegacy {
 	/**
-	 * MÈthode pour vÈrifier si la date est valide
+	 * M√©thode pour v√©rifier si la date est valide
 	 *
 	 * @return boolean
 	 */
@@ -30,7 +30,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	}
 	
 	/**
-	 * MÈthode appelÈ par le logiciel en cas de mise ‡ jour ou d'ajout d'ÈlÈments
+	 * M√©thode appel√© par le logiciel en cas de mise √† jour ou d'ajout d'√©l√©ments
 	 */
 	public function update() {
 		$jinput = JFactory::getApplication()->input;
@@ -41,7 +41,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		{
 			jimport('joomla.log.log');
 
-			// On crÈe un nouveau fichier de log avec une date pour trier les prÈcÈdents
+			// On cr√©e un nouveau fichier de log avec une date pour trier les pr√©c√©dents
 			JLog::addLogger(
 				array(
 					'text_file' => 'com_tdsmanager.webservice.' . date('Y-m-d') . 'log.php'
@@ -171,7 +171,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	}
 
 	/**
-	 * Ajout d'un nouvel hÈbergeur
+	 * Ajout d'un nouvel h√©bergeur
 	 */
 	protected function addHerbergeur($values)
 	{
@@ -192,14 +192,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le nouvel hÈbergeur ".$values->name." a bien ÈtÈ enregistrÈ", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel h√©bergeur ".$values->name." a bien √©t√© enregistr√©", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * Mis ‡ jour d'un hÈbergeur existant
+	 * Mis √† jour d'un h√©bergeur existant
 	 */
 	protected function updateHerbergeur($values)
 	{
@@ -219,14 +219,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"La mise ‡ jour de l'hÈbergeur avec l'id ".$values->id." a bien ÈtÈ effectuÈ", JLog::INFO, 'com_tdsmanager.webservice'
+			"La mise √† jour de l'h√©bergeur avec l'id ".$values->id." a bien √©t√© effectu√©", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * RÈcupÈre l'id du classement en fonction du nom du classement donnÈ par le logiciel
+	 *  R√©cup√©re l'id du classement en fonction du nom du classement donn√© par le logiciel
 	 */
 	protected function getHebergementClassement($nom_classement)
 	{
@@ -249,7 +249,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	}
 
 	/**
-	 * Ajout d'un nouvel hÈbergement
+	 * Ajout d'un nouvel h√©bergement
 	 */
 	protected function addHerbergement($values)
 	{
@@ -272,14 +272,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le nouvel hÈbergement " . $values->name . " a bien ÈtÈ enregistrÈ", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel h√©bergement " . $values->name . " a bien √©t√© enregistr√©", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * Mise ‡ jour d'un hÈbergement Èxistant
+	 * Mise ÔøΩ jour d'un h√©bergement √©xistant
 	 */
 	protected function updateHerbergement($values)
 	{
@@ -301,7 +301,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"La mise ‡ jour de l'hÈbergement avec l'id " . $values->id . " a bien ÈtÈ effectuÈ", JLog::INFO, 'com_tdsmanager.webservice'
+			"La mise √† jour de l'h√©bergement avec l'id " . $values->id . " a bien √©t√© effectu√©", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
@@ -328,14 +328,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le nouvel classement nommÈ " . $values->nom . " a bien ÈtÈ enregistrÈ", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel classement nomm√© " . $values->nom . " a bien √©t√© enregistr√©", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * Mise ‡ jour d'un classement Èxistant
+	 * Mise ÔøΩ jour d'un classement ÔøΩxistant
 	 */
 	protected function updateClassement($values)
 	{
@@ -355,14 +355,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le classement avec l'id " . $values->id . " a bien ÈtÈ mis ‡ jour", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le classement avec l'id " . $values->id . " a bien √©t√© mis √† jour", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * Ajout d'un nouveau type d'hÈbergement
+	 * Ajout d'un nouveau type d'h√©bergement
 	*/
 	protected function addTypehebergement($values)
 	{
@@ -393,14 +393,14 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Les dÈtails du type d'hÈbergement nommÈ " . $values->libelle_activite . " ont bien ÈtÈ enregistrÈs", JLog::INFO, 'com_tdsmanager.webservice'
+			"Les d√©tails du type d'h√©bergement nomm√©" . $values->libelle_activite . " ont bien √©t√© enregistr√©s", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;
 	}
 
 	/**
-	 * Mise ‡ jour d'un type d'hÈbergement existant
+	 * Mise √† jour d'un type d'h√©bergement √©xistant
 	*/
 	protected function updateTypehebergement($values, $tarifs)
 	{
@@ -423,7 +423,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 
 		JLog::add(
-			"Le type d'hÈbergement avec l'id " . $values->id . " a bien ÈtÈ mis ‡ jour", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le type d'h√©bergement avec l'id " . $values->id . " a bien √©t√© mis √† jour", JLog::INFO, 'com_tdsmanager.webservice'
 		);
 
 		return true;

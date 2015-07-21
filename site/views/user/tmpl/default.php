@@ -36,7 +36,7 @@ echo $this->_getViewFile('common', 'menu');
 			<label><?php echo JText::_('COM_TDSMANAGER_USER_MAIL') ?> :</label>
 			<b><?php echo !empty($this->userProfile->mail) ? $this->userProfile->mail  : 'Non renseigné' ?></b>
 			<br />
-			<button class="btn btn-primary" type="button">Modifier votre profil</button>
+			<button class="btn btn-primary" type="submit">Modifier votre profil</button>
 		</fieldset>
 
 	<?php echo JHtml::_('form.token'); ?>

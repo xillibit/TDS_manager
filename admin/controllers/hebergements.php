@@ -36,13 +36,15 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 * @since	1.6
 	 */
 	public function create() {
-    // Check for request forgeries.
-    if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
+		$app = JFactory::getApplication();
+		
+		// Check for request forgeries.
+		if (!JSession::checkToken()) {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
+		}
 
-    $this->app->setUserState( "com_tdsmanager.hebergement.id", 0 );
+		$app->setUserState( "com_tdsmanager.hebergement.id", 0 );
 
 		$this->setRedirect('index.php?option=com_tdsmanager&view=hebergements&layout=create');
 	}
@@ -51,16 +53,18 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 * @since	1.6
 	 */
 	public function edit() {
-    // Check for request forgeries.
+		$app = JFactory::getApplication();
+		
+		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
+		}
 
-    $cids = $this->app->input->get('cid',array(),'ARRAY');
-    $cid = array_shift($cids);
+		$cids = $app->input->get('cid',array(),'ARRAY');
+		$cid = array_shift($cids);
 
-    $this->app->setUserState( "com_tdsmanager.hebergement.id", $cid );
+		$app->setUserState( "com_tdsmanager.hebergement.id", $cid );
 
 		$this->setRedirect('index.php?option=com_tdsmanager&view=hebergements&layout=create');
 	}
@@ -71,29 +75,31 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 * @return boolean
 	 */
 	public function save() {
+		$app = JFactory::getApplication();
+		
 		if (!JSession::checkToken()) {
-			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-			$this->app->redirect($this->baseurl);
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
 		}
 
 		$db = JFactory::getDBO();
 
-		$id = $this->app->getInt('id', 0);
-		$hostingname = $this->app->input->getString('hostingname', null);
-		$description  = $this->app->input->getString('description', null);
-		$adress = $this->app->input->getString('adress', null);
-		$complement_adress = $this->app->input->getString('complement_adress', null);
-		$city = $this->app->input->getString('city', null);
-		$website = $this->app->input->getString('website', null);
-		$email = $this->app->input->getString('email', null);
-		$postalcode = $this->app->input->getInt('postalcode', 0);
-		$numero_classement = $this->app->input->getInt('numero_classement', 0);
-		$date_classement = $this->app->input->getString('date_classement', null);
-		$classement = $this->app->input->getInt('classement', 0);
-		$hebergement_type  = $this->app->input->getInt('hebergement_type', 0);
-		$label  = $this->app->input->getInt('label', 0);
-		$capacite_personnes = $this->app->input->getInt('capacite_personnes', 0);
-		$capacite_chambres = $this->app->input->getInt('capacite_chambres', 0);
+		$id = $app->getInt('id', 0);
+		$hostingname = $app->input->getString('hostingname', null);
+		$description  = $app->input->getString('description', null);
+		$adress = $app->input->getString('adress', null);
+		$complement_adress = $app->input->getString('complement_adress', null);
+		$city = $app->input->getString('city', null);
+		$website = $app->input->getString('website', null);
+		$email = $app->input->getString('email', null);
+		$postalcode = $app->input->getInt('postalcode', 0);
+		$numero_classement = $app->input->getInt('numero_classement', 0);
+		$date_classement = $app->input->getString('date_classement', null);
+		$classement = $app->input->getInt('classement', 0);
+		$hebergement_type  = $app->input->getInt('hebergement_type', 0);
+		$label  = $app->input->getInt('label', 0);
+		$capacite_personnes = $app->input->getInt('capacite_personnes', 0);
+		$capacite_chambres = $app->input->getInt('capacite_chambres', 0);
 
 		if ( !$id ) {
 			$query = "INSERT INTO #__tdsmanager_hebergements
@@ -107,12 +113,12 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 			}
 			catch (Exception $e)
 			{
-				$this->app->enqueueMessage ($e->getMessage());
+				$app->enqueueMessage ($e->getMessage());
 				return false;
 			}
 
-			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
-			$this->app->redirect($this->baseurl);
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_SAVED') );
+			$app->redirect($this->baseurl);
 
        /* Récupérer le tarif de la taxe de séjour correspondant à l'hébergement
        $heberg_id = $db->insertid();
@@ -163,8 +169,8 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 				return false;
 			}*/
 
-			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
-			$this->app->redirect($this->baseurl);
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_EDITION_SAVED') );
+			$app->redirect($this->baseurl);
 		}
 	}
 
@@ -172,104 +178,118 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 	 * @since	1.6
 	 */
 	public function trash() {
+		$app = JFactory::getApplication();
+		
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
-
-    $cids = $this->app->input->get('cid',array(),'ARRAY');
-    $id = array_shift($cids);
-
-    if ( $id > 0 ) {
-      $db = JFactory::getDBO();
-      $query = "DELETE FROM #__tdsmanager_hebergements WHERE id={$db->Quote($id)}";
-      $db->setQuery((string)$query);
-		try
-		{
-			$db->Query();
-		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
 		}
 
-      /**
-       *  $state = 1 published
-       *  $state = 2 unpublished
-       *  $state = 3 trashed
-       */
-       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED') );
-       $this->app->redirect($this->baseurl);
-     } else {
-       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED_FAILED') );
-       $this->app->redirect($this->baseurl);
-     }
+		$cids = $app->input->get('cid',array(),'ARRAY');
+		$id = array_shift($cids);
+
+		if ( $id > 0 ) {
+			$db = JFactory::getDBO();
+			$query = "DELETE FROM #__tdsmanager_hebergements WHERE id={$db->Quote($id)}";
+			$db->setQuery((string)$query);
+			
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$app->enqueueMessage ($e->getMessage());
+				return false;
+			}
+
+			/**
+			*  $state = 1 published
+			*  $state = 2 unpublished
+			*  $state = 3 trashed
+			*/
+			
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED') );
+			$app->redirect($this->baseurl);
+		} else {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_TRASHED_FAILED') );
+			$app->redirect($this->baseurl);
+		}
 	}
 
 	/**
 	 * @since	1.6
 	 */
 	public function unpublish() {
+		$app = JFactory::getApplication();
+		
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
+		}
 
-    //$cids =
-    if ( !empty($cids) ) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_NO_HEBERGEMENT_SELECTED'), 'error' );
-      $this->app->redirect($this->baseurl);
-    } else {
-      $state = $this->_setState($id,0);
-      if ( $state ) {
-        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_UNPUSBLISHED'), 'error' );
-      } else {
-        $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
-      }
-      $this->app->redirect($this->baseurl);
-    }
-    die();
+		//$cids =
+		if ( !empty($cids) ) {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_NO_HEBERGEMENT_SELECTED'), 'error' );
+			$app->redirect($this->baseurl);
+		} else {
+			$state = $this->_setState($id,0);
+			
+			if ( $state ) {
+				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_UNPUSBLISHED'), 'error' );
+			} else {
+				$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
+			}
+			
+			$app->redirect($this->baseurl);
+		}
+		die();
 	}
 
 	/**
 	 * @since	1.6
 	 */
 	public function publish() {
+		$app = JFactory::getApplication();
+		
 		// Check for request forgeries.
 		if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
-    $state = $this->_setState($id,1);
-    if ( $state ) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_PUSBLISHED') );
-    } else {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
-    }
-    $this->app->redirect($this->baseurl);
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$app->redirect($this->baseurl);
+		}
+		
+		$state = $this->_setState($id,1);
+		if ( $state ) {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_PUSBLISHED') );
+		} else {
+			$app->enqueueMessage ( JText::_('COM_TDSMANAGER_HEBERGEMENT_CHANGE_STATE_FAILED'), 'error' );
+		}
+		
+		$app->redirect($this->baseurl);
 	}
 
 	/**
 	 * @since	1.6
 	 */
 	protected function _setState($id, $state) {
-    $db = JFactory::getDBO();
-    $query = "UPDATE #__tdsmanager_hebergements SET state={$db->Quote($state)} WHERE id={$db->Quote($id)}";
-    $db->setQuery((string)$query);
+		$app = JFactory::getApplication();
+		
+		$db = JFactory::getDBO();
+		$query = "UPDATE #__tdsmanager_hebergements SET state={$db->Quote($state)} WHERE id={$db->Quote($id)}";
+		$db->setQuery((string)$query);
 
-	try
-	{
-		$db->Query();
-	}
-	catch (Exception $e)
-	{
-		$this->app->enqueueMessage ($e->getMessage());
-		return false;
-	}
+		try
+		{
+			$db->Query();
+		}
+		catch (Exception $e)
+		{
+			$app->enqueueMessage ($e->getMessage());
+			return false;
+		}
 
 		return true;
-  }
+	}
 }

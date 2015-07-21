@@ -102,11 +102,14 @@ echo $this->_getViewFile('common', 'menu');
        ?>
 		</tbody>
 	</table>
-  <a class="btn btn-primary" href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" ><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NEW') ?></a>
-    <button class="btn btn-primary" id="taxehebergementedit" type="button"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_EDIT') ?></button>
-   <button class="btn btn-danger" id="taxehebergementdelete" type="button"><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETE') ?></button>
-  <a class="btn btn-primary" href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><?php echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_PERIODE_OUVERTURE') ?></a>
-  <?php echo JHtml::_('form.token'); ?>
+	
+	<!-- <a class="btn btn-primary" href="<?php //echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" onclick="" >
+		<?php //echo JText::_('COM_TDSMANAGER_HEBERGEMENT_NEW') ?>
+	</a>
+	<button class="btn btn-primary" id="taxehebergementedit" type="button"><?php //echo JText::_('COM_TDSMANAGER_HEBERGEMENT_EDIT') ?></button>
+	<button class="btn btn-danger" id="taxehebergementdelete" type="button"><?php //echo JText::_('COM_TDSMANAGER_HEBERGEMENT_DELETE') ?></button>
+	<a class="btn btn-primary" href="<?php //echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=periode_ouverture'); ?>" onclick="" ><?php //echo JText::_('COM_TDSMANAGER_HEBERGEMENTS_PERIODE_OUVERTURE') ?></a>-->
+	<?php echo JHtml::_('form.token'); ?>
   <div>
     <?php //echo $this->getPagination(7) ?>
   </div>

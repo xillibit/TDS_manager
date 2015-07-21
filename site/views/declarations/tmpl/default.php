@@ -86,7 +86,7 @@ echo $this->_getViewFile('common', 'menu');
   	</table>
     <a href="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=declarations&task=edit'); ?>" class="btn btn-primary"><?php echo JText::_('COM_TDSMANAGER_CREATE_NEW_DECLARATION') ?></a>
     <!--<input type="button" id="sup_declaration" value="<?php //echo JText::_('COM_TDSMANAGER_DECLARATION_DELETE_DECLARATION') ?>" />  -->
-    <button class="btn btn-primary" type="button"><?php echo JText::_('COM_TDSMANAGER_CREATE_PAIEMENT_DECLARATION') ?></button>
+    <!--<button class="btn btn-primary" type="button"><?php //echo JText::_('COM_TDSMANAGER_CREATE_PAIEMENT_DECLARATION') ?></button>-->
     <input type="hidden" name="task" value="recap" />
     <?php echo JHtml::_('form.token'); ?>
   </form>
