@@ -3,11 +3,11 @@ TDS_manager
 
 ## ABOUT
 
-Joomla! component which allow you to manage holidays taxes for a tourism office
+Joomla! component which allow you to let users sumbit their holidays taxes to the local authority
 
 ## REQUIREMENTS
 
-TDS_manager requires Joomla! 2.5.19 to work, this component hasn't been tested under Joomla! 3.x
+TDS_manager component can work on Joomla! 2.5.28 or Joomla! 3.x
 
 ## LICENSE
 
