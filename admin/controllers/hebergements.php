@@ -84,7 +84,7 @@ class TdsmanagerAdminControllerHebergements extends TdsmanagerController {
 
 		$db = JFactory::getDBO();
 
-		$id = $app->getInt('id', 0);
+		$id = $app->input->getInt('id', 0);
 		$hostingname = $app->input->getString('hostingname', null);
 		$description  = $app->input->getString('description', null);
 		$adress = $app->input->getString('adress', null);
