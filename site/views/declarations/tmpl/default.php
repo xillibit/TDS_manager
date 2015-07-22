@@ -91,3 +91,4 @@ echo $this->_getViewFile('common', 'menu');
     <?php echo JHtml::_('form.token'); ?>
   </form>
 </div>
+<?php echo $this->_getViewFile('common', 'footer'); ?>
