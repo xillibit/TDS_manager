@@ -116,3 +116,4 @@ echo $this->_getViewFile('common', 'menu');
 	</form>
 	<?php } ?>
 </div>
+<?php echo $this->_getViewFile('common', 'footer'); ?>
