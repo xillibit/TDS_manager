@@ -21,9 +21,9 @@ echo $this->_getViewFile('common', 'menu');
 	<?php if ( empty($this->hebergements) ) { ?>
 		<span><?php echo 'Vous n\'avez aucun hébergement d\'enregistré'; ?></span>
 		<br />
-		<form action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" method="post">
+		<!-- <form action="<?php //echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements&task=create'); ?>" method="post">
 			<button class="btn btn-primary" type="submit">Ajouter un nouvel hébergement</button>
-		</form>
+		</form>-->
 	<?php } else {    ?>
 		<form id="taxe-hebergements" name="taxehebergements" action="<?php echo JRoute::_('index.php?option=com_tdsmanager&view=hebergements'); ?>" method="post">
 			<table class="table table-bordered">
