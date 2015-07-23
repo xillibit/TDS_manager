@@ -18,6 +18,7 @@ class TdsmanagerAdminTemplate30
 		$document->addStyleSheet(JUri::base(true) . '/components/com_tdsmanager/media/css/joomla30/layout.css');
 		$document->addStyleSheet(JUri::base(true) . '/components/com_tdsmanager/media/css/joomla30/styles.css');
 	}
+	
 	public function getTemplatePaths($path = '', $fullpath = false)
 	{
 		if ($path)

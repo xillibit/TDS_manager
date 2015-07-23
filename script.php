@@ -14,6 +14,12 @@ class com_tdsmanagerInstallerScript
 	 */
 	function install($parent)
 	{
+		// Create directory tds_mesbacs in root of Joomla! to create files for declaration data
+		if ( !JFolder::exists(JPATH_ROOT . '/tds_mesbacs') )
+		{
+			JFolder::create(JPATH_ROOT . '/tds_mesbacs');
+		}
+		
 		// $parent is the class calling this method
 		$parent->getParent()->setRedirectURL('index.php?option=com_tdsmanager');
 	}
