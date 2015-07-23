@@ -25,16 +25,20 @@ class TdsmanagerView extends JViewLegacy {
 		parent::__construct($config);
 		$this->document = JFactory::getDocument();
 		$this->app = JFactory::getApplication ();
-
+		
+		if ($this->app->isAdmin())
+		{
+			$this->displayTemplateAdmin();
+		}
 	}
 
 	function displayAll() {
-   if (JFactory::getApplication()->isAdmin()) {
+		if (JFactory::getApplication()->isAdmin()) {
 			$this->displayLayout();
 		} else {
-      $view = $this->getName ();
-      $this->displayTemplateFile($view, 'default');
-    }
+			$view = $this->getName ();
+			$this->displayTemplateFile($view, 'default');
+		}
 	}
 
 	function displayLayout($layout=null, $tpl = null) {
@@ -418,6 +422,27 @@ class TdsmanagerView extends JViewLegacy {
 		if (!$this->state->get('embedded')) {
 			// TODO: allow translations/overrides
 			$this->document->setMetadata ( 'description', $this->document->get ( 'description' ) . '. ' . $description );
+		}
+	}
+	
+	/**
+	 * Display admin template
+	 */
+	function displayTemplateAdmin()
+	{
+		if (version_compare(JVERSION, '3.0', '>'))
+		{
+			// Joomla 3.0+ template:
+			require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/template/joomla30/template.php';
+			$template = new TdsmanagerAdminTemplate30;
+			$template->initialize();
+		}
+		else
+		{
+			// Joomla 2.5 template:
+			require_once JPATH_ADMINISTRATOR . '/components/com_tdsmanager/template/joomla25/template.php';
+			$template = new TdsmanagerAdminTemplate25;
+			$template->initialize();
 		}
 	}
 }

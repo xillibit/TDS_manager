@@ -71,6 +71,7 @@
 			<folder>models</folder>
 			<folder>media</folder>
 			<folder>tables</folder>
+			<folder>template</folder>
 			<folder>views</folder>
 			<!-- SQL files section -->
 			<folder>sql</folder>
