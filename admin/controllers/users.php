@@ -64,94 +64,112 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
       $this->app->redirect($this->baseurl);
     }
   }
-
+	
+  /**
+   * Remove user from tdsmanager and from Joomla! database
+   * 
+   * @return boolean
+   */
   public function remove() {
     // Check for request forgeries.
     if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
+		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+		$this->app->redirect($this->baseurl);
     }
 
     $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
-      jimport( 'joomla.access.access' );
-      $user = JFactory::getUser();
+		jimport( 'joomla.access.access' );
+		$user = JFactory::getUser();
+		
+		$db = JFactory::getDBO();
+		
+		foreach($ids as $id) {
+			$table   = JUser::getTable();
+			
+			// Check if user exist in the table before to load it
+			if($table->load( $id ))
+			{
+				$groups = JUserHelper::getUserGroups($id);
+		
+				if ( !in_array($user->id, $ids) && !in_array('8', $groups) ) {
+					$ids = implode(',',$ids);
+					$query = "DELETE FROM #__tdsmanager_user WHERE userid IN ($ids)";
+					$db->setQuery((string)$query);
+		
+					try
+					{
+		 				$db->Query();
+					}
+					catch (Exception $e)
+					{
+						$this->app->enqueueMessage ($e->getMessage());
+						return false;
+					}
+		
+					$user->delete();
+				}
+			}
+			else
+			{
+				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOT_EXIST_CAN_BE_DELETED') );
+				$this->app->redirect($this->baseurl);
+			}
+		}
 
-      foreach($ids as $id) {
-        $groups = JUserHelper::getUserGroups($id);
-
-        if ( !in_array($user->id, $ids) && !in_array('8', $groups) ) {
-          $db = JFactory::getDBO();
-          $ids = implode(',',$ids);
-          $query = "DELETE FROM #__tdsmanager_user WHERE userid IN ($ids)";
-          $db->setQuery((string)$query);
-
-          try
-          {
-          	$db->Query();
-          }
-          catch (Exception $e)
-          {
-          	$this->app->enqueueMessage ($e->getMessage());
-          	return false;
-          }
-
-          // TODO: utiliser une fonction de Joomla! pour supprimer l'utilisateur
-          /*$query = "DELETE FROM #__users WHERE id IN ($ids)";
-          $db->setQuery((string)$query);
-          $db->Query();   */
-
-        }
-      }
-
-  		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_DELETED') );
+		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_DELETED') );
   		$this->app->redirect($this->baseurl);
 		} else {
       $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
       $this->app->redirect($this->baseurl);
     }
   }
-
-  public function save() {
-    // Check for request forgeries.
-    if (!JSession::checkToken()) {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
-
-    $userid = $this->app->input->getInt('id', 0);
-
-    if ( !empty($userid) ) {
-     $name = $this->app->input->getString('name', null);
-     $lastname = $this->app->input->getString('lastname', null);
-     $adress = $this->app->input->getString('adress', null);
-     $complement_adress = $this->app->input->getString('complement_adress', null);
-     $postalcode = $this->app->input->getInt('postalcode', 0);
-     $ville = $this->app->input->getString('ville', null);
-     $telephone = $this->app->input->getString('telephone', null);
-     $portable = $this->app->input->getString('portable ', null);
-
-     $db = JFactory::getDBO();
-     $query = "UPDATE #__tdsmanager_users
-              SET name={$db->quote($name)},lastname={$db->quote($lastname)},adress={$db->quote($adress)},complement_adress={$db->quote($complement_adress)},postalcode={$db->quote($postalcode)},ville={$db->quote($ville)},telephone={$db->quote($telephone)},portable={$db->quote($portable)} WHERE userid={$db->quote($userid)}";
-     $db->setQuery((string)$query);
-
-		try
-		{
-			$db->Query();
-		}
-		catch (Exception $e)
-		{
-			$this->app->enqueueMessage ($e->getMessage());
-			return false;
+	
+	/**
+	 * Save user into tdsmanager if it exist
+	 * 
+	 * @return boolean
+	 */
+	public function save() {
+		// Check for request forgeries.
+		if (!JSession::checkToken()) {
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_TOKEN'), 'error' );
+			$this->app->redirect($this->baseurl);
 		}
 
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVED_SUCESSFULLY') );
-  		$this->app->redirect($this->baseurl);
-    } else {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVE_FAILED'), 'error' );
-      $this->app->redirect($this->baseurl);
-    }
+		$userid = $this->app->input->getInt('id', 0);
+
+		if ( !empty($userid) ) {
+			$name = $this->app->input->getString('name', null);
+			$lastname = $this->app->input->getString('lastname', null);
+			$adress = $this->app->input->getString('adress', null);
+			$complement_adress = $this->app->input->getString('complement_adress', null);
+			$postalcode = $this->app->input->getInt('postalcode', 0);
+			$ville = $this->app->input->getString('ville', null);
+			$telephone = $this->app->input->getString('telephone', null);
+			$portable = $this->app->input->getString('portable ', null);
+
+			$db = JFactory::getDBO();
+			$query = "UPDATE #__tdsmanager_users
+				SET name={$db->quote($name)},lastname={$db->quote($lastname)},adress={$db->quote($adress)},complement_adress={$db->quote($complement_adress)},postalcode={$db->quote($postalcode)},ville={$db->quote($ville)},telephone={$db->quote($telephone)},portable={$db->quote($portable)} WHERE userid={$db->quote($userid)}";
+			$db->setQuery((string)$query);
+
+			try
+			{
+				$db->Query();
+			}
+			catch (Exception $e)
+			{
+				$this->app->enqueueMessage ($e->getMessage());
+				return false;
+			}
+
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVED_SUCESSFULLY') );
+			$this->app->redirect($this->baseurl);
+		} else {
+			$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_SAVE_FAILED_OR_USER_DOESNT_EXIST'), 'error' );
+			$this->app->redirect($this->baseurl);
+		}
   }
 
   public function block() {
