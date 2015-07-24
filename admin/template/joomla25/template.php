@@ -15,9 +15,7 @@ class TdsmanagerAdminTemplate25
 	public function initialize()
 	{
 		JHtml::addIncludePath(JUri::root(true) . '/libraries/html/html');
-		// Add JavaScript Frameworks
-		JHtml::_('moobootstrap.framework');
-		$this->compileLess("kunena.less", "bootstrap-custom.css");
+		
 		$document = JFactory::getDocument();
 		$document->addStyleSheet(JUri::root(true) . '/media/kunena/css/joomla25/bootstrap-custom.css');
 		$document->addStyleSheet(JUri::base(true) . '/components/com_tdsmanager/media/css/joomla25/layout.css');

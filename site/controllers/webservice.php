@@ -94,7 +94,17 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 				if ($mise_a_jour)
 				{
-					$this->updateHerbergeur($values);
+					// On vérifie si l'hébergeur existe bien avant de procéder à la mise à jour
+					$obj = $this->checkHebergeur($values->id);
+
+					if ( !empty($obj) )
+					{
+						$this->updateHerbergeur($values);
+					}
+					else
+					{
+						$this->addHerbergeur($values);
+					}
 				}
 				else
 				{
@@ -183,7 +193,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -210,7 +220,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -223,6 +233,20 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		);
 
 		return true;
+	}
+	
+	/**
+	 * Vérification si l'hébergeur n'éxiste pas
+	 */
+	protected function checkHebergeur($id)
+	{
+		$db = JFactory::getDbo();
+	
+		$query = "SELECT * FROM #__tdsmanager_users WHERE id=".$id;
+		$db->setQuery($query);
+		$heberg = $db->loadObject();
+	
+		return $heberg;
 	}
 
 	/**
@@ -263,7 +287,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -279,7 +303,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	}
 
 	/**
-	 * Mise � jour d'un hébergement éxistant
+	 * Mise à jour d'un hébergement éxistant
 	 */
 	protected function updateHerbergement($values)
 	{
@@ -292,7 +316,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -319,7 +343,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -335,7 +359,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 	}
 
 	/**
-	 * Mise � jour d'un classement �xistant
+	 * Mise à jour d'un classement éxistant
 	 */
 	protected function updateClassement($values)
 	{
@@ -346,7 +370,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -384,7 +408,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 		try
 		{
-			//$db->query();
+			$db->query();
 		}
 		catch (Exception $e)
 		{
@@ -413,7 +437,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 
 			try
 			{
-				//$db->query();
+				$db->query();
 			}
 			catch (Exception $e)
 			{
