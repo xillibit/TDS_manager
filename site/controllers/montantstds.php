@@ -12,13 +12,15 @@ jimport('joomla.application.component.controllerform');
 
 class TdsmanagerControllerMontantstds extends JControllerLegacy {
 	/**
-	 * Ecriture des fichiers textes pour les montants de la taxe de séjour pour être intégré dans le logiciel mesbacs
+	 * Ecriture des fichiers textes pour les montants de la taxe de sÃ©jour pour Ãªtre intÃ©grÃ© dans le logiciel mesbacs
+	 * 
+	 * @return void
 	 */
 	public function writefile()
 	{
 		jimport('joomla.log.log');
 		
-		// On crée un nouveau fichier de log avec une date pour trier les précédents
+		// On crÃ©e un nouveau fichier de log avec une date pour trier les prÃ©cÃ©dents
 		JLog::addLogger(
 			array(
 				'text_file' => 'com_tdsmanager.montantstds.' . date('Y-m-d') . 'log.php'
@@ -34,7 +36,7 @@ class TdsmanagerControllerMontantstds extends JControllerLegacy {
 			JFolder::create($path);
 		}
 		
-		// On supprime les fichiers datés de plus de 7 jours
+		// On supprime les fichiers datï¿½s de plus de 7 jours
 		if ($handle = opendir($path))
 		{
 			while (false !== ($file = readdir($handle)))
@@ -50,7 +52,7 @@ class TdsmanagerControllerMontantstds extends JControllerLegacy {
 			closedir($handle); 
 		}
 		
-		// Les fichiers contiennent des tabulations pour séparer les éléments de chaque colonne
+		// Les fichiers contiennent des tabulations pour sÃ©parer les Ã©lÃ©ments de chaque colonne
 		$date = JFactory::getDate();
 		
 		$hebergeurs = $path . '/hebergeurs' .$date->format('d-m-Y'). '.txt';
@@ -62,13 +64,13 @@ class TdsmanagerControllerMontantstds extends JControllerLegacy {
 		if ($writeHebergeurs)
 		{
 			JLog::add(
-				"Le fichier texte des hébergeurs a bien été enregistré", JLog::INFO, 'com_tdsmanager.montantstds'
+				"Le fichier texte des hÃ©bergeurs a bien Ã©tÃ© enregistrÃ©", JLog::INFO, 'com_tdsmanager.montantstds'
 			);
 		}
 		else
 		{
 			JLog::add(
-				"Le fichier texte des hébergeurs n'a pas pu être enregistré", JLog::INFO, 'com_tdsmanager.montantstds'
+				"Le fichier texte des hÃ©bergeurs n'a pas pu Ãªtre enregistrÃ©", JLog::INFO, 'com_tdsmanager.montantstds'
 			);
 		}
 		
@@ -78,13 +80,13 @@ class TdsmanagerControllerMontantstds extends JControllerLegacy {
 		if ($writeHebergements)
 		{
 			JLog::add(
-				"Le fichier texte des hébergements a bien été enregistré", JLog::INFO, 'com_tdsmanager.montantstds'
+				"Le fichier texte des hÃ©bergements a bien Ã©tÃ© enregistrÃ©", JLog::INFO, 'com_tdsmanager.montantstds'
 			);
 		}
 		else 
 		{
 			JLog::add(
-				"Le fichier texte des hébergements n'a pas pu être enregistré", JLog::INFO, 'com_tdsmanager.montantstds'
+				"Le fichier texte des hÃ©bergements n'a pas pu Ãªtre enregistrÃ©", JLog::INFO, 'com_tdsmanager.montantstds'
 			);
 		}
 	}

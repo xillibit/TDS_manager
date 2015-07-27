@@ -71,15 +71,15 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 			$db = JFactory::getDBO();
 			$query = $db->getQuery(true);
 			$values = array($db->quote($trimestre),
-								$db->quote($mois),
-								$hebergement_id,
-								$db->quote($tarif_par_nuite_par_personne),
-								$nb_personnes_par_nuite,
-								$nb_personnes_exonerees,
-								$db->quote($total_declare),
-								$db->quote($date->toSql()),
-								$exactitude,
-								$user->id);
+				$db->quote($mois),
+				$hebergement_id,
+				$db->quote($tarif_par_nuite_par_personne),
+				$nb_personnes_par_nuite,
+				$nb_personnes_exonerees,
+				$db->quote($total_declare),
+				$db->quote($date->toSql()),
+				$exactitude,
+				$user->id);
 
 			$query->insert('#__tdsmanager_declarations')
 				->columns('trimestre, mois, hebergement_id, tarif_par_nuite_par_personne, nb_personnes_par_nuite, nb_personnes_exonerees, total_declare, date_declaration, exactitude, user_id')
@@ -100,7 +100,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
 			$app->enqueueMessage(JText::_('COM_TDSMANAGER_DECLARATION_SAVED_SUCCESSFULLY'));
 			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations', false) );
 		} else {
-			$app->enqueueMessage ( 'Vous n\'avez pas coché la case pour certifier l\'exactitude des informations saisies dans le document', 'error' );
+			$app->enqueueMessage (JText::_('COM_TDSMANAGER_DECLARATION_EXACTITUDE_NOT_CHECKED'), 'error' );
 			$this->setRedirect(JRoute::_('index.php?option=com_tdsmanager&view=declarations&layout=editform', false));
 		}
 	}
@@ -117,7 +117,7 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     // Set the MIME type for JSON output.
     $document->setMimeEncoding('application/json');
 
-    // caculer et retourner les données en JSON
+    // Caculer et retourner les données en JSON
     $startdate = $app->input->getString('startdate', 0);
     $enddate = $app->input->getString('enddate', 0);
     $pers_assujetties = $app->input->getInt('nbpersonnesassujetties', 0);
@@ -280,6 +280,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $app	= JFactory::getApplication();
     $db = JFactory::getDBO();
     $user = JFactory::getUser();
+    
+    // TODO: la librairie tcpdf a été supprimée du package
     require_once(JPATH_ADMINISTRATOR.'/components/com_tdsmanager/libraries/tcpdf/tcpdf.php');
 
     $query = "SELECT * FROM #__tdsmanager_users WHERE userid={$user->id};";
@@ -443,8 +445,8 @@ class TdsmanagerControllerDeclarations extends JControllerLegacy {
     $username = urlencode('seller_1349792730_biz_api1.gmail.com');
     $password = urlencode('1349792759');
     $signature = urlencode('AtxcpvyOhXAQLcWH3qBdYMRXyz0lAKKxJdTNEdXBQ82SvDkWr9YjMBDc');
-    $returnurl = urlencode('http://floriandalfitto.fr/odt_faverges/index.php/fr/taxe-sejour?view=declarations&task=getcheckout'); // where the user is sent upon successful completion
-    $cancelurl = urlencode('http://floriandalfitto.fr/odt_faverges/index.php/fr/taxe-sejour?view=declarations&task=cancelcheckout'); // where the user is sent upon canceling the transaction
+    // $returnurl = urlencode('http://floriandalfitto.fr/odt_faverges/index.php/fr/taxe-sejour?view=declarations&task=getcheckout'); // where the user is sent upon successful completion
+    // $cancelurl = urlencode('http://floriandalfitto.fr/odt_faverges/index.php/fr/taxe-sejour?view=declarations&task=cancelcheckout'); // where the user is sent upon canceling the transaction
     $post[] = "USER=$username";
     $post[] = "PWD=$password";
     $post[] = "SIGNATURE=$signature";
