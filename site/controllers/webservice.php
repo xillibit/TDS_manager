@@ -268,6 +268,11 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
 			return false;
 		}
+		
+		if ( empty($id_classement) )
+		{
+			$id_classement = 0;
+		}
 
 		return $id_classement;
 	}
