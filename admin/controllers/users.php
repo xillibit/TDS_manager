@@ -84,44 +84,27 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 		
 		$db = JFactory::getDBO();
 		
-		foreach($ids as $id) {
-			$table   = JUser::getTable();
-			
-			// Check if user exist in the table before to load it
-			if($table->load( $id ))
-			{
-				$groups = JUserHelper::getUserGroups($id);
+		$ids = implode(',',$ids);
+		$query = "DELETE FROM #__tdsmanager_users WHERE userid IN ($ids)";
+		$db->setQuery((string)$query);
 		
-				if ( !in_array($user->id, $ids) && !in_array('8', $groups) ) {
-					$ids = implode(',',$ids);
-					$query = "DELETE FROM #__tdsmanager_user WHERE userid IN ($ids)";
-					$db->setQuery((string)$query);
-		
-					try
-					{
-		 				$db->Query();
-					}
-					catch (Exception $e)
-					{
-						$this->app->enqueueMessage ($e->getMessage());
-						return false;
-					}
-		
-					$user->delete();
-				}
-			}
-			else
-			{
-				$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOT_EXIST_CAN_BE_DELETED') );
-				$this->app->redirect($this->baseurl);
-			}
+		try
+		{
+			$db->Query();
 		}
+		catch (Exception $e)
+		{
+			$this->app->enqueueMessage ($e->getMessage());
+			return false;
+		}
+		
+		$user->delete();
 
 		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_DELETED') );
-  		$this->app->redirect($this->baseurl);
-		} else {
-      $this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
-      $this->app->redirect($this->baseurl);
+		$this->app->redirect($this->baseurl);
+	} else {
+		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_NOTHING_SELECTED'), 'error' );
+		$this->app->redirect($this->baseurl);
     }
   }
 	
