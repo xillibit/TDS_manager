@@ -66,7 +66,7 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
   }
 	
   /**
-   * Remove user from tdsmanager and from Joomla! database
+   * Remove hosting manager from tdsmanager from database
    * 
    * @return boolean
    */
@@ -80,7 +80,6 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
     $ids = $this->app->input->get('cid',array(),'ARRAY');
     if ( !empty($ids) ) {
 		jimport( 'joomla.access.access' );
-		$user = JFactory::getUser();
 		
 		$db = JFactory::getDBO();
 		
@@ -98,8 +97,6 @@ class TdsmanagerAdminControllerUsers extends TdsmanagerController {
 			return false;
 		}
 		
-		$user->delete();
-
 		$this->app->enqueueMessage ( JText::_('COM_TDSMANAGER_USER_DELETED') );
 		$this->app->redirect($this->baseurl);
 	} else {
