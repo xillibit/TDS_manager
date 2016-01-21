@@ -47,8 +47,10 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 					'text_file' => 'com_tdsmanager.webservice.' . date('Y-m-d') . 'log.php'
 				),
 				JLog::ALL,
-				'com_tdsmanager'
+				array('com_tdsmanager')
 			);
+			
+			JLog::add('L\'URL du webservice a été appelé', JLog::INFO, 'com_tdsmanager');
 
 			$data = json_decode($data);
 
@@ -197,12 +199,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"Le nouvel hébergeur ".$values->name." a bien été enregistré", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel hébergeur ".$values->name." a bien été enregistré", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -224,12 +226,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"La mise à jour de l'hébergeur avec l'id ".$values->id." a bien été effectué", JLog::INFO, 'com_tdsmanager.webservice'
+			"La mise à jour de l'hébergeur avec l'id ".$values->id." a bien été effectué", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -265,7 +267,7 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 		
@@ -296,12 +298,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"Le nouvel hébergement " . $values->name . " a bien été enregistré", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel hébergement " . $values->name . " a bien été enregistré", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -325,12 +327,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"La mise à jour de l'hébergement avec l'id " . $values->id . " a bien été effectué", JLog::INFO, 'com_tdsmanager.webservice'
+			"La mise à jour de l'hébergement avec l'id " . $values->id . " a bien été effectué", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -352,12 +354,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"Le nouvel classement nommé " . $values->nom . " a bien été enregistré", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le nouvel classement nommé " . $values->nom . " a bien été enregistré", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -379,12 +381,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"Le classement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le classement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -417,12 +419,12 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 		}
 		catch (Exception $e)
 		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+			JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 			return false;
 		}
 
 		JLog::add(
-			"Les détails du type d'hébergement nommé" . $values->libelle_activite . " ont bien été enregistrés", JLog::INFO, 'com_tdsmanager.webservice'
+			"Les détails du type d'hébergement nommé" . $values->libelle_activite . " ont bien été enregistrés", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
@@ -446,13 +448,13 @@ class TdsmanagerControllerWebservice extends JControllerLegacy {
 			}
 			catch (Exception $e)
 			{
-				JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager.webservice');
+				JLog::add($e->getMessage(), JLog::ERROR, 'com_tdsmanager');
 				return false;
 			}
 		}
 
 		JLog::add(
-			"Le type d'hébergement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager.webservice'
+			"Le type d'hébergement avec l'id " . $values->id . " a bien été mis à jour", JLog::INFO, 'com_tdsmanager'
 		);
 
 		return true;
