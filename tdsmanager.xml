@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="2.5.0" method="upgrade">
+<extension type="component" version="3.2" method="upgrade">
 	<name>com_tdsmanager</name>
 	<author>Florian DAL FITTO</author>
 	<creationDate>March 2012</creationDate>
-	<copyright>(C) 2012 - 2014 Florian DAL FITTO. All rights reserved.
+	<copyright>(C) 2012 - 2017 Florian DAL FITTO. All rights reserved.
 	</copyright>
 	<license>GNU General Public License version 2 or later; see
 		LICENSE.txt</license>
-	<authorEmail>fdalfitto@pays-de-faverges.com</authorEmail>
-	<authorUrl>www.pays-de-faverges.com</authorUrl>
+	<authorEmail>fdalfitto@cc-sources-lac-annecy.com</authorEmail>
+	<authorUrl>www.cc-sources-lac-annecy.com</authorUrl>
 	<version>1.0.0</version>
 	<description>COM_TDSMANAGER_XML_DESCRIPTION</description>
 	
