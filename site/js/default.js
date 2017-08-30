@@ -10,7 +10,7 @@
  */
 jQuery( document ).ready(function() {
 	jQuery('#decl_add_item').click(function() {
-		//var newitem = $('com_gesttaxesejour-sejour1').clone().inject('com_gesttaxesejour-sejour1','after');
+		//var newitem = $('com_tdsmanager-sejour1').clone().inject('com_tdsmanager-sejour1','after');
 	});
 	
 	jQuery('#choix_trimestre').change(function() {
@@ -100,8 +100,8 @@ jQuery( document ).ready(function() {
 window.addEvent('domready', function(){
    if ( $('decl_add_item') != undefined ) {
      $('decl_add_item').addEvent('click', function(event) {            
-        var newitem = $('com_gesttaxesejour-sejour1').clone().inject('com_gesttaxesejour-sejour1','after');
-        //newitem.set('id', 'com_gesttaxesejour-sejour');                 
+        var newitem = $('com_tdsmanager-sejour1').clone().inject('com_tdsmanager-sejour1','after');
+        //newitem.set('id', 'com_tdsmanager-sejour');                 
      });
    }
    
@@ -238,7 +238,7 @@ window.addEvent('domready', function(){
    
    if ( $('sup_declaration') != undefined ) {
     $('sup_declaration').addEvent('click', function(event) {
-      $('com_gesttaxe_dec_form').submit();
+      $('com_tdsmanager_dec_form').submit();
     });
    }
    
