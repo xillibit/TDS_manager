@@ -8,7 +8,7 @@ jimport('joomla.database.table');
 /**
  * Reglements Table class
  */
-class GestTaxeSejourTableReglements extends JTable {
+class TDSManagerTableReglements extends JTable {
 	/**
 	 * Constructor
 	 *

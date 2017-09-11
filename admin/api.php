@@ -9,32 +9,32 @@
  **/
 defined ( '_JEXEC' ) or die ();
 
-if (defined ( 'GESTTAXESEJOUR_LOADED' ))
+if (defined ( 'TDSMANAGER_LOADED' ))
 	return;
 
 // Component name amd database prefix
-define ( 'GESTTAXESEJOUR_COMPONENT_NAME', basename ( dirname ( __FILE__ ) ) );
-define ( 'GESTTAXESEJOUR_NAME', substr ( GESTTAXESEJOUR_COMPONENT_NAME, 4 ) );
+define ( 'TDSMANAGER_COMPONENT_NAME', basename ( dirname ( __FILE__ ) ) );
+define ( 'TDSMANAGER_NAME', substr ( TDSMANAGER_COMPONENT_NAME, 4 ) );
 
 // Component location
-define ( 'GESTTAXESEJOUR_COMPONENT_LOCATION', basename ( dirname ( dirname ( __FILE__ ) ) ) );
+define ( 'TDSMANAGER_COMPONENT_LOCATION', basename ( dirname ( dirname ( __FILE__ ) ) ) );
 
 // Component paths
-define ( 'GESTTAXESEJOUR_COMPONENT_RELATIVE', GESTTAXESEJOUR_COMPONENT_LOCATION . '/' . GESTTAXESEJOUR_COMPONENT_NAME );
-define ( 'GESTTAXESEJOUR_SITE', JPATH_ROOT .'/'. GESTTAXESEJOUR_COMPONENT_RELATIVE );
-define ( 'GESTTAXESEJOUR_ADMIN', JPATH_ADMINISTRATOR .'/'. GESTTAXESEJOUR_COMPONENT_RELATIVE );
-define ( 'GESTTAXESEJOUR_MEDIA', JPATH_ROOT .'/media/'. GESTTAXESEJOUR_NAME );
+define ( 'TDSMANAGER_COMPONENT_RELATIVE', TDSMANAGER_COMPONENT_LOCATION . '/' . TDSMANAGER_COMPONENT_NAME );
+define ( 'TDSMANAGER_SITE', JPATH_ROOT .'/'. TDSMANAGER_COMPONENT_RELATIVE );
+define ( 'TDSMANAGER_ADMIN', JPATH_ADMINISTRATOR .'/'. TDSMANAGER_COMPONENT_RELATIVE );
+define ( 'TDSMANAGER_MEDIA', JPATH_ROOT .'/media/'. TDSMANAGER_NAME );
 
 // URLs
-define ( 'GURL_COMPONENT', 'index.php?option=' . GESTTAXESEJOUR_COMPONENT_NAME );
-define ( 'GURL_SITE', JURI::Root () . GESTTAXESEJOUR_COMPONENT_RELATIVE . '/' );
-define ( 'GURL_MEDIA', JURI::Root () . 'media/' . GESTTAXESEJOUR_NAME . '/' );
+define ( 'GURL_COMPONENT', 'index.php?option=' . TDSMANAGER_COMPONENT_NAME );
+define ( 'GURL_SITE', JURI::Root () . TDSMANAGER_COMPONENT_RELATIVE . '/' );
+define ( 'GURL_MEDIA', JURI::Root () . 'media/' . TDSMANAGER_NAME . '/' );
 
-// Register Joomla and Kunena autoloader
+// Register Joomla and TDSManager autoloader
 if (function_exists('__autoload')) spl_autoload_register('__autoload');
 spl_autoload_register('GesttaxeAutoload');
 
-// Give access to all Kunena tables
+// Give access to all TDSManager tables
 //jimport('joomla.database.table');
 //JTable::addIncludePath(KPATH_ADMIN.'/libraries/tables');
 // Give access to all JHTML functions
@@ -70,5 +70,5 @@ function GesttaxeAutoload($class) {
 	return false;
 }
 
-// Kunena has been initialized
-define ( 'GESTTAXESEJOUR_LOADED', 1 );
+// TDSManager has been initialized
+define ( 'TDSMANAGER_LOADED', 1 );
