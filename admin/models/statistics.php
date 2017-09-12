@@ -74,7 +74,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
     $where = $this->getOccupationState();
 
     $db = JFactory::getDBO();
-    $query = "SELECT hosting.*, decl.*, COUNT(decl.nb_total_personnes) AS pers_occup_total, COUNT(hosting.capacite_personnes) AS personnes_dispo_total, YEAR(decl.date_declaration) AS annee_date_declarer, MONTH(decl.date_declaration) AS mois_date_declarer
+    $query = "SELECT hosting.*, decl.*, COUNT(decl.nb_personnes_par_nuite) AS pers_occup_total, COUNT(hosting.capacite_personnes) AS personnes_dispo_total, YEAR(decl.date_declaration) AS annee_date_declarer, MONTH(decl.date_declaration) AS mois_date_declarer
     			FROM #__tdsmanager_hebergements AS hosting
 				INNER JOIN  #__tdsmanager_declarations AS decl ON decl.hebergement_id=hosting.id ".$where." GROUP BY hosting.city";
     $db->setQuery((string)$query);
@@ -117,7 +117,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
 
     $db = JFactory::getDBO();
 
-    $query = "SELECT decl.*, hosting.*, SUM(decl.nb_personnes_assujetties) AS nb_pers_assujetties_total, SUM(decl.montant_encaisse_sejour) AS montant_enc_sejour_total, SUM(decl.duree_sejour) AS duree_sejour_total FROM #__tdsmanager_declarations AS decl
+    $query = "SELECT decl.*, hosting.*, SUM(decl.nb_personnes_assujetties) AS nb_pers_assujetties_total, SUM(decl.total_declare) AS montant_enc_sejour_total FROM #__tdsmanager_declarations AS decl
               INNER JOIN #__tdsmanager_hebergements AS hosting ON decl.hebergement_id=hosting.id
               ".$where."
               GROUP BY hosting.city";
