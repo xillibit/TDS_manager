@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `#__tdsmanager_declarations` (
 	`total_declare` float(7,4) NOT NULL,
 	`date_declaration` date NOT NULL DEFAULT '0000-00-00',
 	`exactitude` int(4),
-	`user_id` int(11), 
+	`user_id` int(11),
+	`nb_total_personnes` int(11),
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

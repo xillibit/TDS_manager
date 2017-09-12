@@ -74,7 +74,7 @@ class TdsmanagerAdminModelStatistics extends TdsmanagerModel {
     $where = $this->getOccupationState();
 
     $db = JFactory::getDBO();
-    $query = "SELECT hosting.*, decl.*, COUNT(decl.nb_total_personnes) AS pers_occup_total, COUNT(hosting.capacite_personnes) AS personnes_dispo_total, YEAR(decl.date_declarer) AS annee_date_declarer, MONTH(decl.date_declarer) AS mois_date_declarer
+    $query = "SELECT hosting.*, decl.*, COUNT(decl.nb_total_personnes) AS pers_occup_total, COUNT(hosting.capacite_personnes) AS personnes_dispo_total, YEAR(decl.date_declaration) AS annee_date_declarer, MONTH(decl.date_declaration) AS mois_date_declarer
     			FROM #__tdsmanager_hebergements AS hosting
 				INNER JOIN  #__tdsmanager_declarations AS decl ON decl.hebergement_id=hosting.id ".$where." GROUP BY hosting.city";
     $db->setQuery((string)$query);
